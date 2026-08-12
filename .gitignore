@@ -1,0 +1,19 @@
+# dependencies (tous les apps/*, node_modules ou venv)
+node_modules/
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# env files
+.env
+.env.local
+.env.*.local
+
+# next.js
+.next/
+out/
+
+# misc
+.DS_Store
+*.pem
