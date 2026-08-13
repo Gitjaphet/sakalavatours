@@ -137,11 +137,11 @@ export default function Hero() {
           <div
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
-            className="mt-7 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 lg:flex-col lg:items-stretch 2xl:flex-row 2xl:items-center 2xl:gap-5"
+            className="mt-7 flex max-w-[420px] flex-col gap-3 sm:mt-9 sm:max-w-[500px] lg:max-w-none"
           >
             <Link
               href={active.href}
-              className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F4A261] to-[#E76F51] px-7 py-4 text-sm font-semibold text-white shadow-[0_14px_30px_-10px_rgba(231,111,81,0.8)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:w-auto sm:py-3.5 lg:w-full 2xl:w-auto"
+              className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F4A261] to-[#E76F51] px-7 py-4 text-sm font-semibold text-white shadow-[0_14px_30px_-10px_rgba(231,111,81,0.8)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:py-3.5"
             >
               Découvrir l&apos;excursion
               <svg
@@ -160,12 +160,21 @@ export default function Hero() {
               </svg>
             </Link>
 
-            <Link
-              href="/circuits"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/10 px-7 py-4 text-sm font-medium text-white/90 ring-1 ring-white/25 backdrop-blur-md transition-colors duration-300 hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:w-auto sm:py-3.5 lg:w-full 2xl:w-auto"
-            >
-              Voir tous les circuits
-            </Link>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 2xl:grid-cols-2">
+              <Link
+                href="/circuits"
+                className="inline-flex items-center justify-center rounded-full bg-white/10 px-5 py-3.5 text-center text-[13px] font-medium text-white/90 ring-1 ring-white/25 backdrop-blur-md transition-colors duration-300 hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:text-sm"
+              >
+                Voir tous les circuits
+              </Link>
+
+              <Link
+                href="/avis"
+                className="inline-flex items-center justify-center rounded-full bg-white/10 px-5 py-3.5 text-center text-[13px] font-medium text-white/90 ring-1 ring-white/25 backdrop-blur-md transition-colors duration-300 hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:text-sm"
+              >
+                Les avis de nos clients
+              </Link>
+            </div>
           </div>
         </div>
 

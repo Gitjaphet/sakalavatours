@@ -197,7 +197,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                 );
               })}
             </div>
-            <LanguageSwitcher />
+            <LanguageSwitcher direction="up" />
           </div>
 
           <p className="mt-6 text-center text-[10px] tracking-wide text-[#2B2620]/25">
