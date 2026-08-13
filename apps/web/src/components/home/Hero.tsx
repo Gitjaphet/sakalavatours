@@ -137,36 +137,34 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Colonne droite : cover-flow */}
+        {/* Colonne droite : cartes côte à côte, sans chevauchement */}
         <div className="lg:col-span-7">
-          <div className="relative mx-auto h-[clamp(320px,46vh,470px)] w-full [perspective:1800px]">
-            {heroDestinations.map((d, i) => {
-              const offset = (i - index + total) % total;
-              const shown = offset < visible;
-
-              return (
+        <div className="mx-auto flex justify-center gap-5 lg:gap-6">
+            <AnimatePresence mode="popLayout" initial={false}>
+            {Array.from({ length: isDesktop ? 3 : 2 }, (_, i) => {
+                const d = heroDestinations[(index + i) % total];
+                return (
                 <motion.div
-                  key={d.id}
-                  className="absolute left-0 top-0 h-full w-[clamp(225px,23vw,310px)] [transform-style:preserve-3d]"
-                  style={{ zIndex: total - offset, pointerEvents: shown ? "auto" : "none" }}
-                  animate={{
-                    x: `${(shown ? offset : visible) * step}%`,
-                    scale: 1 - offset * 0.08,
-                    rotateY: offset === 0 ? 0 : -12,
-                    opacity: shown ? 1 - offset * 0.12 : 0,
-                    filter: offset > 1 ? "brightness(0.75)" : "brightness(1)",
-                  }}
-                  transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+                    key={d.id}
+                    layout
+                    initial={{ opacity: 0, x: 48, scale: 0.94 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -48, scale: 0.94 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="h-[clamp(340px,46vh,460px)] w-[clamp(190px,21vw,270px)] shrink-0"
                 >
-                  <DestinationCard
+                    <DestinationCard
                     destination={d}
-                    isActive={offset === 0}
-                    onSelect={() => setIndex(i)}
-                  />
+                    isActive={i === 0}
+                    onSelect={() =>
+                        setIndex(heroDestinations.findIndex((x) => x.id === d.id))
+                    }
+                    />
                 </motion.div>
-              );
+                );
             })}
-          </div>
+            </AnimatePresence>
+        </div>
         </div>
       </div>
 

@@ -35,9 +35,9 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
     <article
       className={[
         "group relative h-full w-full overflow-hidden rounded-[28px]",
-        "bg-[#0d2f3c] ring-1 transition-[box-shadow,ring-color] duration-500",
+        "bg-[#0d2f3c] ring-1 transition-[box-shadow,ring-color,transform] duration-500",
         isActive
-          ? "ring-white/45 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.85)]"
+          ? "ring-white/45 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.85)] scale-[1.02]"
           : "ring-white/15 shadow-[0_25px_50px_-25px_rgba(0,0,0,0.7)]",
       ].join(" ")}
     >
@@ -45,18 +45,11 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
         src={destination.image}
         alt={`${destination.name}, ${destination.region}`}
         fill
-        sizes="(max-width: 1024px) 60vw, 24vw"
+        sizes="(max-width: 1024px) 45vw, 22vw"
         className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
       />
 
-      {/* Voile de lisibilité : plus marqué quand actif, discret sinon */}
-      <div
-        className={`pointer-events-none absolute inset-0 bg-gradient-to-t transition-opacity duration-500 ${
-          isActive
-            ? "from-black/85 via-black/25 to-black/30 opacity-100"
-            : "from-black/60 via-black/10 to-black/20 opacity-100"
-        }`}
-      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/30" />
 
       {/* Zone cliquable plein cadre (sous les contrôles) */}
       <button
@@ -66,6 +59,13 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
       >
         <span className="sr-only">Voir {destination.name}</span>
       </button>
+
+      {/* Badge durée — en haut, comme demandé */}
+      <div className="pointer-events-none absolute left-4 top-4 z-20">
+        <span className="inline-flex items-center rounded-full bg-white/12 px-3 py-1 text-[11px] font-medium text-white/90 ring-1 ring-white/20 backdrop-blur-sm">
+          {destination.duration}
+        </span>
+      </div>
 
       {/* Enregistrer */}
       <button
@@ -88,12 +88,8 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
         </svg>
       </button>
 
-      {/* Contenu bas — réservé à la carte active : plus jamais tronqué */}
-      <div
-        className={`pointer-events-none absolute inset-x-0 bottom-0 z-20 p-5 transition-all duration-500 sm:p-6 ${
-          isActive ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
-        }`}
-      >
+      {/* Contenu bas — toujours visible, plus jamais tronqué (cartes non chevauchées) */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-5 sm:p-6">
         <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/65">
           {destination.region}
         </p>
@@ -104,12 +100,6 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
         <div className="mt-2.5 flex items-center gap-3">
           <Stars rating={destination.rating} />
           <span className="text-xs text-white/60">{destination.rating.toFixed(1)}</span>
-        </div>
-
-        <div className="mt-3">
-          <span className="inline-flex items-center rounded-full bg-white/12 px-3 py-1 text-[11px] font-medium text-white/85 ring-1 ring-white/20 backdrop-blur-sm">
-            {destination.duration}
-          </span>
         </div>
       </div>
     </article>
