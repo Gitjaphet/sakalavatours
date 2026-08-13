@@ -107,7 +107,7 @@ export default function Hero() {
         className={`${CONTAINER} grid flex-1 grid-cols-1 items-center gap-y-9 pb-8 pt-28 sm:gap-y-12 sm:pt-32 lg:grid-cols-12 lg:gap-x-16 lg:pb-6 lg:pt-36`}
       >
         {/* Colonne gauche */}
-        <div className="lg:col-span-5">
+        <div className="min-w-0 lg:col-span-5">
           <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#F4A261] sm:text-xs">
             Bienvenue à Nosy Be
           </p>
@@ -170,7 +170,7 @@ export default function Hero() {
         </div>
 
         {/* Colonne droite : carrousel de cartes (swipe tactile) */}
-        <div className="lg:col-span-7">
+        <div className="min-w-0 lg:col-span-7">
           <motion.div
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -202,10 +202,12 @@ export default function Hero() {
                         "shrink-0",
                         // mobile : 1 carte large
                         "h-[min(54vh,420px)] w-full max-w-[340px]",
-                        // tablette + mini-desktop (POS) : 2 cartes nettement agrandies
+                        // tablette (640–1023) : 2 cartes, pleine largeur disponible
                         "sm:h-[clamp(360px,50vh,500px)] sm:w-[clamp(240px,42vw,380px)] sm:max-w-none",
-                        // desktop : valeurs validées, inchangées
-                        "xl:h-[clamp(340px,46vh,460px)] xl:w-[clamp(190px,21vw,270px)]",
+                        // mini-desktop / POS (1024–1279) : 2 cartes contraintes par la colonne 7/12
+                        "lg:h-[clamp(320px,44vh,440px)] lg:w-[clamp(200px,23vw,260px)]",
+                        // desktop (≥1280) : 3 cartes — pente vw corrigée, rendu 1920 préservé
+                        "xl:h-[clamp(340px,46vh,460px)] xl:w-[clamp(190px,14vw,270px)]",
                       ].join(" ")}
                     >
                       <DestinationCard
