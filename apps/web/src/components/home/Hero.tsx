@@ -59,12 +59,10 @@ export default function Hero() {
 
   return (
     <section
-      aria-roledescription="carrousel"
-      aria-label="Destinations à Nosy Be"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      className="relative isolate flex min-h-[700px] w-full flex-col overflow-hidden bg-[#0d2f3c] lg:h-svh"
-    >
+        aria-roledescription="carrousel"
+        aria-label="Destinations à Nosy Be"
+        className="relative isolate flex min-h-[700px] w-full flex-col overflow-hidden bg-[#0d2f3c] lg:h-svh"
+        >
       {/* ── Fond ──────────────────────────────────────────────────────── */}
       <AnimatePresence mode="sync">
         <motion.div
@@ -139,7 +137,11 @@ export default function Hero() {
 
         {/* Colonne droite : cartes côte à côte, sans chevauchement */}
         <div className="lg:col-span-7">
-        <div className="mx-auto flex justify-center gap-5 lg:gap-6">
+        <div
+                onMouseEnter={() => setPaused(true)}
+                onMouseLeave={() => setPaused(false)}
+                className="mx-auto flex justify-center gap-5 lg:gap-6"
+            >
             <AnimatePresence mode="popLayout" initial={false}>
             {Array.from({ length: isDesktop ? 3 : 2 }, (_, i) => {
                 const d = heroDestinations[(index + i) % total];
