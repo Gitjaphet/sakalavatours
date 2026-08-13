@@ -12,8 +12,12 @@
 // de préférence (le .jpg reste accepté, Next les convertit à la volée).
 // ─────────────────────────────────────────────────────────────────────────────
 
+
 /** Format d'excursion — la locale décide du libellé (`hero.duration.<kind>`) */
 export type HeroDurationKind = "full" | "half" | "evening";
+
+/** Devise d'affichage. Changer ici la répercute partout. */
+export const HERO_CURRENCY = "EUR";
 
 /** Coordonnées réelles du site, utilisées par le JSON-LD (schema.org/GeoCoordinates) */
 export type GeoPoint = {
@@ -29,35 +33,35 @@ export type HeroDestination = {
   /** Toponyme malgache — nom propre, identique dans les trois langues. */
   name: string;
 
-  /** Format et durée. Séparés pour permettre un libellé localisé correct
-   *  ("Journée complète · 8h" / "Full day · 8h" / "Ganztags · 8 Std."). */
+  /** Format et durée. Séparés pour permettre un libellé localisé correct. */
   durationKind: HeroDurationKind;
   durationHours: number;
+
+  /** Taille du groupe. `groupMax` alimentera `maximumAttendeeCapacity`
+   *  dans le JSON-LD TouristTrip. */
+  groupMin: number;
+  groupMax: number;
+
+  /** ⚠ TARIFS MOCK — à remplacer par la grille réelle avant production.
+   *  Prix par personne, dans la devise HERO_CURRENCY. */
+  priceFrom: number;
 
   /** Note moyenne affichée sur la carte, 0 → 5. */
   rating: number;
 
-  /** Nombre d'avis réels. Laisser `undefined` tant que tu n'as pas de vrais
-   *  avis vérifiables : une AggregateRating sans reviewCount authentique
-   *  expose à une pénalité manuelle Google (« structured data mismatch »). */
+  /** Nombre d'avis réels. Laisser `undefined` tant que tu n'as pas d'avis
+   *  vérifiables : une AggregateRating sans reviewCount authentique expose
+   *  à une pénalité manuelle Google. */
   reviewCount?: number;
-
-  /** Prix d'appel en ariary, pour l'Offer du JSON-LD. Laisser `undefined`
-   *  tant que la grille tarifaire n'est pas arrêtée. */
-  priceFrom?: number;
 
   /** Chemin du visuel, relatif à /public. */
   image: string;
 
-  /** Dimensions intrinsèques du fichier source.
-   *  Renseignées ici pour permettre un `<Image>` sans `fill` sur les pages
-   *  futures et pour alimenter la propriété `image` du JSON-LD. */
+  /** Dimensions intrinsèques du fichier source. */
   imageWidth: number;
   imageHeight: number;
 
-  /** Coordonnées du site. ⚠ Valeurs approximatives à vérifier sur une carte
-   *  officielle avant mise en production : une géolocalisation fausse dans le
-   *  JSON-LD nuit au référencement local. */
+  /** ⚠ Valeurs approximatives à vérifier avant mise en production. */
   geo: GeoPoint;
 
   /** Fiche circuit. next-intl préfixe automatiquement la locale. */
@@ -70,6 +74,9 @@ export const heroDestinations: HeroDestination[] = [
     name: "Nosy Iranja",
     durationKind: "full",
     durationHours: 8,
+    groupMin: 2,
+    groupMax: 12,
+    priceFrom: 85,
     rating: 5,
     image: "/images/hero/nosy-iranja.jpg",
     imageWidth: 2400,
@@ -82,6 +89,9 @@ export const heroDestinations: HeroDestination[] = [
     name: "Nosy Tanikely",
     durationKind: "full",
     durationHours: 7,
+    groupMin: 2,
+    groupMax: 10,
+    priceFrom: 60,
     rating: 5,
     image: "/images/hero/nosy-tanikely.jpg",
     imageWidth: 2400,
@@ -94,6 +104,9 @@ export const heroDestinations: HeroDestination[] = [
     name: "Lokobe",
     durationKind: "half",
     durationHours: 5,
+    groupMin: 2,
+    groupMax: 8,
+    priceFrom: 45,
     rating: 5,
     image: "/images/hero/lokobe.jpg",
     imageWidth: 2400,
@@ -106,6 +119,9 @@ export const heroDestinations: HeroDestination[] = [
     name: "Mont Passot",
     durationKind: "evening",
     durationHours: 3,
+    groupMin: 1,
+    groupMax: 6,
+    priceFrom: 25,
     rating: 4,
     image: "/images/hero/mont-passot.jpg",
     imageWidth: 2400,

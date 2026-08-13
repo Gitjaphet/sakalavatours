@@ -45,6 +45,11 @@
     "imageAlt": "{name}, {region} — excursion Sakalava Tours à Nosy Be",
 
     "duration": {
+      "group": "{min}–{max} pers.",
+      "groupAria": "Groupe de {min} à {max} personnes",
+      "priceFrom": "dès {price}",
+      "priceAria": "À partir de {price} par personne",
+      "perPerson": "/ pers.",
       "full": "Journée complète · {hours}h",
       "half": "Demi-journée · {hours}h",
       "evening": "Soirée · {hours}h"

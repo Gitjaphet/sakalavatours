@@ -3,8 +3,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { useTranslations } from "next-intl";
-import type { HeroDestination } from "@/lib/hero-data";
+import { useTranslations, useFormatter } from "next-intl";
+import { IconUsers } from "@tabler/icons-react";
+import { HERO_CURRENCY, type HeroDestination } from "@/lib/hero-data";
 
 type Props = {
   destination: HeroDestination;
@@ -32,11 +33,25 @@ function Stars({ rating, label }: { rating: number; label: string }) {
 export default function DestinationCard({ destination, isActive, onSelect }: Props) {
   const [saved, setSaved] = useState(false);
   const t = useTranslations("hero");
+  const format = useFormatter();
 
   const region = t(`destinations.${destination.id}.region`);
 
   const duration = t(`duration.${destination.durationKind}`, {
     hours: destination.durationHours,
+  });
+
+  const group = t("group", {
+    min: destination.groupMin,
+    max: destination.groupMax,
+  });
+
+  /** Formatage monétaire piloté par la locale active : séparateurs,
+   *  position du symbole et espacement suivent la convention du pays. */
+  const price = format.number(destination.priceFrom, {
+    style: "currency",
+    currency: HERO_CURRENCY,
+    maximumFractionDigits: 0,
   });
 
   /** Alt localisé et descriptif : les images de tourisme drainent un trafic
@@ -52,6 +67,7 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
           ? "scale-[1.02] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.85)] ring-white/45"
           : "shadow-[0_25px_50px_-25px_rgba(0,0,0,0.7)] ring-white/15",
       ].join(" ")}
+      style={{ transitionTimingFunction: "var(--ease-ios)" }}
     >
       <Image
         src={destination.image}
@@ -61,7 +77,8 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
         className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
       />
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/30" />
+      {/* Voile renforcé en bas : le bloc d'informations s'est allongé */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/30" />
 
       {/* Zone cliquable plein cadre (sous les contrôles) */}
       <button
@@ -108,7 +125,8 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
           {destination.name}
         </h3>
 
-        <div className="mt-2.5 flex items-center gap-3">
+        {/* Note + taille du groupe */}
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5">
           <Stars
             rating={destination.rating}
             label={t("ratingLabel", { rating: destination.rating })}
@@ -116,6 +134,31 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
           <span className="text-xs text-white/60">
             {destination.rating.toFixed(1)}
           </span>
+
+          <span
+            className="flex items-center gap-1.5 text-[11px] text-white/60"
+            aria-label={t("groupAria", {
+              min: destination.groupMin,
+              max: destination.groupMax,
+            })}
+          >
+            <IconUsers size={13} stroke={1.8} aria-hidden="true" />
+            {group}
+          </span>
+        </div>
+
+        {/* Prix */}
+        <div
+          className="mt-3 flex items-baseline gap-1.5 border-t border-white/15 pt-3"
+          aria-label={t("priceAria", { price })}
+        >
+          <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-white/50">
+            {t("priceFrom", { price: "" }).trim()}
+          </span>
+          <span className="font-[family-name:var(--font-baloo2)] text-[19px] font-semibold leading-none text-white">
+            {price}
+          </span>
+          <span className="text-[10px] text-white/45">{t("perPerson")}</span>
         </div>
       </div>
     </article>
