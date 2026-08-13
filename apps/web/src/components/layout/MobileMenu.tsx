@@ -177,7 +177,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
               {socialLinks.map(({ key, href, icon }) => {
                 const Icon = socialIconMap[icon as keyof typeof socialIconMap];
                 return (
-                  
+
                   <a
                     key={key}
                     href={href}
@@ -191,7 +191,9 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                 );
               })}
             </div>
-            <LanguageSwitcher direction="up" variant="topbar" />
+            <div className="text-white">
+              <LanguageSwitcher direction="up" variant="topbar" />
+            </div>
           </div>
 
           <p className="mt-6 text-center text-[10px] tracking-wide text-white/25">
