@@ -47,7 +47,7 @@ export default async function CircuitsPage({ params }: { params: Params }) {
       <PageHero
         title={t("pageTitle")}
         intro={t("pageIntro")}
-        image="/images/backgrounds/baobabs.jpeg"
+        image="/images/backgrounds/baobab.jpeg"
         imageAlt=""
         breadcrumb={[
           { label: HOME_LABEL[locale] ?? HOME_LABEL.fr, href: "/" },
