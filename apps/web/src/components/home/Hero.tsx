@@ -114,27 +114,30 @@ export default function Hero() {
             {t("eyebrow")}
           </p>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active.id}
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: reduceMotion ? 0 : -18 }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <h1 className="mt-3 pb-2 font-[family-name:var(--font-courgette)] text-[clamp(2.75rem,10vw,4.5rem)] font-normal normal-case leading-[1.05] tracking-normal text-white sm:mt-4 lg:text-[clamp(3.25rem,5.2vw,6rem)]">
-                {active.name}
-              </h1>
+          <div className="relative">
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={active.id}
+                className="w-full"
+                initial={{ opacity: 0, y: reduceMotion ? 0 : 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: reduceMotion ? 0 : -18, position: "absolute", top: 0 }}
+                transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+              >
+                <h1 className="mt-3 pb-2 font-[family-name:var(--font-courgette)] ...">
+                  {active.name}
+                </h1>
 
-              <p className="mt-3 text-[10px] font-medium uppercase tracking-[0.22em] text-white/55 sm:mt-4 sm:text-[11px]">
-                {t(`destinations.${active.id}.region`)}
-              </p>
+                <p className="mt-3 text-[10px] ...">
+                  {t(`destinations.${active.id}.region`)}
+                </p>
 
-              <p className="mt-5 max-w-[38ch] text-[15px] leading-relaxed text-white/80 sm:mt-7 sm:text-[17px]">
-                {t(`destinations.${active.id}.description`)}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+                <p className="mt-5 max-w-[38ch] ...">
+                  {t(`destinations.${active.id}.description`)}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
           {/* ── Boutons d'action ─────────────────────────────────────── */}
           <div

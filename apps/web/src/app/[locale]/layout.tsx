@@ -23,7 +23,7 @@ export const inter = Inter({
 });
 
 export const baloo2 = Baloo_2({
-  weight: ["500", "600", "700"],
+  weight: ["600"],
   subsets: ["latin"],
   variable: "--font-baloo2",
   display: "swap",
