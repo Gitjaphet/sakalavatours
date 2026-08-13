@@ -150,5 +150,93 @@
       "title": "Les avis de nos clients",
       "text": "Nous rassemblons les retours de nos voyageurs. Cette page sera en ligne sous peu."
     }
+  },
+
+
+  "circuits": {
+    "meta": {
+      "title": "Circuits à Madagascar — Séjours dans le Nord et l'archipel | Sakalava Tours",
+      "description": "Nos circuits de 2 à 11 jours au nord de Madagascar : région SAVA, Nosy Komba, Lokobe, archipel de Nosy Be. Guides locaux, petits groupes, itinéraires sur mesure.",
+      "ogAlt": "Circuits et séjours au nord de Madagascar avec Sakalava Tours"
+    },
+
+    "pageTitle": "Nos circuits",
+    "pageIntro": "Des séjours de deux à onze jours pour découvrir le nord de Madagascar autrement : forêts primaires, villages de pêcheurs, vanille de la SAVA et îles de l'archipel. Chaque itinéraire est conçu et guidé par notre équipe locale.",
+    "breadcrumb": "Circuits",
+
+    "count": "{count, plural, =0 {Aucun circuit} one {# circuit} other {# circuits}}",
+    "duration": "{days, plural, one {# jour} other {# jours}} / {nights, plural, one {# nuit} other {# nuits}}",
+    "durationNoNight": "{days, plural, one {# jour} other {# jours}}",
+    "group": "{min}–{max} pers.",
+    "groupAria": "Groupe de {min} à {max} personnes",
+    "priceLabel": "dès",
+    "priceAria": "À partir de {price} par personne",
+    "perPerson": "/ pers.",
+    "ratingLabel": "Note de {rating} sur 5",
+    "reviews": "{count, plural, one {# avis} other {# avis}}",
+    "featured": "Coup de cœur",
+    "bestPeriod": "Meilleure période",
+    "allYear": "Toute l'année",
+    "discover": "Voir le circuit",
+    "viewAria": "Voir le détail du circuit {title}",
+    "imageAlt": "{title} — circuit Sakalava Tours à Madagascar",
+
+    "themes": {
+      "nature": "Nature",
+      "culture": "Culture",
+      "mer": "Mer & îles",
+      "randonnee": "Randonnée",
+      "decouverte": "Grande découverte"
+    },
+
+    "levels": {
+      "facile": "Facile",
+      "modere": "Modéré",
+      "sportif": "Sportif"
+    },
+
+    "months": {
+      "1": "Jan", "2": "Fév", "3": "Mar", "4": "Avr",
+      "5": "Mai", "6": "Juin", "7": "Juil", "8": "Août",
+      "9": "Sep", "10": "Oct", "11": "Nov", "12": "Déc"
+    },
+
+    "items": {
+      "les-circuits-nord-de-madagascar-11jours-10-nuits": {
+        "title": "Le Nord de Madagascar",
+        "region": "Diana & SAVA",
+        "summary": "Onze jours pour traverser tout le nord : les tsingy rouges, la baie de Diego, les plantations de vanille et l'archipel de Nosy Be. Notre itinéraire le plus complet."
+      },
+      "circuit-nature-traditions-du-nord-8-jours-7-nuits": {
+        "title": "Nature & Traditions du Nord",
+        "region": "Diana, Madagascar",
+        "summary": "Huit jours entre réserves naturelles et villages sakalava. Rencontres avec les artisans, marchés locaux et nuits chez l'habitant."
+      },
+      "circuit-sava": {
+        "title": "Circuit SAVA",
+        "region": "Sambava, Antalaha, Vohémar, Andapa",
+        "summary": "La route de la vanille et du parc de Marojejy. Une région encore préservée du tourisme de masse, entre océan Indien et forêt humide."
+      },
+      "tours-des-archipels-de-nosy-be": {
+        "title": "Tour des archipels de Nosy Be",
+        "region": "Archipel de Nosy Be",
+        "summary": "Quatre jours de navigation entre Nosy Iranja, Nosy Komba et Nosy Sakatia. Snorkeling, bancs de sable et couchers de soleil en boutre."
+      },
+      "une-experience-authentique": {
+        "title": "Une expérience authentique",
+        "region": "Nosy Be & environs",
+        "summary": "Trois jours au rythme des villages : pêche au lever du jour, cuisine sakalava et veillée musicale. Loin des sentiers touristiques."
+      },
+      "randonnees-immersive-a-nosy-komba": {
+        "title": "Randonnée immersive à Nosy Komba",
+        "region": "Nosy Komba, Nosy Be",
+        "summary": "Deux jours de marche sur l'île aux lémuriens, du village de Ampangorina au sommet. Nuit chez l'habitant et rencontre avec les brodeuses."
+      },
+      "circuit-2-jours-a-lokobe": {
+        "title": "2 jours à Lokobe",
+        "region": "Réserve intégrale, Nosy Be",
+        "summary": "La dernière forêt primaire de l'île, en pirogue traditionnelle. Deux jours pour observer lémuriens macaco, boas et caméléons avec un guide du village."
+      }
+    }
   }
 }

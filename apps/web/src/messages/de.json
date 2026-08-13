@@ -150,5 +150,92 @@
       "title": "Stimmen unserer Gäste",
       "text": "Wir sammeln gerade die Rückmeldungen unserer Reisenden. Diese Seite geht in Kürze online."
     }
+  },
+
+  "circuits": {
+    "meta": {
+      "title": "Rundreisen in Madagaskar — Touren im Norden & im Archipel | Sakalava Tours",
+      "description": "Unsere 2- bis 11-tägigen Touren im Norden Madagaskars: die SAVA-Region, Nosy Komba, Lokobe, der Nosy-Be-Archipel. Lokale Guides, kleine Gruppen, maßgeschneiderte Reiserouten.",
+      "ogAlt": "Touren und Aufenthalte im Norden Madagaskars mit Sakalava Tours"
+    },
+
+    "pageTitle": "Unsere Touren",
+    "pageIntro": "Zwei- bis elftägige Reisen, um den Norden Madagaskars anders zu entdecken: Primärwald, Fischerdörfer, SAVA-Vanille und die Inseln des Archipels. Jede Route wird von unserem lokalen Team geplant und geführt.",
+    "breadcrumb": "Touren",
+
+    "count": "{count, plural, =0 {Keine Touren} one {# Tour} other {# Touren}}",
+    "duration": "{days, plural, one {# Tag} other {# Tage}} / {nights, plural, one {# Nacht} other {# Nächte}}",
+    "durationNoNight": "{days, plural, one {# Tag} other {# Tage}}",
+    "group": "{min}–{max} Pers.",
+    "groupAria": "Gruppe von {min} bis {max} Personen",
+    "priceLabel": "ab",
+    "priceAria": "Ab {price} pro Person",
+    "perPerson": "/ Pers.",
+    "ratingLabel": "Bewertung {rating} von 5",
+    "reviews": "{count, plural, one {# Bewertung} other {# Bewertungen}}",
+    "featured": "Empfehlung",
+    "bestPeriod": "Beste Reisezeit",
+    "allYear": "Ganzjährig",
+    "discover": "Tour ansehen",
+    "viewAria": "Details zu {title} ansehen",
+    "imageAlt": "{title} — Sakalava-Tours-Reise in Madagaskar",
+
+    "themes": {
+      "nature": "Natur",
+      "culture": "Kultur",
+      "mer": "Meer & Inseln",
+      "randonnee": "Wandern",
+      "decouverte": "Große Entdeckung"
+    },
+
+    "levels": {
+      "facile": "Leicht",
+      "modere": "Moderat",
+      "sportif": "Anspruchsvoll"
+    },
+
+    "months": {
+      "1": "Jan", "2": "Feb", "3": "Mär", "4": "Apr",
+      "5": "Mai", "6": "Jun", "7": "Jul", "8": "Aug",
+      "9": "Sep", "10": "Okt", "11": "Nov", "12": "Dez"
+    },
+
+    "items": {
+      "les-circuits-nord-de-madagascar-11jours-10-nuits": {
+        "title": "Der Norden Madagaskars",
+        "region": "Diana & SAVA",
+        "summary": "Elf Tage durch den gesamten Norden: die roten Tsingy, die Bucht von Diego, Vanilleplantagen und der Nosy-Be-Archipel. Unsere umfassendste Route."
+      },
+      "circuit-nature-traditions-du-nord-8-jours-7-nuits": {
+        "title": "Natur & Traditionen des Nordens",
+        "region": "Diana, Madagaskar",
+        "summary": "Acht Tage zwischen Naturreservaten und Sakalava-Dörfern. Begegnungen mit lokalen Handwerkern, Märkten und Übernachtungen bei Einheimischen."
+      },
+      "circuit-sava": {
+        "title": "SAVA-Tour",
+        "region": "Sambava, Antalaha, Vohemar, Andapa",
+        "summary": "Die Vanillestraße und der Marojejy-Park. Eine vom Massentourismus noch unberührte Region zwischen Indischem Ozean und Regenwald."
+      },
+      "tours-des-archipels-de-nosy-be": {
+        "title": "Tour durch den Nosy-Be-Archipel",
+        "region": "Nosy-Be-Archipel",
+        "summary": "Vier Tage Segeltörn zwischen Nosy Iranja, Nosy Komba und Nosy Sakatia. Schnorcheln, Sandbänke und Sonnenuntergänge an Bord eines traditionellen Boots."
+      },
+      "une-experience-authentique": {
+        "title": "Ein authentisches Erlebnis",
+        "region": "Nosy Be & Umgebung",
+        "summary": "Drei Tage im Rhythmus der Dörfer: Fischfang bei Sonnenaufgang, Sakalava-Küche und ein musikalischer Abend. Abseits der Touristenpfade."
+      },
+      "randonnees-immersive-a-nosy-komba": {
+        "title": "Wanderung auf Nosy Komba",
+        "region": "Nosy Komba, Nosy Be",
+        "summary": "Zwei Wandertage auf der Lemureninsel, vom Dorf Ampangorina bis zum Gipfel. Übernachtung bei Einheimischen und Begegnung mit Stickerinnen."
+      },
+      "circuit-2-jours-a-lokobe": {
+        "title": "2 Tage in Lokobe",
+        "region": "Vollnaturreservat, Nosy Be",
+        "summary": "Der letzte Primärwald der Insel, erreichbar mit dem traditionellen Einbaum. Zwei Tage, um mit einem Dorfführer Mongoz-Lemuren, Boas und Chamäleons zu beobachten."
+      }
+    }
   }
 }

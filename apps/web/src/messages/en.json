@@ -150,5 +150,92 @@
       "title": "What our guests say",
       "text": "We're gathering feedback from our travellers. This page will be online shortly."
     }
+  },
+
+  "circuits": {
+    "meta": {
+      "title": "Circuits in Madagascar — Tours in the North & the Archipelago | Sakalava Tours",
+      "description": "Our 2 to 11-day tours in northern Madagascar: the SAVA region, Nosy Komba, Lokobe, the Nosy Be archipelago. Local guides, small groups, tailor-made itineraries.",
+      "ogAlt": "Tours and stays in northern Madagascar with Sakalava Tours"
+    },
+
+    "pageTitle": "Our Tours",
+    "pageIntro": "Two-to-eleven-day trips to discover northern Madagascar differently: primary forest, fishing villages, SAVA vanilla and the islands of the archipelago. Every itinerary is designed and guided by our local team.",
+    "breadcrumb": "Tours",
+
+    "count": "{count, plural, =0 {No tours} one {# tour} other {# tours}}",
+    "duration": "{days, plural, one {# day} other {# days}} / {nights, plural, one {# night} other {# nights}}",
+    "durationNoNight": "{days, plural, one {# day} other {# days}}",
+    "group": "{min}–{max} people",
+    "groupAria": "Group of {min} to {max} people",
+    "priceLabel": "from",
+    "priceAria": "From {price} per person",
+    "perPerson": "/ person",
+    "ratingLabel": "Rated {rating} out of 5",
+    "reviews": "{count, plural, one {# review} other {# reviews}}",
+    "featured": "Featured",
+    "bestPeriod": "Best period",
+    "allYear": "Year-round",
+    "discover": "View tour",
+    "viewAria": "View details for {title}",
+    "imageAlt": "{title} — Sakalava Tours trip in Madagascar",
+
+    "themes": {
+      "nature": "Nature",
+      "culture": "Culture",
+      "mer": "Sea & Islands",
+      "randonnee": "Hiking",
+      "decouverte": "Grand Discovery"
+    },
+
+    "levels": {
+      "facile": "Easy",
+      "modere": "Moderate",
+      "sportif": "Challenging"
+    },
+
+    "months": {
+      "1": "Jan", "2": "Feb", "3": "Mar", "4": "Apr",
+      "5": "May", "6": "Jun", "7": "Jul", "8": "Aug",
+      "9": "Sep", "10": "Oct", "11": "Nov", "12": "Dec"
+    },
+
+    "items": {
+      "les-circuits-nord-de-madagascar-11jours-10-nuits": {
+        "title": "The North of Madagascar",
+        "region": "Diana & SAVA",
+        "summary": "Eleven days across the whole north: the red tsingy, Diego Bay, vanilla plantations and the Nosy Be archipelago. Our most complete itinerary."
+      },
+      "circuit-nature-traditions-du-nord-8-jours-7-nuits": {
+        "title": "Nature & Traditions of the North",
+        "region": "Diana, Madagascar",
+        "summary": "Eight days between nature reserves and Sakalava villages. Meetings with local craftspeople, local markets and homestay nights."
+      },
+      "circuit-sava": {
+        "title": "SAVA Tour",
+        "region": "Sambava, Antalaha, Vohemar, Andapa",
+        "summary": "The vanilla route and Marojejy park. A region still untouched by mass tourism, between the Indian Ocean and rainforest."
+      },
+      "tours-des-archipels-de-nosy-be": {
+        "title": "Nosy Be Archipelago Tour",
+        "region": "Nosy Be Archipelago",
+        "summary": "Four days sailing between Nosy Iranja, Nosy Komba and Nosy Sakatia. Snorkeling, sandbanks and sunsets aboard a traditional boat."
+      },
+      "une-experience-authentique": {
+        "title": "An Authentic Experience",
+        "region": "Nosy Be & surroundings",
+        "summary": "Three days at village pace: dawn fishing, Sakalava cooking and a musical evening. Off the beaten tourist track."
+      },
+      "randonnees-immersive-a-nosy-komba": {
+        "title": "Immersive Hike on Nosy Komba",
+        "region": "Nosy Komba, Nosy Be",
+        "summary": "Two days of hiking on Lemur Island, from Ampangorina village to the summit. Homestay night and meeting with local embroiderers."
+      },
+      "circuit-2-jours-a-lokobe": {
+        "title": "2 Days at Lokobe",
+        "region": "Strict Nature Reserve, Nosy Be",
+        "summary": "The island's last stretch of primary forest, reached by traditional dugout canoe. Two days spotting black lemurs, boas and chameleons with a village guide."
+      }
+    }
   }
 }
