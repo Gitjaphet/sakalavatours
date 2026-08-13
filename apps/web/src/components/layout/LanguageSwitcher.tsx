@@ -47,7 +47,7 @@ export function LanguageSwitcher({ variant = "nav", direction = "down" }: Props)
       <button
         onClick={() => setOpen((v) => !v)}
         className={`flex items-center gap-1.5 ${
-          variant === "topbar" ? "text-xs" : "text-sm text-[#2B2620]"
+          variant === "topbar" ? "text-xs" : "text-sm text-[#ffff]"
         }`}
         aria-expanded={open}
         aria-haspopup="listbox"
