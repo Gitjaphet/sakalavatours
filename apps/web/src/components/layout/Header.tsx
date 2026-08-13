@@ -6,7 +6,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { TopBar } from "./TopBar";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { navLinks, compactNavKeys } from "@/lib/nav-config";
+import { navLinks } from "@/lib/nav-config";
 import { IconPhone, IconMenu2 } from "@tabler/icons-react";
 import { MobileMenu } from "./MobileMenu";
 import Image from "next/image";
@@ -27,13 +27,9 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
- /** Pages avec un fond sombre plein écran sous la nav (home + circuits pour l'instant) */
+  /** Pages avec un fond sombre plein écran sous la nav (home + circuits pour l'instant) */
   const hasDarkHero = pathname === "/" || pathname === "/circuits";
   const overlay = hasDarkHero && !scrolled;
-
-  const visibleLinks = scrolled
-    ? navLinks.filter((l) => (compactNavKeys as readonly string[]).includes(l.key))
-    : navLinks;
 
   return (
     <>
@@ -62,7 +58,7 @@ export function Header() {
         <div
           className={`flex items-center justify-between transition-all duration-300 ${
             scrolled
-              ? "w-auto gap-5 rounded-full bg-[#FDFAF6]/95 px-5 py-2 shadow-lg shadow-black/10 backdrop-blur-md"
+              ? "w-auto gap-4 rounded-full bg-[#FDFAF6]/95 px-5 py-2 shadow-lg shadow-black/10 backdrop-blur-md"
               : overlay
                 ? "w-full gap-6 bg-transparent px-5 py-4 sm:px-6 lg:px-8 xl:w-[min(1400px,92vw)] xl:px-20"
                 : "w-full rounded-none bg-[#FDFAF6] px-5 py-3.5 shadow-sm sm:px-6 md:rounded-b-xl lg:px-8 xl:w-[min(1400px,92vw)] xl:px-20"
@@ -75,7 +71,9 @@ export function Header() {
           >
             <span
               className={`relative block transition-all duration-300 ${
-                scrolled ? "h-9 w-[108px]" : "h-11 w-[132px] sm:h-12 sm:w-[144px] md:h-14 md:w-[168px]"
+                scrolled
+                  ? "h-9 w-[108px]"
+                  : "h-11 w-[132px] sm:h-12 sm:w-[144px] md:h-14 md:w-[168px]"
               }`}
             >
               <Image
@@ -90,11 +88,11 @@ export function Header() {
           </Link>
 
           <nav
-            className={`hidden items-center gap-6 text-sm transition-colors duration-300 lg:flex ${
-              overlay ? "text-white/85" : "text-[#2B2620]"
-            }`}
+            className={`hidden items-center whitespace-nowrap transition-colors duration-300 lg:flex ${
+              scrolled ? "gap-4 text-[13px]" : "gap-6 text-sm"
+            } ${overlay ? "text-white/85" : "text-[#2B2620]"}`}
           >
-            {visibleLinks.map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.key}
                 href={link.href}
@@ -125,7 +123,9 @@ export function Header() {
           <Link
             href="/reservation"
             className={`hidden whitespace-nowrap rounded-full text-sm font-medium transition-all duration-300 lg:inline-block ${
-              overlay ? "shadow-[0_10px_25px_-8px_rgba(231,111,81,0.9)] hover:-translate-y-0.5" : ""
+              overlay
+                ? "shadow-[0_10px_25px_-8px_rgba(231,111,81,0.9)] hover:-translate-y-0.5"
+                : ""
             }`}
             style={
               scrolled
