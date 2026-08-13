@@ -55,14 +55,18 @@ export default async function CircuitsPage({ params }: { params: Params }) {
         ]}
       />
 
-      {/* Feuille crème qui remonte sur le bandeau : coupe net la photo */}
       <main className="relative isolate z-10 -mt-8 overflow-hidden rounded-t-[2rem] bg-[#FDFAF6] shadow-[0_-12px_40px_-12px_rgba(8,34,43,0.25)]">
         <SectionBackdrop />
+
         <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-10 sm:px-6 sm:pt-12 lg:px-8">
-          <div className="mb-8 flex items-center justify-between border-b border-stone-200 pb-4">
-            <div className="relative"><p className="flex items-center gap-2 text-sm font-medium tracking-wide text-stone-600"><Sparkle className="h-3.5 w-3.5 shrink-0" color="#E76F51" />
-              {t("count", { count: circuitsSorted.length })}
-            </p>
+          <div className="mb-8 flex items-end justify-between border-b border-stone-200 pb-4">
+            <div className="relative">
+              <p className="flex items-center gap-2 text-sm font-medium tracking-wide text-stone-600">
+                <Sparkle className="h-3.5 w-3.5 shrink-0" color="#E76F51" />
+                {t("count", { count: circuitsSorted.length })}
+              </p>
+              <Squiggle className="mt-1 h-2 w-24 opacity-50" color="#F4A261" />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
