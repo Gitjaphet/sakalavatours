@@ -134,10 +134,11 @@ export default function Hero() {
             </motion.div>
           </AnimatePresence>
 
+          {/* ── Boutons d'action ─────────────────────────────────────── */}
           <div
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
-            className="mt-7 flex max-w-[420px] flex-col gap-3 sm:mt-9 sm:max-w-[500px] lg:max-w-none"
+            className="mt-7 flex max-w-[420px] flex-col gap-3 sm:mt-9 sm:max-w-[500px] lg:max-w-none 2xl:max-w-[430px]"
           >
             <Link
               href={active.href}
@@ -194,7 +195,7 @@ export default function Hero() {
             onMouseLeave={() => setPaused(false)}
             className="touch-pan-y"
           >
-            <div className="mx-auto flex justify-center gap-4 sm:gap-5 lg:gap-6">
+            <div className="mx-auto flex justify-center gap-4 sm:gap-5 lg:gap-6 2xl:gap-7">
               <AnimatePresence mode="popLayout" initial={false}>
                 {Array.from({ length: 3 }, (_, i) => {
                   const d = heroDestinations[(index + i) % total];
@@ -213,10 +214,12 @@ export default function Hero() {
                         "h-[min(54vh,420px)] w-full max-w-[340px]",
                         // tablette (640–1023) : 2 cartes, pleine largeur disponible
                         "sm:h-[clamp(360px,50vh,500px)] sm:w-[clamp(240px,42vw,380px)] sm:max-w-none",
-                        // mini-desktop / POS (1024–1279) : 2 cartes contraintes par la colonne 7/12
+                        // mini-desktop / POS (1024–1279) : contraint par la colonne 7/12
                         "lg:h-[clamp(320px,44vh,440px)] lg:w-[clamp(200px,23vw,260px)]",
-                        // desktop (≥1280) : 3 cartes — pente vw corrigée, rendu 1920 préservé
+                        // desktop (≥1280) : 3 cartes
                         "xl:h-[clamp(340px,46vh,460px)] xl:w-[clamp(190px,14vw,270px)]",
+                        // grand desktop (≥1536) : cartes plus hautes
+                        "2xl:h-[clamp(420px,56vh,560px)]",
                       ].join(" ")}
                     >
                       <DestinationCard
