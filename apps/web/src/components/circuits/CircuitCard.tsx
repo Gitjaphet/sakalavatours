@@ -64,7 +64,7 @@ export function CircuitCard({ circuit }: Props) {
         </div>
 
         <div>
-          <h3 className="font-serif text-xl leading-snug text-stone-900">
+          <h3 className="font-[family-name:var(--font-courgette)] text-2xl leading-snug text-stone-900">
             {item.title}
           </h3>
           <p className="mt-0.5 text-sm text-stone-500">{item.region}</p>
