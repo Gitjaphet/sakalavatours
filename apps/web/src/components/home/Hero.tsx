@@ -102,7 +102,7 @@ export default function Hero() {
       {/* Voile horizontal : utile seulement quand le layout est en 2 colonnes */}
       <div className="pointer-events-none absolute inset-0 -z-10 hidden bg-gradient-to-r from-[#08222b]/95 via-[#08222b]/60 to-[#08222b]/10 lg:block" />
       {/* Voile vertical : renforcé en mobile/tablette pour garantir la lisibilité */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-[#08222b]/95 via-[#08222b]/70 to-[#08222b]/60 lg:from-[#08222b]/90 lg:via-transparent lg:to-[#08222b]/35" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-[#08222b]/95 via-[#08222b]/75 to-[#08222b]/65 lg:from-[#08222b]/92 lg:via-[#08222b]/45 lg:to-[#08222b]/45" />
 
       {/* ── Bloc central ──────────────────────────────────────────────── */}
       <div
@@ -128,11 +128,11 @@ export default function Hero() {
                   {active.name}
                 </h1>
 
-                <p className="mt-3 text-[10px] ...">
+                <p className="mt-3 text-[10px] font-medium uppercase tracking-[0.22em] text-white/75 sm:mt-4 sm:text-[11px]">
                   {t(`destinations.${active.id}.region`)}
                 </p>
 
-                <p className="mt-5 max-w-[38ch] ...">
+                <p className="mt-5 max-w-[38ch] text-[15px] leading-relaxed text-white/90 sm:mt-7 sm:text-[17px]">
                   {t(`destinations.${active.id}.description`)}
                 </p>
               </motion.div>
@@ -230,6 +230,7 @@ export default function Hero() {
                       <DestinationCard
                         destination={d}
                         isActive={i === 0}
+                        priority={index === 0 && i === 0}
                         onSelect={() => selectDestination(d.id)}
                       />
                     </motion.div>
@@ -253,10 +254,12 @@ export default function Hero() {
                   onClick={() => setIndex(i)}
                   aria-label={t("show", { name: d.name })}
                   aria-current={i === index}
-                  className="group relative flex h-9 items-center focus-visible:outline-none"
-                  style={{ width: i === index ? 48 : 14 }}
+                  className="group relative flex h-11 items-center px-1.5 focus-visible:outline-none"
+                  style={{ width: i === index ? 60 : 26 }}
                 >
-                  <span className="relative h-1.5 w-full overflow-hidden rounded-full transition-[width] duration-500 group-focus-visible:ring-2 group-focus-visible:ring-[#F4A261]">
+                  <span
+                    className="relative h-1.5 w-full overflow-hidden rounded-full transition-[width] duration-500 group-focus-visible:ring-2 group-focus-visible:ring-[#F4A261]"
+                  >
                     <span className="absolute inset-0 bg-white/25" />
                     {i === index && !reduceMotion && (
                       <motion.span

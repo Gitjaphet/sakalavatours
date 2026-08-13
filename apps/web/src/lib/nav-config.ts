@@ -56,7 +56,7 @@ export const businessInfo = {
   name: "Sakalava Tours",
   legalName: "Sakalava Tours",
   /** ⚠ Remplacer par le domaine définitif avant la mise en production */
-  url: "https://www.sakalavatours.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://sakalavatours.vercel.app",
   logo: "/images/brand/logo.png",
   addressLocality: "Nosy Be",
   addressRegion: "Diana",

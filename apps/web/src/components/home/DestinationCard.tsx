@@ -11,6 +11,8 @@ type Props = {
   destination: HeroDestination;
   isActive: boolean;
   onSelect: () => void;
+  /** true pour la carte visible au premier rendu : porte le LCP */
+  priority?: boolean;
 };
 
 function Stars({ rating, label }: { rating: number; label: string }) {
@@ -30,7 +32,7 @@ function Stars({ rating, label }: { rating: number; label: string }) {
   );
 }
 
-export default function DestinationCard({ destination, isActive, onSelect }: Props) {
+export default function DestinationCard({ destination, isActive, onSelect, priority = false }: Props) {
   const [saved, setSaved] = useState(false);
   const t = useTranslations("hero");
   const format = useFormatter();
@@ -73,6 +75,7 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
         src={destination.image}
         alt={imageAlt}
         fill
+        priority={priority}
         sizes="(max-width: 639px) 92vw, (max-width: 1279px) 42vw, 21vw"
         className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
       />
@@ -121,9 +124,9 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
           {region}
         </p>
 
-        <h3 className="mt-1.5 font-[family-name:var(--font-courgette)] text-[26px] font-normal leading-snug text-white sm:text-[20px] lg:text-2xl">
+        <h2 className="mt-1.5 font-[family-name:var(--font-courgette)] text-[26px] font-normal leading-snug text-white sm:text-[20px] lg:text-2xl">
           {destination.name}
-        </h3>
+        </h2>
 
         {/* Note + taille du groupe */}
         <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5">
