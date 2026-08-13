@@ -137,11 +137,11 @@ export default function Hero() {
           <div
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
-            className="mt-7 flex flex-col items-stretch gap-y-4 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-7"
+            className="mt-7 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 lg:flex-col lg:items-stretch 2xl:flex-row 2xl:items-center 2xl:gap-5"
           >
             <Link
               href={active.href}
-              className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F4A261] to-[#E76F51] px-7 py-4 text-sm font-semibold text-white shadow-[0_14px_30px_-10px_rgba(231,111,81,0.8)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:w-auto sm:py-3.5"
+              className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F4A261] to-[#E76F51] px-7 py-4 text-sm font-semibold text-white shadow-[0_14px_30px_-10px_rgba(231,111,81,0.8)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:w-auto sm:py-3.5 lg:w-full 2xl:w-auto"
             >
               Découvrir l&apos;excursion
               <svg
@@ -162,7 +162,7 @@ export default function Hero() {
 
             <Link
               href="/circuits"
-              className="inline-flex items-center justify-center py-2 text-sm font-medium text-white/75 underline-offset-8 transition hover:text-white hover:underline sm:py-0"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/10 px-7 py-4 text-sm font-medium text-white/90 ring-1 ring-white/25 backdrop-blur-md transition-colors duration-300 hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:w-auto sm:py-3.5 lg:w-full 2xl:w-auto"
             >
               Voir tous les circuits
             </Link>

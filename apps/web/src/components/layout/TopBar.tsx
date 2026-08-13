@@ -24,7 +24,7 @@ type Props = {
 export function TopBar({ transparent = false }: Props) {
   return (
     <div
-      className={`flex items-center justify-between gap-3 px-4 py-2 text-[11px] transition-colors duration-300 sm:px-6 sm:text-xs md:px-8 md:py-2.5 md:text-sm ${
+      className={`flex items-center justify-between gap-3 px-4 py-3 text-xs transition-colors duration-300 sm:gap-4 sm:px-6 sm:text-[13px] md:px-8 md:py-2.5 md:text-sm ${
         transparent
           ? "bg-black/25 text-white/90 backdrop-blur-[2px] md:bg-transparent md:text-white/80 md:backdrop-blur-none"
           : "bg-[#153e4c] text-[#FDFAF6]/85"
@@ -33,7 +33,7 @@ export function TopBar({ transparent = false }: Props) {
       <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-5">
         <a
           href={`tel:+261${contactInfo.phone.slice(1)}`}
-          className="flex shrink-0 items-center gap-1.5 transition-colors hover:text-[#F4A261]"
+          className="flex shrink-0 items-center gap-2 py-0.5 transition-colors hover:text-[#F4A261]"
         >
           <IconPhone size={13} className="shrink-0 text-[#F4A261]" />
           <span className="whitespace-nowrap">{contactInfo.phoneDisplay}</span>
@@ -41,7 +41,7 @@ export function TopBar({ transparent = false }: Props) {
 
         <a
           href={`mailto:${contactInfo.email}`}
-          className="flex min-w-0 items-center gap-1.5 transition-colors hover:text-[#F4A261]"
+          className="flex min-w-0 items-center gap-2 py-0.5 transition-colors hover:text-[#F4A261]"
         >
           <IconMail size={13} className="shrink-0 text-[#F4A261]" />
           <span className="truncate">{contactInfo.email}</span>
