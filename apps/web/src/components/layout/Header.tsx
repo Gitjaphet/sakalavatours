@@ -63,8 +63,8 @@ export function Header() {
             scrolled
               ? "w-auto gap-5 rounded-full bg-[#FDFAF6]/95 px-5 py-2 shadow-lg shadow-black/10 backdrop-blur-md"
               : overlay
-                ? "w-full gap-6 bg-transparent px-6 py-4 md:w-[min(1120px,92vw)]"
-                : "w-full rounded-none bg-[#FDFAF6] px-6 py-3.5 shadow-sm md:w-[min(1120px,92vw)] md:rounded-b-xl"
+  ? "w-full gap-6 bg-transparent px-6 sm:px-10 lg:px-14 xl:px-20 py-4 md:w-[min(1400px,92vw)]"
+  : "w-full rounded-none bg-[#FDFAF6] px-6 sm:px-10 lg:px-14 xl:px-20 py-3.5 shadow-sm md:w-[min(1400px,92vw)] md:rounded-b-xl"
           }`}
         >
           <Link
