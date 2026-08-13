@@ -11,7 +11,7 @@
  *  détermine l'ordre d'affichage dans la nav et le menu burger. */
 export const navLinks = [
   { key: "tours", href: "/circuits" },
-  { key: "excursion", href: "/excursions" },
+  { key: "excursions", href: "/excursions" },
   { key: "apropos", href: "/apropos" },
   { key: "blog", href: "/blog" },
   { key: "galerie", href: "/galerie" },
@@ -24,7 +24,7 @@ export type NavKey = NavLink["key"];
 /** Sous-ensemble affiché dans le pill compact au scroll (desktop uniquement) */
 export const compactNavKeys: readonly NavKey[] = [
   "tours",
-  "excursion",
+  "excursions",
   "blog",
   "contact",
 ];
