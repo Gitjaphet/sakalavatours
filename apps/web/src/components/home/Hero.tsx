@@ -115,7 +115,11 @@ export default function Hero() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
+          <div
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4"
+            >
             <Link
               href={active.href}
               className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#F4A261] to-[#E76F51] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_14px_30px_-10px_rgba(231,111,81,0.8)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
