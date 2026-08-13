@@ -13,6 +13,7 @@ import Image from "next/image";
 
 /** Déclenchement de la capsule : assez bas pour ne pas clignoter au moindre scroll */
 const SCROLL_THRESHOLD = 48;
+const DARK_HERO_ROUTES: readonly string[] = ["/", "/circuits", "/excursions"];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,8 +28,9 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /** Pages avec un fond sombre plein écran sous la nav (home + circuits pour l'instant) */
-  const hasDarkHero = pathname === "/" || pathname === "/circuits";
+  
+  /** Pages avec un bandeau sombre sous la nav — ajouter les nouvelles routes ici */
+  const hasDarkHero = DARK_HERO_ROUTES.includes(pathname);
   const overlay = hasDarkHero && !scrolled;
 
   return (

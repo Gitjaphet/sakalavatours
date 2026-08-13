@@ -238,5 +238,121 @@
         "summary": "La dernière forêt primaire de l'île, en pirogue traditionnelle. Deux jours pour observer lémuriens macaco, boas et caméléons avec un guide du village."
       }
     }
+  },
+
+
+
+  "excursions": {
+    "meta": {
+      "title": "Excursions à Nosy Be — journée et demi-journée | Sakalava Tours",
+      "description": "Nosy Iranja, Tanikely, Lokobe, Mont Passot : nos excursions à la journée et demi-journée au départ de Nosy Be, guidées par notre équipe locale.",
+      "ogAlt": "Excursions à la journée autour de Nosy Be"
+    },
+    "breadcrumb": "Excursions",
+    "pageTitle": "Nos excursions",
+    "pageIntro": "Des sorties d'une demi-journée à une journée complète au départ de votre hôtel : îlots, bancs de sable, forêts primaires et villages de pêcheurs. Transfert, guide et déjeuner compris.",
+    "count": "{count, plural, one {# excursion} other {# excursions}}",
+    "featured": "Incontournable",
+    "viewAria": "Voir le détail de l'excursion {title}",
+    "imageAlt": "Excursion {title} à Nosy Be",
+    "departAt": "Départ {time}",
+    "returnAt": "Retour {time}",
+    "durationH": "{h} h",
+    "durationHM": "{h} h {m}",
+    "durationMin": "{m} min",
+    "group": "{min}–{max} pers.",
+    "priceLabel": "dès",
+    "perPerson": "/ pers.",
+    "pickup": "Transfert hôtel inclus",
+    "includesLabel": "Compris",
+    "formats": {
+      "journee": "Journée",
+      "demi-journee": "Demi-journée",
+      "soiree": "Fin de journée"
+    },
+    "themes": {
+      "mer": "Mer & îles",
+      "nature": "Nature",
+      "culture": "Culture",
+      "aventure": "Aventure"
+    },
+    "transports": {
+      "bateau": "Bateau",
+      "vehicule": "Véhicule",
+      "mixte": "Bateau & véhicule",
+      "pirogue": "Pirogue"
+    },
+    "travel": {
+      "bateau": "{time} de navigation",
+      "pirogue": "{time} de pirogue",
+      "vehicule": "{time} de route",
+      "mixte": "{time} de trajet"
+    },
+    "includes": {
+      "transfert": "Transfert hôtel",
+      "bateau": "Bateau",
+      "guide": "Guide local",
+      "dejeuner": "Déjeuner",
+      "collation": "Collation",
+      "eau": "Eau minérale",
+      "snorkeling": "Masque & tuba",
+      "entree-parc": "Entrée du parc"
+    },
+    "highlights": {
+      "banc-de-sable": "Banc de sable blanc",
+      "village-pecheurs": "Village de pêcheurs",
+      "phare": "Phare & panorama",
+      "snorkeling": "Snorkeling",
+      "tortues": "Tortues marines",
+      "lemuriens": "Lémuriens",
+      "panorama": "Point de vue",
+      "mangrove": "Mangrove",
+      "coucher-soleil": "Coucher de soleil",
+      "distillerie": "Distillerie d'ylang-ylang",
+      "foret-primaire": "Forêt primaire",
+      "plage": "Plage préservée"
+    },
+    "items": {
+      "nosy-iranja": {
+        "title": "Nosy Iranja",
+        "region": "Archipel de Nosy Be",
+        "summary": "Deux îlots reliés par un banc de sable blanc qui se dévoile à marée basse. Village de pêcheurs, montée au phare et snorkeling dans des eaux turquoise."
+      },
+      "nosy-tanikely": {
+        "title": "Nosy Tanikely",
+        "region": "Parc national marin",
+        "summary": "Le plus beau spot de snorkeling de la région : coraux, poissons tropicaux et tortues à quelques mètres du bord, dans une réserve marine protégée."
+      },
+      "nosy-komba-nosy-tanikely": {
+        "title": "Nosy Komba & Nosy Tanikely",
+        "region": "Nosy Komba, Nosy Be",
+        "summary": "L'île aux lémuriens le matin, la réserve marine l'après-midi. Rencontre avec les makis, artisanat local et snorkeling dans la même journée."
+      },
+      "reserve-de-lokobe": {
+        "title": "Réserve de Lokobe",
+        "region": "Ambatozavavy, Nosy Be",
+        "summary": "Traversée en pirogue traditionnelle puis marche guidée dans la dernière forêt primaire de l'île. Lémuriens nocturnes, caméléons et boas de Madagascar."
+      },
+      "nosy-sakatia": {
+        "title": "Nosy Sakatia",
+        "region": "Archipel de Nosy Be",
+        "summary": "L'île aux orchidées, à 25 minutes de bateau. Nage avec les tortues vertes dans les herbiers, plages désertes et déjeuner face à la mer."
+      },
+      "mont-passot-coucher-de-soleil": {
+        "title": "Mont Passot au coucher du soleil",
+        "region": "Nosy Be",
+        "summary": "Le point culminant de l'île et ses lacs sacrés. Panorama à 360° sur l'archipel au moment où le soleil descend sur le canal du Mozambique."
+      },
+      "mangroves-ambatozavavy": {
+        "title": "Mangroves d'Ambatozavavy",
+        "region": "Ambatozavavy, Nosy Be",
+        "summary": "Navigation en pirogue au fil des chenaux de mangrove. Oiseaux, crabes violonistes et découverte du quotidien d'un village de pêcheurs sakalava."
+      },
+      "distillerie-ylang-ylang": {
+        "title": "Distillerie d'ylang-ylang",
+        "region": "Nosy Be",
+        "summary": "L'or parfumé de Nosy Be : de la fleur à l'huile essentielle. Visite d'une distillerie traditionnelle, plantations et arrêt à l'Arbre sacré."
+      }
+    }
   }
 }

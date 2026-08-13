@@ -237,5 +237,120 @@
         "summary": "Der letzte Primärwald der Insel, erreichbar mit dem traditionellen Einbaum. Zwei Tage, um mit einem Dorfführer Mongoz-Lemuren, Boas und Chamäleons zu beobachten."
       }
     }
+  },
+
+
+  "excursions": {
+    "meta": {
+      "title": "Tagesausflüge auf Nosy Be | Sakalava Tours",
+      "description": "Nosy Iranja, Tanikely, Lokobe, Mont Passot: unsere Ganz- und Halbtagesausflüge ab Nosy Be, geführt von unserem lokalen Team.",
+      "ogAlt": "Tagesausflüge rund um Nosy Be"
+    },
+    "breadcrumb": "Ausflüge",
+    "pageTitle": "Unsere Ausflüge",
+    "pageIntro": "Halb- und Ganztagesausflüge ab Ihrem Hotel: Inselchen, Sandbänke, Urwälder und Fischerdörfer. Transfer, Guide und Mittagessen inklusive.",
+    "count": "{count, plural, one {# Ausflug} other {# Ausflüge}}",
+    "featured": "Highlight",
+    "viewAria": "Details zum Ausflug {title} ansehen",
+    "imageAlt": "Ausflug {title} auf Nosy Be",
+    "departAt": "Abfahrt {time}",
+    "returnAt": "Rückkehr {time}",
+    "durationH": "{h} Std.",
+    "durationHM": "{h} Std. {m} Min.",
+    "durationMin": "{m} Min.",
+    "group": "{min}–{max} Pers.",
+    "priceLabel": "ab",
+    "perPerson": "/ Pers.",
+    "pickup": "Hotelabholung inklusive",
+    "includesLabel": "Inklusive",
+    "formats": {
+      "journee": "Ganztags",
+      "demi-journee": "Halbtags",
+      "soiree": "Später Nachmittag"
+    },
+    "themes": {
+      "mer": "Meer & Inseln",
+      "nature": "Natur",
+      "culture": "Kultur",
+      "aventure": "Abenteuer"
+    },
+    "transports": {
+      "bateau": "Boot",
+      "vehicule": "Fahrzeug",
+      "mixte": "Boot & Fahrzeug",
+      "pirogue": "Auslegerboot"
+    },
+    "travel": {
+      "bateau": "{time} Bootsfahrt",
+      "pirogue": "{time} im Auslegerboot",
+      "vehicule": "{time} Fahrt",
+      "mixte": "{time} Anfahrt"
+    },
+    "includes": {
+      "transfert": "Hoteltransfer",
+      "bateau": "Boot",
+      "guide": "Lokaler Guide",
+      "dejeuner": "Mittagessen",
+      "collation": "Imbiss",
+      "eau": "Mineralwasser",
+      "snorkeling": "Maske & Schnorchel",
+      "entree-parc": "Parkeintritt"
+    },
+    "highlights": {
+      "banc-de-sable": "Weiße Sandbank",
+      "village-pecheurs": "Fischerdorf",
+      "phare": "Leuchtturm & Aussicht",
+      "snorkeling": "Schnorcheln",
+      "tortues": "Meeresschildkröten",
+      "lemuriens": "Lemuren",
+      "panorama": "Aussichtspunkt",
+      "mangrove": "Mangroven",
+      "coucher-soleil": "Sonnenuntergang",
+      "distillerie": "Ylang-Ylang-Destillerie",
+      "foret-primaire": "Urwald",
+      "plage": "Unberührter Strand"
+    },
+    "items": {
+      "nosy-iranja": {
+        "title": "Nosy Iranja",
+        "region": "Nosy-Be-Archipel",
+        "summary": "Zwei Inselchen, verbunden durch eine weiße Sandbank, die bei Ebbe sichtbar wird. Fischerdorf, Aufstieg zum Leuchtturm und Schnorcheln im türkisen Wasser."
+      },
+      "nosy-tanikely": {
+        "title": "Nosy Tanikely",
+        "region": "Meeresnationalpark",
+        "summary": "Der schönste Schnorchelplatz der Region: Korallen, tropische Fische und Schildkröten wenige Meter vom Ufer, in einem geschützten Meeresreservat."
+      },
+      "nosy-komba-nosy-tanikely": {
+        "title": "Nosy Komba & Nosy Tanikely",
+        "region": "Nosy Komba, Nosy Be",
+        "summary": "Vormittags die Lemureninsel, nachmittags das Meeresreservat. Begegnung mit den Makis, lokales Kunsthandwerk und Schnorcheln an einem Tag."
+      },
+      "reserve-de-lokobe": {
+        "title": "Lokobe-Reservat",
+        "region": "Ambatozavavy, Nosy Be",
+        "summary": "Überfahrt im traditionellen Auslegerboot, dann geführte Wanderung durch den letzten Urwald der Insel. Nachtaktive Lemuren, Chamäleons und Madagaskarboas."
+      },
+      "nosy-sakatia": {
+        "title": "Nosy Sakatia",
+        "region": "Nosy-Be-Archipel",
+        "summary": "Die Orchideeninsel, 25 Bootsminuten entfernt. Schwimmen mit grünen Meeresschildkröten in den Seegraswiesen, leere Strände und Mittagessen am Meer."
+      },
+      "mont-passot-coucher-de-soleil": {
+        "title": "Mont Passot bei Sonnenuntergang",
+        "region": "Nosy Be",
+        "summary": "Der höchste Punkt der Insel und seine heiligen Kraterseen. 360°-Panorama über das Archipel, während die Sonne in den Kanal von Mosambik sinkt."
+      },
+      "mangroves-ambatozavavy": {
+        "title": "Mangroven von Ambatozavavy",
+        "region": "Ambatozavavy, Nosy Be",
+        "summary": "Im Auslegerboot durch die Mangrovenkanäle. Vogelwelt, Winkerkrabben und Einblicke in den Alltag eines Sakalava-Fischerdorfs."
+      },
+      "distillerie-ylang-ylang": {
+        "title": "Ylang-Ylang-Destillerie",
+        "region": "Nosy Be",
+        "summary": "Das duftende Gold von Nosy Be, von der Blüte zum ätherischen Öl. Besuch einer traditionellen Destillerie, Plantagen und Halt am Heiligen Baum."
+      }
+    }
   }
 }

@@ -237,5 +237,119 @@
         "summary": "The island's last stretch of primary forest, reached by traditional dugout canoe. Two days spotting black lemurs, boas and chameleons with a village guide."
       }
     }
+  },
+
+  "excursions": {
+    "meta": {
+      "title": "Nosy Be day trips & half-day excursions | Sakalava Tours",
+      "description": "Nosy Iranja, Tanikely, Lokobe, Mont Passot: our day and half-day excursions departing from Nosy Be, guided by our local team.",
+      "ogAlt": "Day excursions around Nosy Be"
+    },
+    "breadcrumb": "Excursions",
+    "pageTitle": "Our excursions",
+    "pageIntro": "Half-day and full-day trips from your hotel: islets, sandbanks, primary forests and fishing villages. Transfer, guide and lunch included.",
+    "count": "{count, plural, one {# excursion} other {# excursions}}",
+    "featured": "Must-do",
+    "viewAria": "View details for the {title} excursion",
+    "imageAlt": "{title} excursion in Nosy Be",
+    "departAt": "Departs {time}",
+    "returnAt": "Back {time}",
+    "durationH": "{h}h",
+    "durationHM": "{h}h {m}m",
+    "durationMin": "{m} min",
+    "group": "{min}–{max} people",
+    "priceLabel": "from",
+    "perPerson": "/ person",
+    "pickup": "Hotel pickup included",
+    "includesLabel": "Included",
+    "formats": {
+      "journee": "Full day",
+      "demi-journee": "Half day",
+      "soiree": "Late day"
+    },
+    "themes": {
+      "mer": "Sea & Islands",
+      "nature": "Nature",
+      "culture": "Culture",
+      "aventure": "Adventure"
+    },
+    "transports": {
+      "bateau": "Boat",
+      "vehicule": "Vehicle",
+      "mixte": "Boat & vehicle",
+      "pirogue": "Outrigger canoe"
+    },
+    "travel": {
+      "bateau": "{time} sailing",
+      "pirogue": "{time} by canoe",
+      "vehicule": "{time} drive",
+      "mixte": "{time} travel"
+    },
+    "includes": {
+      "transfert": "Hotel transfer",
+      "bateau": "Boat",
+      "guide": "Local guide",
+      "dejeuner": "Lunch",
+      "collation": "Snack",
+      "eau": "Mineral water",
+      "snorkeling": "Mask & snorkel",
+      "entree-parc": "Park entrance"
+    },
+    "highlights": {
+      "banc-de-sable": "White sandbank",
+      "village-pecheurs": "Fishing village",
+      "phare": "Lighthouse & views",
+      "snorkeling": "Snorkelling",
+      "tortues": "Sea turtles",
+      "lemuriens": "Lemurs",
+      "panorama": "Viewpoint",
+      "mangrove": "Mangroves",
+      "coucher-soleil": "Sunset",
+      "distillerie": "Ylang-ylang distillery",
+      "foret-primaire": "Primary forest",
+      "plage": "Unspoilt beach"
+    },
+    "items": {
+      "nosy-iranja": {
+        "title": "Nosy Iranja",
+        "region": "Nosy Be archipelago",
+        "summary": "Two islets joined by a white sandbank that emerges at low tide. Fishing village, walk up to the lighthouse and snorkelling in turquoise water."
+      },
+      "nosy-tanikely": {
+        "title": "Nosy Tanikely",
+        "region": "Marine national park",
+        "summary": "The region's finest snorkelling spot: coral, tropical fish and turtles just metres from shore, inside a protected marine reserve."
+      },
+      "nosy-komba-nosy-tanikely": {
+        "title": "Nosy Komba & Nosy Tanikely",
+        "region": "Nosy Komba, Nosy Be",
+        "summary": "Lemur island in the morning, marine reserve in the afternoon. Meet the macaco lemurs, browse local crafts and snorkel, all in one day."
+      },
+      "reserve-de-lokobe": {
+        "title": "Lokobe Reserve",
+        "region": "Ambatozavavy, Nosy Be",
+        "summary": "Cross by traditional outrigger canoe, then walk with a guide through the island's last primary forest. Nocturnal lemurs, chameleons and Madagascar boas."
+      },
+      "nosy-sakatia": {
+        "title": "Nosy Sakatia",
+        "region": "Nosy Be archipelago",
+        "summary": "The orchid island, 25 minutes by boat. Swim with green turtles in the seagrass beds, empty beaches and lunch facing the ocean."
+      },
+      "mont-passot-coucher-de-soleil": {
+        "title": "Mont Passot at sunset",
+        "region": "Nosy Be",
+        "summary": "The island's highest point and its sacred crater lakes. A 360° panorama over the archipelago as the sun drops into the Mozambique Channel."
+      },
+      "mangroves-ambatozavavy": {
+        "title": "Ambatozavavy mangroves",
+        "region": "Ambatozavavy, Nosy Be",
+        "summary": "Paddle the mangrove channels by outrigger canoe. Birdlife, fiddler crabs and a look at daily life in a Sakalava fishing village."
+      },
+      "distillerie-ylang-ylang": {
+        "title": "Ylang-ylang distillery",
+        "region": "Nosy Be",
+        "summary": "Nosy Be's fragrant gold, from flower to essential oil. Visit a traditional distillery, walk the plantations and stop at the Sacred Tree."
+      }
+    }
   }
 }
