@@ -45,7 +45,7 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
         src={destination.image}
         alt={`${destination.name}, ${destination.region}`}
         fill
-        sizes="(max-width: 1024px) 45vw, 22vw"
+        sizes="(max-width: 639px) 92vw, (max-width: 1279px) 26vw, 21vw"
         className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
       />
 
@@ -72,8 +72,9 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
         type="button"
         onClick={() => setSaved((v) => !v)}
         aria-pressed={saved}
-        className="absolute right-4 top-4 z-20 grid h-10 w-10 place-items-center rounded-full bg-white/15 text-white backdrop-blur-md ring-1 ring-white/25 transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261]"
+        className="absolute right-3 top-3 z-20 grid h-11 w-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur-md ring-1 ring-white/25 transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261] sm:right-4 sm:top-4"
       >
+
         <span className="sr-only">
           {saved ? "Retirer de mes envies" : "Ajouter à mes envies"}
         </span>
@@ -89,11 +90,11 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
       </button>
 
       {/* Contenu bas — toujours visible, plus jamais tronqué (cartes non chevauchées) */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-5 sm:p-6">
-        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/65">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-4 sm:p-5 lg:p-6">
+        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/65 sm:text-[11px]">
           {destination.region}
         </p>
-        <h3 className="mt-1.5 font-[family-name:var(--font-courgette)] text-[22px] font-normal leading-snug text-white sm:text-2xl">
+        <h3 className="mt-1.5 font-[family-name:var(--font-courgette)] text-[26px] font-normal leading-snug text-white sm:text-[20px] lg:text-2xl">
           {destination.name}
         </h3>
 
