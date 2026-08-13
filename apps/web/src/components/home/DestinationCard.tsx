@@ -49,8 +49,14 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
         className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
       />
 
-      {/* Voile de lisibilité : fort en bas, léger en haut */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/30" />
+      {/* Voile de lisibilité : plus marqué quand actif, discret sinon */}
+      <div
+        className={`pointer-events-none absolute inset-0 bg-gradient-to-t transition-opacity duration-500 ${
+          isActive
+            ? "from-black/85 via-black/25 to-black/30 opacity-100"
+            : "from-black/60 via-black/10 to-black/20 opacity-100"
+        }`}
+      />
 
       {/* Zone cliquable plein cadre (sous les contrôles) */}
       <button
@@ -82,8 +88,12 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
         </svg>
       </button>
 
-      {/* Contenu bas — padding généreux, plus rien de tronqué */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-5 sm:p-6">
+      {/* Contenu bas — réservé à la carte active : plus jamais tronqué */}
+      <div
+        className={`pointer-events-none absolute inset-x-0 bottom-0 z-20 p-5 transition-all duration-500 sm:p-6 ${
+          isActive ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+        }`}
+      >
         <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/65">
           {destination.region}
         </p>
@@ -96,17 +106,10 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
           <span className="text-xs text-white/60">{destination.rating.toFixed(1)}</span>
         </div>
 
-        {/* Détail réservé à la carte active : hiérarchie claire */}
-        <div
-          className={`grid transition-all duration-500 ${
-            isActive ? "mt-3 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-          }`}
-        >
-          <div className="overflow-hidden">
-            <span className="inline-flex items-center rounded-full bg-white/12 px-3 py-1 text-[11px] font-medium text-white/85 ring-1 ring-white/20 backdrop-blur-sm">
-              {destination.duration}
-            </span>
-          </div>
+        <div className="mt-3">
+          <span className="inline-flex items-center rounded-full bg-white/12 px-3 py-1 text-[11px] font-medium text-white/85 ring-1 ring-white/20 backdrop-blur-sm">
+            {destination.duration}
+          </span>
         </div>
       </div>
     </article>
