@@ -1,9 +1,12 @@
+import type { Metadata } from "next";
 import { Courgette, Inter, Baloo_2 } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
+import { RouteLoaderProvider } from "@/components/providers/RouteLoaderProvider";
+import { businessInfo } from "@/lib/nav-config";
 import "./globals.css";
 
 export const courgette = Courgette({
@@ -26,6 +29,62 @@ export const baloo2 = Baloo_2({
   display: "swap",
 });
 
+/** Génère les 3 variantes de langue à la compilation (SSG) */
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+/** Métadonnées localisées + hreflang : indispensable pour que Google
+ *  indexe les trois versions comme des alternatives et non des doublons. */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "home.meta" });
+
+  const languages = Object.fromEntries(
+    routing.locales.map((l) => [l, `${businessInfo.url}/${l}`]),
+  );
+
+  return {
+    metadataBase: new URL(businessInfo.url),
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: `${businessInfo.url}/${locale}`,
+      languages: {
+        ...languages,
+        "x-default": `${businessInfo.url}/${routing.defaultLocale}`,
+      },
+    },
+    openGraph: {
+      type: "website",
+      siteName: businessInfo.name,
+      locale,
+      url: `${businessInfo.url}/${locale}`,
+      title: t("title"),
+      description: t("description"),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+  };
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -39,14 +98,23 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // Autorise le rendu statique de la page (sans ceci, next-intl bascule en
+  // rendu dynamique et tu perds le bénéfice SSG/ISR).
+  setRequestLocale(locale);
+
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${courgette.variable} ${inter.variable} ${baloo2.variable}`}>
-      <body>
+    <html
+      lang={locale}
+      className={`${courgette.variable} ${inter.variable} ${baloo2.variable}`}
+    >
+      <body className="bg-[#FDFAF6] text-[#2B2620] antialiased">
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          {children}
+          <RouteLoaderProvider>
+            <Header />
+            {children}
+          </RouteLoaderProvider>
         </NextIntlClientProvider>
       </body>
     </html>

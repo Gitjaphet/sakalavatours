@@ -96,5 +96,9 @@
   "footer": {
     "rights": "Alle Rechte vorbehalten",
     "followUs": "Folgen Sie uns"
+  },
+
+  "common": {
+    "loading": "Wird geladen…"
   }
 }

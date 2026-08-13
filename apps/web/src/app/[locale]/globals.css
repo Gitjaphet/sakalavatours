@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* ─── Palette ────────────────────────────────────────────────────────── */
 :root {
   --color-background: #fdfaf6;
   --color-foreground: #2b2620;
@@ -9,6 +10,18 @@
 
   --color-accent-start: #f4a261;
   --color-accent-end: #e76f51;
+
+  /* ─── Courbes d'animation (référence iOS) ─────────────────────────── */
+  /* Sortie longue façon iOS — la courbe de référence pour tout le site */
+  --ease-ios: cubic-bezier(0.32, 0.72, 0, 1);
+  /* Entrée-sortie douce, pour les changements d'état sur place */
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Léger dépassement, pour les apparitions de panneaux */
+  --ease-overshoot: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  --dur-fast: 220ms;
+  --dur-base: 420ms;
+  --dur-slow: 700ms;
 }
 
 @theme inline {
@@ -23,9 +36,75 @@
 
   --font-sans: var(--font-inter);
   --font-script: var(--font-courgette);
+
+  /* Rend les courbes utilisables en classes Tailwind : ease-ios, ease-soft… */
+  --ease-ios: var(--ease-ios);
+  --ease-soft: var(--ease-soft);
+  --ease-overshoot: var(--ease-overshoot);
 }
 
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
+}
+
+/* ─── Fluidité globale ───────────────────────────────────────────────── */
+html {
+  /* Lenis pilote le scroll : on désactive le smooth natif pour éviter
+     que les deux mécanismes ne se battent. */
+  scroll-behavior: auto;
+  /* Évite le rebond blanc en haut/bas sur iOS lors du sur-défilement */
+  overscroll-behavior-y: none;
+}
+
+/* Styles requis par Lenis — inertes tant que le provider n'est pas branché */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* ─── Adoucissement par défaut ───────────────────────────────────────── */
+/* Toute couleur, ombre ou opacité qui change le fait en douceur,
+   sans avoir à répéter `transition` sur chaque composant. */
+a,
+button,
+[role="button"] {
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    opacity var(--dur-fast) var(--ease-soft),
+    box-shadow var(--dur-base) var(--ease-ios),
+    transform var(--dur-base) var(--ease-ios);
+}
+
+/* Anneau de focus cohérent sur tout le site (accessibilité) */
+:focus-visible {
+  outline: 2px solid var(--color-accent-start);
+  outline-offset: 2px;
+}
+
+/* ─── Respect des préférences système ────────────────────────────────── */
+/* DOIT rester en fin de fichier : la spécificité se joue à l'ordre. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

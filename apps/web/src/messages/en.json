@@ -96,5 +96,9 @@
   "footer": {
     "rights": "All rights reserved",
     "followUs": "Follow us"
+  }, 
+
+  "common": {
+    "loading": "Loading…"
   }
 }
