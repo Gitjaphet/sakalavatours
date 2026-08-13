@@ -26,6 +26,7 @@ export const compactNavKeys: readonly NavKey[] = [
   "tours",
   "excursion",
   "blog",
+  "galerie",
   "contact",
 ];
 
