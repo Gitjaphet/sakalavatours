@@ -1,5 +1,8 @@
 // src/components/layout/TopBar.tsx
-import { contactInfo, socialLinks } from "@/lib/nav-config";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { contactInfo, socialLinks, telHref, mailtoHref } from "@/lib/nav-config";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import {
   IconPhone,
@@ -22,6 +25,8 @@ type Props = {
 };
 
 export function TopBar({ transparent = false }: Props) {
+  const t = useTranslations("topbar");
+
   return (
     <div
       className={`flex items-center justify-between gap-3 px-4 py-3 text-xs transition-colors duration-300 sm:gap-4 sm:px-6 sm:text-[13px] md:px-8 md:py-2.5 md:text-sm ${
@@ -31,25 +36,26 @@ export function TopBar({ transparent = false }: Props) {
       }`}
     >
       <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-5">
+        
         <a
-          href={`tel:+261${contactInfo.phone.slice(1)}`}
+          href={telHref}
           className="flex shrink-0 items-center gap-2 py-0.5 transition-colors hover:text-[#F4A261]"
         >
-          <IconPhone size={13} className="shrink-0 text-[#F4A261]" />
+          <IconPhone size={15} className="shrink-0 text-[#F4A261]" />
           <span className="whitespace-nowrap">{contactInfo.phoneDisplay}</span>
         </a>
 
         <a
-          href={`mailto:${contactInfo.email}`}
+          href={mailtoHref}
           className="flex min-w-0 items-center gap-2 py-0.5 transition-colors hover:text-[#F4A261]"
         >
-          <IconMail size={13} className="shrink-0 text-[#F4A261]" />
+          <IconMail size={15} className="shrink-0 text-[#F4A261]" />
           <span className="truncate">{contactInfo.email}</span>
         </a>
 
-        <span className="hidden shrink-0 items-center gap-1.5 opacity-80 lg:flex">
-          <IconClock size={13} />
-          {contactInfo.hours}
+        <span className="hidden shrink-0 items-center gap-2 opacity-80 lg:flex">
+          <IconClock size={15} />
+          {t("hours")}
         </span>
       </div>
 
@@ -58,6 +64,7 @@ export function TopBar({ transparent = false }: Props) {
           {socialLinks.map(({ key, href, icon }) => {
             const Icon = socialIconMap[icon as keyof typeof socialIconMap];
             return (
+              
               <a
                 key={key}
                 href={href}

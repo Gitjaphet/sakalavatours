@@ -1,23 +1,10 @@
 {
-  "HomePage": {
-    "tagline": "Visitez les trésors de Madagascar autrement",
-    "intro": "Circuits et excursions sur mesure à Nosy Be et dans l'archipel, conçus par des guides locaux passionnés.",
-    "cta": "Découvrir nos circuits",
-    "highlightsTitle": "Ce qui rend Nosy Be unique",
-    "highlights": {
-      "beaches": { "title": "Plages secrètes", "text": "Des criques accessibles seulement en bateau, loin des sentiers battus." },
-      "wildlife": { "title": "Faune endémique", "text": "Lémuriens, caméléons et tortues marines dans leur habitat naturel." },
-      "islands": { "title": "Archipel à explorer", "text": "Nosy Komba, Nosy Tanikely, Nosy Sakatia — chaque île a son caractère." }
-    },
-    "bandTitle": "Prêt à embarquer ?",
-    "bandCta": "Réserver mon excursion"
-  },
-
   "home": {
     "meta": {
-      "title": "Excursions à Nosy Be — Sakalava Tours | Circuits & sorties en mer",
-      "description": "Excursions et circuits à Nosy Be : Nosy Iranja, Tanikely, réserve de Lokobe, Mont Passot. Guides locaux, petits groupes, réservation en ligne.",
-      "ogAlt": "Banc de sable de Nosy Iranja, archipel de Nosy Be, Madagascar"
+      "title": "Excursions à Nosy Be — Circuits et sorties en mer | Sakalava Tours",
+      "description": "Excursions et circuits à Nosy Be : Nosy Iranja, Nosy Tanikely, réserve de Lokobe, Mont Passot. Guides locaux, petits groupes, réservation en ligne.",
+      "ogAlt": "Banc de sable de Nosy Iranja, archipel de Nosy Be, Madagascar",
+      "keywords": "excursion Nosy Be, circuit Nosy Be, Nosy Iranja, Nosy Tanikely, Lokobe, Mont Passot, tour opérateur Madagascar"
     }
   },
 
@@ -28,7 +15,86 @@
     "blog": "Blog",
     "galerie": "Galerie",
     "contact": "Contact",
-    "reserver": "Réserver"
-  }
+    "reserver": "Réserver",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "homeAria": "Sakalava Tours — retour à l'accueil",
+    "menuAria": "Menu de navigation"
+  },
 
+  "topbar": {
+    "hours": "Lun–Sam, 8h–18h",
+    "callAria": "Appeler Sakalava Tours",
+    "contactTitle": "Nous contacter",
+    "languageAria": "Choisir la langue"
+  },
+
+  "hero": {
+    "eyebrow": "Bienvenue à Nosy Be",
+    "discover": "Découvrir l'excursion",
+    "allCircuits": "Voir tous les circuits",
+    "reviews": "Les avis de nos clients",
+    "carouselLabel": "Nos excursions à Nosy Be et dans l'archipel",
+    "prev": "Destination précédente",
+    "next": "Destination suivante",
+    "show": "Afficher {name}",
+    "view": "Voir l'excursion {name}",
+    "save": "Ajouter à mes envies",
+    "unsave": "Retirer de mes envies",
+    "ratingLabel": "Note de {rating} sur 5",
+    "imageAlt": "{name}, {region} — excursion Sakalava Tours à Nosy Be",
+
+    "duration": {
+      "full": "Journée complète · {hours}h",
+      "half": "Demi-journée · {hours}h",
+      "evening": "Soirée · {hours}h"
+    },
+
+    "destinations": {
+      "nosy-iranja": {
+        "region": "Archipel de Nosy Be",
+        "description": "Deux îles reliées par un banc de sable blanc que la marée découvre. Départ en boutre au lever du jour, retour au coucher du soleil."
+      },
+      "nosy-tanikely": {
+        "region": "Parc marin national",
+        "description": "Le meilleur spot de snorkeling de l'archipel : tortues vertes, coraux et poissons-clowns à quelques mètres du rivage."
+      },
+      "lokobe": {
+        "region": "Réserve intégrale, Nosy Be",
+        "description": "La dernière forêt primaire de l'île, en pirogue traditionnelle. Lémuriens macaco, boas et caméléons avec un guide local."
+      },
+      "mont-passot": {
+        "region": "Lacs sacrés, Nosy Be",
+        "description": "Le point culminant de l'île et ses lacs de cratère. Le coucher de soleil sur l'archipel se regarde depuis ici."
+      }
+    }
+  },
+
+  "HomePage": {
+    "tagline": "Visitez les trésors de Madagascar autrement",
+    "intro": "Circuits et excursions sur mesure à Nosy Be et dans l'archipel, conçus par des guides locaux passionnés.",
+    "cta": "Découvrir nos circuits",
+    "highlightsTitle": "Ce qui rend Nosy Be unique",
+    "highlights": {
+      "beaches": {
+        "title": "Plages secrètes",
+        "text": "Des criques accessibles seulement en bateau, loin des sentiers battus."
+      },
+      "wildlife": {
+        "title": "Faune endémique",
+        "text": "Lémuriens, caméléons et tortues marines dans leur habitat naturel."
+      },
+      "islands": {
+        "title": "Archipel à explorer",
+        "text": "Nosy Komba, Nosy Tanikely, Nosy Sakatia — chaque île a son caractère."
+      }
+    },
+    "bandTitle": "Prêt à embarquer ?",
+    "bandCta": "Réserver mon excursion"
+  },
+
+  "footer": {
+    "rights": "Tous droits réservés",
+    "followUs": "Suivez-nous"
+  }
 }

@@ -5,7 +5,13 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { navLinks, contactInfo, socialLinks } from "@/lib/nav-config";
+import {
+  navLinks,
+  contactInfo,
+  socialLinks,
+  telHref,
+  mailtoHref,
+} from "@/lib/nav-config";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import {
   IconX,
@@ -32,8 +38,8 @@ const socialIconMap = {
 };
 
 const navIconMap: Record<string, TablerIcon> = {
-  circuits: IconRoute,
   tours: IconRoute,
+  circuits: IconRoute,
   excursion: IconCompass,
   excursions: IconCompass,
   apropos: IconInfoCircle,
@@ -47,6 +53,7 @@ const navIconMap: Record<string, TablerIcon> = {
 
 export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const t = useTranslations("nav");
+  const tTop = useTranslations("topbar");
   const pathname = usePathname();
 
   useEffect(() => {
@@ -76,7 +83,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Menu de navigation"
+        aria-label={t("menuAria")}
         className={`fixed bottom-0 right-0 top-0 z-[70] flex w-[86%] max-w-[340px] flex-col overflow-y-auto overscroll-contain border-l border-white/10 bg-[#0b2a35]/85 pb-[env(safe-area-inset-bottom)] shadow-[-20px_0_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-transform duration-300 ease-out lg:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
@@ -95,7 +102,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
 
           <button
             onClick={onClose}
-            aria-label="Fermer le menu"
+            aria-label={t("closeMenu")}
             className="-mr-2 -mt-1 grid h-10 w-10 shrink-0 place-items-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-white"
           >
             <IconX size={22} />
@@ -145,11 +152,11 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
         {/* ── Contact ─────────────────────────────────────────────────── */}
         <div className="mt-8 flex flex-col gap-3.5 px-6">
           <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/35">
-            Nous contacter
+            {tTop("contactTitle")}
           </p>
 
           <a
-            href={`tel:+261${contactInfo.phone.slice(1)}`}
+            href={telHref}
             className="flex items-center gap-3 text-[13px] text-white/75 transition-colors hover:text-[#F4A261]"
           >
             <IconPhone size={17} stroke={1.7} className="shrink-0 text-white/35" />
@@ -157,7 +164,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
           </a>
 
           <a
-            href={`mailto:${contactInfo.email}`}
+            href={mailtoHref}
             className="flex min-w-0 items-center gap-3 text-[13px] text-white/75 transition-colors hover:text-[#F4A261]"
           >
             <IconMail size={17} stroke={1.7} className="shrink-0 text-white/35" />
@@ -166,7 +173,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
 
           <span className="flex items-center gap-3 text-[13px] text-white/75">
             <IconClock size={17} stroke={1.7} className="shrink-0 text-white/35" />
-            {contactInfo.hours}
+            {tTop("hours")}
           </span>
         </div>
 
@@ -177,7 +184,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
               {socialLinks.map(({ key, href, icon }) => {
                 const Icon = socialIconMap[icon as keyof typeof socialIconMap];
                 return (
-
+                  
                   <a
                     key={key}
                     href={href}
@@ -191,6 +198,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                 );
               })}
             </div>
+
             <div className="text-white">
               <LanguageSwitcher direction="up" variant="topbar" />
             </div>

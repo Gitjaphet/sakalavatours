@@ -3,6 +3,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import {
   AnimatePresence,
   motion,
@@ -22,6 +23,7 @@ const CONTAINER = "mx-auto w-full max-w-[1400px] px-5 sm:px-6 lg:px-8 xl:px-20";
 const SLOT_VISIBILITY = ["block", "hidden sm:block", "hidden xl:block"] as const;
 
 export default function Hero() {
+  const t = useTranslations("hero");
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const reduceMotion = useReducedMotion();
@@ -37,8 +39,8 @@ export default function Hero() {
 
   useEffect(() => {
     if (paused || reduceMotion) return;
-    const t = setTimeout(() => setIndex((i) => (i + 1) % total), AUTOPLAY_MS);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setIndex((i) => (i + 1) % total), AUTOPLAY_MS);
+    return () => clearTimeout(timer);
   }, [index, paused, reduceMotion, total]);
 
   useEffect(() => {
@@ -50,7 +52,7 @@ export default function Hero() {
     return () => window.removeEventListener("keydown", onKey);
   }, [go]);
 
-  /** Swipe tactile : seuil distance OU vélocité (flick rapide) */
+  /** Swipe tactile : seuil de distance OU de vélocité (flick rapide) */
   const onDragEnd = (_: unknown, info: PanInfo) => {
     const { offset, velocity } = info;
     if (offset.x < -60 || velocity.x < -450) go(1);
@@ -70,7 +72,7 @@ export default function Hero() {
   return (
     <section
       aria-roledescription="carrousel"
-      aria-label="Destinations à Nosy Be"
+      aria-label={t("carouselLabel")}
       className="relative isolate flex min-h-[100svh] w-full flex-col overflow-hidden bg-[#0d2f3c] lg:h-svh lg:min-h-[700px]"
     >
       {/* ── Fond ──────────────────────────────────────────────────────── */}
@@ -109,7 +111,7 @@ export default function Hero() {
         {/* Colonne gauche */}
         <div className="min-w-0 lg:col-span-5">
           <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#F4A261] sm:text-xs">
-            Bienvenue à Nosy Be
+            {t("eyebrow")}
           </p>
 
           <AnimatePresence mode="wait">
@@ -125,11 +127,11 @@ export default function Hero() {
               </h1>
 
               <p className="mt-3 text-[10px] font-medium uppercase tracking-[0.22em] text-white/55 sm:mt-4 sm:text-[11px]">
-                {active.region}
+                {t(`destinations.${active.id}.region`)}
               </p>
 
               <p className="mt-5 max-w-[38ch] text-[15px] leading-relaxed text-white/80 sm:mt-7 sm:text-[17px]">
-                {active.description}
+                {t(`destinations.${active.id}.description`)}
               </p>
             </motion.div>
           </AnimatePresence>
@@ -144,7 +146,7 @@ export default function Hero() {
               href={active.href}
               className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F4A261] to-[#E76F51] px-7 py-4 text-sm font-semibold text-white shadow-[0_14px_30px_-10px_rgba(231,111,81,0.8)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:py-3.5"
             >
-              Découvrir l&apos;excursion
+              {t("discover")}
               <svg
                 viewBox="0 0 24 24"
                 className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -166,14 +168,14 @@ export default function Hero() {
                 href="/circuits"
                 className="inline-flex items-center justify-center rounded-full bg-white/10 px-5 py-3.5 text-center text-[13px] font-medium text-white/90 ring-1 ring-white/25 backdrop-blur-md transition-colors duration-300 hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:text-sm"
               >
-                Voir tous les circuits
+                {t("allCircuits")}
               </Link>
 
               <Link
                 href="/avis"
                 className="inline-flex items-center justify-center rounded-full bg-white/10 px-5 py-3.5 text-center text-[13px] font-medium text-white/90 ring-1 ring-white/25 backdrop-blur-md transition-colors duration-300 hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:text-sm"
               >
-                Les avis de nos clients
+                {t("reviews")}
               </Link>
             </div>
           </div>
@@ -212,7 +214,7 @@ export default function Hero() {
                         "shrink-0",
                         // mobile : 1 carte large
                         "h-[min(54vh,420px)] w-full max-w-[340px]",
-                        // tablette (640–1023) : 2 cartes, pleine largeur disponible
+                        // tablette (640–1023) : 2 cartes
                         "sm:h-[clamp(360px,50vh,500px)] sm:w-[clamp(240px,42vw,380px)] sm:max-w-none",
                         // mini-desktop / POS (1024–1279) : contraint par la colonne 7/12
                         "lg:h-[clamp(320px,44vh,440px)] lg:w-[clamp(200px,23vw,260px)]",
@@ -246,7 +248,7 @@ export default function Hero() {
                   key={d.id}
                   type="button"
                   onClick={() => setIndex(i)}
-                  aria-label={`Afficher ${d.name}`}
+                  aria-label={t("show", { name: d.name })}
                   aria-current={i === index}
                   className="group relative flex h-9 items-center focus-visible:outline-none"
                   style={{ width: i === index ? 48 : 14 }}
@@ -259,10 +261,7 @@ export default function Hero() {
                         className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#F4A261] to-[#E76F51]"
                         initial={{ width: "0%" }}
                         animate={{ width: paused ? "0%" : "100%" }}
-                        transition={{
-                          duration: AUTOPLAY_MS / 1000,
-                          ease: "linear",
-                        }}
+                        transition={{ duration: AUTOPLAY_MS / 1000, ease: "linear" }}
                       />
                     )}
                   </span>
@@ -280,7 +279,7 @@ export default function Hero() {
             <button
               type="button"
               onClick={() => go(-1)}
-              aria-label="Destination précédente"
+              aria-label={t("prev")}
               className="grid h-11 w-11 place-items-center rounded-full text-white ring-1 ring-white/30 backdrop-blur-md transition hover:bg-white hover:text-[#08222b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261]"
             >
               <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
@@ -297,7 +296,7 @@ export default function Hero() {
             <button
               type="button"
               onClick={() => go(1)}
-              aria-label="Destination suivante"
+              aria-label={t("next")}
               className="grid h-11 w-11 place-items-center rounded-full text-white ring-1 ring-white/30 backdrop-blur-md transition hover:bg-white hover:text-[#08222b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261]"
             >
               <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">

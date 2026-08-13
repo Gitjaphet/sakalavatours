@@ -1,31 +1,100 @@
 {
-  "HomePage": {
-    "tagline": "Entdecken Sie die Schätze Madagaskars neu",
-    "subtitle": "Maßgeschneiderte Touren und Ausflüge in Nosy Be und im gesamten Archipel. Ein lokales Team, authentische Erlebnisse.",
-    "cta": "Unsere Touren entdecken",
-    "nav": {
-      "circuits": "Touren",
-      "about": "Über uns",
-      "contact": "Kontakt"
+  "home": {
+    "meta": {
+      "title": "Nosy Be Ausflüge — Inseltouren und Bootsfahrten | Sakalava Tours",
+      "description": "Ausflüge und Touren auf Nosy Be, Madagaskar: Nosy Iranja, Nosy Tanikely, Lokobe-Reservat, Mont Passot. Einheimische Guides, kleine Gruppen, online buchen.",
+      "ogAlt": "Die weiße Sandbank von Nosy Iranja, Archipel von Nosy Be, Madagaskar",
+      "keywords": "Nosy Be Ausflüge, Nosy Be Touren, Madagaskar Inseltouren, Nosy Iranja, Nosy Tanikely, Lokobe Reservat, Schnorcheln Madagaskar"
     }
   },
 
-  "home": {
-    "meta": {
-      "title": "Ausflüge auf Nosy Be — Sakalava Tours | Touren & Bootsfahrten",
-      "description": "Tagesausflüge und Touren auf Nosy Be, Madagaskar: Nosy Iranja, Meerespark Tanikely, Lokobe-Reservat, Mont Passot. Lokale Guides, kleine Gruppen.",
-      "ogAlt": "Sandbank von Nosy Iranja, Archipel Nosy Be, Madagaskar"
-    }
-  },
-  
   "nav": {
-    "tours": "Rundreisen",
+    "tours": "Touren",
     "excursion": "Ausflüge",
     "apropos": "Über uns",
     "blog": "Blog",
     "galerie": "Galerie",
     "contact": "Kontakt",
-    "reserver": "Jetzt buchen"
-  
-}
+    "reserver": "Jetzt buchen",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "homeAria": "Sakalava Tours — zurück zur Startseite",
+    "menuAria": "Navigationsmenü"
+  },
+
+  "topbar": {
+    "hours": "Mo–Sa, 8–18 Uhr",
+    "callAria": "Sakalava Tours anrufen",
+    "contactTitle": "Kontakt aufnehmen",
+    "languageAria": "Sprache wählen"
+  },
+
+  "hero": {
+    "eyebrow": "Willkommen auf Nosy Be",
+    "discover": "Ausflug entdecken",
+    "allCircuits": "Alle Touren ansehen",
+    "reviews": "Stimmen unserer Gäste",
+    "carouselLabel": "Unsere Ausflüge auf Nosy Be und im Archipel",
+    "prev": "Vorheriges Reiseziel",
+    "next": "Nächstes Reiseziel",
+    "show": "{name} anzeigen",
+    "view": "Ausflug {name} ansehen",
+    "save": "Zur Merkliste hinzufügen",
+    "unsave": "Von der Merkliste entfernen",
+    "ratingLabel": "Bewertung {rating} von 5",
+    "imageAlt": "{name}, {region} — Sakalava Tours Ausflug auf Nosy Be",
+
+    "duration": {
+      "full": "Ganztags · {hours} Std.",
+      "half": "Halbtags · {hours} Std.",
+      "evening": "Abend · {hours} Std."
+    },
+
+    "destinations": {
+      "nosy-iranja": {
+        "region": "Archipel von Nosy Be",
+        "description": "Zwei Inseln, verbunden durch eine weiße Sandbank, die bei Ebbe auftaucht. Aufbruch im Dhau bei Sonnenaufgang, Rückkehr bei Sonnenuntergang."
+      },
+      "nosy-tanikely": {
+        "region": "Nationaler Meerespark",
+        "description": "Der beste Schnorchelplatz des Archipels: Suppenschildkröten, Korallengärten und Clownfische nur wenige Meter vom Ufer entfernt."
+      },
+      "lokobe": {
+        "region": "Naturreservat, Nosy Be",
+        "description": "Der letzte Urwald der Insel, erreichbar mit der traditionellen Piroge. Mohrenmakis, Boas und Chamäleons mit einem einheimischen Guide."
+      },
+      "mont-passot": {
+        "region": "Heilige Seen, Nosy Be",
+        "description": "Der höchste Punkt der Insel mit seinen Kraterseen. Von hier aus sieht man die Sonne über dem Archipel untergehen."
+      }
+    }
+  },
+
+  "HomePage": {
+    "tagline": "Entdecken Sie die Schätze Madagaskars — anders",
+    "intro": "Maßgeschneiderte Touren und Ausflüge auf Nosy Be und im Archipel, konzipiert von leidenschaftlichen einheimischen Guides.",
+    "cta": "Unsere Touren entdecken",
+    "highlightsTitle": "Was Nosy Be einzigartig macht",
+    "highlights": {
+      "beaches": {
+        "title": "Versteckte Strände",
+        "text": "Buchten, die nur per Boot erreichbar sind — abseits der ausgetretenen Pfade."
+      },
+      "wildlife": {
+        "title": "Endemische Tierwelt",
+        "text": "Lemuren, Chamäleons und Meeresschildkröten in ihrem natürlichen Lebensraum."
+      },
+      "islands": {
+        "title": "Ein Archipel zum Erkunden",
+        "text": "Nosy Komba, Nosy Tanikely, Nosy Sakatia — jede Insel hat ihren eigenen Charakter."
+      }
+    },
+    "bandTitle": "Bereit zum Ablegen?",
+    "bandCta": "Meinen Ausflug buchen"
+  },
+
+  "footer": {
+    "rights": "Alle Rechte vorbehalten",
+    "followUs": "Folgen Sie uns"
+  }
 }

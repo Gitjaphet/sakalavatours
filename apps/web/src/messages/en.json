@@ -1,31 +1,100 @@
 {
-  "HomePage": {
-    "tagline": "Discover the treasures of Madagascar differently",
-    "subtitle": "Tailor-made tours and excursions in Nosy Be and the whole archipelago. A local team, authentic experiences.",
-    "cta": "Explore our tours",
-    "nav": {
-      "circuits": "Tours",
-      "about": "About",
-      "contact": "Contact"
+  "home": {
+    "meta": {
+      "title": "Nosy Be Excursions — Island Tours and Boat Trips | Sakalava Tours",
+      "description": "Excursions and tours in Nosy Be, Madagascar: Nosy Iranja, Nosy Tanikely, Lokobe reserve, Mont Passot. Local guides, small groups, book online.",
+      "ogAlt": "The white sandbar of Nosy Iranja, Nosy Be archipelago, Madagascar",
+      "keywords": "Nosy Be excursions, Nosy Be tours, Madagascar island tours, Nosy Iranja, Nosy Tanikely, Lokobe reserve, snorkelling Madagascar"
     }
   },
 
-  "home": {
-    "meta": {
-      "title": "Nosy Be Excursions — Sakalava Tours | Island Tours & Boat Trips",
-      "description": "Day trips and tours in Nosy Be, Madagascar: Nosy Iranja, Tanikely marine park, Lokobe reserve, Mont Passot. Local guides, small groups, book online.",
-      "ogAlt": "Nosy Iranja sandbank, Nosy Be archipelago, Madagascar"
-    }
-  },
-  
   "nav": {
-    "tours": "Circuits",
+    "tours": "Tours",
     "excursion": "Excursions",
     "apropos": "About",
     "blog": "Blog",
     "galerie": "Gallery",
     "contact": "Contact",
-    "reserver": "Book now"
-  }
+    "reserver": "Book now",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "homeAria": "Sakalava Tours — back to homepage",
+    "menuAria": "Navigation menu"
+  },
 
+  "topbar": {
+    "hours": "Mon–Sat, 8am–6pm",
+    "callAria": "Call Sakalava Tours",
+    "contactTitle": "Get in touch",
+    "languageAria": "Choose language"
+  },
+
+  "hero": {
+    "eyebrow": "Welcome to Nosy Be",
+    "discover": "Discover this trip",
+    "allCircuits": "See all tours",
+    "reviews": "What our guests say",
+    "carouselLabel": "Our excursions in Nosy Be and the archipelago",
+    "prev": "Previous destination",
+    "next": "Next destination",
+    "show": "Show {name}",
+    "view": "View the {name} excursion",
+    "save": "Add to my wishlist",
+    "unsave": "Remove from my wishlist",
+    "ratingLabel": "Rated {rating} out of 5",
+    "imageAlt": "{name}, {region} — Sakalava Tours excursion in Nosy Be",
+
+    "duration": {
+      "full": "Full day · {hours}h",
+      "half": "Half day · {hours}h",
+      "evening": "Evening · {hours}h"
+    },
+
+    "destinations": {
+      "nosy-iranja": {
+        "region": "Nosy Be archipelago",
+        "description": "Two islands joined by a white sandbar the tide uncovers. Set off by dhow at sunrise, sail back as the sun goes down."
+      },
+      "nosy-tanikely": {
+        "region": "National marine park",
+        "description": "The archipelago's finest snorkelling spot: green turtles, coral gardens and clownfish just metres from the shore."
+      },
+      "lokobe": {
+        "region": "Strict nature reserve, Nosy Be",
+        "description": "The island's last primary rainforest, reached by traditional pirogue. Black lemurs, boas and chameleons with a local guide."
+      },
+      "mont-passot": {
+        "region": "Sacred lakes, Nosy Be",
+        "description": "The island's highest point and its crater lakes. This is where you watch the sun set over the archipelago."
+      }
+    }
+  },
+
+  "HomePage": {
+    "tagline": "Discover the treasures of Madagascar, differently",
+    "intro": "Tailor-made tours and excursions across Nosy Be and its archipelago, designed by passionate local guides.",
+    "cta": "Explore our tours",
+    "highlightsTitle": "What makes Nosy Be unique",
+    "highlights": {
+      "beaches": {
+        "title": "Hidden beaches",
+        "text": "Coves you can only reach by boat, far from the beaten track."
+      },
+      "wildlife": {
+        "title": "Endemic wildlife",
+        "text": "Lemurs, chameleons and sea turtles in their natural habitat."
+      },
+      "islands": {
+        "title": "An archipelago to explore",
+        "text": "Nosy Komba, Nosy Tanikely, Nosy Sakatia — every island has its own character."
+      }
+    },
+    "bandTitle": "Ready to set sail?",
+    "bandCta": "Book my excursion"
+  },
+
+  "footer": {
+    "rights": "All rights reserved",
+    "followUs": "Follow us"
+  }
 }
