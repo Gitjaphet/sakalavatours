@@ -23,26 +23,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!hasLocale(routing.locales, locale)) notFound();
 
   const t = await getTranslations({ locale, namespace: "home.meta" });
-  const path = locale === routing.defaultLocale ? "/" : `/${locale}`;
 
   return {
     title: t("title"),
     description: t("description"),
     alternates: {
-      canonical: `${businessInfo.url}${path}`,
+      canonical: `${businessInfo.url}/${locale}`,
       languages: Object.fromEntries([
-        ...routing.locales.map((l) => [
-          l,
-          `${businessInfo.url}${l === routing.defaultLocale ? "/" : `/${l}`}`,
-        ]),
-        ["x-default", `${businessInfo.url}/`],
+        ...routing.locales.map((l) => [l, `${businessInfo.url}/${l}`]),
+        ["x-default", `${businessInfo.url}/${routing.defaultLocale}`],
       ]),
     },
     openGraph: {
       type: "website",
       siteName: businessInfo.name,
       locale,
-      url: `${businessInfo.url}${path}`,
+      url: `${businessInfo.url}/${locale}`,
       title: t("title"),
       description: t("description"),
       images: [
