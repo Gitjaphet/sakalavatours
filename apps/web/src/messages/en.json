@@ -106,5 +106,49 @@
 
   "common": {
     "loading": "Loading…"
+  },
+
+  "pages": {
+    "comingSoon": {
+      "badge": "Coming soon",
+      "backHome": "Back to homepage",
+      "callUs": "Call us"
+    },
+    "circuits": {
+      "title": "Our tours",
+      "text": "We're putting the finishing touches to our tours around Nosy Be and its archipelago. In the meantime, give us a call — we'll build your itinerary with you."
+    },
+    "circuitDetail": {
+      "title": "Tour details",
+      "text": "Full details for this excursion are on their way. Get in touch now for availability and pricing."
+    },
+    "excursion": {
+      "title": "Our excursions",
+      "text": "Full-day trips, half-days and sunset outings: the complete selection is being prepared."
+    },
+    "apropos": {
+      "title": "About us",
+      "text": "Our story, our team of local guides and our commitment to responsible tourism in Nosy Be. This page is being written."
+    },
+    "blog": {
+      "title": "The blog",
+      "text": "Travel tips, best seasons and stories from the archipelago. The first articles are coming soon."
+    },
+    "galerie": {
+      "title": "Gallery",
+      "text": "Our photographs of the archipelago, from the lemurs of Lokobe to the sandbars of Nosy Iranja. Opening shortly."
+    },
+    "contact": {
+      "title": "Get in touch",
+      "text": "Our contact form is on its way. Until then, call or email us — we reply within 24 hours."
+    },
+    "reservation": {
+      "title": "Book now",
+      "text": "Online booking will be available very soon. Call us or message us on WhatsApp to book today."
+    },
+    "avis": {
+      "title": "What our guests say",
+      "text": "We're gathering feedback from our travellers. This page will be online shortly."
+    }
   }
 }

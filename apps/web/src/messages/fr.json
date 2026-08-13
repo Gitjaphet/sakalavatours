@@ -106,5 +106,49 @@
 
   "common": {
     "loading": "Chargement…"
+  },
+
+  "pages": {
+    "comingSoon": {
+      "badge": "Bientôt disponible",
+      "backHome": "Retour à l'accueil",
+      "callUs": "Nous appeler"
+    },
+    "circuits": {
+      "title": "Nos circuits",
+      "text": "Nous préparons le détail de nos circuits à Nosy Be et dans l'archipel. En attendant, appelez-nous : nous construisons votre itinéraire sur mesure."
+    },
+    "circuitDetail": {
+      "title": "Fiche circuit",
+      "text": "Le détail de cette excursion arrive très bientôt. Contactez-nous dès maintenant pour connaître les disponibilités et les tarifs."
+    },
+    "excursion": {
+      "title": "Nos excursions",
+      "text": "Sorties à la journée, demi-journées et couchers de soleil : la sélection complète est en cours de préparation."
+    },
+    "apropos": {
+      "title": "À propos",
+      "text": "Notre histoire, notre équipe de guides locaux et notre engagement pour un tourisme respectueux de Nosy Be. Page en cours de rédaction."
+    },
+    "blog": {
+      "title": "Le blog",
+      "text": "Conseils de voyage, saisons idéales et récits de l'archipel. Les premiers articles arrivent prochainement."
+    },
+    "galerie": {
+      "title": "Galerie",
+      "text": "Nos photos de l'archipel, des lémuriens de Lokobe aux bancs de sable de Nosy Iranja. La galerie ouvre bientôt."
+    },
+    "contact": {
+      "title": "Nous contacter",
+      "text": "Le formulaire de contact arrive. En attendant, appelez-nous ou écrivez-nous : nous répondons sous 24 heures."
+    },
+    "reservation": {
+      "title": "Réserver",
+      "text": "La réservation en ligne sera disponible très prochainement. Contactez-nous par téléphone ou WhatsApp pour réserver dès aujourd'hui."
+    },
+    "avis": {
+      "title": "Les avis de nos clients",
+      "text": "Nous rassemblons les retours de nos voyageurs. Cette page sera en ligne sous peu."
+    }
   }
 }

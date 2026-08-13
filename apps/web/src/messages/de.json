@@ -106,5 +106,49 @@
 
   "common": {
     "loading": "Wird geladen…"
+  },
+
+  "pages": {
+    "comingSoon": {
+      "badge": "Demnächst verfügbar",
+      "backHome": "Zurück zur Startseite",
+      "callUs": "Rufen Sie uns an"
+    },
+    "circuits": {
+      "title": "Unsere Touren",
+      "text": "Wir stellen gerade unsere Touren rund um Nosy Be und den Archipel zusammen. Rufen Sie uns in der Zwischenzeit an — wir planen Ihre Route gemeinsam mit Ihnen."
+    },
+    "circuitDetail": {
+      "title": "Tourdetails",
+      "text": "Die vollständigen Angaben zu diesem Ausflug folgen in Kürze. Kontaktieren Sie uns jetzt für Verfügbarkeit und Preise."
+    },
+    "excursion": {
+      "title": "Unsere Ausflüge",
+      "text": "Ganztagestouren, Halbtagesausflüge und Sonnenuntergangsfahrten: die vollständige Auswahl wird gerade vorbereitet."
+    },
+    "apropos": {
+      "title": "Über uns",
+      "text": "Unsere Geschichte, unser Team einheimischer Guides und unser Engagement für verantwortungsvollen Tourismus auf Nosy Be. Diese Seite entsteht gerade."
+    },
+    "blog": {
+      "title": "Der Blog",
+      "text": "Reisetipps, beste Reisezeiten und Geschichten aus dem Archipel. Die ersten Beiträge erscheinen bald."
+    },
+    "galerie": {
+      "title": "Galerie",
+      "text": "Unsere Aufnahmen des Archipels, von den Lemuren in Lokobe bis zu den Sandbänken von Nosy Iranja. Öffnet in Kürze."
+    },
+    "contact": {
+      "title": "Kontakt aufnehmen",
+      "text": "Unser Kontaktformular ist in Arbeit. Rufen Sie uns bis dahin an oder schreiben Sie uns — wir antworten innerhalb von 24 Stunden."
+    },
+    "reservation": {
+      "title": "Jetzt buchen",
+      "text": "Die Online-Buchung steht Ihnen sehr bald zur Verfügung. Rufen Sie uns an oder schreiben Sie uns über WhatsApp, um heute schon zu buchen."
+    },
+    "avis": {
+      "title": "Stimmen unserer Gäste",
+      "text": "Wir sammeln gerade die Rückmeldungen unserer Reisenden. Diese Seite geht in Kürze online."
+    }
   }
 }
