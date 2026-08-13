@@ -27,9 +27,9 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /** Seule la home a un hero plein écran sous la nav */
-  const isHome = pathname === "/";
-  const overlay = isHome && !scrolled;
+ /** Pages avec un fond sombre plein écran sous la nav (home + circuits pour l'instant) */
+  const hasDarkHero = pathname === "/" || pathname === "/circuits";
+  const overlay = hasDarkHero && !scrolled;
 
   const visibleLinks = scrolled
     ? navLinks.filter((l) => (compactNavKeys as readonly string[]).includes(l.key))
@@ -165,7 +165,7 @@ export function Header() {
         Sur la home, le hero passe SOUS la nav : aucun espaceur.
         Ailleurs, hauteur fixe (jamais h-0, sinon le contenu saute au scroll).
       */}
-      {!isHome && <div className="h-[142px] md:h-[126px]" />}
+      {!hasDarkHero && <div className="h-[142px] md:h-[126px]" />}
     </>
   );
 }
