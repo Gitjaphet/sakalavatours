@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import type { Circuit } from "@/lib/circuits-data";
+import { Rating } from "@/components/ui/Rating";
 
 type Props = {
   circuit: Circuit;
@@ -88,26 +89,14 @@ export function CircuitCard({ circuit }: Props) {
             </p>
           </div>
 
-          <div
-            className="flex items-center gap-1 text-sm text-amber-600"
-            aria-label={t("ratingLabel", { rating: circuit.rating })}
-          >
-            <StarIcon className="h-4 w-4 fill-current" />
-            <span className="font-medium text-stone-800">{circuit.rating}</span>
-          </div>
+          <Rating value={circuit.rating} count={circuit.reviewCount} />
         </div>
       </div>
     </Link>
   );
 }
 
-function StarIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 20 20" {...props}>
-      <path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.2 1.3 6L10 14.9 4.6 17.9l1.3-6-4.6-4.2 6.1-.6L10 1.5z" />
-    </svg>
-  );
-}
+
 
 // ⚠ À remplacer par CIRCUIT_CURRENCY importé de hero-data une fois le symbole confirmé
 const CIRCUIT_CURRENCY_SUFFIX = "€";
