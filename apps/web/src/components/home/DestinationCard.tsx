@@ -45,7 +45,7 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
         src={destination.image}
         alt={`${destination.name}, ${destination.region}`}
         fill
-        sizes="(max-width: 639px) 92vw, (max-width: 1279px) 26vw, 21vw"
+        sizes="(max-width: 639px) 92vw, (max-width: 1279px) 42vw, 21vw"
         className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
       />
 

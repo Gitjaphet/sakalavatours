@@ -45,6 +45,7 @@ export function Header() {
         }`}
       />
 
+      {/* TopBar : glisse vers le haut au scroll (toutes tailles d'écran) */}
       <div
         className={`fixed left-0 right-0 top-0 z-50 transition-transform duration-300 ${
           scrolled ? "-translate-y-full" : "translate-y-0"
@@ -55,7 +56,7 @@ export function Header() {
 
       <header
         className={`fixed left-0 right-0 z-40 flex justify-center transition-all duration-300 ${
-          scrolled ? "top-3" : "top-0 md:top-9"
+          scrolled ? "top-3" : "top-8 md:top-9"
         }`}
       >
         <div
@@ -63,33 +64,33 @@ export function Header() {
             scrolled
               ? "w-auto gap-5 rounded-full bg-[#FDFAF6]/95 px-5 py-2 shadow-lg shadow-black/10 backdrop-blur-md"
               : overlay
-  ? "w-full gap-6 bg-transparent px-6 sm:px-10 lg:px-14 xl:px-20 py-4 md:w-[min(1400px,92vw)]"
-  : "w-full rounded-none bg-[#FDFAF6] px-6 sm:px-10 lg:px-14 xl:px-20 py-3.5 shadow-sm md:w-[min(1400px,92vw)] md:rounded-b-xl"
+                ? "w-full gap-6 bg-transparent px-5 py-4 sm:px-6 lg:px-8 xl:w-[min(1400px,92vw)] xl:px-20"
+                : "w-full rounded-none bg-[#FDFAF6] px-5 py-3.5 shadow-sm sm:px-6 md:rounded-b-xl lg:px-8 xl:w-[min(1400px,92vw)] xl:px-20"
           }`}
         >
           <Link
             href="/"
             aria-label="Sakalava Tours — retour à l'accueil"
             className="block shrink-0"
-            >
+          >
             <span
-                className={`relative block transition-all duration-300 ${
-                scrolled ? "h-9 w-[108px]" : "h-12 w-[144px] md:h-14 md:w-[168px]"
-                }`}
+              className={`relative block transition-all duration-300 ${
+                scrolled ? "h-9 w-[108px]" : "h-11 w-[132px] sm:h-12 sm:w-[144px] md:h-14 md:w-[168px]"
+              }`}
             >
-                <Image
+              <Image
                 src="/images/brand/logo.png"
                 alt="Sakalava Tours"
                 fill
                 sizes="180px"
                 priority
                 className="object-contain object-left"
-                />
+              />
             </span>
-           </Link>
+          </Link>
 
           <nav
-            className={`hidden items-center gap-6 text-sm transition-colors duration-300 md:flex ${
+            className={`hidden items-center gap-6 text-sm transition-colors duration-300 lg:flex ${
               overlay ? "text-white/85" : "text-[#2B2620]"
             }`}
           >
@@ -110,8 +111,8 @@ export function Header() {
 
           {scrolled && (
             <>
-              <span className="hidden h-4 w-px bg-black/10 md:block" />
-              <div className="hidden items-center gap-2.5 text-[#1d4e5f] md:flex">
+              <span className="hidden h-4 w-px bg-black/10 lg:block" />
+              <div className="hidden items-center gap-2.5 text-[#1d4e5f] lg:flex">
                 <a href="tel:+261322208362" aria-label="Appeler Sakalava Tours">
                   <IconPhone size={16} />
                 </a>
@@ -120,9 +121,10 @@ export function Header() {
             </>
           )}
 
+          {/* CTA : masqué sous 1024px, il vit dans le menu burger */}
           <Link
             href="/reservation"
-            className={`whitespace-nowrap rounded-full text-sm font-medium transition-all duration-300 ${
+            className={`hidden whitespace-nowrap rounded-full text-sm font-medium transition-all duration-300 lg:inline-block ${
               overlay ? "shadow-[0_10px_25px_-8px_rgba(231,111,81,0.9)] hover:-translate-y-0.5" : ""
             }`}
             style={
@@ -146,12 +148,13 @@ export function Header() {
 
           <button
             onClick={() => setMobileOpen(true)}
-            className={`transition-colors duration-300 md:hidden ${
+            className={`-mr-2 grid h-11 w-11 shrink-0 place-items-center rounded-full transition-colors duration-300 lg:hidden ${
               overlay ? "text-white" : "text-[#1d4e5f]"
             }`}
             aria-label="Ouvrir le menu"
+            aria-expanded={mobileOpen}
           >
-            <IconMenu2 size={22} />
+            <IconMenu2 size={24} />
           </button>
         </div>
       </header>
@@ -162,7 +165,7 @@ export function Header() {
         Sur la home, le hero passe SOUS la nav : aucun espaceur.
         Ailleurs, hauteur fixe (jamais h-0, sinon le contenu saute au scroll).
       */}
-      {!isHome && <div className="h-[110px] md:h-[126px]" />}
+      {!isHome && <div className="h-[142px] md:h-[126px]" />}
     </>
   );
 }

@@ -16,7 +16,7 @@ import DestinationCard from "./DestinationCard";
 const AUTOPLAY_MS = 6000;
 
 /** Gouttière unique : titre, cartes et contrôles s'alignent tous dessus */
-const CONTAINER = "mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-14 xl:px-20";
+const CONTAINER = "mx-auto w-full max-w-[1400px] px-5 sm:px-6 lg:px-8 xl:px-20";
 
 /** Cartes visibles : 1 (mobile) → 2 (tablette + mini-desktop) → 3 (desktop) */
 const SLOT_VISIBILITY = ["block", "hidden sm:block", "hidden xl:block"] as const;
@@ -201,9 +201,9 @@ export default function Hero() {
                         SLOT_VISIBILITY[i],
                         "shrink-0",
                         // mobile : 1 carte large
-                        "h-[min(52vh,400px)] w-full max-w-[330px]",
-                        // tablette + mini-desktop (POS) : 2 cartes
-                        "sm:h-[clamp(300px,40vh,380px)] sm:w-[clamp(170px,25vw,240px)] sm:max-w-none",
+                        "h-[min(54vh,420px)] w-full max-w-[340px]",
+                        // tablette + mini-desktop (POS) : 2 cartes nettement agrandies
+                        "sm:h-[clamp(360px,50vh,500px)] sm:w-[clamp(240px,42vw,380px)] sm:max-w-none",
                         // desktop : valeurs validées, inchangées
                         "xl:h-[clamp(340px,46vh,460px)] xl:w-[clamp(190px,21vw,270px)]",
                       ].join(" ")}
