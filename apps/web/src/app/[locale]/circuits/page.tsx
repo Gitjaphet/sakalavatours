@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { circuitsSorted } from "@/lib/circuits-data";
 import { CircuitCard } from "@/components/circuits/CircuitCard";
 import { PageHero } from "@/components/layout/PageHero";
+import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
 
 type Params = Promise<{ locale: string }>;
 
@@ -54,8 +55,9 @@ export default async function CircuitsPage({ params }: { params: Params }) {
       />
 
       {/* Feuille crème qui remonte sur le bandeau : coupe net la photo */}
-      <main className="relative z-10 -mt-8 rounded-t-[2rem] bg-[#FDFAF6] shadow-[0_-12px_40px_-12px_rgba(8,34,43,0.25)]">
-        <div className="mx-auto max-w-6xl px-4 pb-24 pt-10 sm:px-6 sm:pt-12 lg:px-8">
+      <main className="relative isolate z-10 -mt-8 overflow-hidden rounded-t-[2rem] bg-[#FDFAF6] shadow-[0_-12px_40px_-12px_rgba(8,34,43,0.25)]">
+        <SectionBackdrop />
+        <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-10 sm:px-6 sm:pt-12 lg:px-8">
           <div className="mb-8 flex items-center justify-between border-b border-stone-200 pb-4">
             <p className="text-sm font-medium tracking-wide text-stone-500">
               {t("count", { count: circuitsSorted.length })}

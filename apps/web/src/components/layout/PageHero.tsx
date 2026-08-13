@@ -22,7 +22,7 @@ export function PageHero({
   imageAlt = "",
 }: PageHeroProps) {
   return (
-    <section className="relative isolate h-[320px] w-full overflow-hidden sm:h-[380px] lg:h-[420px]">
+    <section className="relative isolate h-[380px] w-full overflow-hidden sm:h-[450px] lg:h-[500px]">
       <Image
         src={image}
         alt={imageAlt}
@@ -43,7 +43,7 @@ export function PageHero({
         className="absolute inset-0 bg-gradient-to-b from-[#08222b]/80 via-[#08222b]/45 to-[#08222b]/70"
       />
 
-      <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-end px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32 lg:px-8">
+      <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-end px-4 pb-14 pt-32 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pt-44">
         <nav aria-label="Fil d'Ariane">
           <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/70">
             {breadcrumb.map((crumb, i) => {
