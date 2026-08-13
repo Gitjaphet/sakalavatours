@@ -55,7 +55,7 @@ export default function Hero() {
   }, [go]);
 
   const visible = isDesktop ? 3 : 2;
-  const step = isDesktop ? 70 : 56; // décalage en % de la largeur d'une carte
+  
 
   return (
     <section

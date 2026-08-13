@@ -79,26 +79,14 @@ export function Header() {
             >
                 <Image
                 src="/images/brand/logo.png"
-                alt=""
-                fill
-                sizes="180px"
-                priority
-                className={`object-contain object-left transition-opacity duration-300 ${
-                    overlay ? "opacity-100" : "opacity-0"
-                }`}
-                />
-                <Image
-                src="/images/brand/logo.png"
                 alt="Sakalava Tours"
                 fill
                 sizes="180px"
                 priority
-                className={`object-contain object-left transition-opacity duration-300 ${
-                    overlay ? "opacity-0" : "opacity-100"
-                }`}
+                className="object-contain object-left"
                 />
             </span>
-            </Link>
+           </Link>
 
           <nav
             className={`hidden items-center gap-6 text-sm transition-colors duration-300 md:flex ${
