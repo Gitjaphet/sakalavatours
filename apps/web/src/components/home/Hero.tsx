@@ -124,7 +124,7 @@ export default function Hero() {
                 exit={{ opacity: 0, y: reduceMotion ? 0 : -18, position: "absolute", top: 0 }}
                 transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
               >
-                <h1 className="mt-3 pb-2 font-[family-name:var(--font-courgette)] ...">
+                <h1 className="mt-3 pb-2 font-[family-name:var(--font-courgette)] text-white text-5xl sm:text-6xl lg:text-7xl leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
                   {active.name}
                 </h1>
 
