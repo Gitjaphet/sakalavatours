@@ -1,0 +1,31 @@
+{
+  "HomePage": {
+    "tagline": "Discover the treasures of Madagascar differently",
+    "subtitle": "Tailor-made tours and excursions in Nosy Be and the whole archipelago. A local team, authentic experiences.",
+    "cta": "Explore our tours",
+    "nav": {
+      "circuits": "Tours",
+      "about": "About",
+      "contact": "Contact"
+    }
+  },
+
+  "home": {
+    "meta": {
+      "title": "Nosy Be Excursions — Sakalava Tours | Island Tours & Boat Trips",
+      "description": "Day trips and tours in Nosy Be, Madagascar: Nosy Iranja, Tanikely marine park, Lokobe reserve, Mont Passot. Local guides, small groups, book online.",
+      "ogAlt": "Nosy Iranja sandbank, Nosy Be archipelago, Madagascar"
+    }
+  },
+  
+  "nav": {
+    "tours": "Tours",
+    "excursion": "Excursions",
+    "apropos": "About",
+    "blog": "Blog",
+    "galerie": "Gallery",
+    "contact": "Contact",
+    "reserver": "Book now"
+  }
+
+}

@@ -1,0 +1,233 @@
+// src/components/home/Hero.tsx
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Link } from "@/i18n/navigation";
+import { heroDestinations } from "@/lib/hero-data";
+import DestinationCard from "./DestinationCard";
+
+const AUTOPLAY_MS = 6000;
+
+/** Gouttière unique : titre, cartes et contrôles s'alignent tous dessus */
+const CONTAINER = "mx-auto w-full max-w-[1400px] px-6 sm:px-10 lg:px-14 xl:px-20";
+
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    const onChange = () => setMatches(mql.matches);
+    onChange();
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, [query]);
+  return matches;
+}
+
+export default function Hero() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reduceMotion = useReducedMotion();
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
+  const total = heroDestinations.length;
+  const active = heroDestinations[index];
+
+  const go = useCallback(
+    (dir: 1 | -1) => setIndex((i) => (i + dir + total) % total),
+    [total],
+  );
+
+  useEffect(() => {
+    if (paused || reduceMotion) return;
+    const t = setTimeout(() => setIndex((i) => (i + 1) % total), AUTOPLAY_MS);
+    return () => clearTimeout(t);
+  }, [index, paused, reduceMotion, total]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") go(1);
+      if (e.key === "ArrowLeft") go(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [go]);
+
+  const visible = isDesktop ? 3 : 2;
+  const step = isDesktop ? 70 : 56; // décalage en % de la largeur d'une carte
+
+  return (
+    <section
+      aria-roledescription="carrousel"
+      aria-label="Destinations à Nosy Be"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      className="relative isolate flex min-h-[700px] w-full flex-col overflow-hidden bg-[#0d2f3c] lg:h-svh"
+    >
+      {/* ── Fond ──────────────────────────────────────────────────────── */}
+      <AnimatePresence mode="sync">
+        <motion.div
+          key={active.id}
+          className="absolute inset-0 -z-10"
+          initial={{ opacity: 0, scale: reduceMotion ? 1 : 1.08 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            opacity: { duration: 1, ease: "easeInOut" },
+            scale: { duration: 8, ease: "linear" },
+          }}
+        >
+          <Image src={active.image} alt="" fill priority sizes="100vw" className="object-cover" />
+        </motion.div>
+      </AnimatePresence>
+
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-[#08222b]/95 via-[#08222b]/60 to-[#08222b]/10" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-[#08222b]/90 via-transparent to-[#08222b]/35" />
+
+      {/* ── Bloc central ──────────────────────────────────────────────── */}
+      <div
+        className={`${CONTAINER} grid flex-1 grid-cols-1 items-center gap-y-12 pb-10 pt-32 lg:grid-cols-12 lg:gap-x-16 lg:pb-6 lg:pt-36`}
+      >
+        {/* Colonne gauche */}
+        <div className="lg:col-span-5">
+          <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#F4A261]">
+            Bienvenue à Nosy Be
+          </p>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active.id}
+              initial={{ opacity: 0, y: reduceMotion ? 0 : 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: reduceMotion ? 0 : -18 }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <h1 className="mt-4 pb-2 font-[family-name:var(--font-courgette)] text-[clamp(3rem,7vw,6rem)] font-normal normal-case leading-[1.05] tracking-normal text-white">
+                {active.name}
+              </h1>
+
+              <p className="mt-4 text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
+                {active.region}
+              </p>
+
+              <p className="mt-7 max-w-[38ch] text-base leading-relaxed text-white/80 sm:text-[17px]">
+                {active.description}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
+            <Link
+              href={active.href}
+              className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#F4A261] to-[#E76F51] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_14px_30px_-10px_rgba(231,111,81,0.8)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              Découvrir l&apos;excursion
+              <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+                <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+
+            <Link
+              href="/circuits"
+              className="text-sm font-medium text-white/75 underline-offset-8 transition hover:text-white hover:underline"
+            >
+              Voir tous les circuits
+            </Link>
+          </div>
+        </div>
+
+        {/* Colonne droite : cover-flow */}
+        <div className="lg:col-span-7">
+          <div className="relative mx-auto h-[clamp(320px,46vh,470px)] w-full [perspective:1800px]">
+            {heroDestinations.map((d, i) => {
+              const offset = (i - index + total) % total;
+              const shown = offset < visible;
+
+              return (
+                <motion.div
+                  key={d.id}
+                  className="absolute left-0 top-0 h-full w-[clamp(225px,23vw,310px)] [transform-style:preserve-3d]"
+                  style={{ zIndex: total - offset, pointerEvents: shown ? "auto" : "none" }}
+                  animate={{
+                    x: `${(shown ? offset : visible) * step}%`,
+                    scale: 1 - offset * 0.08,
+                    rotateY: offset === 0 ? 0 : -12,
+                    opacity: shown ? 1 - offset * 0.12 : 0,
+                    filter: offset > 1 ? "brightness(0.75)" : "brightness(1)",
+                  }}
+                  transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <DestinationCard
+                    destination={d}
+                    isActive={offset === 0}
+                    onSelect={() => setIndex(i)}
+                  />
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Barre de contrôles : même gouttière que le contenu ─────────── */}
+      <div className={CONTAINER}>
+        <div className="flex items-center justify-between gap-6 border-t border-white/15 py-6 lg:py-7">
+          <div className="flex items-center gap-5">
+            <div className="flex items-center gap-2">
+              {heroDestinations.map((d, i) => (
+                <button
+                  key={d.id}
+                  type="button"
+                  onClick={() => setIndex(i)}
+                  aria-label={`Afficher ${d.name}`}
+                  aria-current={i === index}
+                  className="relative h-1.5 overflow-hidden rounded-full transition-[width] duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261]"
+                  style={{ width: i === index ? 56 : 16 }}
+                >
+                  <span className="absolute inset-0 bg-white/25" />
+                  {i === index && !reduceMotion && (
+                    <motion.span
+                      key={`progress-${index}-${paused}`}
+                      className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#F4A261] to-[#E76F51]"
+                      initial={{ width: "0%" }}
+                      animate={{ width: paused ? "0%" : "100%" }}
+                      transition={{ duration: AUTOPLAY_MS / 1000, ease: "linear" }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            <span className="text-xs tabular-nums text-white/50">
+              {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => go(-1)}
+              aria-label="Destination précédente"
+              className="grid h-11 w-11 place-items-center rounded-full text-white ring-1 ring-white/30 backdrop-blur-md transition hover:bg-white hover:text-[#08222b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261]"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+                <path d="M20 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => go(1)}
+              aria-label="Destination suivante"
+              className="grid h-11 w-11 place-items-center rounded-full text-white ring-1 ring-white/30 backdrop-blur-md transition hover:bg-white hover:text-[#08222b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261]"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+                <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

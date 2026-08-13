@@ -1,0 +1,34 @@
+{
+  "HomePage": {
+    "tagline": "Visitez les trésors de Madagascar autrement",
+    "intro": "Circuits et excursions sur mesure à Nosy Be et dans l'archipel, conçus par des guides locaux passionnés.",
+    "cta": "Découvrir nos circuits",
+    "highlightsTitle": "Ce qui rend Nosy Be unique",
+    "highlights": {
+      "beaches": { "title": "Plages secrètes", "text": "Des criques accessibles seulement en bateau, loin des sentiers battus." },
+      "wildlife": { "title": "Faune endémique", "text": "Lémuriens, caméléons et tortues marines dans leur habitat naturel." },
+      "islands": { "title": "Archipel à explorer", "text": "Nosy Komba, Nosy Tanikely, Nosy Sakatia — chaque île a son caractère." }
+    },
+    "bandTitle": "Prêt à embarquer ?",
+    "bandCta": "Réserver mon excursion"
+  },
+
+  "home": {
+    "meta": {
+      "title": "Excursions à Nosy Be — Sakalava Tours | Circuits & sorties en mer",
+      "description": "Excursions et circuits à Nosy Be : Nosy Iranja, Tanikely, réserve de Lokobe, Mont Passot. Guides locaux, petits groupes, réservation en ligne.",
+      "ogAlt": "Banc de sable de Nosy Iranja, archipel de Nosy Be, Madagascar"
+    }
+  },
+
+  "nav": {
+    "tours": "Tours",
+    "excursion": "Excursion",
+    "apropos": "À propos",
+    "blog": "Blog",
+    "galerie": "Galerie",
+    "contact": "Contact",
+    "reserver": "Réserver"
+  }
+
+}
