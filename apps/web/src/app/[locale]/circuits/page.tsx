@@ -40,7 +40,7 @@ export default async function CircuitsPage({ params }: { params: Params }) {
       </nav>
 
       <header className="mb-10 max-w-2xl">
-        <h1 className="font-serif text-4xl text-stone-900 sm:text-5xl">
+        <h1 className="font-[family-name:var(--font-courgette)] text-4xl text-stone-900 sm:text-5xl">
           {t("pageTitle")}
         </h1>
         <p className="mt-4 text-lg text-stone-600">{t("pageIntro")}</p>
