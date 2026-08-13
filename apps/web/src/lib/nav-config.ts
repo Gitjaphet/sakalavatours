@@ -11,8 +11,8 @@
  *  détermine l'ordre d'affichage dans la nav et le menu burger. */
 export const navLinks = [
   { key: "tours", href: "/circuits" },
-  { key: "excursion", href: "/excursion" },
-  { key: "apropos", href: "/a-propos" },
+  { key: "excursion", href: "/excursions" },
+  { key: "apropos", href: "/apropos" },
   { key: "blog", href: "/blog" },
   { key: "galerie", href: "/galerie" },
   { key: "contact", href: "/contact" },
