@@ -4,6 +4,7 @@ import { circuitsSorted } from "@/lib/circuits-data";
 import { CircuitCard } from "@/components/circuits/CircuitCard";
 import { PageHero } from "@/components/layout/PageHero";
 import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
+import { Sparkle, Squiggle } from "@/components/ui/Doodles";
 
 type Params = Promise<{ locale: string }>;
 
@@ -59,7 +60,7 @@ export default async function CircuitsPage({ params }: { params: Params }) {
         <SectionBackdrop />
         <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-10 sm:px-6 sm:pt-12 lg:px-8">
           <div className="mb-8 flex items-center justify-between border-b border-stone-200 pb-4">
-            <p className="text-sm font-medium tracking-wide text-stone-500">
+            <div className="relative"><p className="flex items-center gap-2 text-sm font-medium tracking-wide text-stone-600"><Sparkle className="h-3.5 w-3.5 shrink-0" color="#E76F51" />
               {t("count", { count: circuitsSorted.length })}
             </p>
           </div>
