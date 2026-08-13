@@ -44,12 +44,13 @@
     "ratingLabel": "Bewertung {rating} von 5",
     "imageAlt": "{name}, {region} — Sakalava Tours Ausflug auf Nosy Be",
 
+    "group": "{min}–{max} Pers.",
+    "groupAria": "Gruppe von {min} bis {max} Personen",
+    "priceLabel": "ab",
+    "priceAria": "Ab {price} pro Person",
+    "perPerson": "/ Pers.",
+
     "duration": {
-      "group": "{min}–{max} Pers.",
-      "groupAria": "Gruppe von {min} bis {max} Personen",
-      "priceFrom": "ab {price}",
-      "priceAria": "Ab {price} pro Person",
-      "perPerson": "/ Pers.",
       "full": "Ganztags · {hours} Std.",
       "half": "Halbtags · {hours} Std.",
       "evening": "Abend · {hours} Std."

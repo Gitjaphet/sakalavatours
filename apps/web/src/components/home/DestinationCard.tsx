@@ -153,7 +153,7 @@ export default function DestinationCard({ destination, isActive, onSelect }: Pro
           aria-label={t("priceAria", { price })}
         >
           <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-white/50">
-            {t("priceFrom", { price: "" }).trim()}
+            {t("priceLabel")}
           </span>
           <span className="font-[family-name:var(--font-baloo2)] text-[19px] font-semibold leading-none text-white">
             {price}
