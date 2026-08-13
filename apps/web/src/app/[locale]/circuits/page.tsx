@@ -2,8 +2,15 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { circuitsSorted } from "@/lib/circuits-data";
 import { CircuitCard } from "@/components/circuits/CircuitCard";
+import { PageHero } from "@/components/layout/PageHero";
 
 type Params = Promise<{ locale: string }>;
+
+const HOME_LABEL: Record<string, string> = {
+  fr: "Accueil",
+  en: "Home",
+  de: "Startseite",
+};
 
 export async function generateMetadata({
   params,
@@ -34,34 +41,32 @@ export default async function CircuitsPage({ params }: { params: Params }) {
   const t = await getTranslations({ locale, namespace: "circuits" });
 
   return (
-    <div className="relative">
-      {/* Fond baobab assombri */}
-      <div
-        className="fixed inset-0 -z-10 bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: "url('/images/backgrounds/baobabs.jpeg')" }}
-        aria-hidden="true"
+    <div className="bg-[#FDFAF6]">
+      <PageHero
+        title={t("pageTitle")}
+        intro={t("pageIntro")}
+        image="/images/backgrounds/baobabs.jpeg"
+        imageAlt=""
+        breadcrumb={[
+          { label: HOME_LABEL[locale] ?? HOME_LABEL.fr, href: "/" },
+          { label: t("breadcrumb") },
+        ]}
       />
-      <div className="fixed inset-0 -z-10 bg-gradient-to-b from-[#08222b]/85 via-[#08222b]/75 to-[#FDFAF6]/95" aria-hidden="true" />
 
-      <main className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <nav aria-label="Fil d'Ariane" className="mb-6 text-sm text-stone-500">
-          <span>{t("breadcrumb")}</span>
-        </nav>
+      {/* Feuille crème qui remonte sur le bandeau : coupe net la photo */}
+      <main className="relative z-10 -mt-8 rounded-t-[2rem] bg-[#FDFAF6] shadow-[0_-12px_40px_-12px_rgba(8,34,43,0.25)]">
+        <div className="mx-auto max-w-6xl px-4 pb-24 pt-10 sm:px-6 sm:pt-12 lg:px-8">
+          <div className="mb-8 flex items-center justify-between border-b border-stone-200 pb-4">
+            <p className="text-sm font-medium tracking-wide text-stone-500">
+              {t("count", { count: circuitsSorted.length })}
+            </p>
+          </div>
 
-        <header className="mb-10 max-w-2xl">
-          <h1 className="font-[family-name:var(--font-courgette)] text-4xl text-stone-900 sm:text-5xl">
-            {t("pageTitle")}
-          </h1>
-          <p className="mt-4 text-lg text-stone-600">{t("pageIntro")}</p>
-          <p className="mt-2 text-sm font-medium text-stone-500">
-            {t("count", { count: circuitsSorted.length })}
-          </p>
-        </header>
-
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {circuitsSorted.map((circuit) => (
-            <CircuitCard key={circuit.id} circuit={circuit} />
-          ))}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            {circuitsSorted.map((circuit) => (
+              <CircuitCard key={circuit.id} circuit={circuit} />
+            ))}
+          </div>
         </div>
       </main>
     </div>
