@@ -38,7 +38,7 @@ export default async function CircuitsPage({ params }: { params: Params }) {
       {/* Fond baobab assombri */}
       <div
         className="fixed inset-0 -z-10 bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: "url('/images/backgrounds/baobabs.webp')" }}
+        style={{ backgroundImage: "url('/images/backgrounds/baobabs.jpeg')" }}
         aria-hidden="true"
       />
       <div className="fixed inset-0 -z-10 bg-gradient-to-b from-[#08222b]/85 via-[#08222b]/75 to-[#FDFAF6]/95" aria-hidden="true" />
