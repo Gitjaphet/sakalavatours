@@ -10,6 +10,7 @@ import { buildBreadcrumbSchema } from "@/lib/schema/breadcrumb";
 import { buildFaqSchema } from "@/lib/schema/faqPage";
 import { buildTravelAgencySchema } from "@/lib/schema/travelAgency";
 import { businessInfo } from "@/lib/nav-config";
+import { Reveal } from "@/components/ui/Reveal";
 import {
   IconCompass,
   IconLeaf,
@@ -129,11 +130,11 @@ export default async function AProposPage({ params }: { params: Params }) {
             </div>
 
             <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-              {aboutValues.map(({ key }) => {
+              {aboutValues.map(({ key }, i) => {
                 const Icon = VALUE_ICONS[key];
                 return (
+                  <Reveal key={key} delay={i * 100} className="h-full">
                   <li
-                    key={key}
                     className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_2px_12px_-4px_rgba(8,34,43,0.10)] transition-shadow hover:shadow-[0_16px_40px_-18px_rgba(8,34,43,0.28)]"
                   >
                     <span className="inline-grid h-11 w-11 place-items-center rounded-2xl bg-[#1d4e5f]/8 text-[#1d4e5f]">
@@ -146,6 +147,7 @@ export default async function AProposPage({ params }: { params: Params }) {
                       {t(`values.${key}.text`)}
                     </p>
                   </li>
+                  </Reveal>
                 );
               })}
             </ul>

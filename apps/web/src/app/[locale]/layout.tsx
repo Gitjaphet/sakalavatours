@@ -109,6 +109,16 @@ export default async function LocaleLayout({
       lang={locale}
       className={`${courgette.variable} ${inter.variable} ${baloo2.variable}`}
     >
+      <head>
+        {/* Marque la présence de JavaScript AVANT le premier rendu : sans lui,
+            les styles de scroll-reveal ne s'appliquent pas et le contenu
+            reste visible. Filet de sécurité SEO et accessibilité. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add("js")`,
+          }}
+        />
+      </head>
       <body className="bg-[#FDFAF6] text-[#2B2620] antialiased">
         <NextIntlClientProvider messages={messages}>
           <RouteLoaderProvider>
