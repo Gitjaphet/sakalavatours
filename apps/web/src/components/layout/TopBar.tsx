@@ -20,7 +20,7 @@ const socialIconMap = {
 };
 
 type Props = {
-  /** trues = posée sur le hero : plus de fond, texte blanc */
+  /** true = posée sur le hero : plus de fond, texte blanc */
   transparent?: boolean;
 };
 

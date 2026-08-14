@@ -44,3 +44,9 @@ export const aboutFaqKeys = [
 ] as const;
 
 export type AboutFaqKey = (typeof aboutFaqKeys)[number];
+/** Compteurs — calculés depuis le catalogue réel plutôt qu'écrits en dur :
+ *  un chiffre affiché doit toujours correspondre à ce que le site propose. */
+export const aboutStats = {
+  destinations: circuits.length + excursions.length,
+  yearsActive: new Date().getFullYear() - FOUNDING_YEAR,
+} as const;
