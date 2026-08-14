@@ -63,13 +63,14 @@ export default function DestinationCard({ destination, isActive, onSelect, prior
   return (
     <article
       className={[
-        "group relative h-full w-full overflow-hidden rounded-[28px]",
+        "group relative h-full w-full cursor-pointer overflow-hidden rounded-[28px]",
         "bg-[#0d2f3c] ring-1 transition-[box-shadow,ring-color,transform] duration-500",
         isActive
           ? "scale-[1.02] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.85)] ring-white/45"
           : "shadow-[0_25px_50px_-25px_rgba(0,0,0,0.7)] ring-white/15",
       ].join(" ")}
       style={{ transitionTimingFunction: "var(--ease-ios)" }}
+      onClick={onSelect}
     >
       <Image
         src={destination.image}
@@ -82,16 +83,7 @@ export default function DestinationCard({ destination, isActive, onSelect, prior
 
       {/* Voile renforcé en bas : le bloc d'informations s'est allongé */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/30" />
-
-      {/* Zone cliquable plein cadre (sous les contrôles) */}
-      <button
-        type="button"
-        onClick={onSelect}
-        className="absolute inset-0 z-10 cursor-pointer rounded-[28px] outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-      >
-        <span className="sr-only">{t("view", { name: destination.name })}</span>
-      </button>
-
+      
       {/* Badge durée */}
       <div className="pointer-events-none absolute left-3 top-3 z-20 sm:left-4 sm:top-4">
         <span className="inline-flex items-center rounded-full bg-white/12 px-3 py-1 text-[11px] font-medium text-white/90 ring-1 ring-white/20 backdrop-blur-sm">
@@ -125,7 +117,14 @@ export default function DestinationCard({ destination, isActive, onSelect, prior
         </p>
 
         <h2 className="mt-1.5 font-[family-name:var(--font-courgette)] text-[26px] font-normal leading-snug text-white sm:text-[20px] lg:text-2xl">
-          {destination.name}
+          <button
+            type="button"
+            onClick={onSelect}
+            className="pointer-events-auto text-left outline-none focus-visible:underline focus-visible:decoration-[#F4A261] focus-visible:decoration-2 focus-visible:underline-offset-4"
+          >
+            {destination.name}
+            <span className="sr-only"> — {t("view", { name: destination.name })}</span>
+          </button>
         </h2>
 
         {/* Note + taille du groupe */}

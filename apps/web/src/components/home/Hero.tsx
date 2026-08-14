@@ -76,7 +76,7 @@ export default function Hero() {
       className="relative isolate flex min-h-[100svh] w-full flex-col overflow-hidden bg-[#0d2f3c] lg:h-svh lg:min-h-[700px]"
     >
       {/* ── Fond ──────────────────────────────────────────────────────── */}
-      <AnimatePresence mode="sync">
+      <AnimatePresence mode="sync" initial={false}>
         <motion.div
           key={active.id}
           className="absolute inset-0 -z-10"
