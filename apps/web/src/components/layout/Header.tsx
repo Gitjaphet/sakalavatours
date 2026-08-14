@@ -13,7 +13,7 @@ import Image from "next/image";
 
 /** Déclenchement de la capsule : assez bas pour ne pas clignoter au moindre scroll */
 const SCROLL_THRESHOLD = 48;
-const DARK_HERO_ROUTES: readonly string[] = ["/", "/circuits", "/excursions"];
+const DARK_HERO_ROUTES: readonly string[] = ["/", "/circuits", "/excursions", "/apropos"];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);

@@ -351,5 +351,124 @@
         "summary": "Nosy Be's fragrant gold, from flower to essential oil. Visit a traditional distillery, walk the plantations and stop at the Sacred Tree."
       }
     }
+  },
+
+
+  "about": {
+  "meta": {
+    "title": "About us — Local agency in Nosy Be since 2019 | Sakalava Tours",
+    "description": "Sakalava Tours is a local travel agency based in Nosy Be, founded in 2019. Sakalava guides, small groups, tailor-made tours and day trips in Madagascar.",
+    "ogAlt": "The Sakalava Tours team of local guides in Nosy Be, Madagascar"
+  },
+  "breadcrumb": "About",
+  "eyebrow": "Why travel with us?",
+  "pageTitle": "Our commitment & values",
+  "pageIntro": "Authentic experiences, attentive service and unforgettable memories in the heart of Madagascar.",
+
+  "values": {
+    "title": "Three principles behind every trip",
+    "subtitle": "They aren't here to decorate a page: they decide which itineraries we build, which partners we work with, and which ones we turn down.",
+    "authenticite": {
+      "title": "Authenticity",
+      "text": "We favour places where local life carries on beyond the visitors. A Sakalava fishing village, a family ylang-ylang distillery, a path only islanders use — rather than a site laid out for tour buses."
+    },
+    "respect": {
+      "title": "Respect",
+      "text": "Respect for the communities that host us, whose permission we always ask before bringing a group. Respect for the environment: no contact with turtles or lemurs, no anchoring on coral, nothing left behind on the islets."
+    },
+    "partage": {
+      "title": "Sharing",
+      "text": "A good trip is measured by the encounters it made possible. Our guides translate, introduce and explain — and a share of every excursion goes directly to the families and communities who welcome you."
+    }
+  },
+
+  "founder": {
+    "eyebrow": "Our story",
+    "title": "A commitment born of passion",
+    "p1": "Since 2019 I have been building Sakalava Tours around one idea: sharing my vision of authentic travel in Madagascar. Close to the ground and to local realities, I design every route as a human adventure — respectful, sincere and meaningful.",
+    "p2": "It started with improvised outings: I took passing travellers to places I had known since childhood and that appeared in no programme. What struck my first clients wasn't the scenery — it was being able to sit down with a fishing family and understand what was being said around them.",
+    "p3": "Out of those outings came a conviction: Nosy Be and northern Madagascar deserve better than the identical day trip sold everywhere. So I built every tour and excursion myself, scouting the routes on site, meeting the host families, testing tide times and sailing durations before offering them to anyone.",
+    "p4": "Sakalava Tours remains a small operation today, and that is a choice. We would rather look after a limited number of travellers properly than fill boats.",
+    "quoteIntro": "Our tagline sums it up:",
+    "quote": "Discover the treasures of Madagascar differently",
+    "quoteAfter": "Offering a genuine journey, rich in encounters and emotion.",
+    "name": "The Sakalava Tours team",
+    "role": "Guides and organisers, Nosy Be",
+    "imageAlt": "A Sakalava Tours guide with travellers on a Nosy Be beach"
+  },
+
+  "stats": {
+    "destinations": "Destinations in our catalogue",
+    "years": "{count, plural, one {# year} other {# years}} on the ground",
+    "languages": "Languages spoken",
+    "languagesValue": "4",
+    "groupSize": "Travellers per group",
+    "groupSizeValue": "2–12"
+  },
+
+  "mission": {
+    "eyebrow": "About Sakalava Tours",
+    "title": "Unforgettable journeys across Madagascar",
+    "text": "Madagascar opens its doors to a deep, sincere and unforgettable immersion, paced by its smiles, its landscapes and its legends. From the Nosy Be archipelago to the vanilla plantations of the SAVA, through the primary forests of Lokobe and the tsingy of the far north, every itinerary is designed so you come home with more than photographs."
+  },
+
+  "pillars": {
+    "title": "What we guarantee you",
+    "assistance": {
+      "title": "Support at any hour",
+      "text": "So your stay is a genuine break, we stay reachable day and night to guide, advise and assist you at any moment — a delayed flight, weather that turns, a last-minute question."
+    },
+    "equipe": {
+      "title": "A team that listens",
+      "text": "We build a trip that fits you. Pace, budget, interests, health or age constraints: every itinerary is discussed before it is fixed, and nothing is locked once you are on site."
+    },
+    "local": {
+      "title": "Real knowledge of the ground",
+      "text": "Our first-hand knowledge of the region takes you to authentic places and meaningful encounters, away from the standard tourist circuits. Our guides come from the region and speak the local Malagasy."
+    },
+    "groupes": {
+      "title": "Genuinely small groups",
+      "text": "From 2 to 12 people depending on the trip, never more. It's what allows a village to actually welcome you, everyone to ask their questions, and the site itself not to suffer from your visit."
+    }
+  },
+
+  "faq": {
+    "eyebrow": "Frequently asked questions",
+    "title": "What travellers ask us most",
+    "items": {
+      "guides": {
+        "question": "Are your guides from the region?",
+        "answer": "Yes. Our guides were born and live in Nosy Be or northern Madagascar. That's what lets us enter a fishing village as expected guests rather than tolerated visitors, and translate not just the words but the context."
+      },
+      "langues": {
+        "question": "Which languages are the excursions run in?",
+        "answer": "We guide in French, English, German and Italian. Tell us your language when booking: we always confirm a guide is available before validating your trip."
+      },
+      "reservation": {
+        "question": "How far ahead should I book?",
+        "answer": "For a day excursion, 48 hours is usually enough, sometimes less outside high season. For a multi-day tour, allow two to four weeks: we need to book accommodation and coordinate guides across several stages."
+      },
+      "groupes-taille": {
+        "question": "How many people per group?",
+        "answer": "From 2 to 12 depending on the trip, and 2 to 8 for canoe or forest excursions. We never group beyond that, even when demand would allow it."
+      },
+      "meilleure-periode": {
+        "question": "When is the best time to visit Nosy Be?",
+        "answer": "April to November, the dry season, offers the best sailing conditions and underwater visibility. December to March, the rainy season, remains workable for land excursions, with spectacular vegetation and far fewer people."
+      },
+      "paiement": {
+        "question": "How does payment work?",
+        "answer": "A deposit confirms the booking, the balance is settled on site before departure. We accept cash in ariary and euros, as well as online payment for the deposit."
+      }
+    }
+  },
+
+  "cta": {
+    "title": "Ready to see Madagascar differently?",
+    "text": "Browse our multi-day tours or our day excursions — and if nothing matches quite what you're after, write to us: we'll build the itinerary with you.",
+    "circuits": "See our tours",
+    "excursions": "See our excursions",
+    "contact": "Get in touch"
+    }
   }
 }

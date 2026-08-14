@@ -8,6 +8,7 @@ type Crumb = {
 
 type PageHeroProps = {
   title: string;
+  eyebrow?: string;
   intro?: string;
   breadcrumb: Crumb[];
   image: string;
@@ -16,6 +17,7 @@ type PageHeroProps = {
 
 export function PageHero({
   title,
+  eyebrow,
   intro,
   breadcrumb,
   image,
