@@ -464,7 +464,9 @@
   },
 
   "cta": {
-    "title": "Bereit, Madagaskar anders zu entdecken?",
+    "titleLead": "Bereit, Madagaskar",
+    "titleAccent": "anders zu entdecken?",
+    "reassurance": "Antwort innerhalb von 24 Stunden · Kostenloses Angebot, unverbindlich",
     "text": "Stöbern Sie in unseren mehrtägigen Rundreisen oder unseren Tagesausflügen — und wenn nichts genau passt, schreiben Sie uns: Wir bauen die Route gemeinsam mit Ihnen.",
     "circuits": "Unsere Rundreisen",
     "excursions": "Unsere Ausflüge",

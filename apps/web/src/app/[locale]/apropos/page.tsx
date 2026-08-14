@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageHero } from "@/components/layout/PageHero";
 import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
-import { Sparkle, Squiggle, HalfBurst } from "@/components/ui/Doodles";
+import { Sparkle, Squiggle, HalfBurst, RayCluster, ArrowUp } from "@/components/ui/Doodles";
 import { aboutValues, aboutPillars, aboutFaqKeys, aboutStats } from "@/lib/about-data";
 import { buildBreadcrumbSchema } from "@/lib/schema/breadcrumb";
 import { buildFaqSchema } from "@/lib/schema/faqPage";
@@ -306,39 +306,60 @@ export default async function AProposPage({ params }: { params: Params }) {
           </section>
 
           {/* ── CTA / maillage interne ───────────────────────────────── */}
-          <section
-            aria-labelledby="cta-title"
-            className="mt-24 overflow-hidden rounded-3xl bg-[#1d4e5f] px-6 py-12 sm:px-10 sm:py-14 lg:mt-28"
-          >
-            <div className="mx-auto max-w-2xl text-center">
+          <section aria-labelledby="cta-title" className="relative mt-28 lg:mt-36">
+            {/* Éclats dessinés — le cadre, à la place d'un conteneur */}
+            <RayCluster
+              className="pointer-events-none absolute left-2 top-0 h-20 w-20 opacity-90 sm:left-8 sm:h-28 sm:w-28 lg:left-24"
+              color="#F4A261"
+            />
+            <RayCluster
+              className="pointer-events-none absolute right-2 top-0 h-20 w-20 -scale-x-100 opacity-90 sm:right-8 sm:h-28 sm:w-28 lg:right-24"
+              color="#F4A261"
+            />
+            <Sparkle
+              className="pointer-events-none absolute left-1/2 top-[-14px] h-4 w-4 -translate-x-1/2 opacity-70"
+              color="#E76F51"
+            />
+
+            <div className="relative mx-auto max-w-3xl px-2 pt-14 text-center sm:pt-16">
               <h2
                 id="cta-title"
-                className="font-[family-name:var(--font-courgette)] text-3xl text-white sm:text-4xl"
+                className="font-[family-name:var(--font-courgette)] text-[2rem] leading-[1.15] text-stone-900 sm:text-5xl lg:text-[3.4rem]"
               >
-                {t("cta.title")}
+                {t("cta.titleLead")}{" "}
+                <span className="text-[#1d4e5f]">{t("cta.titleAccent")}</span>
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-white/80">
+
+              <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-stone-600">
                 {t("cta.text")}
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <Link
                   href="/circuits"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#F4A261] to-[#E76F51] px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F4A261] to-[#E76F51] px-8 py-4 text-sm font-semibold text-white shadow-[0_14px_30px_-12px_rgba(231,111,81,0.85)] transition-transform duration-300 hover:-translate-y-0.5 sm:w-auto"
                 >
                   {t("cta.circuits")}
                   <IconArrowRight size={16} stroke={2} />
                 </Link>
                 <Link
                   href="/excursions"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#1d4e5f]/25 px-8 py-4 text-sm font-semibold text-[#1d4e5f] transition-colors hover:bg-[#1d4e5f]/6 sm:w-auto"
                 >
                   {t("cta.excursions")}
                   <IconArrowRight size={16} stroke={2} />
                 </Link>
+              </div>
+
+              {/* Réassurance — la flèche renvoie l'œil vers les boutons */}
+              <div className="mt-7 flex flex-col items-center">
+                <ArrowUp className="h-8 w-5 opacity-60" color="#1d4e5f" />
+                <p className="mt-2.5 text-sm text-stone-500">
+                  {t("cta.reassurance")}
+                </p>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-3 py-3 text-sm font-medium text-white/70 underline-offset-4 transition-colors hover:text-white hover:underline"
+                  className="mt-1.5 text-sm font-medium text-[#1d4e5f] underline-offset-4 transition-colors hover:underline"
                 >
                   {t("cta.contact")}
                 </Link>

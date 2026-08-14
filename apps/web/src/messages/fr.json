@@ -467,8 +467,10 @@
   },
 
   "cta": {
-    "title": "Prêt à découvrir Madagascar autrement ?",
+    "titleLead": "Prêt à découvrir Madagascar",
+    "titleAccent": "autrement ?",
     "text": "Parcourez nos circuits de plusieurs jours ou nos excursions à la journée — et si rien ne correspond exactement à ce que vous cherchez, écrivez-nous : nous construisons l'itinéraire avec vous.",
+    "reassurance": "Réponse sous 24 h · Devis gratuit, sans engagement",
     "circuits": "Voir nos circuits",
     "excursions": "Voir nos excursions",
     "contact": "Nous écrire"

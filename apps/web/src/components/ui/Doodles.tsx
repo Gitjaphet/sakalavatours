@@ -96,3 +96,44 @@ export function Blob({ className, color = "#1d4e5f" }: DoodleProps) {
     </svg>
   );
 }
+
+/* Grappe de rayons asymétriques — l'éclat "dessiné main" façon éditorial.
+   Les longueurs et angles sont volontairement irréguliers : une grappe
+   parfaitement régulière rend mécanique. */
+export function RayCluster({ className, color = "#F4A261" }: DoodleProps) {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" className={className} aria-hidden="true">
+      <g stroke={color} strokeWidth="4" strokeLinecap="round">
+        <path d="M104 16C96 26 88 36 82 44" />
+        <path d="M112 44c-10 5-20 9-28 12" />
+        <path d="M78 8c-4 12-8 23-11 31" />
+        <path d="M116 74c-11-1-21-2-29-3" />
+        <path d="M52 12c0 11 1 21 2 29" />
+      </g>
+      {/* Éclats pleins — les petites virgules épaisses d'Odoo */}
+      <path d="M30 30c5 3 9 8 11 13-5-2-10-3-15-3 2-3 3-6 4-10Z" fill={color} />
+      <path d="M96 88c4 2 7 6 9 10-4-1-8-2-12-2 1-3 2-5 3-8Z" fill={color} />
+    </svg>
+  );
+}
+
+/* Flèche verticale — pointe vers le CTA situé au-dessus */
+export function ArrowUp({ className, color = "#1d4e5f", strokeWidth = 2.5 }: DoodleProps) {
+  return (
+    <svg viewBox="0 0 24 40" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M12 38V6"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+      />
+      <path
+        d="M5 13l7-7 7 7"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}

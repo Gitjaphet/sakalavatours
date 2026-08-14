@@ -463,7 +463,9 @@
   },
 
   "cta": {
-    "title": "Pronti a scoprire il Madagascar in un altro modo?",
+    "titleLead": "Pronti a scoprire il Madagascar",
+    "titleAccent": "in un altro modo?",
+    "reassurance": "Risposta entro 24 ore · Preventivo gratuito, senza impegno",
     "text": "Sfogliate i nostri itinerari di più giorni o le nostre escursioni giornaliere — e se nulla corrisponde esattamente a ciò che cercate, scriveteci: costruiamo l'itinerario insieme a voi.",
     "circuits": "I nostri itinerari",
     "excursions": "Le nostre escursioni",

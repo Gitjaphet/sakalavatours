@@ -464,7 +464,9 @@
   },
 
   "cta": {
-    "title": "Ready to see Madagascar differently?",
+    "titleLead": "Ready to see Madagascar",
+    "titleAccent": "differently?",
+    "reassurance": "Reply within 24 hours · Free quote, no commitment",
     "text": "Browse our multi-day tours or our day excursions — and if nothing matches quite what you're after, write to us: we'll build the itinerary with you.",
     "circuits": "See our tours",
     "excursions": "See our excursions",
