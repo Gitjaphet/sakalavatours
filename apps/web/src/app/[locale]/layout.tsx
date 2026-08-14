@@ -35,7 +35,7 @@ export function generateStaticParams() {
 }
 
 /** Métadonnées localisées + hreflang : indispensable pour que Google
- *  indexe les trois versions comme des alternatives et non des doublons. */
+*  indexe toutes les versions comme des alternatives et non des doublons. */
 export async function generateMetadata({
   params,
 }: {

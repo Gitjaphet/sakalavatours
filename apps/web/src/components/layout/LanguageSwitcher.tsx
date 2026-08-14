@@ -12,6 +12,7 @@ const locales = [
   { code: "fr", flag: "🇫🇷", label: "Français" },
   { code: "en", flag: "🇬🇧", label: "English" },
   { code: "de", flag: "🇩🇪", label: "Deutsch" },
+  { code: "it", flag: "🇮🇹", label: "Italiano" },
 ] as const;
 
 type Props = {
