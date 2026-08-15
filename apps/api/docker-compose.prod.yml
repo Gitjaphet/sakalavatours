@@ -1,0 +1,100 @@
+# Production sur le VPS Contabo.
+#
+# ⚠ LIMITES MÉMOIRE OBLIGATOIRES : cette machine héberge aussi l'Odoo d'un
+# client. Sans plafond, un worker qui fuit déclenche l'OOM killer du noyau,
+# qui tue le plus gros processus de la machine.
+#
+# ⚠ NE JAMAIS construire l'image ici : docker build consomme 2-3 Go et peut
+# faire tomber les services voisins. L'image vient de GHCR.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sakalava_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    # Valeurs réduites : quatre instances PostgreSQL cohabitent sur la
+    # machine, les défauts sont calibrés pour un serveur dédié.
+    command: >
+      postgres
+      -c shared_buffers=192MB
+      -c effective_cache_size=512MB
+      -c max_connections=50
+      -c work_mem=8MB
+      -c maintenance_work_mem=64MB
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks: [sakalava_internal]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    mem_limit: 512m
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  redis:
+    image: redis:7-alpine
+    container_name: sakalava_redis
+    restart: unless-stopped
+    # maxmemory obligatoire : sans plafond, Redis grossit jusqu'à saturer
+    # la RAM de la machine.
+    command: >
+      redis-server
+      --appendonly yes
+      --maxmemory 200mb
+      --maxmemory-policy allkeys-lru
+    volumes:
+      - redisdata:/data
+    networks: [sakalava_internal]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    mem_limit: 256m
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  api:
+    image: ghcr.io/gitjaphet/sakalavatours-api:latest
+    container_name: sakalava_api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_HOST: postgres
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    networks: [sakalava_internal, traefik_proxy]
+    mem_limit: 512m
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik_proxy"
+      - "traefik.http.routers.sakalava-api.rule=Host(`${API_DOMAIN}`)"
+      - "traefik.http.routers.sakalava-api.entrypoints=websecure"
+      - "traefik.http.routers.sakalava-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.sakalava-api.loadbalancer.server.port=8000"
+
+volumes:
+  pgdata:
+  redisdata:
+
+networks:
+  # Réseau privé : PostgreSQL et Redis ne sont JAMAIS exposés au dehors,
+  # contrairement au dev local où les ports 5433/6380 sont publiés.
+  sakalava_internal:
+    driver: bridge
+  # Réseau Traefik existant sur le VPS
+  traefik_proxy:
+    external: true

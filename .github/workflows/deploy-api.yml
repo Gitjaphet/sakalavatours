@@ -1,0 +1,103 @@
+name: Déploiement API
+
+# Ne se déclenche que si le code de l'API change : modifier le frontend
+# ne doit pas relancer un build backend.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/api/**"
+      - ".github/workflows/deploy-api.yml"
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: gitjaphet/sakalavatours-api
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Contrôles qualité
+        working-directory: apps/api
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff
+          ruff check src/ || echo "⚠ ruff signale des points à corriger"
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Connexion à GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Construction et publication
+        uses: docker/build-push-action@v6
+        with:
+          context: apps/api
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          # Cache GitHub Actions : les couches de dépendances ne se
+          # reconstruisent que si requirements.txt change.
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Déploiement sur le VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            set -e
+            cd /opt/sakalavatours
+
+            echo "── Récupération de la nouvelle image ──"
+            docker compose -f docker-compose.prod.yml pull api
+
+            echo "── Base de données et cache ──"
+            docker compose -f docker-compose.prod.yml up -d postgres redis
+            sleep 5
+
+            # ⚠ ÉTAPE CRITIQUE : les migrations tournent dans un conteneur
+            # ÉPHÉMÈRE, AVANT le redémarrage de l'API. Si l'API démarrait
+            # sur un schéma non migré, elle planterait en boucle et Traefik
+            # renverrait du 502 pendant qu'on cherche pourquoi.
+            echo "── Migrations Alembic ──"
+            docker compose -f docker-compose.prod.yml run --rm \
+              --entrypoint "" api alembic upgrade head
+
+            echo "── Redémarrage de l'API ──"
+            docker compose -f docker-compose.prod.yml up -d api
+
+            echo "── Vérification ──"
+            sleep 10
+            for i in 1 2 3 4 5 6; do
+              if docker exec sakalava_api python -c \
+                "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()" 2>/dev/null; then
+                echo "✓ API opérationnelle"
+                break
+              fi
+              [ "$i" = "6" ] && { echo "✗ API injoignable"; docker logs --tail 50 sakalava_api; exit 1; }
+              sleep 5
+            done
+
+            echo "── Nettoyage des images orphelines ──"
+            docker image prune -f --filter "until=168h"
