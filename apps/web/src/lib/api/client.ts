@@ -12,12 +12,21 @@
  * rendrait invisible dans le HTML initial et ruinerait le référencement.
  */
 
-const API_BASE_URL = process.env.API_BASE_URL;
-
-if (!API_BASE_URL) {
-  throw new Error(
-    "API_BASE_URL manquante. Ajoutez-la dans .env.local et dans les variables Vercel.",
-  );
+/**
+ * ⚠ Lecture PARESSEUSE, jamais au niveau du module.
+ *
+ * Une vérification à l'import ferait échouer `next build` dès la collecte
+ * des pages, avec une trace peu lisible. Ici l'erreur remonte à l'appel,
+ * où `apiGetSafe` peut la rattraper et laisser le build aboutir.
+ */
+function getBaseUrl(): string {
+  const url = process.env.API_BASE_URL;
+  if (!url) {
+    throw new Error(
+      "API_BASE_URL manquante. Ajoutez-la dans .env.local et dans les variables Vercel.",
+    );
+  }
+  return url;
 }
 
 /** Durée de cache par défaut, en secondes. */
@@ -52,7 +61,7 @@ export async function apiGet<T>(
   path: string,
   { revalidate = DEFAULT_REVALIDATE, tags = [] }: FetchOptions = {},
 ): Promise<T> {
-  const url = `${API_BASE_URL}${path}`;
+  const url = `${getBaseUrl()}${path}`;
 
   const response = await fetch(url, {
     headers: { Accept: "application/json" },
