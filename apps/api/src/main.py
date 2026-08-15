@@ -16,6 +16,7 @@ from sqlalchemy import text
 from src.core.config import settings
 from src.core.database import engine
 from src.core.redis import close_redis, get_redis
+from src.api.admin import auth as admin_auth
 
 
 @asynccontextmanager
@@ -73,3 +74,6 @@ async def health() -> dict[str, str]:
         "database": "connected",
         "redis": "connected",
     }
+
+
+app.include_router(admin_auth.router, prefix=f"{settings.API_V1_PREFIX}/admin")
