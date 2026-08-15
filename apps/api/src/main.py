@@ -21,6 +21,8 @@ from src.api.public import products as public_products
 from src.api.admin import products as admin_products
 from src.api.public import bookings as public_bookings
 from src.api.admin import bookings as admin_bookings
+from src.api.public import reviews as public_reviews
+from src.api.admin import reviews as admin_reviews
 
 
 @asynccontextmanager
@@ -85,3 +87,5 @@ app.include_router(public_products.router, prefix=f"{settings.API_V1_PREFIX}/pub
 app.include_router(admin_products.router, prefix=f"{settings.API_V1_PREFIX}/admin")
 app.include_router(public_bookings.router, prefix=f"{settings.API_V1_PREFIX}/public")
 app.include_router(admin_bookings.router, prefix=f"{settings.API_V1_PREFIX}/admin")
+app.include_router(public_reviews.router, prefix=f"{settings.API_V1_PREFIX}/public")
+app.include_router(admin_reviews.router, prefix=f"{settings.API_V1_PREFIX}/admin")
