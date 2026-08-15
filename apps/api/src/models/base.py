@@ -112,7 +112,7 @@ class SeoTechnicalMixin(SQLModel):
 
     is_indexable: bool = Field(default=True)
     canonical_override: str | None = Field(default=None, max_length=500)
-    sitemap_priority: float = Field(default=0.5, ge=0.0, le=1.0)
+    sitemap_priority: float = Field(default=0.7, ge=0.0, le=1.0)
     sitemap_changefreq: str = Field(default="monthly", max_length=20)
 
 

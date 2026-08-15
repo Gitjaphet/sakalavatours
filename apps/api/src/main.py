@@ -24,6 +24,8 @@ from src.api.public import bookings as public_bookings
 from src.api.admin import bookings as admin_bookings
 from src.api.public import reviews as public_reviews
 from src.api.admin import reviews as admin_reviews
+from src.api.public import redirects as public_redirects
+from src.api.public import sitemap as public_sitemap
 
 
 # Uvicorn ne configure que ses propres loggers. Sans cette ligne, tous les
@@ -100,3 +102,5 @@ app.include_router(public_bookings.router, prefix=f"{settings.API_V1_PREFIX}/pub
 app.include_router(admin_bookings.router, prefix=f"{settings.API_V1_PREFIX}/admin")
 app.include_router(public_reviews.router, prefix=f"{settings.API_V1_PREFIX}/public")
 app.include_router(admin_reviews.router, prefix=f"{settings.API_V1_PREFIX}/admin")
+app.include_router(public_redirects.router, prefix=f"{settings.API_V1_PREFIX}/public")
+app.include_router(public_sitemap.router, prefix=f"{settings.API_V1_PREFIX}/public")
