@@ -19,6 +19,9 @@ from fastapi import APIRouter, BackgroundTasks, HTTPException, Request, status
 from sqlmodel import select
 
 from src.api.deps import RedisDep, SessionDep
+from src.core.config import settings
+from src.integrations import messages
+from src.integrations.email import send as send_email
 from src.models.enums import BookingSource
 from src.models.product import Product, ProductTranslation
 from src.repositories import product as product_repo
@@ -155,8 +158,30 @@ async def create_booking(
         if await redis.incr(key) == 1:
             await redis.expire(key, window)
 
-    # TODO : email de confirmation au client + notification à l'agence.
-    # BackgroundTasks suffit pour ce volume — pas besoin de Celery.
+    # ── Notifications ──────────────────────────────────────────────
+    # BackgroundTasks exécute ces fonctions APRÈS l'envoi de la réponse :
+    # le visiteur n'attend pas les 2 à 5 secondes du dialogue SMTP.
+    # Et si l'envoi échoue, la réservation reste enregistrée.
+    subject, text, html = messages.booking_confirmation_to_customer(booking)
+    background.add_task(
+        send_email,
+        to=booking.customer_email,
+        subject=subject,
+        text_body=text,
+        html_body=html,
+    )
+
+    if settings.AGENCY_NOTIFY_EMAIL:
+        subject, text, html = messages.booking_alert_to_agency(booking)
+        background.add_task(
+            send_email,
+            to=settings.AGENCY_NOTIFY_EMAIL,
+            subject=subject,
+            text_body=text,
+            html_body=html,
+            # Répondre à l'alerte écrit directement au client.
+            reply_to=booking.customer_email,
+        )
 
     return BookingPublicRead(
         reference=booking.reference,

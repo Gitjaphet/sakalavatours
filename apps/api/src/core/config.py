@@ -41,6 +41,19 @@ class Settings(BaseSettings):
     DEFAULT_LOCALE: str = "fr"
     SUPPORTED_LOCALES: list[str] = ["fr", "en", "de", "it"]
 
+    # ── Email ──────────────────────────────────────────────────────
+    # SMTP_HOST vide = mode console : les emails s'affichent dans les logs
+    # au lieu d'être envoyés. Permet de développer sans serveur mail.
+    SMTP_HOST: str = ""
+    SMTP_PORT: int = 587
+    SMTP_USER: str = ""
+    SMTP_PASSWORD: str = ""
+    SMTP_USE_TLS: bool = True
+    EMAIL_FROM: str = "contact@sakalavatours.com"
+    EMAIL_FROM_NAME: str = "Sakalava Tours"
+    AGENCY_NOTIFY_EMAIL: str = ""
+    ADMIN_BASE_URL: str = "http://localhost:3000/admin"
+
     NEXTJS_REVALIDATE_URL: str = ""
     NEXTJS_REVALIDATE_SECRET: str = ""
 

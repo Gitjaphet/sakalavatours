@@ -6,6 +6,7 @@ des 500 pendant des heures — sur le VPS, l'orchestrateur relancera le
 conteneur au lieu de le laisser tourner cassé.
 """
 
+import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
@@ -23,6 +24,16 @@ from src.api.public import bookings as public_bookings
 from src.api.admin import bookings as admin_bookings
 from src.api.public import reviews as public_reviews
 from src.api.admin import reviews as admin_reviews
+
+
+# Uvicorn ne configure que ses propres loggers. Sans cette ligne, tous les
+# logger.info() de l'application sont avalés silencieusement — y compris
+# les confirmations et les échecs d'envoi d'email.
+logging.basicConfig(
+    level=logging.DEBUG if settings.DEBUG else logging.INFO,
+    format="%(asctime)s  %(levelname)-8s %(name)s  %(message)s",
+    datefmt="%H:%M:%S",
+)
 
 
 @asynccontextmanager

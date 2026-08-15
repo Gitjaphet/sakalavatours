@@ -11,10 +11,12 @@ d'une campagne de dénigrement.
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, HTTPException, Query, Request, status
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Query, Request, status
 from sqlmodel import select
 
 from src.api.deps import RedisDep, SessionDep
+from src.integrations import messages
+from src.integrations.email import send as send_email
 from src.core.config import settings
 from src.models.enums import ReviewStatus
 from src.models.product import Product
@@ -61,6 +63,7 @@ async def submit_review(
     request: Request,
     session: SessionDep,
     redis: RedisDep,
+    background: BackgroundTasks,
 ) -> ReviewSubmitResponse:
     """Dépose un avis. Publication après modération."""
     # Honeypot : réponse de succès factice pour ne rien apprendre au robot
@@ -84,7 +87,7 @@ async def submit_review(
                 status_code=status.HTTP_404_NOT_FOUND, detail="Produit introuvable"
             )
 
-    await service.create_review(
+    review = await service.create_review(
         session,
         product=product,
         author_name=payload.author_name,
@@ -105,6 +108,23 @@ async def submit_review(
     for key, window in ((ip_key, IP_WINDOW_SECONDS), (email_key, EMAIL_WINDOW_SECONDS)):
         if await redis.incr(key) == 1:
             await redis.expire(key, window)
+
+    # Alerte de modération. Sans elle, un avis peut dormir des semaines
+    # en file d'attente sans que personne ne le sache.
+    if settings.AGENCY_NOTIFY_EMAIL:
+        subject, text, html = messages.review_alert_to_agency(
+            author_name=review.author_name,
+            rating=review.rating,
+            product_title=payload.product_slug or "l'agence",
+            review_id=review.id,
+        )
+        background.add_task(
+            send_email,
+            to=settings.AGENCY_NOTIFY_EMAIL,
+            subject=subject,
+            text_body=text,
+            html_body=html,
+        )
 
     return ReviewSubmitResponse()
 
