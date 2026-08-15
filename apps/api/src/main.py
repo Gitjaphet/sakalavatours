@@ -17,6 +17,7 @@ from src.core.config import settings
 from src.core.database import engine
 from src.core.redis import close_redis, get_redis
 from src.api.admin import auth as admin_auth
+from src.api.public import products as public_products
 
 
 @asynccontextmanager
@@ -77,3 +78,4 @@ async def health() -> dict[str, str]:
 
 
 app.include_router(admin_auth.router, prefix=f"{settings.API_V1_PREFIX}/admin")
+app.include_router(public_products.router, prefix=f"{settings.API_V1_PREFIX}/public")
