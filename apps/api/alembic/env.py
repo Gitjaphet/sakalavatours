@@ -24,16 +24,7 @@ from src.core.config import settings
 # ⚠ Ces imports semblent inutilisés — ils ne le sont pas.
 # Ils peuplent SQLModel.metadata. Toute nouvelle famille de modèles
 # doit être ajoutée ici, sinon Alembic croira qu'elle a été supprimée.
-from src.models import (  # noqa: F401
-    blog,
-    booking,
-    media,
-    page,
-    product,
-    review,
-    system,
-    taxonomy,
-)
+import src.models  # noqa: F401 — peuple SQLModel.metadata
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
