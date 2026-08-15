@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { excursionsSorted } from "@/lib/excursions-data";
+import { getProducts } from "@/lib/api/products";
 import { ExcursionCard } from "@/components/excursions/ExcursionCard";
 import { PageHero } from "@/components/layout/PageHero";
 import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
@@ -8,11 +8,9 @@ import { Sparkle, Squiggle } from "@/components/ui/Doodles";
 
 type Params = Promise<{ locale: string }>;
 
-const HOME_LABEL: Record<string, string> = {
-  fr: "Accueil",
-  en: "Home",
-  de: "Startseite",
-};
+// Régénération horaire. La page reste servie en statique depuis le CDN ;
+// Next la reconstruit en arrière-plan sans faire attendre personne.
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -25,9 +23,7 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    alternates: {
-      canonical: `/${locale}/excursions`,
-    },
+    alternates: { canonical: `/${locale}/excursions` },
     openGraph: {
       title: t("title"),
       description: t("description"),
@@ -41,6 +37,12 @@ export default async function ExcursionsPage({ params }: { params: Params }) {
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "excursions" });
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+
+  const { items, total } = await getProducts(locale, {
+    type: "excursion",
+    limit: 50,
+  });
 
   return (
     <div className="bg-[#FDFAF6]">
@@ -50,7 +52,7 @@ export default async function ExcursionsPage({ params }: { params: Params }) {
         image="/images/hero/nosy-tanikely.jpg"
         imageAlt=""
         breadcrumb={[
-          { label: HOME_LABEL[locale] ?? HOME_LABEL.fr, href: "/" },
+          { label: tNav("accueil"), href: "/" },
           { label: t("breadcrumb") },
         ]}
       />
@@ -63,17 +65,23 @@ export default async function ExcursionsPage({ params }: { params: Params }) {
             <div className="relative">
               <p className="flex items-center gap-2 text-sm font-medium tracking-wide text-stone-600">
                 <Sparkle className="h-3.5 w-3.5 shrink-0" color="#E76F51" />
-                {t("count", { count: excursionsSorted.length })}
+                {t("count", { count: total })}
               </p>
               <Squiggle className="mt-1 h-2 w-24 opacity-50" color="#F4A261" />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 xl:grid-cols-2 xl:gap-7">
-            {excursionsSorted.map((excursion) => (
-              <ExcursionCard key={excursion.id} excursion={excursion} />
-            ))}
-          </div>
+          {items.length === 0 ? (
+            <p className="py-16 text-center text-stone-500">
+              {t("pageIntro")}
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 gap-6 xl:grid-cols-2 xl:gap-7">
+              {items.map((excursion) => (
+                <ExcursionCard key={excursion.id} excursion={excursion} />
+              ))}
+            </div>
+          )}
         </div>
       </main>
     </div>
