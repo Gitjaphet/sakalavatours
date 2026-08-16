@@ -351,6 +351,24 @@
       "facile": "Leicht",
       "modere": "Mittel",
       "sportif": "Sportlich"
+    },
+    "detail": {
+      "itineraryTitle": "Tagesablauf",
+      "day": "Tag {number}",
+      "optional": "Optional",
+      "inclusionsTitle": "Inklusive und nicht inklusive Leistungen",
+      "packingTitle": "Packliste",
+      "practicalTitle": "Gut zu wissen",
+      "faqTitle": "Häufig gestellte Fragen",
+      "galleryTitle": "Fotogalerie",
+      "bookCta": "Diesen Ausflug buchen",
+      "callCta": "Kontaktieren Sie uns",
+      "locationAria": "Ort",
+      "hotelAria": "Unterkunft",
+      "mealAria": "Mahlzeiten",
+      "distanceAria": "Entfernung",
+      "distanceValue": "{km} km",
+      "translationPending": "Diese Seite ist noch nicht übersetzt — Inhalt wird auf Französisch angezeigt."
     }
   },
   "about": {

@@ -352,6 +352,24 @@
       "facile": "Facile",
       "modere": "Modéré",
       "sportif": "Sportif"
+    },
+    "detail": {
+      "itineraryTitle": "Programme de la sortie",
+      "day": "Jour {number}",
+      "optional": "Optionnel",
+      "inclusionsTitle": "Inclus et non inclus",
+      "packingTitle": "À prévoir",
+      "practicalTitle": "Informations pratiques",
+      "faqTitle": "Questions fréquentes",
+      "galleryTitle": "Galerie photo",
+      "bookCta": "Réserver cette excursion",
+      "callCta": "Nous contacter",
+      "locationAria": "Lieu",
+      "hotelAria": "Hébergement",
+      "mealAria": "Repas",
+      "distanceAria": "Distance",
+      "distanceValue": "{km} km",
+      "translationPending": "Cette fiche n'est pas encore traduite : contenu affiché en français."
     }
   },
   "about": {

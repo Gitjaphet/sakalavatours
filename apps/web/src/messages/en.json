@@ -352,6 +352,24 @@
       "facile": "Easy",
       "modere": "Moderate",
       "sportif": "Active"
+    },
+    "detail": {
+      "itineraryTitle": "Schedule",
+      "day": "Day {number}",
+      "optional": "Optional",
+      "inclusionsTitle": "What's included",
+      "packingTitle": "What to bring",
+      "practicalTitle": "Good to know",
+      "faqTitle": "Frequently asked questions",
+      "galleryTitle": "Photo gallery",
+      "bookCta": "Book this excursion",
+      "callCta": "Contact us",
+      "locationAria": "Location",
+      "hotelAria": "Accommodation",
+      "mealAria": "Meals",
+      "distanceAria": "Distance",
+      "distanceValue": "{km} km",
+      "translationPending": "This page isn't translated yet — showing French content."
     }
   },
   "about": {

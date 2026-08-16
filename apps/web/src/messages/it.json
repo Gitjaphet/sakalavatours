@@ -351,6 +351,24 @@
       "facile": "Facile",
       "modere": "Moderato",
       "sportif": "Sportivo"
+    },
+    "detail": {
+      "itineraryTitle": "Programma della giornata",
+      "day": "Giorno {number}",
+      "optional": "Facoltativo",
+      "inclusionsTitle": "Incluso e non incluso",
+      "packingTitle": "Cosa portare",
+      "practicalTitle": "Informazioni utili",
+      "faqTitle": "Domande frequenti",
+      "galleryTitle": "Galleria fotografica",
+      "bookCta": "Prenota questa escursione",
+      "callCta": "Contattaci",
+      "locationAria": "Luogo",
+      "hotelAria": "Alloggio",
+      "mealAria": "Pasti",
+      "distanceAria": "Distanza",
+      "distanceValue": "{km} km",
+      "translationPending": "Questa pagina non è ancora tradotta — contenuto mostrato in francese."
     }
   },
   "about": {
