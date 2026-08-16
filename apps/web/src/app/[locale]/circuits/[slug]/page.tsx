@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getProduct, getProducts } from "@/lib/api/products";
 import { PageHero } from "@/components/layout/PageHero";
@@ -20,6 +21,9 @@ import {
   IconUsers,
   IconCalendarEvent,
   IconChevronDown,
+  IconBed,
+  IconToolsKitchen2,
+  IconRoute,
 } from "@tabler/icons-react";
 
 type Params = Promise<{ locale: string; slug: string }>;
@@ -185,26 +189,82 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
                   {t("detail.itineraryTitle")}
                 </h2>
                 <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
-                <ol className="mt-6 space-y-5 border-l-2 border-[#1d4e5f]/15 pl-6">
-                  {product.itinerary.map((step, i) => (
-                    <li key={i} className="relative">
-                      <span
-                        aria-hidden="true"
-                        className="absolute -left-[1.95rem] top-1 h-3 w-3 rounded-full bg-[#F4A261]"
-                      />
-                      <p className="text-xs font-semibold uppercase tracking-wide text-[#1d4e5f]">
-                        {t("detail.day", { number: step.day_number })}
-                        {step.time_label && ` · ${step.time_label}`}
-                        {step.is_optional && ` · ${t("detail.optional")}`}
-                      </p>
-                      <h3 className="mt-1 text-base font-semibold text-stone-900">{step.title}</h3>
-                      {step.description && (
-                        <p className="mt-1 text-sm leading-relaxed text-stone-600">
-                          {step.description}
-                        </p>
-                      )}
-                    </li>
-                  ))}
+                <ol className="mt-6 space-y-3 border-l-2 border-[#1d4e5f]/15 pl-6">
+                  {product.itinerary.map((step, i) => {
+                    const hasMeta =
+                      step.location_label || step.hotel_name || step.meal_plan || step.distance_km;
+
+                    return (
+                      <li key={i} className="relative">
+                        <span
+                          aria-hidden="true"
+                          className="absolute -left-[1.95rem] top-4 h-3 w-3 rounded-full bg-[#F4A261]"
+                        />
+                        <details
+                          className="group overflow-hidden rounded-2xl border border-stone-200 bg-white transition-shadow open:shadow-sm"
+                          open={i === 0}
+                        >
+                          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 marker:content-none">
+                            <div className="min-w-0">
+                              <p className="text-xs font-semibold uppercase tracking-wide text-[#1d4e5f]">
+                                {t("detail.day", { number: step.day_number })}
+                                {step.time_label && ` · ${step.time_label}`}
+                                {step.is_optional && ` · ${t("detail.optional")}`}
+                              </p>
+                              <h3 className="mt-0.5 text-base font-semibold text-stone-900">
+                                {step.title}
+                              </h3>
+                            </div>
+                            <IconChevronDown
+                              size={18}
+                              className="shrink-0 text-stone-400 transition-transform duration-300 group-open:rotate-180"
+                            />
+                          </summary>
+
+                          <div className="border-t border-stone-100 px-4 pb-4 pt-3">
+                            {step.description && (
+                              <p className="whitespace-pre-line text-sm leading-relaxed text-stone-600">
+                                {step.description}
+                              </p>
+                            )}
+
+                            {hasMeta && (
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                {step.location_label && (
+                                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600">
+                                    <IconMapPin size={14} stroke={2} className="text-[#1d4e5f]" />
+                                    <span className="sr-only">{t("detail.locationAria")}:</span>
+                                    {step.location_label}
+                                  </span>
+                                )}
+                                {step.hotel_name && (
+                                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600">
+                                    <IconBed size={14} stroke={2} className="text-[#1d4e5f]" />
+                                    <span className="sr-only">{t("detail.hotelAria")}:</span>
+                                    {step.hotel_name}
+                                  </span>
+                                )}
+                                {step.meal_plan && (
+                                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600">
+                                    <IconToolsKitchen2 size={14} stroke={2} className="text-[#1d4e5f]" />
+                                    <span className="sr-only">{t("detail.mealAria")}:</span>
+                                    {step.meal_plan}
+                                  </span>
+                                )}
+                                {step.distance_km !== null && (
+                                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600">
+                                    <IconRoute size={14} stroke={2} className="text-[#1d4e5f]" />
+                                    <span className="sr-only">{t("detail.distanceAria")}:</span>
+                                    {t("detail.distanceValue", { km: step.distance_km })}
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </details>
+                      </li>
+                    );
+                  })}
                 </ol>
               </section>
             )}

@@ -38,6 +38,10 @@ export type ItineraryItem = {
   time_label: string | null;
   title: string;
   description: string | null;
+  location_label: string | null;
+  hotel_name: string | null;
+  meal_plan: string | null;
+  distance_km: number | null;
   is_optional: boolean;
 };
 

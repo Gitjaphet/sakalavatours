@@ -181,16 +181,21 @@
       "12": "Dez"
     },
     "detail": {
-      "itineraryTitle": "Reiseverlauf Tag für Tag",
+      "itineraryTitle": "Tag-für-Tag-Reiseroute",
       "day": "Tag {number}",
       "optional": "Optional",
       "inclusionsTitle": "Inbegriffen und nicht inbegriffen",
-      "packingTitle": "Packliste",
+      "packingTitle": "Was Sie mitbringen sollten",
       "practicalTitle": "Praktische Informationen",
       "faqTitle": "Häufig gestellte Fragen",
       "galleryTitle": "Fotogalerie",
-      "bookCta": "Diese Tour buchen",
-      "callCta": "Kontaktieren Sie uns"
+      "bookCta": "Diese Rundreise buchen",
+      "callCta": "Kontaktieren Sie uns",
+      "locationAria": "Ort",
+      "hotelAria": "Unterkunft",
+      "mealAria": "Mahlzeiten",
+      "distanceAria": "Entfernung",
+      "distanceValue": "{km} km"
     },
     "items": {
       "les-circuits-nord-de-madagascar-11jours-10-nuits": {

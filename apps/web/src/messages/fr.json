@@ -190,7 +190,12 @@
       "faqTitle": "Questions fréquentes",
       "galleryTitle": "Galerie photo",
       "bookCta": "Réserver ce circuit",
-      "callCta": "Nous contacter"
+      "callCta": "Nous contacter",
+      "locationAria": "Lieu",
+      "hotelAria": "Hébergement",
+      "mealAria": "Repas",
+      "distanceAria": "Distance",
+      "distanceValue": "{km} km"
     },
     "items": {
       "les-circuits-nord-de-madagascar-11jours-10-nuits": {
