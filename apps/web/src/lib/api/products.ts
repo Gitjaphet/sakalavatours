@@ -15,7 +15,7 @@ export type Transport = "boat" | "vehicle" | "pirogue" | "mixed" | "walking";
 
 export type MediaOut = {
   id: string;
-  storage_path: string;
+  url: string;
   width: number | null;
   height: number | null;
   blurhash: string | null;

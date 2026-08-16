@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { circuitsSorted } from "@/lib/circuits-data";
+import { getProducts } from "@/lib/api/products";
 import { CircuitCard } from "@/components/circuits/CircuitCard";
 import { PageHero } from "@/components/layout/PageHero";
 import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
@@ -8,10 +8,14 @@ import { Sparkle, Squiggle } from "@/components/ui/Doodles";
 
 type Params = Promise<{ locale: string }>;
 
+// Régénération horaire, même logique que /excursions.
+export const revalidate = 3600;
+
 const HOME_LABEL: Record<string, string> = {
   fr: "Accueil",
   en: "Home",
   de: "Startseite",
+  it: "Home",
 };
 
 export async function generateMetadata({
@@ -42,6 +46,11 @@ export default async function CircuitsPage({ params }: { params: Params }) {
 
   const t = await getTranslations({ locale, namespace: "circuits" });
 
+  const { items, total } = await getProducts(locale, {
+    type: "circuit",
+    limit: 50,
+  });
+
   return (
     <div className="bg-[#FDFAF6]">
       <PageHero
@@ -63,17 +72,21 @@ export default async function CircuitsPage({ params }: { params: Params }) {
             <div className="relative">
               <p className="flex items-center gap-2 text-sm font-medium tracking-wide text-stone-600">
                 <Sparkle className="h-3.5 w-3.5 shrink-0" color="#E76F51" />
-                {t("count", { count: circuitsSorted.length })}
+                {t("count", { count: total })}
               </p>
               <Squiggle className="mt-1 h-2 w-24 opacity-50" color="#F4A261" />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-            {circuitsSorted.map((circuit) => (
-              <CircuitCard key={circuit.id} circuit={circuit} />
-            ))}
-          </div>
+          {items.length === 0 ? (
+            <p className="py-16 text-center text-stone-500">{t("pageIntro")}</p>
+          ) : (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              {items.map((circuit) => (
+                <CircuitCard key={circuit.id} circuit={circuit} />
+              ))}
+            </div>
+          )}
         </div>
       </main>
     </div>

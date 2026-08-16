@@ -29,7 +29,7 @@ class MediaOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     id: UUID
-    storage_path: str
+    url: str
     width: int | None = None
     height: int | None = None
     blurhash: str | None = None

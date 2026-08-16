@@ -54,6 +54,34 @@ class Settings(BaseSettings):
     AGENCY_NOTIFY_EMAIL: str = ""
     ADMIN_BASE_URL: str = "http://localhost:3000/admin"
 
+    # ── Stockage des médias (Cloudflare R2) ────────────────────────
+    # R2 expose une API compatible S3 : boto3 fonctionne tel quel, avec
+    # une région fixée à "auto" — R2 ne gère pas les régions AWS.
+    R2_ACCOUNT_ID: str = ""
+    R2_ACCESS_KEY_ID: str = ""
+    R2_SECRET_ACCESS_KEY: str = ""
+    R2_BUCKET: str = ""
+    R2_ENDPOINT: str = ""
+    R2_PUBLIC_URL: str = ""
+
+    # Garde-fous d'upload
+    MAX_UPLOAD_MB: int = 12
+    IMAGE_MAX_WIDTH: int = 2400
+
+    # ── Stockage des médias (Cloudflare R2) ────────────────────────
+    # R2 expose une API compatible S3 : boto3 fonctionne tel quel, avec
+    # une région fixée à "auto" — R2 ne gère pas les régions AWS.
+    R2_ACCOUNT_ID: str = ""
+    R2_ACCESS_KEY_ID: str = ""
+    R2_SECRET_ACCESS_KEY: str = ""
+    R2_BUCKET: str = ""
+    R2_ENDPOINT: str = ""
+    R2_PUBLIC_URL: str = ""
+
+    # Garde-fous d'upload
+    MAX_UPLOAD_MB: int = 12
+    IMAGE_MAX_WIDTH: int = 2400
+
     NEXTJS_REVALIDATE_URL: str = ""
     NEXTJS_REVALIDATE_SECRET: str = ""
 

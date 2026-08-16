@@ -14,6 +14,7 @@ from uuid import UUID
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from src.core.config import settings
+from src.integrations import storage
 from src.models.enums import ProductType
 from src.models.product import Product, ProductTranslation
 from src.repositories import product as repo
@@ -61,7 +62,7 @@ def _media_out(media_map: dict, media_id: UUID | None) -> MediaOut | None:
     media, alt = media_map[media_id]
     return MediaOut(
         id=media.id,
-        storage_path=media.storage_path,
+        url=storage.public_url(media.storage_path),
         width=media.width,
         height=media.height,
         blurhash=media.blurhash,

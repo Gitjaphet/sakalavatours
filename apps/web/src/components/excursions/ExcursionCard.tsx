@@ -112,7 +112,7 @@ export function ExcursionCard({ excursion }: Props) {
       <div className="relative aspect-[16/10] w-full overflow-hidden sm:aspect-auto sm:h-full">
         {excursion.cover ? (
           <Image
-            src={excursion.cover.storage_path}
+            src={excursion.cover.url}
             alt={excursion.cover.alt_text || excursion.title}
             width={excursion.cover.width ?? 1200}
             height={excursion.cover.height ?? 800}

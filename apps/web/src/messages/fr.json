@@ -7,7 +7,6 @@
       "keywords": "excursion Nosy Be, circuit Nosy Be, Nosy Iranja, Nosy Tanikely, Lokobe, Mont Passot, tour opérateur Madagascar"
     }
   },
-
   "nav": {
     "tours": "Circuits",
     "excursion": "Excursions",
@@ -19,16 +18,15 @@
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
     "homeAria": "Sakalava Tours — retour à l'accueil",
-    "menuAria": "Menu de navigation"
+    "menuAria": "Menu de navigation",
+    "accueil": "Accueil"
   },
-
   "topbar": {
     "hours": "Lun–Sam, 8h–18h",
     "callAria": "Appeler Sakalava Tours",
     "contactTitle": "Nous contacter",
     "languageAria": "Choisir la langue"
   },
-
   "hero": {
     "eyebrow": "Bienvenue à Nosy Be",
     "discover": "Découvrir l'excursion",
@@ -43,19 +41,16 @@
     "unsave": "Retirer de mes envies",
     "ratingLabel": "Note de {rating} sur 5",
     "imageAlt": "{name}, {region} — excursion Sakalava Tours à Nosy Be",
-
     "group": "{min}–{max} pers.",
     "groupAria": "Groupe de {min} à {max} personnes",
     "priceLabel": "dès",
     "priceAria": "À partir de {price} par personne",
     "perPerson": "/ pers.",
-
     "duration": {
       "full": "Journée complète · {hours}h",
       "half": "Demi-journée · {hours}h",
       "evening": "Soirée · {hours}h"
     },
-
     "destinations": {
       "nosy-iranja": {
         "region": "Archipel de Nosy Be",
@@ -75,7 +70,6 @@
       }
     }
   },
-
   "HomePage": {
     "tagline": "Visitez les trésors de Madagascar autrement",
     "intro": "Circuits et excursions sur mesure à Nosy Be et dans l'archipel, conçus par des guides locaux passionnés.",
@@ -98,16 +92,13 @@
     "bandTitle": "Prêt à embarquer ?",
     "bandCta": "Réserver mon excursion"
   },
-
   "footer": {
     "rights": "Tous droits réservés",
     "followUs": "Suivez-nous"
   },
-
   "common": {
     "loading": "Chargement…"
   },
-
   "pages": {
     "comingSoon": {
       "badge": "Bientôt disponible",
@@ -151,19 +142,15 @@
       "text": "Nous rassemblons les retours de nos voyageurs. Cette page sera en ligne sous peu."
     }
   },
-
-
   "circuits": {
     "meta": {
       "title": "Circuits à Madagascar — Séjours dans le Nord et l'archipel | Sakalava Tours",
       "description": "Nos circuits de 2 à 11 jours au nord de Madagascar : région SAVA, Nosy Komba, Lokobe, archipel de Nosy Be. Guides locaux, petits groupes, itinéraires sur mesure.",
       "ogAlt": "Circuits et séjours au nord de Madagascar avec Sakalava Tours"
     },
-
     "pageTitle": "Nos circuits",
     "pageIntro": "Des séjours de deux à onze jours pour découvrir le nord de Madagascar autrement : forêts primaires, villages de pêcheurs, vanille de la SAVA et îles de l'archipel. Chaque itinéraire est conçu et guidé par notre équipe locale.",
     "breadcrumb": "Circuits",
-
     "count": "{count, plural, =0 {Aucun circuit} one {# circuit} other {# circuits}}",
     "duration": "{days, plural, one {# jour} other {# jours}} / {nights, plural, one {# nuit} other {# nuits}}",
     "durationNoNight": "{days, plural, one {# jour} other {# jours}}",
@@ -180,7 +167,6 @@
     "discover": "Voir le circuit",
     "viewAria": "Voir le détail du circuit {title}",
     "imageAlt": "{title} — circuit Sakalava Tours à Madagascar",
-
     "themes": {
       "nature": "Nature",
       "culture": "Culture",
@@ -188,19 +174,25 @@
       "randonnee": "Randonnée",
       "decouverte": "Grande découverte"
     },
-
     "levels": {
       "facile": "Facile",
       "modere": "Modéré",
       "sportif": "Sportif"
     },
-
     "months": {
-      "1": "Jan", "2": "Fév", "3": "Mar", "4": "Avr",
-      "5": "Mai", "6": "Juin", "7": "Juil", "8": "Août",
-      "9": "Sep", "10": "Oct", "11": "Nov", "12": "Déc"
+      "1": "Jan",
+      "2": "Fév",
+      "3": "Mar",
+      "4": "Avr",
+      "5": "Mai",
+      "6": "Juin",
+      "7": "Juil",
+      "8": "Août",
+      "9": "Sep",
+      "10": "Oct",
+      "11": "Nov",
+      "12": "Déc"
     },
-
     "items": {
       "les-circuits-nord-de-madagascar-11jours-10-nuits": {
         "title": "Le Nord de Madagascar",
@@ -239,9 +231,6 @@
       }
     }
   },
-
-
-
   "excursions": {
     "meta": {
       "title": "Excursions à Nosy Be — journée et demi-journée | Sakalava Tours",
@@ -355,125 +344,116 @@
       }
     }
   },
-
-
-"about": {
-  "meta": {
-    "title": "Qui sommes-nous — Agence locale à Nosy Be depuis 2019 | Sakalava Tours",
-    "description": "Sakalava Tours est une agence de voyage locale basée à Nosy Be, créée en 2019. Guides sakalava, petits groupes, circuits et excursions sur mesure à Madagascar.",
-    "ogAlt": "L'équipe de guides locaux de Sakalava Tours à Nosy Be, Madagascar"
-  },
-  "breadcrumb": "À propos",
-  "eyebrow": "Pourquoi nous choisir ?",
-  "pageTitle": "Notre engagement & nos valeurs",
-  "pageIntro": "Des expériences authentiques, un service attentionné et des souvenirs inoubliables au cœur de Madagascar.",
-
-  "values": {
-    "title": "Trois principes qui guident chaque voyage",
-    "subtitle": "Ils ne sont pas affichés pour décorer une page : ils décident concrètement des itinéraires que nous construisons, des partenaires que nous choisissons et de ceux que nous refusons.",
-    "authenticite": {
-      "title": "Authenticité",
-      "text": "Nous privilégions les lieux où la vie locale continue en dehors du passage des visiteurs. Un village de pêcheurs sakalava, une distillerie familiale d'ylang-ylang, un sentier que seuls les habitants empruntent — plutôt qu'un site aménagé pour les cars de touristes."
+  "about": {
+    "meta": {
+      "title": "Qui sommes-nous — Agence locale à Nosy Be depuis 2019 | Sakalava Tours",
+      "description": "Sakalava Tours est une agence de voyage locale basée à Nosy Be, créée en 2019. Guides sakalava, petits groupes, circuits et excursions sur mesure à Madagascar.",
+      "ogAlt": "L'équipe de guides locaux de Sakalava Tours à Nosy Be, Madagascar"
     },
-    "respect": {
-      "title": "Respect",
-      "text": "Respect des communautés qui nous accueillent, à qui nous demandons toujours l'autorisation avant d'amener un groupe. Respect des milieux naturels : pas de contact avec les tortues ni les lémuriens, pas d'ancrage sur les coraux, pas de déchets laissés sur les îlots."
-    },
-    "partage": {
-      "title": "Partage",
-      "text": "Un voyage réussi se mesure aux rencontres qu'il a rendues possibles. Nos guides traduisent, présentent, expliquent — et une part de chaque excursion revient directement aux familles et aux communautés qui vous reçoivent."
-    }
-  },
-
-  "founder": {
-    "eyebrow": "Notre histoire",
-    "title": "Un engagement né d'une passion",
-    "p1": "Depuis 2019, je développe Sakalava Tours avec la volonté de partager ma vision d'un tourisme authentique à Madagascar. En tant que jeune passionné, proche du terrain et des réalités locales, je conçois chaque parcours comme une aventure humaine, respectueuse, sincère et pleine de sens.",
-    "p2": "Tout a commencé par des sorties improvisées : j'accompagnais des voyageurs de passage vers des endroits que je connaissais depuis l'enfance et qui n'apparaissaient dans aucun programme. Ce qui frappait le plus mes premiers clients, ce n'était pas le paysage — c'était de pouvoir s'asseoir avec une famille de pêcheurs et comprendre ce qui se disait autour d'eux.",
-    "p3": "De ces sorties est née une conviction : Nosy Be et le nord de Madagascar méritent mieux que la journée-type vendue partout à l'identique. J'ai donc construit chaque circuit et chaque excursion moi-même, en repérant les itinéraires sur place, en rencontrant les familles qui accueillent, en testant les horaires de marée et les temps de navigation avant de les proposer à qui que ce soit.",
-    "p4": "Aujourd'hui, Sakalava Tours reste une structure à taille humaine, et c'est un choix. Nous préférons accompagner correctement un nombre limité de voyageurs plutôt que de remplir des bateaux.",
-    "quoteIntro": "Notre slogan résume cette vision :",
-    "quote": "Visitez les trésors de Madagascar autrement",
-    "quoteAfter": "Proposer un voyage authentique, riche en rencontres et en émotions.",
-    "name": "L'équipe Sakalava Tours",
-    "role": "Guides et organisateurs, Nosy Be",
-    "imageAlt": "Guide de Sakalava Tours accompagnant des voyageurs sur une plage de Nosy Be"
-  },
-
-  "stats": {
-    "destinations": "Destinations au catalogue",
-    "years": "{count, plural, one {# année} other {# années}} sur le terrain",
-    "languages": "Langues parlées",
-    "languagesValue": "4",
-    "groupSize": "Voyageurs par groupe",
-    "groupSizeValue": "2–12"
-  },
-
-  "mission": {
-    "eyebrow": "À propos de Sakalava Tours",
-    "title": "Des aventures inoubliables à travers Madagascar",
-    "text": "Madagascar vous ouvre ses portes pour une immersion profonde, sincère et inoubliable, au rythme de ses sourires, de ses paysages et de ses légendes. De l'archipel de Nosy Be aux plantations de vanille de la SAVA, en passant par les forêts primaires de Lokobe et les tsingy du grand nord, chaque itinéraire est pensé pour que vous rentriez avec plus que des photos."
-  },
-
-  "pillars": {
-    "title": "Ce que nous vous garantissons",
-    "assistance": {
-      "title": "Une assistance à toute heure",
-      "text": "Pour que votre séjour soit une véritable parenthèse de bonheur, nous restons joignables jour et nuit afin de vous accompagner, vous conseiller et vous assister à chaque instant — un vol décalé, une météo qui tourne, une question de dernière minute."
-    },
-    "equipe": {
-      "title": "Une équipe à votre écoute",
-      "text": "Nous construisons ensemble un voyage qui vous ressemble. Rythme, budget, centres d'intérêt, contraintes de santé ou d'âge : chaque itinéraire se discute avant d'être arrêté, et rien n'est verrouillé une fois sur place."
-    },
-    "local": {
-      "title": "Une connaissance réelle du terrain",
-      "text": "Grâce à notre parfaite connaissance du terrain, nous vous guidons vers des lieux authentiques et des rencontres marquantes, loin des circuits touristiques classiques. Nos guides sont originaires de la région et parlent le malgache local."
-    },
-    "groupes": {
-      "title": "De vrais petits groupes",
-      "text": "De 2 à 12 personnes selon les sorties, jamais plus. C'est la condition pour qu'un village puisse réellement vous accueillir, pour que chacun puisse poser ses questions, et pour que le site visité ne subisse pas votre passage."
-    }
-  },
-
-  "faq": {
-    "eyebrow": "Questions fréquentes",
-    "title": "Ce que l'on nous demande le plus souvent",
-    "items": {
-      "guides": {
-        "question": "Vos guides sont-ils originaires de la région ?",
-        "answer": "Oui. Nos guides sont nés et vivent à Nosy Be ou dans le nord de Madagascar. C'est ce qui nous permet d'entrer dans un village de pêcheurs en étant attendus plutôt que tolérés, et de traduire non seulement les mots mais aussi le contexte."
+    "breadcrumb": "À propos",
+    "eyebrow": "Pourquoi nous choisir ?",
+    "pageTitle": "Notre engagement & nos valeurs",
+    "pageIntro": "Des expériences authentiques, un service attentionné et des souvenirs inoubliables au cœur de Madagascar.",
+    "values": {
+      "title": "Trois principes qui guident chaque voyage",
+      "subtitle": "Ils ne sont pas affichés pour décorer une page : ils décident concrètement des itinéraires que nous construisons, des partenaires que nous choisissons et de ceux que nous refusons.",
+      "authenticite": {
+        "title": "Authenticité",
+        "text": "Nous privilégions les lieux où la vie locale continue en dehors du passage des visiteurs. Un village de pêcheurs sakalava, une distillerie familiale d'ylang-ylang, un sentier que seuls les habitants empruntent — plutôt qu'un site aménagé pour les cars de touristes."
       },
-      "langues": {
-        "question": "Dans quelles langues se déroulent les excursions ?",
-        "answer": "Nous accompagnons en français, en anglais, en allemand et en italien. Précisez votre langue au moment de la réservation : nous confirmons systématiquement la disponibilité d'un guide avant de valider votre sortie."
+      "respect": {
+        "title": "Respect",
+        "text": "Respect des communautés qui nous accueillent, à qui nous demandons toujours l'autorisation avant d'amener un groupe. Respect des milieux naturels : pas de contact avec les tortues ni les lémuriens, pas d'ancrage sur les coraux, pas de déchets laissés sur les îlots."
       },
-      "reservation": {
-        "question": "Combien de temps à l'avance faut-il réserver ?",
-        "answer": "Pour une excursion à la journée, 48 heures suffisent en général, et parfois moins hors haute saison. Pour un circuit de plusieurs jours, comptez deux à quatre semaines : nous devons réserver les hébergements et coordonner les guides sur plusieurs étapes."
-      },
-      "groupes-taille": {
-        "question": "Combien de personnes par groupe ?",
-        "answer": "De 2 à 12 personnes selon les sorties, et de 2 à 8 pour les excursions en pirogue ou en forêt. Nous ne regroupons jamais au-delà, même quand la demande le permettrait."
-      },
-      "meilleure-periode": {
-        "question": "Quelle est la meilleure période pour venir à Nosy Be ?",
-        "answer": "D'avril à novembre, la saison sèche offre les meilleures conditions de navigation et de visibilité sous l'eau. De décembre à mars, la saison des pluies reste praticable pour les excursions terrestres, avec une végétation spectaculaire et beaucoup moins de monde."
-      },
-      "paiement": {
-        "question": "Comment se passe le paiement ?",
-        "answer": "Un acompte confirme la réservation, le solde se règle sur place avant le départ de l'excursion. Nous acceptons les espèces en ariary et en euros, ainsi que le paiement en ligne pour l'acompte."
+      "partage": {
+        "title": "Partage",
+        "text": "Un voyage réussi se mesure aux rencontres qu'il a rendues possibles. Nos guides traduisent, présentent, expliquent — et une part de chaque excursion revient directement aux familles et aux communautés qui vous reçoivent."
       }
-    }
-  },
-
-  "cta": {
-    "titleLead": "Prêt à découvrir Madagascar",
-    "titleAccent": "autrement ?",
-    "text": "Parcourez nos circuits de plusieurs jours ou nos excursions à la journée — et si rien ne correspond exactement à ce que vous cherchez, écrivez-nous : nous construisons l'itinéraire avec vous.",
-    "reassurance": "Réponse sous 24 h · Devis gratuit, sans engagement",
-    "circuits": "Voir nos circuits",
-    "excursions": "Voir nos excursions",
-    "contact": "Nous écrire"
+    },
+    "founder": {
+      "eyebrow": "Notre histoire",
+      "title": "Un engagement né d'une passion",
+      "p1": "Depuis 2019, je développe Sakalava Tours avec la volonté de partager ma vision d'un tourisme authentique à Madagascar. En tant que jeune passionné, proche du terrain et des réalités locales, je conçois chaque parcours comme une aventure humaine, respectueuse, sincère et pleine de sens.",
+      "p2": "Tout a commencé par des sorties improvisées : j'accompagnais des voyageurs de passage vers des endroits que je connaissais depuis l'enfance et qui n'apparaissaient dans aucun programme. Ce qui frappait le plus mes premiers clients, ce n'était pas le paysage — c'était de pouvoir s'asseoir avec une famille de pêcheurs et comprendre ce qui se disait autour d'eux.",
+      "p3": "De ces sorties est née une conviction : Nosy Be et le nord de Madagascar méritent mieux que la journée-type vendue partout à l'identique. J'ai donc construit chaque circuit et chaque excursion moi-même, en repérant les itinéraires sur place, en rencontrant les familles qui accueillent, en testant les horaires de marée et les temps de navigation avant de les proposer à qui que ce soit.",
+      "p4": "Aujourd'hui, Sakalava Tours reste une structure à taille humaine, et c'est un choix. Nous préférons accompagner correctement un nombre limité de voyageurs plutôt que de remplir des bateaux.",
+      "quoteIntro": "Notre slogan résume cette vision :",
+      "quote": "Visitez les trésors de Madagascar autrement",
+      "quoteAfter": "Proposer un voyage authentique, riche en rencontres et en émotions.",
+      "name": "L'équipe Sakalava Tours",
+      "role": "Guides et organisateurs, Nosy Be",
+      "imageAlt": "Guide de Sakalava Tours accompagnant des voyageurs sur une plage de Nosy Be"
+    },
+    "stats": {
+      "destinations": "Destinations au catalogue",
+      "years": "{count, plural, one {# année} other {# années}} sur le terrain",
+      "languages": "Langues parlées",
+      "languagesValue": "4",
+      "groupSize": "Voyageurs par groupe",
+      "groupSizeValue": "2–12"
+    },
+    "mission": {
+      "eyebrow": "À propos de Sakalava Tours",
+      "title": "Des aventures inoubliables à travers Madagascar",
+      "text": "Madagascar vous ouvre ses portes pour une immersion profonde, sincère et inoubliable, au rythme de ses sourires, de ses paysages et de ses légendes. De l'archipel de Nosy Be aux plantations de vanille de la SAVA, en passant par les forêts primaires de Lokobe et les tsingy du grand nord, chaque itinéraire est pensé pour que vous rentriez avec plus que des photos."
+    },
+    "pillars": {
+      "title": "Ce que nous vous garantissons",
+      "assistance": {
+        "title": "Une assistance à toute heure",
+        "text": "Pour que votre séjour soit une véritable parenthèse de bonheur, nous restons joignables jour et nuit afin de vous accompagner, vous conseiller et vous assister à chaque instant — un vol décalé, une météo qui tourne, une question de dernière minute."
+      },
+      "equipe": {
+        "title": "Une équipe à votre écoute",
+        "text": "Nous construisons ensemble un voyage qui vous ressemble. Rythme, budget, centres d'intérêt, contraintes de santé ou d'âge : chaque itinéraire se discute avant d'être arrêté, et rien n'est verrouillé une fois sur place."
+      },
+      "local": {
+        "title": "Une connaissance réelle du terrain",
+        "text": "Grâce à notre parfaite connaissance du terrain, nous vous guidons vers des lieux authentiques et des rencontres marquantes, loin des circuits touristiques classiques. Nos guides sont originaires de la région et parlent le malgache local."
+      },
+      "groupes": {
+        "title": "De vrais petits groupes",
+        "text": "De 2 à 12 personnes selon les sorties, jamais plus. C'est la condition pour qu'un village puisse réellement vous accueillir, pour que chacun puisse poser ses questions, et pour que le site visité ne subisse pas votre passage."
+      }
+    },
+    "faq": {
+      "eyebrow": "Questions fréquentes",
+      "title": "Ce que l'on nous demande le plus souvent",
+      "items": {
+        "guides": {
+          "question": "Vos guides sont-ils originaires de la région ?",
+          "answer": "Oui. Nos guides sont nés et vivent à Nosy Be ou dans le nord de Madagascar. C'est ce qui nous permet d'entrer dans un village de pêcheurs en étant attendus plutôt que tolérés, et de traduire non seulement les mots mais aussi le contexte."
+        },
+        "langues": {
+          "question": "Dans quelles langues se déroulent les excursions ?",
+          "answer": "Nous accompagnons en français, en anglais, en allemand et en italien. Précisez votre langue au moment de la réservation : nous confirmons systématiquement la disponibilité d'un guide avant de valider votre sortie."
+        },
+        "reservation": {
+          "question": "Combien de temps à l'avance faut-il réserver ?",
+          "answer": "Pour une excursion à la journée, 48 heures suffisent en général, et parfois moins hors haute saison. Pour un circuit de plusieurs jours, comptez deux à quatre semaines : nous devons réserver les hébergements et coordonner les guides sur plusieurs étapes."
+        },
+        "groupes-taille": {
+          "question": "Combien de personnes par groupe ?",
+          "answer": "De 2 à 12 personnes selon les sorties, et de 2 à 8 pour les excursions en pirogue ou en forêt. Nous ne regroupons jamais au-delà, même quand la demande le permettrait."
+        },
+        "meilleure-periode": {
+          "question": "Quelle est la meilleure période pour venir à Nosy Be ?",
+          "answer": "D'avril à novembre, la saison sèche offre les meilleures conditions de navigation et de visibilité sous l'eau. De décembre à mars, la saison des pluies reste praticable pour les excursions terrestres, avec une végétation spectaculaire et beaucoup moins de monde."
+        },
+        "paiement": {
+          "question": "Comment se passe le paiement ?",
+          "answer": "Un acompte confirme la réservation, le solde se règle sur place avant le départ de l'excursion. Nous acceptons les espèces en ariary et en euros, ainsi que le paiement en ligne pour l'acompte."
+        }
+      }
+    },
+    "cta": {
+      "titleLead": "Prêt à découvrir Madagascar",
+      "titleAccent": "autrement ?",
+      "text": "Parcourez nos circuits de plusieurs jours ou nos excursions à la journée — et si rien ne correspond exactement à ce que vous cherchez, écrivez-nous : nous construisons l'itinéraire avec vous.",
+      "reassurance": "Réponse sous 24 h · Devis gratuit, sans engagement",
+      "circuits": "Voir nos circuits",
+      "excursions": "Voir nos excursions",
+      "contact": "Nous écrire"
     }
   }
 }
