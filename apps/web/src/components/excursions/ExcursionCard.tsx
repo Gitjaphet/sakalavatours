@@ -61,6 +61,11 @@ const TRANSPORT_KEYS: Record<string, string> = {
   walking: "vehicule",
 };
 
+const LEVEL_KEYS: Record<string, string> = {
+  easy: "facile",
+  moderate: "modere",
+  sporty: "sportif",
+};
 const INCLUDES_ON_CARD = 4;
 
 export function ExcursionCard({ excursion }: Props) {
@@ -92,6 +97,7 @@ export function ExcursionCard({ excursion }: Props) {
   const extra = inclusions.length - shown.length;
 
   const formatKey = FORMAT_KEYS[excursion.product_format] ?? "journee";
+  const levelKey = LEVEL_KEYS[excursion.difficulty] ?? "facile";
   const transportKey = excursion.transport
     ? TRANSPORT_KEYS[excursion.transport]
     : null;
@@ -149,6 +155,9 @@ export function ExcursionCard({ excursion }: Props) {
               {excursion.region_label}
             </span>
           )}
+          <span className="rounded-md bg-amber-50 px-2 py-1 font-semibold text-amber-800">
+            {t(`levels.${levelKey}`)}
+          </span>
           {transportKey && travelValue && (
             <span className="font-medium text-stone-500">
               {t(`travel.${transportKey}`, { time: travelValue })}

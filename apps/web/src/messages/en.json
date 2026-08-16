@@ -342,6 +342,11 @@
         "region": "Nosy Be",
         "summary": "Nosy Be's fragrant gold, from flower to essential oil. Visit a traditional distillery, walk the plantations and stop at the Sacred Tree."
       }
+    },
+    "levels": {
+      "facile": "Easy",
+      "modere": "Moderate",
+      "sportif": "Sporty"
     }
   },
   "about": {

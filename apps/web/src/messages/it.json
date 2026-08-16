@@ -342,6 +342,11 @@
         "region": "Nosy Be",
         "summary": "L'oro profumato di Nosy Be: dal fiore all'olio essenziale. Visita di una distilleria tradizionale, piantagioni e sosta all'Albero sacro."
       }
+    },
+    "levels": {
+      "facile": "Facile",
+      "modere": "Moderato",
+      "sportif": "Sportivo"
     }
   },
   "about": {

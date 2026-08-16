@@ -342,6 +342,11 @@
         "region": "Nosy Be",
         "summary": "Das duftende Gold von Nosy Be, von der Blüte zum ätherischen Öl. Besuch einer traditionellen Destillerie, Plantagen und Halt am Heiligen Baum."
       }
+    },
+    "levels": {
+      "facile": "Leicht",
+      "modere": "Mittel",
+      "sportif": "Sportlich"
     }
   },
   "about": {

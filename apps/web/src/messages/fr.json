@@ -342,6 +342,11 @@
         "region": "Nosy Be",
         "summary": "L'or parfumé de Nosy Be : de la fleur à l'huile essentielle. Visite d'une distillerie traditionnelle, plantations et arrêt à l'Arbre sacré."
       }
+    },
+    "levels": {
+      "facile": "Facile",
+      "modere": "Modéré",
+      "sportif": "Sportif"
     }
   },
   "about": {
