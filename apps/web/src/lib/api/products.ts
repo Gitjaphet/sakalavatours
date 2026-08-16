@@ -6,7 +6,7 @@
  * contrat non généré automatiquement.
  */
 
-import { apiGet, apiGetSafe } from "./client";
+import { apiGet, apiGetSafe, ApiError } from "./client";
 
 export type ProductType = "circuit" | "excursion";
 export type ProductFormat = "full_day" | "half_day" | "evening" | "multi_day";
@@ -114,9 +114,9 @@ export async function getProducts(
   options: { type?: ProductType; limit?: number; offset?: number } = {},
 ): Promise<ProductListResponse> {
   const params = new URLSearchParams({ locale });
-  if (options.type) params.set("product_type", options.type);
-  if (options.limit) params.set("limit", String(options.limit));
-  if (options.offset) params.set("offset", String(options.offset));
+if (options.type) params.set("product_type", options.type);
+if (options.limit !== undefined) params.set("limit", String(options.limit));
+if (options.offset !== undefined) params.set("offset", String(options.offset));
 
   return apiGetSafe<ProductListResponse>(
     `/public/products?${params}`,
@@ -142,7 +142,7 @@ export async function getProduct(
       { tags: ["products", `product:${slug}`] },
     );
   } catch (error) {
-    if (error instanceof Error && "status" in error && error.status === 404) {
+    if (error instanceof ApiError && error.status === 404) {
       return null;
     }
     throw error;
