@@ -54,6 +54,14 @@ HIGHLIGHTS: dict[str, tuple[str, dict[str, str]]] = {
         "fr": "Lémuriens", "en": "Lemurs",
         "de": "Lemuren", "it": "Lemuri",
     }),
+    "baobabs": ("IconTree", {
+        "fr": "Baobabs majestueux", "en": "Majestic baobabs",
+        "de": "Majestätische Baobabs", "it": "Baobab maestosi",
+    }),
+    "military-heritage": ("IconBuildingCastle", {
+        "fr": "Patrimoine militaire", "en": "Military heritage",
+        "de": "Militärisches Erbe", "it": "Patrimonio militare",
+    }),
     "viewpoint": ("IconMountain", {
         "fr": "Point de vue", "en": "Viewpoint",
         "de": "Aussichtspunkt", "it": "Punto panoramico",
