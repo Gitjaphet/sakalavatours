@@ -8,16 +8,15 @@ const nextConfig: NextConfig = {
 
   // ─── Images ───────────────────────────────────────────────────────────
   images: {
-    // AVIF d'abord (≈ 30 % plus léger que WebP), WebP en repli.
-    // Next choisit selon ce que le navigateur annonce accepter.
     formats: ["image/avif", "image/webp"],
-    // Points de rupture alignés sur nos breakpoints Tailwind : évite de
-    // générer des variantes que le site ne demandera jamais.
     deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Cache CDN des images transformées : 30 jours.
     minimumCacheTTL: 2_592_000,
+    remotePatterns: [
+      { protocol: "https", hostname: "media.medevstack.com" },
+    ],
   },
+    
 
   // ─── Divers ───────────────────────────────────────────────────────────
   // Retire l'en-tête X-Powered-By : aucune utilité, un indice de moins
