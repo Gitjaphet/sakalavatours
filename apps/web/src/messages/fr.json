@@ -181,7 +181,7 @@
       "12": "Déc"
     },
     "detail": {
-      "itineraryTitle": "Itinéraire jour par jour",
+      "itineraryTitle": "Programme de la sortie",
       "day": "Jour {number}",
       "optional": "Optionnel",
       "inclusionsTitle": "Inclus et non inclus",
@@ -189,13 +189,14 @@
       "practicalTitle": "Informations pratiques",
       "faqTitle": "Questions fréquentes",
       "galleryTitle": "Galerie photo",
-      "bookCta": "Réserver ce circuit",
+      "bookCta": "Réserver cette excursion",
       "callCta": "Nous contacter",
       "locationAria": "Lieu",
       "hotelAria": "Hébergement",
       "mealAria": "Repas",
       "distanceAria": "Distance",
-      "distanceValue": "{km} km"
+      "distanceValue": "{km} km",
+      "translationPending": "Cette fiche n'est pas encore traduite : contenu affiché en français."
     },
     "items": {
       "les-circuits-nord-de-madagascar-11jours-10-nuits": {

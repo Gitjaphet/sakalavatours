@@ -176,6 +176,12 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
               )}
             </div>
 
+            {product.is_fallback && (
+              <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-700">
+                {t("detail.translationPending")}
+              </p>
+            )}
+
             {product.description && (
               <div
                 className="prose prose-stone max-w-none text-[15px] leading-relaxed text-stone-700"
