@@ -11,6 +11,7 @@ import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { buildBreadcrumbSchema } from "@/lib/schema/breadcrumb";
 import { buildFaqSchema } from "@/lib/schema/faqPage";
+import { sanitizeHtml } from "@/lib/sanitize-html";
 import { buildTouristTripSchema } from "@/lib/schema/touristTrip";
 import {
   IconCheck,
@@ -172,9 +173,10 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
             </div>
 
             {product.description && (
-              <p className="whitespace-pre-line text-[15px] leading-relaxed text-stone-700">
-                {product.description}
-              </p>
+              <div
+                className="prose prose-stone max-w-none text-[15px] leading-relaxed text-stone-700"
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(product.description) }}
+              />
             )}
 
             {product.itinerary.length > 0 && (
