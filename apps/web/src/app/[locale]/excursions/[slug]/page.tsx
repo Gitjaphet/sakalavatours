@@ -1,3 +1,4 @@
+// src/app/[locale]/excursions/[slug]/page.tsx
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -9,6 +10,10 @@ import { Rating } from "@/components/ui/Rating";
 import { Squiggle } from "@/components/ui/Doodles";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { buildBreadcrumbSchema } from "@/lib/schema/breadcrumb";
+import { buildFaqSchema } from "@/lib/schema/faqPage";
+import { sanitizeHtml } from "@/lib/sanitize-html";
+import { buildTouristTripSchema } from "@/lib/schema/touristTrip";
 import {
   IconCheck,
   IconX,
@@ -41,6 +46,19 @@ const FORMAT_KEYS: Record<string, string> = {
   evening: "soiree",
   multi_day: "journee",
 };
+
+/** Formatage prix localisé — même logique que CircuitCard.tsx / circuits/[slug]. */
+function formatPrice(price: number, currency: string, locale: string): string {
+  try {
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format(price);
+  } catch {
+    return `${Math.round(price)} ${currency}`;
+  }
+}
 
 export async function generateStaticParams() {
   const perLocale = await Promise.all(
@@ -80,9 +98,12 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
   setRequestLocale(locale);
 
   const product = await getProduct(slug, locale);
+  // Une fiche excursion consultée via un circuit effacé, ou l'inverse,
+  // doit rendre un 404 plutôt qu'afficher un produit du mauvais type.
   if (!product || product.product_type !== "excursion") notFound();
 
   const t = await getTranslations({ locale, namespace: "excursions" });
+  const tNav = await getTranslations({ locale, namespace: "nav" });
   const levelKey = LEVEL_KEYS[product.difficulty] ?? "facile";
   const formatKey = FORMAT_KEYS[product.product_format] ?? "journee";
   const included = product.inclusions.filter((i) => i.is_included);
@@ -96,8 +117,42 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
     return m > 0 ? t("durationHM", { h, m }) : t("durationH", { h });
   })();
 
+  // Garde fiabilisée : rating_average est string | null côté API — un
+  // check "truthy" laisserait passer une chaîne "0".
+  const hasRating =
+    product.rating_average !== null &&
+    Number(product.rating_average) > 0 &&
+    product.review_count > 0;
+
+  // FAQ balisée uniquement si elle est aussi rendue visuellement plus bas
+  // — condition partagée avec la section FAQ du JSX (règle Google FAQPage).
+  const hasFaqs = product.faqs.length > 0;
+
+  const jsonLd = [
+    buildBreadcrumbSchema(locale, [
+      { name: tNav("accueil"), path: "/" },
+      { name: t("breadcrumb"), path: "/excursions" },
+      { name: product.title },
+    ]),
+    buildTouristTripSchema(locale, {
+      name: product.title,
+      description: product.meta_description || product.summary,
+      path: `/excursions/${product.slug}`,
+      image: product.cover?.url ?? "/images/hero/nosy-tanikely.jpg",
+      priceFrom: product.price_from,
+      currency: product.currency,
+      maxAttendees: product.group_max,
+    }),
+    ...(hasFaqs ? [buildFaqSchema(product.faqs)] : []),
+  ];
+
   return (
     <div className="bg-[#FDFAF6]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <PageHero
         title={product.title}
         intro={product.subtitle ?? undefined}
@@ -124,15 +179,16 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
               <span className="rounded-full bg-amber-50 px-2.5 py-1 text-amber-800">
                 {t(`levels.${levelKey}`)}
               </span>
-              {product.rating_average && product.review_count > 0 && (
+              {hasRating && (
                 <Rating value={Number(product.rating_average)} count={product.review_count} />
               )}
             </div>
 
             {product.description && (
-              <p className="whitespace-pre-line text-[15px] leading-relaxed text-stone-700">
-                {product.description}
-              </p>
+              <div
+                className="prose prose-stone max-w-none text-[15px] leading-relaxed text-stone-700"
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(product.description) }}
+              />
             )}
 
             {product.itinerary.length > 0 && (
@@ -218,7 +274,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
               </section>
             )}
 
-            {product.faqs.length > 0 && (
+            {hasFaqs && (
               <section className="mt-10">
                 <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
                   {t("detail.faqTitle")}
@@ -268,8 +324,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
               <p className="flex items-baseline gap-1 text-stone-900">
                 <span className="text-xs text-stone-500">{t("priceLabel")}</span>
                 <span className="text-3xl font-bold">
-                  {Math.round(Number(product.price_from))}
-                  {product.currency === "EUR" ? "€" : ` ${product.currency}`}
+                  {formatPrice(Number(product.price_from), product.currency, locale)}
                 </span>
                 <span className="text-xs text-stone-500">{t("perPerson")}</span>
               </p>

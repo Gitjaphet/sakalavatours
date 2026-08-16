@@ -1,7 +1,7 @@
 // src/components/excursions/ExcursionCard.tsx
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import type { InclusionOut, ProductListItem } from "@/lib/api/products";
 import { Rating } from "@/components/ui/Rating";
 import {
@@ -66,10 +66,41 @@ const LEVEL_KEYS: Record<string, string> = {
   moderate: "modere",
   sporty: "sportif",
 };
+
 const INCLUDES_ON_CARD = 4;
+
+/** Ratio par défaut si l'image est absente ou ses dimensions invalides. */
+const FALLBACK_ASPECT_RATIO = 16 / 10;
+
+function resolveAspectRatio(
+  width: number | null | undefined,
+  height: number | null | undefined
+): number {
+  if (width != null && height != null && width > 0 && height > 0) {
+    return width / height;
+  }
+  return FALLBACK_ASPECT_RATIO;
+}
+
+/**
+ * Formatage prix localisé — même logique que CircuitCard.tsx, pour ne
+ * jamais afficher un ordre symbole/montant incohérent selon la langue.
+ */
+function formatPrice(price: number, currency: string, locale: string): string {
+  try {
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format(price);
+  } catch {
+    return `${Math.round(price)} ${currency}`;
+  }
+}
 
 export function ExcursionCard({ excursion }: Props) {
   const t = useTranslations("excursions");
+  const locale = useLocale();
 
   // L'API renvoie les décimales en chaîne (Decimal sérialisé) pour éviter
   // les erreurs d'arrondi du flottant JavaScript sur les montants.
@@ -102,6 +133,16 @@ export function ExcursionCard({ excursion }: Props) {
     ? TRANSPORT_KEYS[excursion.transport]
     : null;
 
+  const aspectRatio = resolveAspectRatio(
+    excursion.cover?.width,
+    excursion.cover?.height
+  );
+
+  const hasRating =
+    excursion.rating_average !== null &&
+    Number(excursion.rating_average) > 0 &&
+    excursion.review_count > 0;
+
   return (
     <Link
       href={`/excursions/${excursion.slug}`}
@@ -115,13 +156,16 @@ export function ExcursionCard({ excursion }: Props) {
                  sm:grid-cols-[minmax(0,40%)_1fr]"
     >
       {/* ── Colonne image ─────────────────────────────────────────────── */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden sm:aspect-auto sm:h-full">
+      <div
+        className="relative w-full overflow-hidden sm:h-full"
+        style={{ aspectRatio }}
+      >
         {excursion.cover ? (
           <Image
             src={excursion.cover.url}
             alt={excursion.cover.alt_text || excursion.title}
-            width={excursion.cover.width ?? 1200}
-            height={excursion.cover.height ?? 800}
+            fill
+            sizes="(min-width: 640px) 40vw, 100vw"
             className="h-full w-full object-cover transition-transform duration-700
                        group-hover:scale-[1.06]"
           />
@@ -255,7 +299,7 @@ export function ExcursionCard({ excursion }: Props) {
           </div>
 
           <div className="text-right">
-            {excursion.rating_average && excursion.review_count > 0 && (
+            {hasRating && (
               <Rating
                 value={Number(excursion.rating_average)}
                 count={excursion.review_count}
@@ -266,8 +310,7 @@ export function ExcursionCard({ excursion }: Props) {
             <p className="mt-1 text-stone-900">
               <span className="text-xs text-stone-500">{t("priceLabel")} </span>
               <span className="text-xl font-bold">
-                {Math.round(Number(excursion.price_from))}
-                {excursion.currency === "EUR" ? "€" : ` ${excursion.currency}`}
+                {formatPrice(Number(excursion.price_from), excursion.currency, locale)}
               </span>
               <span className="text-xs font-normal text-stone-500">
                 {" "}
