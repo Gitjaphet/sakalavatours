@@ -180,6 +180,18 @@
       "11": "Nov",
       "12": "Déc"
     },
+    "detail": {
+      "itineraryTitle": "Itinéraire jour par jour",
+      "day": "Jour {number}",
+      "optional": "Optionnel",
+      "inclusionsTitle": "Inclus et non inclus",
+      "packingTitle": "À prévoir",
+      "practicalTitle": "Informations pratiques",
+      "faqTitle": "Questions fréquentes",
+      "galleryTitle": "Galerie photo",
+      "bookCta": "Réserver ce circuit",
+      "callCta": "Nous contacter"
+    },
     "items": {
       "les-circuits-nord-de-madagascar-11jours-10-nuits": {
         "title": "Le Nord de Madagascar",
