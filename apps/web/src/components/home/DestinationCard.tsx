@@ -14,14 +14,42 @@ type Props = {
   priority?: boolean;
 };
 
-// L'API renvoie product_format ("full_day"/"half_day"/"evening"/"multi_day"),
-// le hero attend une des trois clés de durée qu'il sait afficher.
-const DURATION_KIND: Record<string, "full" | "half" | "evening"> = {
-  full_day: "full",
-  half_day: "half",
-  evening: "evening",
-  multi_day: "full",
-};
+/**
+ * Libellé de durée affiché sur le badge.
+ *
+ * Un séjour multi-jours (`multi_day`) se lit en jours/nuits, jamais en
+ * heures — `duration_hours` n'est pas renseigné pour ce format, c'est
+ * normal. Pour les formats à la journée, on affiche les heures si elles
+ * sont connues, sinon un libellé neutre plutôt qu'un "· 0h" trompeur.
+ */
+function getDurationLabel(
+  destination: ProductListItem,
+  t: ReturnType<typeof useTranslations>,
+): string {
+  if (destination.product_format === "multi_day" && destination.duration_days) {
+    return destination.duration_nights
+      ? t("duration.days", {
+          days: destination.duration_days,
+          nights: destination.duration_nights,
+        })
+      : t("duration.daysOnly", { days: destination.duration_days });
+  }
+
+  const kind =
+    destination.product_format === "half_day"
+      ? "half"
+      : destination.product_format === "evening"
+        ? "evening"
+        : "full";
+
+  if (destination.duration_hours) {
+    return t(`duration.${kind}`, {
+      hours: Math.round(Number(destination.duration_hours)),
+    });
+  }
+
+  return t(`duration.${kind}Plain`);
+}
 
 function Stars({ rating, label }: { rating: number; label: string }) {
   const rounded = Math.round(rating);
@@ -48,9 +76,7 @@ export default function DestinationCard({ destination, isActive, onSelect, prior
 
   const region = destination.region_label ?? "";
 
-  const durationKind = DURATION_KIND[destination.product_format] ?? "full";
-  const hours = destination.duration_hours ? Math.round(Number(destination.duration_hours)) : 0;
-  const duration = t(`duration.${durationKind}`, { hours });
+  const duration = getDurationLabel(destination, t);
 
   const group = t("group", {
     min: destination.group_min,

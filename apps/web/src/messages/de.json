@@ -1,10 +1,10 @@
 {
   "home": {
     "meta": {
-      "title": "Nosy Be Ausflüge — Inseltouren und Bootsfahrten | Sakalava Tours",
-      "description": "Ausflüge und Touren auf Nosy Be, Madagaskar: Nosy Iranja, Nosy Tanikely, Lokobe-Reservat, Mont Passot. Einheimische Guides, kleine Gruppen, online buchen.",
-      "ogAlt": "Die weiße Sandbank von Nosy Iranja, Archipel von Nosy Be, Madagaskar",
-      "keywords": "Nosy Be Ausflüge, Nosy Be Touren, Madagaskar Inseltouren, Nosy Iranja, Nosy Tanikely, Lokobe Reservat, Schnorcheln Madagaskar"
+      "title": "Ausflüge auf Nosy Be — Touren und Bootsausflüge | Sakalava Tours",
+      "description": "Ausflüge und Touren auf Nosy Be: Nosy Iranja, Nosy Tanikely, Lokobe-Reservat, Mont Passot. Lokale Guides, kleine Gruppen, Online-Buchung.",
+      "ogAlt": "Sandbank von Nosy Iranja, Archipel von Nosy Be, Madagaskar",
+      "keywords": "Ausflug Nosy Be, Tour Nosy Be, Nosy Iranja, Nosy Tanikely, Lokobe, Mont Passot, Reiseveranstalter Madagaskar"
     }
   },
   "nav": {
@@ -24,17 +24,17 @@
   "topbar": {
     "hours": "Mo–Sa, 8–18 Uhr",
     "callAria": "Sakalava Tours anrufen",
-    "contactTitle": "Kontakt aufnehmen",
+    "contactTitle": "Kontaktieren Sie uns",
     "languageAria": "Sprache wählen"
   },
   "hero": {
     "eyebrow": "Willkommen auf Nosy Be",
     "discover": "Ausflug entdecken",
     "allCircuits": "Alle Touren ansehen",
-    "reviews": "Stimmen unserer Gäste",
+    "reviews": "Bewertungen unserer Kunden",
     "carouselLabel": "Unsere Ausflüge auf Nosy Be und im Archipel",
-    "prev": "Vorheriges Reiseziel",
-    "next": "Nächstes Reiseziel",
+    "prev": "Vorheriges Ziel",
+    "next": "Nächstes Ziel",
     "show": "{name} anzeigen",
     "view": "Ausflug {name} ansehen",
     "save": "Zur Merkliste hinzufügen",
@@ -47,49 +47,36 @@
     "priceAria": "Ab {price} pro Person",
     "perPerson": "/ Pers.",
     "duration": {
-      "full": "Ganztags · {hours} Std.",
-      "half": "Halbtags · {hours} Std.",
-      "evening": "Abend · {hours} Std."
-    },
-    "destinations": {
-      "nosy-iranja": {
-        "region": "Archipel von Nosy Be",
-        "description": "Zwei Inseln, verbunden durch eine weiße Sandbank, die bei Ebbe auftaucht. Aufbruch im Dhau bei Sonnenaufgang, Rückkehr bei Sonnenuntergang."
-      },
-      "nosy-tanikely": {
-        "region": "Nationaler Meerespark",
-        "description": "Der beste Schnorchelplatz des Archipels: Suppenschildkröten, Korallengärten und Clownfische nur wenige Meter vom Ufer entfernt."
-      },
-      "lokobe": {
-        "region": "Naturreservat, Nosy Be",
-        "description": "Der letzte Urwald der Insel, erreichbar mit der traditionellen Piroge. Mohrenmakis, Boas und Chamäleons mit einem einheimischen Guide."
-      },
-      "mont-passot": {
-        "region": "Heilige Seen, Nosy Be",
-        "description": "Der höchste Punkt der Insel mit seinen Kraterseen. Von hier aus sieht man die Sonne über dem Archipel untergehen."
-      }
+      "full": "Ganzer Tag · {hours} Std.",
+      "fullPlain": "Ganzer Tag",
+      "half": "Halber Tag · {hours} Std.",
+      "halfPlain": "Halber Tag",
+      "evening": "Abend · {hours} Std.",
+      "eveningPlain": "Abend",
+      "days": "{days} Tage, {nights} Nächte",
+      "daysOnly": "{days} Tage"
     }
   },
   "HomePage": {
-    "tagline": "Entdecken Sie die Schätze Madagaskars — anders",
-    "intro": "Maßgeschneiderte Touren und Ausflüge auf Nosy Be und im Archipel, konzipiert von leidenschaftlichen einheimischen Guides.",
+    "tagline": "Entdecken Sie die Schätze Madagaskars, anders",
+    "intro": "Maßgeschneiderte Touren und Ausflüge auf Nosy Be und im Archipel, gestaltet von leidenschaftlichen lokalen Guides.",
     "cta": "Unsere Touren entdecken",
     "highlightsTitle": "Was Nosy Be einzigartig macht",
     "highlights": {
       "beaches": {
-        "title": "Versteckte Strände",
-        "text": "Buchten, die nur per Boot erreichbar sind — abseits der ausgetretenen Pfade."
+        "title": "Geheime Strände",
+        "text": "Buchten, die nur mit dem Boot erreichbar sind, abseits der ausgetretenen Pfade."
       },
       "wildlife": {
         "title": "Endemische Tierwelt",
         "text": "Lemuren, Chamäleons und Meeresschildkröten in ihrem natürlichen Lebensraum."
       },
       "islands": {
-        "title": "Ein Archipel zum Erkunden",
+        "title": "Ein Archipel zum Entdecken",
         "text": "Nosy Komba, Nosy Tanikely, Nosy Sakatia — jede Insel hat ihren eigenen Charakter."
       }
     },
-    "bandTitle": "Bereit zum Ablegen?",
+    "bandTitle": "Bereit zum Aufbruch?",
     "bandCta": "Meinen Ausflug buchen"
   },
   "footer": {
@@ -107,49 +94,49 @@
     },
     "circuits": {
       "title": "Unsere Touren",
-      "text": "Wir stellen gerade unsere Touren rund um Nosy Be und den Archipel zusammen. Rufen Sie uns in der Zwischenzeit an — wir planen Ihre Route gemeinsam mit Ihnen."
+      "text": "Wir bereiten die Details unserer Touren auf Nosy Be und im Archipel vor. Rufen Sie uns in der Zwischenzeit an: Wir erstellen Ihre Reiseroute gemeinsam mit Ihnen."
     },
     "circuitDetail": {
       "title": "Tourdetails",
-      "text": "Die vollständigen Angaben zu diesem Ausflug folgen in Kürze. Kontaktieren Sie uns jetzt für Verfügbarkeit und Preise."
+      "text": "Die Details dieses Ausflugs sind bald verfügbar. Kontaktieren Sie uns jetzt, um Verfügbarkeit und Preise zu erfahren."
     },
     "excursion": {
       "title": "Unsere Ausflüge",
-      "text": "Ganztagestouren, Halbtagesausflüge und Sonnenuntergangsfahrten: die vollständige Auswahl wird gerade vorbereitet."
+      "text": "Ganztages-, Halbtages- und Sonnenuntergangsausflüge: Die vollständige Auswahl wird gerade vorbereitet."
     },
     "apropos": {
       "title": "Über uns",
-      "text": "Unsere Geschichte, unser Team einheimischer Guides und unser Engagement für verantwortungsvollen Tourismus auf Nosy Be. Diese Seite entsteht gerade."
+      "text": "Unsere Geschichte, unser Team lokaler Guides und unser Engagement für einen respektvollen Tourismus auf Nosy Be. Seite in Bearbeitung."
     },
     "blog": {
       "title": "Der Blog",
-      "text": "Reisetipps, beste Reisezeiten und Geschichten aus dem Archipel. Die ersten Beiträge erscheinen bald."
+      "text": "Reisetipps, ideale Reisezeiten und Geschichten aus dem Archipel. Die ersten Artikel folgen in Kürze."
     },
     "galerie": {
       "title": "Galerie",
-      "text": "Unsere Aufnahmen des Archipels, von den Lemuren in Lokobe bis zu den Sandbänken von Nosy Iranja. Öffnet in Kürze."
+      "text": "Unsere Fotos aus dem Archipel, von den Lemuren in Lokobe bis zu den Sandbänken von Nosy Iranja. Die Galerie öffnet bald."
     },
     "contact": {
-      "title": "Kontakt aufnehmen",
-      "text": "Unser Kontaktformular ist in Arbeit. Rufen Sie uns bis dahin an oder schreiben Sie uns — wir antworten innerhalb von 24 Stunden."
+      "title": "Kontaktieren Sie uns",
+      "text": "Das Kontaktformular kommt in Kürze. Rufen Sie uns in der Zwischenzeit an oder schreiben Sie uns: Wir antworten innerhalb von 24 Stunden."
     },
     "reservation": {
-      "title": "Jetzt buchen",
-      "text": "Die Online-Buchung steht Ihnen sehr bald zur Verfügung. Rufen Sie uns an oder schreiben Sie uns über WhatsApp, um heute schon zu buchen."
+      "title": "Buchen",
+      "text": "Die Online-Buchung wird in Kürze verfügbar sein. Kontaktieren Sie uns telefonisch oder per WhatsApp, um noch heute zu buchen."
     },
     "avis": {
-      "title": "Stimmen unserer Gäste",
-      "text": "Wir sammeln gerade die Rückmeldungen unserer Reisenden. Diese Seite geht in Kürze online."
+      "title": "Bewertungen unserer Kunden",
+      "text": "Wir sammeln die Rückmeldungen unserer Reisenden. Diese Seite wird in Kürze online sein."
     }
   },
   "circuits": {
     "meta": {
-      "title": "Rundreisen in Madagaskar — Touren im Norden & im Archipel | Sakalava Tours",
-      "description": "Unsere 2- bis 11-tägigen Touren im Norden Madagaskars: die SAVA-Region, Nosy Komba, Lokobe, der Nosy-Be-Archipel. Lokale Guides, kleine Gruppen, maßgeschneiderte Reiserouten.",
-      "ogAlt": "Touren und Aufenthalte im Norden Madagaskars mit Sakalava Tours"
+      "title": "Touren in Madagaskar — Reisen im Norden und im Archipel | Sakalava Tours",
+      "description": "Unsere 2- bis 11-tägigen Touren im Norden Madagaskars: Region SAVA, Nosy Komba, Lokobe, Archipel von Nosy Be. Lokale Guides, kleine Gruppen, maßgeschneiderte Routen.",
+      "ogAlt": "Touren und Reisen im Norden Madagaskars mit Sakalava Tours"
     },
     "pageTitle": "Unsere Touren",
-    "pageIntro": "Zwei- bis elftägige Reisen, um den Norden Madagaskars anders zu entdecken: Primärwald, Fischerdörfer, SAVA-Vanille und die Inseln des Archipels. Jede Route wird von unserem lokalen Team geplant und geführt.",
+    "pageIntro": "Zwei- bis elftägige Reisen, um den Norden Madagaskars auf andere Weise zu entdecken: Primärwälder, Fischerdörfer, Vanille aus der SAVA-Region und die Inseln des Archipels. Jede Route wird von unserem lokalen Team geplant und begleitet.",
     "breadcrumb": "Touren",
     "count": "{count, plural, =0 {Keine Touren} one {# Tour} other {# Touren}}",
     "duration": "{days, plural, one {# Tag} other {# Tage}} / {nights, plural, one {# Nacht} other {# Nächte}}",
@@ -161,12 +148,12 @@
     "perPerson": "/ Pers.",
     "ratingLabel": "Bewertung {rating} von 5",
     "reviews": "{count, plural, one {# Bewertung} other {# Bewertungen}}",
-    "featured": "Empfehlung",
+    "featured": "Favorit",
     "bestPeriod": "Beste Reisezeit",
     "allYear": "Ganzjährig",
     "discover": "Tour ansehen",
-    "viewAria": "Details zu {title} ansehen",
-    "imageAlt": "{title} — Sakalava-Tours-Reise in Madagaskar",
+    "viewAria": "Details der Tour {title} ansehen",
+    "imageAlt": "{title} — Sakalava Tours Tour in Madagaskar",
     "themes": {
       "nature": "Natur",
       "culture": "Kultur",
@@ -176,8 +163,8 @@
     },
     "levels": {
       "facile": "Leicht",
-      "modere": "Moderat",
-      "sportif": "Anspruchsvoll"
+      "modere": "Mittel",
+      "sportif": "Sportlich"
     },
     "months": {
       "1": "Jan",
@@ -197,52 +184,52 @@
       "les-circuits-nord-de-madagascar-11jours-10-nuits": {
         "title": "Der Norden Madagaskars",
         "region": "Diana & SAVA",
-        "summary": "Elf Tage durch den gesamten Norden: die roten Tsingy, die Bucht von Diego, Vanilleplantagen und der Nosy-Be-Archipel. Unsere umfassendste Route."
+        "summary": "Elf Tage durch den gesamten Norden: die roten Tsingy, die Bucht von Diego, die Vanilleplantagen und der Archipel von Nosy Be. Unsere umfassendste Route."
       },
       "circuit-nature-traditions-du-nord-8-jours-7-nuits": {
         "title": "Natur & Traditionen des Nordens",
         "region": "Diana, Madagaskar",
-        "summary": "Acht Tage zwischen Naturreservaten und Sakalava-Dörfern. Begegnungen mit lokalen Handwerkern, Märkten und Übernachtungen bei Einheimischen."
+        "summary": "Acht Tage zwischen Naturreservaten und Sakalava-Dörfern. Begegnungen mit Handwerkern, lokale Märkte und Übernachtungen bei Einheimischen."
       },
       "circuit-sava": {
         "title": "SAVA-Tour",
-        "region": "Sambava, Antalaha, Vohemar, Andapa",
-        "summary": "Die Vanillestraße und der Marojejy-Park. Eine vom Massentourismus noch unberührte Region zwischen Indischem Ozean und Regenwald."
+        "region": "Sambava, Antalaha, Vohémar, Andapa",
+        "summary": "Die Vanillestraße und der Marojejy-Nationalpark. Eine Region, die vom Massentourismus noch unberührt ist, zwischen Indischem Ozean und Regenwald."
       },
       "tours-des-archipels-de-nosy-be": {
-        "title": "Tour durch den Nosy-Be-Archipel",
-        "region": "Nosy-Be-Archipel",
-        "summary": "Vier Tage Segeltörn zwischen Nosy Iranja, Nosy Komba und Nosy Sakatia. Schnorcheln, Sandbänke und Sonnenuntergänge an Bord eines traditionellen Boots."
+        "title": "Rundtour durch den Archipel von Nosy Be",
+        "region": "Archipel von Nosy Be",
+        "summary": "Vier Tage Segeln zwischen Nosy Iranja, Nosy Komba und Nosy Sakatia. Schnorcheln, Sandbänke und Sonnenuntergänge an Bord einer traditionellen Dau."
       },
       "une-experience-authentique": {
         "title": "Ein authentisches Erlebnis",
         "region": "Nosy Be & Umgebung",
-        "summary": "Drei Tage im Rhythmus der Dörfer: Fischfang bei Sonnenaufgang, Sakalava-Küche und ein musikalischer Abend. Abseits der Touristenpfade."
+        "summary": "Drei Tage im Rhythmus der Dörfer: Fischen bei Sonnenaufgang, Sakalava-Küche und ein Musikabend. Fernab der Touristenpfade."
       },
       "randonnees-immersive-a-nosy-komba": {
-        "title": "Wanderung auf Nosy Komba",
+        "title": "Intensive Wanderung auf Nosy Komba",
         "region": "Nosy Komba, Nosy Be",
-        "summary": "Zwei Wandertage auf der Lemureninsel, vom Dorf Ampangorina bis zum Gipfel. Übernachtung bei Einheimischen und Begegnung mit Stickerinnen."
+        "summary": "Zwei Wandertage auf der Insel der Lemuren, vom Dorf Ampangorina bis zum Gipfel. Übernachtung bei Einheimischen und Begegnung mit Stickerinnen."
       },
       "circuit-2-jours-a-lokobe": {
         "title": "2 Tage in Lokobe",
         "region": "Vollnaturreservat, Nosy Be",
-        "summary": "Der letzte Primärwald der Insel, erreichbar mit dem traditionellen Einbaum. Zwei Tage, um mit einem Dorfführer Mongoz-Lemuren, Boas und Chamäleons zu beobachten."
+        "summary": "Der letzte Primärwald der Insel, erreichbar mit dem traditionellen Kanu. Zwei Tage, um Mongozmakis, Boas und Chamäleons mit einem Dorfführer zu beobachten."
       }
     }
   },
   "excursions": {
     "meta": {
-      "title": "Tagesausflüge auf Nosy Be | Sakalava Tours",
-      "description": "Nosy Iranja, Tanikely, Lokobe, Mont Passot: unsere Ganz- und Halbtagesausflüge ab Nosy Be, geführt von unserem lokalen Team.",
-      "ogAlt": "Tagesausflüge rund um Nosy Be"
+      "title": "Ausflüge auf Nosy Be — Ganztägig und Halbtägig | Sakalava Tours",
+      "description": "Nosy Iranja, Tanikely, Lokobe, Mont Passot: unsere ganztägigen und halbtägigen Ausflüge ab Nosy Be, geführt von unserem lokalen Team.",
+      "ogAlt": "Ganztägige Ausflüge rund um Nosy Be"
     },
     "breadcrumb": "Ausflüge",
     "pageTitle": "Unsere Ausflüge",
-    "pageIntro": "Halb- und Ganztagesausflüge ab Ihrem Hotel: Inselchen, Sandbänke, Urwälder und Fischerdörfer. Transfer, Guide und Mittagessen inklusive.",
+    "pageIntro": "Ausflüge von einem halben bis zu einem ganzen Tag, Abfahrt ab Ihrem Hotel: Inselchen, Sandbänke, Primärwälder und Fischerdörfer. Transfer, Guide und Mittagessen inbegriffen.",
     "count": "{count, plural, one {# Ausflug} other {# Ausflüge}}",
-    "featured": "Highlight",
-    "viewAria": "Details zum Ausflug {title} ansehen",
+    "featured": "Muss man gesehen haben",
+    "viewAria": "Details des Ausflugs {title} ansehen",
     "imageAlt": "Ausflug {title} auf Nosy Be",
     "departAt": "Abfahrt {time}",
     "returnAt": "Rückkehr {time}",
@@ -252,11 +239,11 @@
     "group": "{min}–{max} Pers.",
     "priceLabel": "ab",
     "perPerson": "/ Pers.",
-    "pickup": "Hotelabholung inklusive",
-    "includesLabel": "Inklusive",
+    "pickup": "Hoteltransfer inbegriffen",
+    "includesLabel": "Inbegriffen",
     "formats": {
-      "journee": "Ganztags",
-      "demi-journee": "Halbtags",
+      "journee": "Ganztägig",
+      "demi-journee": "Halbtägig",
       "soiree": "Später Nachmittag"
     },
     "themes": {
@@ -269,20 +256,20 @@
       "bateau": "Boot",
       "vehicule": "Fahrzeug",
       "mixte": "Boot & Fahrzeug",
-      "pirogue": "Auslegerboot"
+      "pirogue": "Kanu"
     },
     "travel": {
       "bateau": "{time} Bootsfahrt",
-      "pirogue": "{time} im Auslegerboot",
-      "vehicule": "{time} Fahrt",
-      "mixte": "{time} Anfahrt"
+      "pirogue": "{time} Kanufahrt",
+      "vehicule": "{time} Fahrtzeit",
+      "mixte": "{time} Reisezeit"
     },
     "includes": {
       "transfert": "Hoteltransfer",
       "bateau": "Boot",
       "guide": "Lokaler Guide",
       "dejeuner": "Mittagessen",
-      "collation": "Imbiss",
+      "collation": "Snack",
       "eau": "Mineralwasser",
       "snorkeling": "Maske & Schnorchel",
       "entree-parc": "Parkeintritt"
@@ -290,57 +277,57 @@
     "highlights": {
       "banc-de-sable": "Weiße Sandbank",
       "village-pecheurs": "Fischerdorf",
-      "phare": "Leuchtturm & Aussicht",
+      "phare": "Leuchtturm & Panorama",
       "snorkeling": "Schnorcheln",
       "tortues": "Meeresschildkröten",
       "lemuriens": "Lemuren",
       "panorama": "Aussichtspunkt",
-      "mangrove": "Mangroven",
+      "mangrove": "Mangrove",
       "coucher-soleil": "Sonnenuntergang",
       "distillerie": "Ylang-Ylang-Destillerie",
-      "foret-primaire": "Urwald",
+      "foret-primaire": "Primärwald",
       "plage": "Unberührter Strand"
     },
     "items": {
       "nosy-iranja": {
         "title": "Nosy Iranja",
-        "region": "Nosy-Be-Archipel",
-        "summary": "Zwei Inselchen, verbunden durch eine weiße Sandbank, die bei Ebbe sichtbar wird. Fischerdorf, Aufstieg zum Leuchtturm und Schnorcheln im türkisen Wasser."
+        "region": "Archipel von Nosy Be",
+        "summary": "Zwei Inselchen, verbunden durch eine weiße Sandbank, die bei Ebbe zum Vorschein kommt. Fischerdorf, Aufstieg zum Leuchtturm und Schnorcheln in türkisfarbenem Wasser."
       },
       "nosy-tanikely": {
         "title": "Nosy Tanikely",
         "region": "Meeresnationalpark",
-        "summary": "Der schönste Schnorchelplatz der Region: Korallen, tropische Fische und Schildkröten wenige Meter vom Ufer, in einem geschützten Meeresreservat."
+        "summary": "Der schönste Schnorchelspot der Region: Korallen, tropische Fische und Schildkröten nur wenige Meter vom Ufer entfernt, in einem geschützten Meeresreservat."
       },
       "nosy-komba-nosy-tanikely": {
         "title": "Nosy Komba & Nosy Tanikely",
         "region": "Nosy Komba, Nosy Be",
-        "summary": "Vormittags die Lemureninsel, nachmittags das Meeresreservat. Begegnung mit den Makis, lokales Kunsthandwerk und Schnorcheln an einem Tag."
+        "summary": "Am Morgen die Insel der Lemuren, am Nachmittag das Meeresreservat. Begegnung mit Makis, lokales Kunsthandwerk und Schnorcheln an einem einzigen Tag."
       },
       "reserve-de-lokobe": {
         "title": "Lokobe-Reservat",
         "region": "Ambatozavavy, Nosy Be",
-        "summary": "Überfahrt im traditionellen Auslegerboot, dann geführte Wanderung durch den letzten Urwald der Insel. Nachtaktive Lemuren, Chamäleons und Madagaskarboas."
+        "summary": "Überfahrt mit dem traditionellen Kanu, gefolgt von einer geführten Wanderung durch den letzten Primärwald der Insel. Nachtaktive Lemuren, Chamäleons und Madagaskar-Boas."
       },
       "nosy-sakatia": {
         "title": "Nosy Sakatia",
-        "region": "Nosy-Be-Archipel",
-        "summary": "Die Orchideeninsel, 25 Bootsminuten entfernt. Schwimmen mit grünen Meeresschildkröten in den Seegraswiesen, leere Strände und Mittagessen am Meer."
+        "region": "Archipel von Nosy Be",
+        "summary": "Die Insel der Orchideen, 25 Bootsminuten entfernt. Schwimmen mit grünen Meeresschildkröten in den Seegraswiesen, einsame Strände und Mittagessen mit Meerblick."
       },
       "mont-passot-coucher-de-soleil": {
         "title": "Mont Passot bei Sonnenuntergang",
         "region": "Nosy Be",
-        "summary": "Der höchste Punkt der Insel und seine heiligen Kraterseen. 360°-Panorama über das Archipel, während die Sonne in den Kanal von Mosambik sinkt."
+        "summary": "Der höchste Punkt der Insel und seine heiligen Seen. Ein 360°-Panorama über den Archipel, während die Sonne über den Mosambik-Kanal sinkt."
       },
       "mangroves-ambatozavavy": {
         "title": "Mangroven von Ambatozavavy",
         "region": "Ambatozavavy, Nosy Be",
-        "summary": "Im Auslegerboot durch die Mangrovenkanäle. Vogelwelt, Winkerkrabben und Einblicke in den Alltag eines Sakalava-Fischerdorfs."
+        "summary": "Kanufahrt entlang der Mangrovenkanäle. Vögel, Winkerkrabben und Einblicke in den Alltag eines Sakalava-Fischerdorfs."
       },
       "distillerie-ylang-ylang": {
         "title": "Ylang-Ylang-Destillerie",
         "region": "Nosy Be",
-        "summary": "Das duftende Gold von Nosy Be, von der Blüte zum ätherischen Öl. Besuch einer traditionellen Destillerie, Plantagen und Halt am Heiligen Baum."
+        "summary": "Das duftende Gold von Nosy Be: von der Blüte zum ätherischen Öl. Besuch einer traditionellen Destillerie, der Plantagen und ein Halt am Heiligen Baum."
       }
     },
     "levels": {
@@ -352,45 +339,45 @@
   "about": {
     "meta": {
       "title": "Über uns — Lokale Agentur auf Nosy Be seit 2019 | Sakalava Tours",
-      "description": "Sakalava Tours ist eine lokale Reiseagentur auf Nosy Be, gegründet 2019. Sakalava-Guides, kleine Gruppen, maßgeschneiderte Rundreisen und Tagesausflüge in Madagaskar.",
+      "description": "Sakalava Tours ist eine lokale Reiseagentur mit Sitz auf Nosy Be, gegründet 2019. Sakalava-Guides, kleine Gruppen, maßgeschneiderte Touren und Ausflüge in Madagaskar.",
       "ogAlt": "Das Team lokaler Guides von Sakalava Tours auf Nosy Be, Madagaskar"
     },
     "breadcrumb": "Über uns",
-    "eyebrow": "Warum mit uns reisen?",
+    "eyebrow": "Warum uns wählen?",
     "pageTitle": "Unser Engagement & unsere Werte",
     "pageIntro": "Authentische Erlebnisse, aufmerksamer Service und unvergessliche Erinnerungen im Herzen Madagaskars.",
     "values": {
-      "title": "Drei Grundsätze hinter jeder Reise",
-      "subtitle": "Sie stehen nicht zur Zierde auf dieser Seite: Sie entscheiden, welche Routen wir bauen, mit welchen Partnern wir arbeiten und welche wir ablehnen.",
+      "title": "Drei Grundsätze, die jede Reise leiten",
+      "subtitle": "Sie stehen nicht nur zur Zierde auf dieser Seite: Sie entscheiden konkret über die Routen, die wir gestalten, die Partner, die wir wählen, und jene, die wir ablehnen.",
       "authenticite": {
         "title": "Authentizität",
-        "text": "Wir bevorzugen Orte, an denen das lokale Leben unabhängig von Besuchern weitergeht. Ein Sakalava-Fischerdorf, eine familiengeführte Ylang-Ylang-Destillerie, ein Pfad, den nur Inselbewohner nutzen — statt einer für Reisebusse hergerichteten Anlage."
+        "text": "Wir bevorzugen Orte, an denen das lokale Leben unabhängig vom Besucherstrom weitergeht. Ein Sakalava-Fischerdorf, eine familiengeführte Ylang-Ylang-Destillerie, ein Pfad, den nur Einheimische begehen — statt eines für Reisebusse hergerichteten Ortes."
       },
       "respect": {
         "title": "Respekt",
-        "text": "Respekt vor den Gemeinschaften, die uns aufnehmen und die wir stets um Erlaubnis bitten, bevor wir eine Gruppe mitbringen. Respekt vor der Natur: kein Kontakt mit Schildkröten oder Lemuren, kein Ankern auf Korallen, kein Müll auf den Inselchen."
+        "text": "Respekt gegenüber den Gemeinschaften, die uns aufnehmen und von denen wir stets um Erlaubnis bitten, bevor wir eine Gruppe mitbringen. Respekt gegenüber der Natur: kein Kontakt mit Schildkröten oder Lemuren, kein Ankern auf Korallen, kein zurückgelassener Müll auf den Inselchen."
       },
       "partage": {
-        "title": "Teilen",
-        "text": "Eine gelungene Reise misst sich an den Begegnungen, die sie ermöglicht hat. Unsere Guides übersetzen, stellen vor und erklären — und ein Teil jedes Ausflugs geht direkt an die Familien und Gemeinschaften, die Sie empfangen."
+        "title": "Austausch",
+        "text": "Eine gelungene Reise misst sich an den Begegnungen, die sie ermöglicht hat. Unsere Guides übersetzen, stellen vor und erklären — und ein Teil jedes Ausflugs kommt direkt den Familien und Gemeinschaften zugute, die Sie empfangen."
       }
     },
     "founder": {
       "eyebrow": "Unsere Geschichte",
       "title": "Ein Engagement aus Leidenschaft",
-      "p1": "Seit 2019 baue ich Sakalava Tours mit dem Wunsch auf, meine Vision eines authentischen Tourismus in Madagaskar zu teilen. Nah an der Realität vor Ort gestalte ich jede Route als menschliches Abenteuer — respektvoll, aufrichtig und sinnvoll.",
-      "p2": "Angefangen hat es mit spontanen Ausflügen: Ich führte durchreisende Gäste an Orte, die ich seit meiner Kindheit kannte und die in keinem Programm auftauchten. Was meine ersten Gäste am meisten beeindruckte, war nicht die Landschaft — es war, sich zu einer Fischerfamilie setzen und verstehen zu können, was um sie herum gesprochen wurde.",
-      "p3": "Daraus entstand eine Überzeugung: Nosy Be und der Norden Madagaskars verdienen mehr als den überall identisch verkauften Standardausflug. Also habe ich jede Rundreise und jeden Ausflug selbst aufgebaut, die Routen vor Ort erkundet, die gastgebenden Familien getroffen und Gezeiten wie Fahrzeiten getestet, bevor ich sie überhaupt angeboten habe.",
-      "p4": "Sakalava Tours bleibt bis heute ein kleiner Betrieb, und das ist eine bewusste Entscheidung. Wir betreuen lieber eine begrenzte Zahl von Reisenden richtig, als Boote zu füllen.",
-      "quoteIntro": "Unser Leitspruch bringt es auf den Punkt:",
-      "quote": "Entdecken Sie Madagaskars Schätze anders",
-      "quoteAfter": "Eine echte Reise anbieten, reich an Begegnungen und Emotionen.",
-      "name": "Das Team von Sakalava Tours",
+      "p1": "Seit 2019 baue ich Sakalava Tours mit dem Wunsch auf, meine Vision eines authentischen Tourismus in Madagaskar zu teilen. Als junger Enthusiast, nah an der lokalen Realität, gestalte ich jede Reise als ein menschliches, respektvolles, aufrichtiges und sinnstiftendes Abenteuer.",
+      "p2": "Alles begann mit spontanen Ausflügen: Ich begleitete durchreisende Reisende zu Orten, die ich seit meiner Kindheit kannte und die in keinem Programm auftauchten. Was meine ersten Kunden am meisten beeindruckte, war nicht die Landschaft — es war die Möglichkeit, mit einer Fischerfamilie zusammenzusitzen und zu verstehen, worüber gesprochen wurde.",
+      "p3": "Aus diesen Ausflügen entstand eine Überzeugung: Nosy Be und der Norden Madagaskars verdienen mehr als den überall gleich verkauften Standard-Tagesausflug. Also habe ich jede Tour und jeden Ausflug selbst entwickelt — die Routen vor Ort erkundet, die gastgebenden Familien kennengelernt, Gezeiten und Überfahrtszeiten getestet, bevor ich sie irgendjemandem anbot.",
+      "p4": "Heute bleibt Sakalava Tours ein Betrieb in menschlichem Maßstab, und das ist eine bewusste Entscheidung. Wir betreuen lieber eine begrenzte Anzahl von Reisenden richtig, als Boote zu füllen.",
+      "quoteIntro": "Unser Slogan fasst diese Vision zusammen:",
+      "quote": "Entdecken Sie die Schätze Madagaskars, anders",
+      "quoteAfter": "Eine authentische Reise voller Begegnungen und Emotionen bieten.",
+      "name": "Das Sakalava Tours Team",
       "role": "Guides und Organisatoren, Nosy Be",
-      "imageAlt": "Ein Guide von Sakalava Tours mit Reisenden an einem Strand auf Nosy Be"
+      "imageAlt": "Ein Sakalava Tours Guide begleitet Reisende an einem Strand auf Nosy Be"
     },
     "stats": {
-      "destinations": "Ziele im Programm",
+      "destinations": "Reiseziele im Angebot",
       "years": "{count, plural, one {# Jahr} other {# Jahre}} vor Ort",
       "languages": "Gesprochene Sprachen",
       "languagesValue": "4",
@@ -399,66 +386,66 @@
     },
     "mission": {
       "eyebrow": "Über Sakalava Tours",
-      "title": "Unvergessliche Reisen durch Madagaskar",
-      "text": "Madagaskar öffnet Ihnen seine Türen für ein tiefes, aufrichtiges und unvergessliches Eintauchen, im Rhythmus seiner Lächeln, seiner Landschaften und seiner Legenden. Vom Nosy-Be-Archipel bis zu den Vanilleplantagen der SAVA, über die Urwälder von Lokobe und die Tsingy des hohen Nordens — jede Route ist so gedacht, dass Sie mit mehr als Fotos zurückkehren."
+      "title": "Unvergessliche Abenteuer durch Madagaskar",
+      "text": "Madagaskar öffnet Ihnen die Tür zu einem tiefen, aufrichtigen und unvergesslichen Eintauchen im Rhythmus seines Lächelns, seiner Landschaften und seiner Legenden. Vom Archipel Nosy Be über die Vanilleplantagen der SAVA bis zu den Primärwäldern von Lokobe und den Tsingy im hohen Norden — jede Route ist so gestaltet, dass Sie mit mehr als nur Fotos nach Hause kommen."
     },
     "pillars": {
-      "title": "Was wir Ihnen zusichern",
+      "title": "Das garantieren wir Ihnen",
       "assistance": {
-        "title": "Erreichbar zu jeder Stunde",
-        "text": "Damit Ihr Aufenthalt eine echte Auszeit wird, bleiben wir Tag und Nacht erreichbar, um Sie zu begleiten, zu beraten und zu unterstützen — ein verschobener Flug, umschlagendes Wetter, eine Frage in letzter Minute."
+        "title": "Rund um die Uhr erreichbar",
+        "text": "Damit Ihr Aufenthalt eine echte Auszeit voller Glück wird, sind wir Tag und Nacht erreichbar, um Sie in jedem Moment zu begleiten, zu beraten und zu unterstützen — bei einem verspäteten Flug, einem Wetterumschwung oder einer Frage in letzter Minute."
       },
       "equipe": {
         "title": "Ein Team, das zuhört",
-        "text": "Wir gestalten gemeinsam eine Reise, die zu Ihnen passt. Tempo, Budget, Interessen, gesundheitliche oder altersbedingte Einschränkungen: Jede Route wird besprochen, bevor sie feststeht, und nichts ist vor Ort in Stein gemeißelt."
+        "text": "Wir gestalten gemeinsam eine Reise, die zu Ihnen passt. Tempo, Budget, Interessen, gesundheitliche oder altersbedingte Einschränkungen: Jede Route wird besprochen, bevor sie festgelegt wird, und nichts ist vor Ort in Stein gemeißelt."
       },
       "local": {
         "title": "Echte Ortskenntnis",
-        "text": "Dank unserer genauen Kenntnis der Region führen wir Sie zu authentischen Orten und prägenden Begegnungen, abseits der klassischen Touristenrouten. Unsere Guides stammen aus der Region und sprechen das lokale Malagasy."
+        "text": "Dank unserer genauen Kenntnis des Terrains führen wir Sie zu authentischen Orten und bedeutsamen Begegnungen, fernab der klassischen Touristenrouten. Unsere Guides stammen aus der Region und sprechen den lokalen madagassischen Dialekt."
       },
       "groupes": {
         "title": "Wirklich kleine Gruppen",
-        "text": "Je nach Ausflug 2 bis 12 Personen, nie mehr. Nur so kann ein Dorf Sie tatsächlich empfangen, kann jeder seine Fragen stellen, und leidet der besuchte Ort nicht unter Ihrem Besuch."
+        "text": "Je nach Ausflug 2 bis 12 Personen, niemals mehr. Das ist die Voraussetzung dafür, dass ein Dorf Sie wirklich empfangen kann, jeder seine Fragen stellen kann und der besuchte Ort nicht unter Ihrem Besuch leidet."
       }
     },
     "faq": {
-      "eyebrow": "Häufige Fragen",
-      "title": "Was Reisende uns am häufigsten fragen",
+      "eyebrow": "Häufig gestellte Fragen",
+      "title": "Was uns am häufigsten gefragt wird",
       "items": {
         "guides": {
           "question": "Stammen Ihre Guides aus der Region?",
-          "answer": "Ja. Unsere Guides sind auf Nosy Be oder im Norden Madagaskars geboren und leben dort. Das erlaubt uns, ein Fischerdorf als erwartete Gäste zu betreten statt als geduldete Besucher, und nicht nur Worte, sondern auch den Zusammenhang zu übersetzen."
+          "answer": "Ja. Unsere Guides sind in Nosy Be oder im Norden Madagaskars geboren und leben dort. Das ermöglicht es uns, in einem Fischerdorf erwartet statt nur geduldet zu sein und nicht nur Worte, sondern auch den Kontext zu übersetzen."
         },
         "langues": {
           "question": "In welchen Sprachen finden die Ausflüge statt?",
-          "answer": "Wir führen auf Französisch, Englisch, Deutsch und Italienisch. Nennen Sie uns Ihre Sprache bei der Buchung: Wir bestätigen immer die Verfügbarkeit eines Guides, bevor wir Ihren Ausflug bestätigen."
+          "answer": "Wir begleiten auf Französisch, Englisch, Deutsch und Italienisch. Geben Sie Ihre Sprache bei der Buchung an: Wir bestätigen stets die Verfügbarkeit eines Guides, bevor wir Ihren Ausflug festlegen."
         },
         "reservation": {
-          "question": "Wie lange im Voraus sollte ich buchen?",
-          "answer": "Für einen Tagesausflug genügen in der Regel 48 Stunden, außerhalb der Hochsaison oft weniger. Für eine mehrtägige Rundreise rechnen Sie mit zwei bis vier Wochen: Wir müssen Unterkünfte buchen und Guides über mehrere Etappen koordinieren."
+          "question": "Wie weit im Voraus muss ich buchen?",
+          "answer": "Für einen Tagesausflug genügen in der Regel 48 Stunden, außerhalb der Hauptsaison manchmal auch weniger. Für eine mehrtägige Tour sollten Sie zwei bis vier Wochen einplanen: Wir müssen Unterkünfte buchen und Guides über mehrere Etappen hinweg koordinieren."
         },
         "groupes-taille": {
-          "question": "Wie viele Personen pro Gruppe?",
-          "answer": "Je nach Ausflug 2 bis 12 Personen, bei Ausflügen im Auslegerboot oder im Wald 2 bis 8. Darüber hinaus fassen wir nie zusammen, selbst wenn die Nachfrage es zuließe."
+          "question": "Wie viele Personen umfasst eine Gruppe?",
+          "answer": "Je nach Ausflug 2 bis 12 Personen, bei Kanu- oder Waldausflügen 2 bis 8. Wir überschreiten dies niemals, selbst wenn die Nachfrage es zulassen würde."
         },
         "meilleure-periode": {
-          "question": "Wann ist die beste Reisezeit für Nosy Be?",
-          "answer": "Von April bis November bietet die Trockenzeit die besten Bedingungen zum Segeln und die beste Sicht unter Wasser. Von Dezember bis März bleibt die Regenzeit für Landausflüge gut machbar, mit spektakulärer Vegetation und deutlich weniger Menschen."
+          "question": "Was ist die beste Reisezeit für Nosy Be?",
+          "answer": "Von April bis November bietet die Trockenzeit die besten Bedingungen zum Segeln und die beste Sicht unter Wasser. Von Dezember bis März eignet sich die Regenzeit weiterhin für Landausflüge, mit einer beeindruckenden Vegetation und deutlich weniger Besuchern."
         },
         "paiement": {
-          "question": "Wie läuft die Bezahlung ab?",
-          "answer": "Eine Anzahlung bestätigt die Buchung, der Restbetrag wird vor Ort vor der Abfahrt beglichen. Wir akzeptieren Bargeld in Ariary und Euro sowie Online-Zahlung für die Anzahlung."
+          "question": "Wie funktioniert die Bezahlung?",
+          "answer": "Eine Anzahlung bestätigt die Buchung, der Restbetrag wird vor Ort vor Beginn des Ausflugs beglichen. Wir akzeptieren Bargeld in Ariary und Euro sowie Online-Zahlung für die Anzahlung."
         }
       }
     },
     "cta": {
       "titleLead": "Bereit, Madagaskar",
       "titleAccent": "anders zu entdecken?",
-      "reassurance": "Antwort innerhalb von 24 Stunden · Kostenloses Angebot, unverbindlich",
-      "text": "Stöbern Sie in unseren mehrtägigen Rundreisen oder unseren Tagesausflügen — und wenn nichts genau passt, schreiben Sie uns: Wir bauen die Route gemeinsam mit Ihnen.",
-      "circuits": "Unsere Rundreisen",
-      "excursions": "Unsere Ausflüge",
-      "contact": "Kontakt aufnehmen"
+      "text": "Entdecken Sie unsere mehrtägigen Touren oder Tagesausflüge — und falls nichts genau dem entspricht, was Sie suchen, schreiben Sie uns: Wir gestalten die Route gemeinsam mit Ihnen.",
+      "reassurance": "Antwort innerhalb von 24 Std. · Kostenloses, unverbindliches Angebot",
+      "circuits": "Unsere Touren ansehen",
+      "excursions": "Unsere Ausflüge ansehen",
+      "contact": "Schreiben Sie uns"
     }
   }
 }
