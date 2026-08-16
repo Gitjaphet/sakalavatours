@@ -33,7 +33,7 @@ from src.models.product import (
 )
 from src.models.system import AdminUser
 from src.models.taxonomy import Highlight, Inclusion, PackingItem
-from src.schemas.admin_product import ProductCreate, ProductUpdate
+from src.schemas.admin_product import ItineraryItemIn, ProductCreate, ProductUpdate
 from src.services import slug as slug_service
 
 ENTITY = "product"
@@ -133,6 +133,12 @@ async def _set_itinerary(session, product_id: UUID, items) -> None:
 
     Les traductions partent en cascade grâce au ondelete="CASCADE" de la
     clé étrangère — d'où l'importance de l'avoir déclaré au modèle.
+
+    `items` peut être une liste d'objets ItineraryItemIn (venant de
+    create(), qui passe payload directement) OU une liste de dicts
+    (venant de update(), qui passe par payload.model_dump() plus haut
+    dans la pile). On normalise en objets pour ne dépendre que d'une
+    seule forme d'accès.
     """
     old = (
         await session.exec(
@@ -150,7 +156,8 @@ async def _set_itinerary(session, product_id: UUID, items) -> None:
         await session.delete(item)
     await session.flush()
 
-    for item_in in items:
+    for raw in items:
+        item_in = raw if isinstance(raw, ItineraryItemIn) else ItineraryItemIn(**raw)
         item = ProductItineraryItem(
             product_id=product_id,
             day_number=item_in.day_number,
