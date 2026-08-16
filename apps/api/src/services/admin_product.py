@@ -158,6 +158,8 @@ async def _set_itinerary(session, product_id: UUID, items) -> None:
             sort_order=item_in.sort_order,
             is_optional=item_in.is_optional,
             media_id=item_in.media_id,
+            hotel_name=item_in.hotel_name,
+            distance_km=item_in.distance_km,
         )
         session.add(item)
         await session.flush()

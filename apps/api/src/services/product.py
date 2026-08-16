@@ -210,6 +210,10 @@ async def get_detail_for_locale(
                 time_label=item.time_label,
                 title=item_tr.title,
                 description=item_tr.description,
+                location_label=item_tr.location_label,
+                hotel_name=item.hotel_name,
+                meal_plan=item_tr.meal_plan,
+                distance_km=item.distance_km,
                 is_optional=item.is_optional,
             )
         )
