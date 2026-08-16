@@ -11,9 +11,9 @@
 // src/messages/*.json sous la clé `excursions.items.<id>`.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { HERO_CURRENCY } from "./hero-data";
+const HERO_CURRENCY = "EUR";
 
-export { HERO_CURRENCY as EXCURSION_CURRENCY };
+export { HERO_CURRENCY as CIRCUIT_CURRENCY };
 
 /** Thème dominant — filtre et libellé (`excursions.themes.<theme>`) */
 export type ExcursionTheme = "mer" | "nature" | "culture" | "aventure";
