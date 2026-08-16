@@ -180,6 +180,18 @@
       "11": "Nov",
       "12": "Dec"
     },
+    "detail": {
+      "itineraryTitle": "Day-by-day itinerary",
+      "day": "Day {number}",
+      "optional": "Optional",
+      "inclusionsTitle": "Included and not included",
+      "packingTitle": "What to bring",
+      "practicalTitle": "Practical information",
+      "faqTitle": "Frequently asked questions",
+      "galleryTitle": "Photo gallery",
+      "bookCta": "Book this tour",
+      "callCta": "Contact us"
+    },
     "items": {
       "les-circuits-nord-de-madagascar-11jours-10-nuits": {
         "title": "Northern Madagascar",
