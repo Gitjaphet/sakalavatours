@@ -9,6 +9,9 @@ import { Rating } from "@/components/ui/Rating";
 import { Squiggle } from "@/components/ui/Doodles";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { buildBreadcrumbSchema } from "@/lib/schema/breadcrumb";
+import { buildFaqSchema } from "@/lib/schema/faqPage";
+import { buildTouristTripSchema } from "@/lib/schema/touristTrip";
 import {
   IconCheck,
   IconX,
@@ -34,6 +37,23 @@ const LEVEL_KEYS: Record<string, string> = {
   moderate: "modere",
   sporty: "sportif",
 };
+
+/**
+ * Formatage prix localisé — même logique que CircuitCard.tsx, pour ne
+ * jamais afficher un ordre symbole/montant incohérent selon la langue
+ * (ex. "890€" en anglais au lieu de "€890").
+ */
+function formatPrice(price: number, currency: string, locale: string): string {
+  try {
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format(price);
+  } catch {
+    return `${Math.round(price)} ${currency}`;
+  }
+}
 
 // Slugs par locale, filtrés sur les circuits uniquement — évite de
 // pré-générer des pages pour des excursions qui vivent sur une autre route.
@@ -80,12 +100,46 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
   if (!product || product.product_type !== "circuit") notFound();
 
   const t = await getTranslations({ locale, namespace: "circuits" });
+  const tNav = await getTranslations({ locale, namespace: "nav" });
   const levelKey = LEVEL_KEYS[product.difficulty] ?? "facile";
   const included = product.inclusions.filter((i) => i.is_included);
   const excluded = product.inclusions.filter((i) => !i.is_included);
 
+  const hasRating =
+    product.rating_average !== null &&
+    Number(product.rating_average) > 0 &&
+    product.review_count > 0;
+
+  // FAQ balisée uniquement si elle est aussi rendue visuellement plus bas
+  // dans la page — condition partagée avec la section FAQ du JSX pour ne
+  // jamais baliser un contenu absent du rendu (règle Google FAQPage).
+  const hasFaqs = product.faqs.length > 0;
+
+  const jsonLd = [
+    buildBreadcrumbSchema(locale, [
+      { name: tNav("accueil"), path: "/" },
+      { name: t("breadcrumb"), path: "/circuits" },
+      { name: product.title },
+    ]),
+    buildTouristTripSchema(locale, {
+      name: product.title,
+      description: product.meta_description || product.summary,
+      path: `/circuits/${product.slug}`,
+      image: product.cover?.url ?? "/images/backgrounds/baobab.jpeg",
+      priceFrom: product.price_from,
+      currency: product.currency,
+      maxAttendees: product.group_max,
+    }),
+    ...(hasFaqs ? [buildFaqSchema(product.faqs)] : []),
+  ];
+
   return (
     <div className="bg-[#FDFAF6]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <PageHero
         title={product.title}
         intro={product.subtitle ?? undefined}
@@ -112,7 +166,7 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
               <span className="rounded-full bg-amber-50 px-2.5 py-1 text-amber-800">
                 {t(`levels.${levelKey}`)}
               </span>
-              {product.rating_average && product.review_count > 0 && (
+              {hasRating && (
                 <Rating value={Number(product.rating_average)} count={product.review_count} />
               )}
             </div>
@@ -207,7 +261,7 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
               </section>
             )}
 
-            {product.faqs.length > 0 && (
+            {hasFaqs && (
               <section className="mt-10">
                 <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
                   {t("detail.faqTitle")}
@@ -257,8 +311,7 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
               <p className="flex items-baseline gap-1 text-stone-900">
                 <span className="text-xs text-stone-500">{t("priceLabel")}</span>
                 <span className="text-3xl font-bold">
-                  {Math.round(Number(product.price_from))}
-                  {product.currency === "EUR" ? "€" : ` ${product.currency}`}
+                  {formatPrice(Number(product.price_from), product.currency, locale)}
                 </span>
                 <span className="text-xs text-stone-500">{t("perPerson")}</span>
               </p>
