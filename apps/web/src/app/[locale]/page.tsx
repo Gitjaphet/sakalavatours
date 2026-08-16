@@ -6,12 +6,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { businessInfo } from "@/lib/nav-config";
 
 import { routing } from "@/i18n/routing";
+import { getProducts } from "@/lib/api/products";
 import Hero from "@/components/home/Hero";
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
-
 
 /** Pré-rend /fr, /en, /de au build (SSG) */
 export function generateStaticParams() {
@@ -66,9 +66,16 @@ export default async function HomePage({ params }: Props) {
   // Indispensable pour que la page reste statique (SSG) avec next-intl
   setRequestLocale(locale);
 
+  // Le hero porte jusqu'à 4 destinations : priorité aux coups de cœur
+  // (is_featured), complété par les produits suivants si moins de 4 sont
+  // marqués featured. C'est exactement le tri par défaut du backend
+  // (is_featured desc, sort_order, price_from desc) — aucun filtre à
+  // ajouter ici.
+  const { items: heroDestinations } = await getProducts(locale, { limit: 4 });
+
   return (
     <>
-      <Hero />
+      <Hero destinations={heroDestinations} />
 
       {/*
         Sections suivantes, dans cet ordre (chacune = 1 composant dans

@@ -50,24 +50,6 @@
       "full": "Journée complète · {hours}h",
       "half": "Demi-journée · {hours}h",
       "evening": "Soirée · {hours}h"
-    },
-    "destinations": {
-      "nosy-iranja": {
-        "region": "Archipel de Nosy Be",
-        "description": "Deux îles reliées par un banc de sable blanc que la marée découvre. Départ en boutre au lever du jour, retour au coucher du soleil."
-      },
-      "nosy-tanikely": {
-        "region": "Parc marin national",
-        "description": "Le meilleur spot de snorkeling de l'archipel : tortues vertes, coraux et poissons-clowns à quelques mètres du rivage."
-      },
-      "lokobe": {
-        "region": "Réserve intégrale, Nosy Be",
-        "description": "La dernière forêt primaire de l'île, en pirogue traditionnelle. Lémuriens macaco, boas et caméléons avec un guide local."
-      },
-      "mont-passot": {
-        "region": "Lacs sacrés, Nosy Be",
-        "description": "Le point culminant de l'île et ses lacs de cratère. Le coucher de soleil sur l'archipel se regarde depuis ici."
-      }
     }
   },
   "HomePage": {
@@ -193,42 +175,17 @@
       "11": "Nov",
       "12": "Déc"
     },
-    "items": {
-      "les-circuits-nord-de-madagascar-11jours-10-nuits": {
-        "title": "Le Nord de Madagascar",
-        "region": "Diana & SAVA",
-        "summary": "Onze jours pour traverser tout le nord : les tsingy rouges, la baie de Diego, les plantations de vanille et l'archipel de Nosy Be. Notre itinéraire le plus complet."
-      },
-      "circuit-nature-traditions-du-nord-8-jours-7-nuits": {
-        "title": "Nature & Traditions du Nord",
-        "region": "Diana, Madagascar",
-        "summary": "Huit jours entre réserves naturelles et villages sakalava. Rencontres avec les artisans, marchés locaux et nuits chez l'habitant."
-      },
-      "circuit-sava": {
-        "title": "Circuit SAVA",
-        "region": "Sambava, Antalaha, Vohémar, Andapa",
-        "summary": "La route de la vanille et du parc de Marojejy. Une région encore préservée du tourisme de masse, entre océan Indien et forêt humide."
-      },
-      "tours-des-archipels-de-nosy-be": {
-        "title": "Tour des archipels de Nosy Be",
-        "region": "Archipel de Nosy Be",
-        "summary": "Quatre jours de navigation entre Nosy Iranja, Nosy Komba et Nosy Sakatia. Snorkeling, bancs de sable et couchers de soleil en boutre."
-      },
-      "une-experience-authentique": {
-        "title": "Une expérience authentique",
-        "region": "Nosy Be & environs",
-        "summary": "Trois jours au rythme des villages : pêche au lever du jour, cuisine sakalava et veillée musicale. Loin des sentiers touristiques."
-      },
-      "randonnees-immersive-a-nosy-komba": {
-        "title": "Randonnée immersive à Nosy Komba",
-        "region": "Nosy Komba, Nosy Be",
-        "summary": "Deux jours de marche sur l'île aux lémuriens, du village de Ampangorina au sommet. Nuit chez l'habitant et rencontre avec les brodeuses."
-      },
-      "circuit-2-jours-a-lokobe": {
-        "title": "2 jours à Lokobe",
-        "region": "Réserve intégrale, Nosy Be",
-        "summary": "La dernière forêt primaire de l'île, en pirogue traditionnelle. Deux jours pour observer lémuriens macaco, boas et caméléons avec un guide du village."
-      }
+    "detail": {
+      "itineraryTitle": "Itinéraire jour par jour",
+      "inclusionsTitle": "Ce qui est inclus",
+      "packingTitle": "À prévoir",
+      "practicalTitle": "Informations pratiques",
+      "faqTitle": "Questions fréquentes",
+      "galleryTitle": "Galerie photos",
+      "bookCta": "Réserver ce circuit",
+      "callCta": "Nous appeler",
+      "day": "Jour {number}",
+      "optional": "Optionnel"
     }
   },
   "excursions": {
@@ -301,47 +258,18 @@
       "foret-primaire": "Forêt primaire",
       "plage": "Plage préservée"
     },
-    "items": {
-      "nosy-iranja": {
-        "title": "Nosy Iranja",
-        "region": "Archipel de Nosy Be",
-        "summary": "Deux îlots reliés par un banc de sable blanc qui se dévoile à marée basse. Village de pêcheurs, montée au phare et snorkeling dans des eaux turquoise."
-      },
-      "nosy-tanikely": {
-        "title": "Nosy Tanikely",
-        "region": "Parc national marin",
-        "summary": "Le plus beau spot de snorkeling de la région : coraux, poissons tropicaux et tortues à quelques mètres du bord, dans une réserve marine protégée."
-      },
-      "nosy-komba-nosy-tanikely": {
-        "title": "Nosy Komba & Nosy Tanikely",
-        "region": "Nosy Komba, Nosy Be",
-        "summary": "L'île aux lémuriens le matin, la réserve marine l'après-midi. Rencontre avec les makis, artisanat local et snorkeling dans la même journée."
-      },
-      "reserve-de-lokobe": {
-        "title": "Réserve de Lokobe",
-        "region": "Ambatozavavy, Nosy Be",
-        "summary": "Traversée en pirogue traditionnelle puis marche guidée dans la dernière forêt primaire de l'île. Lémuriens nocturnes, caméléons et boas de Madagascar."
-      },
-      "nosy-sakatia": {
-        "title": "Nosy Sakatia",
-        "region": "Archipel de Nosy Be",
-        "summary": "L'île aux orchidées, à 25 minutes de bateau. Nage avec les tortues vertes dans les herbiers, plages désertes et déjeuner face à la mer."
-      },
-      "mont-passot-coucher-de-soleil": {
-        "title": "Mont Passot au coucher du soleil",
-        "region": "Nosy Be",
-        "summary": "Le point culminant de l'île et ses lacs sacrés. Panorama à 360° sur l'archipel au moment où le soleil descend sur le canal du Mozambique."
-      },
-      "mangroves-ambatozavavy": {
-        "title": "Mangroves d'Ambatozavavy",
-        "region": "Ambatozavavy, Nosy Be",
-        "summary": "Navigation en pirogue au fil des chenaux de mangrove. Oiseaux, crabes violonistes et découverte du quotidien d'un village de pêcheurs sakalava."
-      },
-      "distillerie-ylang-ylang": {
-        "title": "Distillerie d'ylang-ylang",
-        "region": "Nosy Be",
-        "summary": "L'or parfumé de Nosy Be : de la fleur à l'huile essentielle. Visite d'une distillerie traditionnelle, plantations et arrêt à l'Arbre sacré."
-      }
+    "detail": {
+      "overviewTitle": "Le programme",
+      "itineraryTitle": "Déroulé de la journée",
+      "inclusionsTitle": "Ce qui est inclus",
+      "packingTitle": "À prévoir",
+      "practicalTitle": "Informations pratiques",
+      "faqTitle": "Questions fréquentes",
+      "galleryTitle": "Galerie photos",
+      "bookCta": "Réserver cette excursion",
+      "callCta": "Nous appeler",
+      "day": "Étape {number}",
+      "optional": "Optionnel"
     },
     "levels": {
       "facile": "Facile",

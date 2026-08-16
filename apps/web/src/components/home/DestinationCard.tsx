@@ -5,17 +5,26 @@ import Image from "next/image";
 import { useState } from "react";
 import { useTranslations, useFormatter } from "next-intl";
 import { IconUsers } from "@tabler/icons-react";
-import { HERO_CURRENCY, type HeroDestination } from "@/lib/hero-data";
+import type { ProductListItem } from "@/lib/api/products";
 
 type Props = {
-  destination: HeroDestination;
+  destination: ProductListItem;
   isActive: boolean;
   onSelect: () => void;
-  /** true pour la carte visible au premier rendu : porte le LCP */
   priority?: boolean;
 };
 
+// L'API renvoie product_format ("full_day"/"half_day"/"evening"/"multi_day"),
+// le hero attend une des trois clés de durée qu'il sait afficher.
+const DURATION_KIND: Record<string, "full" | "half" | "evening"> = {
+  full_day: "full",
+  half_day: "half",
+  evening: "evening",
+  multi_day: "full",
+};
+
 function Stars({ rating, label }: { rating: number; label: string }) {
+  const rounded = Math.round(rating);
   return (
     <div className="flex items-center gap-[3px]" role="img" aria-label={label}>
       {Array.from({ length: 5 }).map((_, i) => (
@@ -23,7 +32,7 @@ function Stars({ rating, label }: { rating: number; label: string }) {
           key={i}
           viewBox="0 0 20 20"
           aria-hidden="true"
-          className={`h-3.5 w-3.5 ${i < rating ? "fill-[#F4A261]" : "fill-white/25"}`}
+          className={`h-3.5 w-3.5 ${i < rounded ? "fill-[#F4A261]" : "fill-white/25"}`}
         >
           <path d="M10 1.6l2.4 5.1 5.6.8-4 3.9 1 5.6-5-2.7-5 2.7 1-5.6-4-3.9 5.6-.8z" />
         </svg>
@@ -37,28 +46,27 @@ export default function DestinationCard({ destination, isActive, onSelect, prior
   const t = useTranslations("hero");
   const format = useFormatter();
 
-  const region = t(`destinations.${destination.id}.region`);
+  const region = destination.region_label ?? "";
 
-  const duration = t(`duration.${destination.durationKind}`, {
-    hours: destination.durationHours,
-  });
+  const durationKind = DURATION_KIND[destination.product_format] ?? "full";
+  const hours = destination.duration_hours ? Math.round(Number(destination.duration_hours)) : 0;
+  const duration = t(`duration.${durationKind}`, { hours });
 
   const group = t("group", {
-    min: destination.groupMin,
-    max: destination.groupMax,
+    min: destination.group_min,
+    max: destination.group_max,
   });
 
-  /** Formatage monétaire piloté par la locale active : séparateurs,
-   *  position du symbole et espacement suivent la convention du pays. */
-  const price = format.number(destination.priceFrom, {
+  const rating = destination.rating_average ? Number(destination.rating_average) : null;
+  const hasRating = rating !== null && destination.review_count > 0;
+
+  const price = format.number(Number(destination.price_from), {
     style: "currency",
-    currency: HERO_CURRENCY,
+    currency: destination.currency,
     maximumFractionDigits: 0,
   });
 
-  /** Alt localisé et descriptif : les images de tourisme drainent un trafic
-   *  réel via Google Images, l'alt est le seul signal textuel dont il dispose. */
-  const imageAlt = t("imageAlt", { name: destination.name, region });
+  const imageAlt = t("imageAlt", { name: destination.title, region });
 
   return (
     <article
@@ -72,26 +80,27 @@ export default function DestinationCard({ destination, isActive, onSelect, prior
       style={{ transitionTimingFunction: "var(--ease-ios)" }}
       onClick={onSelect}
     >
-      <Image
-        src={destination.image}
-        alt={imageAlt}
-        fill
-        priority={priority}
-        sizes="(max-width: 639px) 92vw, (max-width: 1279px) 42vw, 21vw"
-        className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
-      />
+      {destination.cover ? (
+        <Image
+          src={destination.cover.url}
+          alt={destination.cover.alt_text || imageAlt}
+          fill
+          priority={priority}
+          sizes="(max-width: 639px) 92vw, (max-width: 1279px) 42vw, 21vw"
+          className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
+        />
+      ) : (
+        <div className="h-full w-full bg-[#0d2f3c]" />
+      )}
 
-      {/* Voile renforcé en bas : le bloc d'informations s'est allongé */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/30" />
-      
-      {/* Badge durée */}
+
       <div className="pointer-events-none absolute left-3 top-3 z-20 sm:left-4 sm:top-4">
         <span className="inline-flex items-center rounded-full bg-white/12 px-3 py-1 text-[11px] font-medium text-white/90 ring-1 ring-white/20 backdrop-blur-sm">
           {duration}
         </span>
       </div>
 
-      {/* Enregistrer */}
       <button
         type="button"
         onClick={() => setSaved((v) => !v)}
@@ -110,11 +119,12 @@ export default function DestinationCard({ destination, isActive, onSelect, prior
         </svg>
       </button>
 
-      {/* Contenu bas */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-4 sm:p-5 lg:p-6">
-        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/65 sm:text-[11px]">
-          {region}
-        </p>
+        {region && (
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/65 sm:text-[11px]">
+            {region}
+          </p>
+        )}
 
         <h2 className="mt-1.5 font-[family-name:var(--font-courgette)] text-[26px] font-normal leading-snug text-white sm:text-[20px] lg:text-2xl">
           <button
@@ -122,26 +132,24 @@ export default function DestinationCard({ destination, isActive, onSelect, prior
             onClick={onSelect}
             className="pointer-events-auto text-left outline-none focus-visible:underline focus-visible:decoration-[#F4A261] focus-visible:decoration-2 focus-visible:underline-offset-4"
           >
-            {destination.name}
-            <span className="sr-only"> — {t("view", { name: destination.name })}</span>
+            {destination.title}
+            <span className="sr-only"> — {t("view", { name: destination.title })}</span>
           </button>
         </h2>
 
-        {/* Note + taille du groupe */}
         <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5">
-          <Stars
-            rating={destination.rating}
-            label={t("ratingLabel", { rating: destination.rating })}
-          />
-          <span className="text-xs text-white/60">
-            {destination.rating.toFixed(1)}
-          </span>
+          {hasRating && (
+            <>
+              <Stars rating={rating!} label={t("ratingLabel", { rating: rating! })} />
+              <span className="text-xs text-white/60">{rating!.toFixed(1)}</span>
+            </>
+          )}
 
           <span
             className="flex items-center gap-1.5 text-[11px] text-white/60"
             aria-label={t("groupAria", {
-              min: destination.groupMin,
-              max: destination.groupMax,
+              min: destination.group_min,
+              max: destination.group_max,
             })}
           >
             <IconUsers size={13} stroke={1.8} aria-hidden="true" />
@@ -149,7 +157,6 @@ export default function DestinationCard({ destination, isActive, onSelect, prior
           </span>
         </div>
 
-        {/* Prix */}
         <div
           className="mt-3 flex items-baseline gap-1.5 border-t border-white/15 pt-3"
           aria-label={t("priceAria", { price })}
