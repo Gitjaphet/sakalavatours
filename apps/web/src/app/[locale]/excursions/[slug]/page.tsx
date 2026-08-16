@@ -12,9 +12,9 @@ import { routing } from "@/i18n/routing";
 import {
   IconCheck,
   IconX,
-  IconMapPin,
+  IconClock,
   IconUsers,
-  IconCalendarEvent,
+  IconArrowNarrowRight,
   IconChevronDown,
 } from "@tabler/icons-react";
 
@@ -35,12 +35,17 @@ const LEVEL_KEYS: Record<string, string> = {
   sporty: "sportif",
 };
 
-// Slugs par locale, filtrés sur les circuits uniquement — évite de
-// pré-générer des pages pour des excursions qui vivent sur une autre route.
+const FORMAT_KEYS: Record<string, string> = {
+  full_day: "journee",
+  half_day: "demi-journee",
+  evening: "soiree",
+  multi_day: "journee",
+};
+
 export async function generateStaticParams() {
   const perLocale = await Promise.all(
     routing.locales.map(async (locale) => {
-      const { items } = await getProducts(locale, { type: "circuit", limit: 100 });
+      const { items } = await getProducts(locale, { type: "excursion", limit: 100 });
       return items.map((item) => ({ locale, slug: item.slug }));
     }),
   );
@@ -54,12 +59,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const product = await getProduct(slug, locale);
-  if (!product || product.product_type !== "circuit") return {};
+  if (!product || product.product_type !== "excursion") return {};
 
   return {
     title: product.meta_title || `${product.title} — Sakalava Tours`,
     description: product.meta_description || product.summary,
-    alternates: { canonical: `/${locale}/circuits/${slug}` },
+    alternates: { canonical: `/${locale}/excursions/${slug}` },
     openGraph: {
       title: product.meta_title || product.title,
       description: product.meta_description || product.summary,
@@ -70,30 +75,37 @@ export async function generateMetadata({
   };
 }
 
-export default async function CircuitDetailPage({ params }: { params: Params }) {
+export default async function ExcursionDetailPage({ params }: { params: Params }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
   const product = await getProduct(slug, locale);
-  // Une fiche circuit consultée via une excursion effacée, ou l'inverse,
-  // doit rendre un 404 plutôt qu'afficher un produit du mauvais type.
-  if (!product || product.product_type !== "circuit") notFound();
+  if (!product || product.product_type !== "excursion") notFound();
 
-  const t = await getTranslations({ locale, namespace: "circuits" });
+  const t = await getTranslations({ locale, namespace: "excursions" });
   const levelKey = LEVEL_KEYS[product.difficulty] ?? "facile";
+  const formatKey = FORMAT_KEYS[product.product_format] ?? "journee";
   const included = product.inclusions.filter((i) => i.is_included);
   const excluded = product.inclusions.filter((i) => !i.is_included);
+
+  const hoursValue = product.duration_hours ? Number(product.duration_hours) : null;
+  const duration = (() => {
+    if (hoursValue === null) return null;
+    const h = Math.floor(hoursValue);
+    const m = Math.round((hoursValue - h) * 60);
+    return m > 0 ? t("durationHM", { h, m }) : t("durationH", { h });
+  })();
 
   return (
     <div className="bg-[#FDFAF6]">
       <PageHero
         title={product.title}
         intro={product.subtitle ?? undefined}
-        image={product.cover?.url ?? "/images/backgrounds/baobab.jpeg"}
+        image={product.cover?.url ?? "/images/hero/nosy-tanikely.jpg"}
         imageAlt={product.cover?.alt_text ?? product.title}
         breadcrumb={[
           { label: HOME_LABEL[locale] ?? HOME_LABEL.fr, href: "/" },
-          { label: t("breadcrumb"), href: "/circuits" },
+          { label: t("breadcrumb"), href: "/excursions" },
           { label: product.title },
         ]}
       />
@@ -137,8 +149,7 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
                         className="absolute -left-[1.95rem] top-1 h-3 w-3 rounded-full bg-[#F4A261]"
                       />
                       <p className="text-xs font-semibold uppercase tracking-wide text-[#1d4e5f]">
-                        {t("detail.day", { number: step.day_number })}
-                        {step.time_label && ` · ${step.time_label}`}
+                        {step.time_label ?? t("detail.day", { number: step.day_number })}
                         {step.is_optional && ` · ${t("detail.optional")}`}
                       </p>
                       <h3 className="mt-1 text-base font-semibold text-stone-900">{step.title}</h3>
@@ -265,24 +276,23 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
 
               <div className="mt-4 space-y-2.5 border-t border-stone-100 pt-4 text-sm text-stone-600">
                 <p className="flex items-center gap-2">
-                  <IconCalendarEvent size={16} className="text-[#1d4e5f]" />
-                  {product.duration_nights && product.duration_nights > 0
-                    ? t("duration", {
-                        days: product.duration_days ?? 0,
-                        nights: product.duration_nights,
-                      })
-                    : t("durationNoNight", { days: product.duration_days ?? 0 })}
+                  <IconClock size={16} className="text-[#1d4e5f]" />
+                  {t(`formats.${formatKey}`)}
+                  {duration && ` · ${duration}`}
                 </p>
+                {product.departure_time && product.return_time && (
+                  <p className="flex items-center gap-1.5">
+                    <IconArrowNarrowRight size={16} className="text-[#1d4e5f]" />
+                    {t("departAt", { time: product.departure_time.slice(0, 5) })}
+                    {" → "}
+                    {product.return_time.slice(0, 5)}
+                  </p>
+                )}
                 <p className="flex items-center gap-2">
                   <IconUsers size={16} className="text-[#1d4e5f]" />
                   {t("group", { min: product.group_min, max: product.group_max })}
+                  {product.hotel_pickup && ` · ${t("pickup")}`}
                 </p>
-                {product.region_label && (
-                  <p className="flex items-center gap-2">
-                    <IconMapPin size={16} className="text-[#1d4e5f]" />
-                    {product.region_label}
-                  </p>
-                )}
               </div>
 
               <Link
