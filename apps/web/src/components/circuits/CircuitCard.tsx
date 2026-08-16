@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import type { ProductListItem } from "@/lib/api/products";
 import { Rating } from "@/components/ui/Rating";
 
@@ -14,9 +14,68 @@ const LEVEL_KEYS: Record<string, string> = {
   sporty: "sportif",
 };
 
+const DEFAULT_LEVEL_KEY = "facile";
+
+/**
+ * Ratio par défaut si l'image est absente ou si ses dimensions sont
+ * invalides (0, négatives, non numériques). 4/3 est le ratio historique
+ * des visuels mock — conservé comme filet de sécurité, pas comme référence.
+ */
+const FALLBACK_ASPECT_RATIO = 4 / 3;
+
+function resolveAspectRatio(
+  width: number | null,
+  height: number | null
+): number {
+  if (width !== null && height !== null && width > 0 && height > 0) {
+    return width / height;
+  }
+  return FALLBACK_ASPECT_RATIO;
+}
+
+function resolveLevelKey(difficulty: string | null | undefined): string {
+  if (!difficulty) return DEFAULT_LEVEL_KEY;
+  return LEVEL_KEYS[difficulty] ?? DEFAULT_LEVEL_KEY;
+}
+
+/**
+ * Formatage prix localisé. Évite la concaténation manuelle (`€` codé en dur
+ * en V1) : Intl.NumberFormat gère à la fois le symbole de devise correct
+ * pour n'importe quel code ISO renvoyé par l'API, et le format numérique
+ * propre à chaque locale (virgule décimale en fr/de/it, point en en).
+ */
+function formatPrice(
+  price: number,
+  currency: string,
+  locale: string
+): string {
+  try {
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format(price);
+  } catch {
+    // Code devise invalide/non reconnu par Intl (ne devrait pas arriver
+    // avec des données propres, mais on ne casse jamais l'affichage pour ça).
+    return `${Math.round(price)} ${currency}`;
+  }
+}
+
 export function CircuitCard({ circuit }: Props) {
   const t = useTranslations("circuits");
-  const levelKey = LEVEL_KEYS[circuit.difficulty] ?? "facile";
+  const locale = useLocale();
+
+  const levelKey = resolveLevelKey(circuit.difficulty);
+  const aspectRatio = resolveAspectRatio(
+    circuit.cover?.width ?? null,
+    circuit.cover?.height ?? null
+  );
+
+  const hasRating =
+    circuit.rating_average !== null &&
+    Number(circuit.rating_average) > 0 &&
+    circuit.review_count > 0;
 
   return (
     <Link
@@ -26,13 +85,13 @@ export function CircuitCard({ circuit }: Props) {
                  bg-white shadow-sm transition-shadow hover:shadow-lg focus-visible:outline
                  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden">
+      <div className="relative w-full overflow-hidden" style={{ aspectRatio }}>
         {circuit.cover ? (
           <Image
             src={circuit.cover.url}
             alt={circuit.cover.alt_text || t("imageAlt", { title: circuit.title })}
-            width={circuit.cover.width ?? 1200}
-            height={circuit.cover.height ?? 900}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="h-full w-full object-cover transition-transform duration-500
                        group-hover:scale-105"
           />
@@ -88,8 +147,7 @@ export function CircuitCard({ circuit }: Props) {
             <p className="text-base font-semibold text-stone-900">
               {t("priceLabel")}{" "}
               <span className="text-lg">
-                {Math.round(Number(circuit.price_from))}
-                {circuit.currency === "EUR" ? "€" : ` ${circuit.currency}`}
+                {formatPrice(Number(circuit.price_from), circuit.currency, locale)}
               </span>
               <span className="text-xs font-normal text-stone-500">
                 {" "}{t("perPerson")}
@@ -97,7 +155,7 @@ export function CircuitCard({ circuit }: Props) {
             </p>
           </div>
 
-          {circuit.rating_average && circuit.review_count > 0 && (
+          {hasRating && (
             <Rating
               value={Number(circuit.rating_average)}
               count={circuit.review_count}

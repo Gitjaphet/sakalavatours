@@ -11,6 +11,7 @@ import { buildFaqSchema } from "@/lib/schema/faqPage";
 import { buildTravelAgencySchema } from "@/lib/schema/travelAgency";
 import { businessInfo } from "@/lib/nav-config";
 import { Reveal } from "@/components/ui/Reveal";
+import { getProducts } from "@/lib/api/products";
 import {
   IconCompass,
   IconLeaf,
@@ -24,6 +25,9 @@ import {
 } from "@tabler/icons-react";
 
 type Params = Promise<{ locale: string }>;
+
+// Régénération horaire, même logique que /circuits.
+export const revalidate = 3600;
 
 type IconCmp = React.ComponentType<{ size?: number; stroke?: number; className?: string }>;
 
@@ -57,12 +61,23 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   };
 }
 
-export default async function AProposPage({ params }: { params: Params }) {
+
+  export default async function AProposPage({ params }: { params: Params }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  // Compte réel du catalogue — jamais un chiffre inventé sur une page publique.
+  // limit: 1 suffit : seul `total` nous intéresse ici, pas les items.
+  const [{ total: circuitsTotal }, { total: excursionsTotal }] =
+    await Promise.all([
+      getProducts(locale, { type: "circuit", limit: 1 }),
+      getProducts(locale, { type: "excursion", limit: 1 }),
+    ]);
+  const destinationsCount = circuitsTotal + excursionsTotal;
+
   const t = await getTranslations({ locale, namespace: "about" });
   const tNav = await getTranslations({ locale, namespace: "nav" });
+  
 
   const faqEntries = aboutFaqKeys.map((key) => ({
     question: t(`faq.items.${key}.question`),
@@ -209,7 +224,7 @@ export default async function AProposPage({ params }: { params: Params }) {
                         {t("stats.destinations")}
                       </dt>
                       <dd className="mt-0.5 text-2xl font-bold text-[#1d4e5f]">
-                        {aboutStats.destinations}
+                        {destinationsCount}
                       </dd>
                     </div>
                     <div>

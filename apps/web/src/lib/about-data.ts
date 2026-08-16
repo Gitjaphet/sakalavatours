@@ -4,10 +4,12 @@
 //
 // RÈGLE : aucun texte affiché ici. Les libellés vivent dans
 // src/messages/*.json sous la clé `about.*`.
+//
+// Le nombre de destinations n'est PAS calculé ici : il dépend du catalogue
+// réel (API), qui ne peut être lu qu'en async côté page serveur. Le calculer
+// depuis un mock statique afficherait un chiffre public potentiellement faux
+// — voir apropos/page.tsx pour le calcul réel via getProducts().
 // ─────────────────────────────────────────────────────────────────────────────
-
-import { circuits } from "./circuits-data";
-import { excursions } from "./excursions-data";
 
 /** Année de création — alimente `foundingDate` du JSON-LD TravelAgency
  *  et le compteur d'années d'expérience. */
@@ -21,7 +23,6 @@ export const aboutValues = [
 ] as const;
 
 export type AboutValueKey = (typeof aboutValues)[number]["key"];
-
 
 /** Piliers de service (`about.pillars.<key>`) */
 export const aboutPillars = [
@@ -44,9 +45,9 @@ export const aboutFaqKeys = [
 ] as const;
 
 export type AboutFaqKey = (typeof aboutFaqKeys)[number];
-/** Compteurs — calculés depuis le catalogue réel plutôt qu'écrits en dur :
- *  un chiffre affiché doit toujours correspondre à ce que le site propose. */
+
+/** Statistiques statiques — n'incluent volontairement pas le nombre de
+ *  destinations, qui doit toujours refléter le catalogue réel. */
 export const aboutStats = {
-  destinations: circuits.length + excursions.length,
   yearsActive: new Date().getFullYear() - FOUNDING_YEAR,
 } as const;
