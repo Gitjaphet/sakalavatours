@@ -11,7 +11,8 @@
 // dans src/messages/*.json sous la clé `circuits.items.<id>`.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { HERO_CURRENCY } from "./hero-data";
+// APRÈS
+const HERO_CURRENCY = "EUR";
 
 export { HERO_CURRENCY as CIRCUIT_CURRENCY };
 
