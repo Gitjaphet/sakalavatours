@@ -51,6 +51,8 @@ class ItineraryItemIn(BaseModel):
     sort_order: int = 0
     is_optional: bool = False
     media_id: UUID | None = None
+    hotel_name: str | None = Field(default=None, max_length=150)
+    distance_km: int | None = Field(default=None, ge=0)
     translations: list["ItineraryTranslationIn"] = Field(default_factory=list)
 
 
@@ -58,6 +60,8 @@ class ItineraryTranslationIn(BaseModel):
     locale: str = Field(min_length=2, max_length=5)
     title: str = Field(min_length=1, max_length=200)
     description: str | None = None
+    location_label: str | None = Field(default=None, max_length=150)
+    meal_plan: str | None = Field(default=None, max_length=200)
 
 
 class PriceTierIn(BaseModel):

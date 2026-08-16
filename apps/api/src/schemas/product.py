@@ -54,6 +54,10 @@ class ItineraryItemOut(BaseModel):
     time_label: str | None = None
     title: str
     description: str | None = None
+    location_label: str | None = None
+    hotel_name: str | None = None
+    meal_plan: str | None = None
+    distance_km: int | None = None
     is_optional: bool = False
 
 

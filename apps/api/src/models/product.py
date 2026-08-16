@@ -150,6 +150,16 @@ class ProductItineraryItem(UUIDMixin, TimestampMixin, table=True):
         default=False, description="Étape soumise aux conditions (marée, météo)"
     )
 
+    # ── Détails structurés de l'étape ────────────────────────────────
+    # Non traduits : un nom d'hôtel et une distance en km sont identiques
+    # quelle que soit la langue du visiteur.
+    hotel_name: str | None = Field(
+        default=None, max_length=150, description="Hébergement de la nuit, si applicable"
+    )
+    distance_km: int | None = Field(
+        default=None, ge=0, description="Distance du trajet vers cette étape"
+    )
+
 
 class ProductItineraryTranslation(
     UUIDMixin, TimestampMixin, TranslationMixin, table=True
@@ -166,6 +176,13 @@ class ProductItineraryTranslation(
     title: str = Field(max_length=200, description="Ex. « Départ de votre hôtel »")
     description: str | None = Field(default=None)
 
+    # ── Détails structurés de l'étape, traduits ──────────────────────
+    location_label: str | None = Field(
+        default=None, max_length=150, description="Lieu ou région de l'étape"
+    )
+    meal_plan: str | None = Field(
+        default=None, max_length=200, description="Repas inclus, texte libre"
+    )
 
 class ProductPriceTier(UUIDMixin, TimestampMixin, table=True):
     """Grille tarifaire par taille de groupe.
