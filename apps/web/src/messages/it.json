@@ -198,6 +198,7 @@
       "distanceValue": "{km} km",
       "bestPeriod": "Periodo migliore: {period}",
       "monthRangeJoiner": "a",
+      "relatedTitle": "Potrebbe interessarti anche",
       "translationPending": "Questa pagina non è ancora tradotta — contenuto mostrato in francese."
     },
     "items": {
@@ -373,6 +374,7 @@
       "distanceValue": "{km} km",
       "bestPeriod": "Periodo migliore: {period}",
       "monthRangeJoiner": "a",
+      "relatedTitle": "Potrebbe interessarti anche",
       "translationPending": "Questa pagina non è ancora tradotta — contenuto mostrato in francese."
     },
     "months": {

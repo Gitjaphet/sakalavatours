@@ -198,6 +198,7 @@
       "distanceValue": "{km} km",
       "bestPeriod": "Meilleure période : {period}",
       "monthRangeJoiner": "à",
+      "relatedTitle": "Vous aimerez aussi",
       "translationPending": "Cette fiche n'est pas encore traduite : contenu affiché en français."
     },
     "items": {
@@ -373,6 +374,7 @@
       "distanceValue": "{km} km",
       "bestPeriod": "Meilleure période : {period}",
       "monthRangeJoiner": "à",
+      "relatedTitle": "Vous aimerez aussi",
       "translationPending": "Cette fiche n'est pas encore traduite : contenu affiché en français."
   },
   "months": {

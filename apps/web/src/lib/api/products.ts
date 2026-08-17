@@ -153,6 +153,27 @@ export async function getProduct(
   }
 }
 
+
+/**
+ * Résout une liste de slugs liés en fiches produits complètes.
+ *
+ * Fait un appel par slug (peu nombreux en pratique — 2 à 4). Les slugs
+ * introuvables (404, produit dépublié) sont silencieusement ignorés
+ * plutôt que de faire échouer tout le bloc "vous aimerez aussi".
+ */
+export async function getRelatedProducts(
+  slugs: string[],
+  locale: string,
+): Promise<ProductListItem[]> {
+  if (slugs.length === 0) return [];
+
+  const results = await Promise.all(
+    slugs.map((slug) => getProduct(slug, locale)),
+  );
+
+  return results.filter((p): p is ProductDetail => p !== null);
+}
+
 /**
  * Tous les slugs publiés — alimente generateStaticParams().
  *

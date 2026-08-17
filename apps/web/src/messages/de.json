@@ -198,6 +198,7 @@
       "distanceValue": "{km} km",
       "bestPeriod": "Beste Reisezeit: {period}",
       "monthRangeJoiner": "bis",
+      "relatedTitle": "Das könnte Ihnen auch gefallen",
       "translationPending": "Diese Seite ist noch nicht übersetzt — Inhalt wird auf Französisch angezeigt."
     },
     "items": {
@@ -373,6 +374,7 @@
       "distanceValue": "{km} km",
       "bestPeriod": "Beste Reisezeit: {period}",
       "monthRangeJoiner": "bis",
+      "relatedTitle": "Das könnte Ihnen auch gefallen",
       "translationPending": "Diese Seite ist noch nicht übersetzt — Inhalt wird auf Französisch angezeigt."
     },
     "months": {
