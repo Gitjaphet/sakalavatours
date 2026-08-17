@@ -8,5 +8,5 @@ export default function proxy(request: Parameters<typeof handleI18nRouting>[0]) 
 }
 
 export const config = {
-  matcher: ["/((?!api|trpc|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/((?!api|trpc|admin|_next|_vercel|.*\\..*).*)"],
 };
