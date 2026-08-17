@@ -196,6 +196,8 @@
       "mealAria": "Repas",
       "distanceAria": "Distance",
       "distanceValue": "{km} km",
+      "bestPeriod": "Meilleure période : {period}",
+      "monthRangeJoiner": "à",
       "translationPending": "Cette fiche n'est pas encore traduite : contenu affiché en français."
     },
     "items": {
@@ -369,9 +371,25 @@
       "mealAria": "Repas",
       "distanceAria": "Distance",
       "distanceValue": "{km} km",
+      "bestPeriod": "Meilleure période : {period}",
+      "monthRangeJoiner": "à",
       "translationPending": "Cette fiche n'est pas encore traduite : contenu affiché en français."
-    }
   },
+  "months": {
+    "1": "Jan",
+    "2": "Fév",
+    "3": "Mar",
+    "4": "Avr",
+    "5": "Mai",
+    "6": "Juin",
+    "7": "Juil",
+    "8": "Août",
+    "9": "Sep",
+    "10": "Oct",
+    "11": "Nov",
+    "12": "Déc"
+  }
+},
   "about": {
     "meta": {
       "title": "Qui sommes-nous — Agence locale à Nosy Be depuis 2019 | Sakalava Tours",

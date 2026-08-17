@@ -131,12 +131,12 @@
   },
   "circuits": {
     "meta": {
-      "title": "Tour in Madagascar — Viaggi nel Nord e nell'arcipelago | Sakalava Tours",
+      "title": "Tour in Madagascar — Viaggi nel Nord e nell'Arcipelago | Sakalava Tours",
       "description": "I nostri tour da 2 a 11 giorni nel nord del Madagascar: regione SAVA, Nosy Komba, Lokobe, arcipelago di Nosy Be. Guide locali, piccoli gruppi, itinerari su misura.",
       "ogAlt": "Tour e viaggi nel nord del Madagascar con Sakalava Tours"
     },
     "pageTitle": "I nostri tour",
-    "pageIntro": "Viaggi da due a undici giorni per scoprire il nord del Madagascar in un altro modo: foreste primarie, villaggi di pescatori, vaniglia della SAVA e isole dell'arcipelago. Ogni itinerario è progettato e accompagnato dal nostro team locale.",
+    "pageIntro": "Viaggi da due a undici giorni per scoprire il nord del Madagascar in modo diverso: foreste primarie, villaggi di pescatori, vaniglia della SAVA e le isole dell'arcipelago. Ogni itinerario è ideato e guidato dal nostro team locale.",
     "breadcrumb": "Tour",
     "count": "{count, plural, =0 {Nessun tour} one {# tour} other {# tour}}",
     "duration": "{days, plural, one {# giorno} other {# giorni}} / {nights, plural, one {# notte} other {# notti}}",
@@ -144,8 +144,8 @@
     "group": "{min}–{max} pers.",
     "groupAria": "Gruppo da {min} a {max} persone",
     "priceLabel": "da",
-    "priceAria": "A partire da {price} a persona",
-    "perPerson": "/ pers.",
+    "priceAria": "Da {price} a persona",
+    "perPerson": "/ persona",
     "ratingLabel": "Valutazione {rating} su 5",
     "reviews": "{count, plural, one {# recensione} other {# recensioni}}",
     "featured": "Preferito",
@@ -153,7 +153,7 @@
     "allYear": "Tutto l'anno",
     "discover": "Vedi il tour",
     "viewAria": "Vedi i dettagli del tour {title}",
-    "imageAlt": "{title} — tour Sakalava Tours in Madagascar",
+    "imageAlt": "{title} — Tour Sakalava Tours in Madagascar",
     "themes": {
       "nature": "Natura",
       "culture": "Cultura",
@@ -183,10 +183,10 @@
     "detail": {
       "itineraryTitle": "Itinerario giorno per giorno",
       "day": "Giorno {number}",
-      "optional": "Opzionale",
+      "optional": "Facoltativo",
       "inclusionsTitle": "Incluso e non incluso",
       "packingTitle": "Cosa portare",
-      "practicalTitle": "Informazioni pratiche",
+      "practicalTitle": "Informazioni utili",
       "faqTitle": "Domande frequenti",
       "galleryTitle": "Galleria fotografica",
       "bookCta": "Prenota questo tour",
@@ -195,23 +195,26 @@
       "hotelAria": "Alloggio",
       "mealAria": "Pasti",
       "distanceAria": "Distanza",
-      "distanceValue": "{km} km"
+      "distanceValue": "{km} km",
+      "bestPeriod": "Periodo migliore: {period}",
+      "monthRangeJoiner": "a",
+      "translationPending": "Questa pagina non è ancora tradotta — contenuto mostrato in francese."
     },
     "items": {
       "les-circuits-nord-de-madagascar-11jours-10-nuits": {
         "title": "Il Nord del Madagascar",
         "region": "Diana & SAVA",
-        "summary": "Undici giorni per attraversare tutto il nord: i tsingy rossi, la baia di Diego, le piantagioni di vaniglia e l'arcipelago di Nosy Be. Il nostro itinerario più completo."
+        "summary": "Undici giorni attraverso tutto il nord: i tsingy rossi, la baia di Diego, le piantagioni di vaniglia e l'arcipelago di Nosy Be. Il nostro itinerario più completo."
       },
       "circuit-nature-traditions-du-nord-8-jours-7-nuits": {
         "title": "Natura & Tradizioni del Nord",
         "region": "Diana, Madagascar",
-        "summary": "Otto giorni tra riserve naturali e villaggi sakalava. Incontri con gli artigiani, mercati locali e notti presso famiglie del posto."
+        "summary": "Otto giorni tra riserve naturali e villaggi Sakalava. Incontri con artigiani, mercati locali e soggiorni presso famiglie del posto."
       },
       "circuit-sava": {
         "title": "Tour SAVA",
         "region": "Sambava, Antalaha, Vohémar, Andapa",
-        "summary": "La via della vaniglia e il parco di Marojejy. Una regione ancora incontaminata dal turismo di massa, tra Oceano Indiano e foresta pluviale."
+        "summary": "La strada della vaniglia e il Parco Nazionale di Marojejy. Una regione ancora incontaminata dal turismo di massa, tra Oceano Indiano e foresta pluviale."
       },
       "tours-des-archipels-de-nosy-be": {
         "title": "Tour dell'arcipelago di Nosy Be",
@@ -220,18 +223,18 @@
       },
       "une-experience-authentique": {
         "title": "Un'esperienza autentica",
-        "region": "Nosy Be & dintorni",
-        "summary": "Tre giorni al ritmo dei villaggi: pesca all'alba, cucina sakalava e serata musicale. Lontano dai percorsi turistici."
+        "region": "Nosy Be e dintorni",
+        "summary": "Tre giorni al ritmo dei villaggi: pesca all'alba, cucina Sakalava e una serata musicale. Lontano dai percorsi turistici."
       },
       "randonnees-immersive-a-nosy-komba": {
         "title": "Trekking immersivo a Nosy Komba",
         "region": "Nosy Komba, Nosy Be",
-        "summary": "Due giorni di cammino sull'isola dei lemuri, dal villaggio di Ampangorina fino alla cima. Notte presso una famiglia locale e incontro con le ricamatrici."
+        "summary": "Due giorni di trekking sull'isola dei lemuri, dal villaggio di Ampangorina fino alla vetta. Soggiorno in famiglia e incontro con le ricamatrici locali."
       },
       "circuit-2-jours-a-lokobe": {
         "title": "2 giorni a Lokobe",
-        "region": "Riserva integrale, Nosy Be",
-        "summary": "L'ultima foresta primaria dell'isola, raggiunta in piroga tradizionale. Due giorni per osservare lemuri macaco, boa e camaleonti con una guida del villaggio."
+        "region": "Riserva Naturale Integrale, Nosy Be",
+        "summary": "L'ultima foresta primaria dell'isola, raggiungibile in canoa tradizionale. Due giorni per osservare lemuri bruni, boa e camaleonti con una guida del villaggio."
       }
     }
   },
@@ -243,25 +246,25 @@
     },
     "breadcrumb": "Escursioni",
     "pageTitle": "Le nostre escursioni",
-    "pageIntro": "Uscite da mezza giornata a giornata intera in partenza dal vostro hotel: isolotti, banchi di sabbia, foreste primarie e villaggi di pescatori. Transfer, guida e pranzo inclusi.",
+    "pageIntro": "Uscite da mezza giornata a giornata intera, in partenza dal vostro hotel: isolotti, banchi di sabbia, foreste primarie e villaggi di pescatori. Transfer, guida e pranzo inclusi.",
     "count": "{count, plural, one {# escursione} other {# escursioni}}",
     "featured": "Da non perdere",
     "viewAria": "Vedi i dettagli dell'escursione {title}",
     "imageAlt": "Escursione {title} a Nosy Be",
     "departAt": "Partenza {time}",
-    "returnAt": "Rientro {time}",
+    "returnAt": "Ritorno {time}",
     "durationH": "{h} h",
     "durationHM": "{h} h {m}",
     "durationMin": "{m} min",
     "group": "{min}–{max} pers.",
     "priceLabel": "da",
-    "perPerson": "/ pers.",
+    "perPerson": "/ persona",
     "pickup": "Transfer dall'hotel incluso",
     "includesLabel": "Incluso",
     "formats": {
       "journee": "Giornata intera",
       "demi-journee": "Mezza giornata",
-      "soiree": "Fine giornata"
+      "soiree": "Tardo pomeriggio"
     },
     "themes": {
       "mer": "Mare & isole",
@@ -273,22 +276,22 @@
       "bateau": "Barca",
       "vehicule": "Veicolo",
       "mixte": "Barca & veicolo",
-      "pirogue": "Piroga"
+      "pirogue": "Canoa"
     },
     "travel": {
       "bateau": "{time} di navigazione",
-      "pirogue": "{time} di piroga",
+      "pirogue": "{time} in canoa",
       "vehicule": "{time} di strada",
-      "mixte": "{time} di tragitto"
+      "mixte": "{time} di viaggio"
     },
     "includes": {
       "transfert": "Transfer dall'hotel",
       "bateau": "Barca",
       "guide": "Guida locale",
       "dejeuner": "Pranzo",
-      "collation": "Spuntino",
+      "collation": "Snack",
       "eau": "Acqua minerale",
-      "snorkeling": "Maschera e boccaglio",
+      "snorkeling": "Maschera & boccaglio",
       "entree-parc": "Ingresso al parco"
     },
     "highlights": {
@@ -314,7 +317,7 @@
       "nosy-tanikely": {
         "title": "Nosy Tanikely",
         "region": "Parco nazionale marino",
-        "summary": "Il miglior spot per lo snorkeling della regione: coralli, pesci tropicali e tartarughe a pochi metri dalla riva, in una riserva marina protetta."
+        "summary": "Il miglior punto di snorkeling della regione: coralli, pesci tropicali e tartarughe a pochi metri dalla riva, in una riserva marina protetta."
       },
       "nosy-komba-nosy-tanikely": {
         "title": "Nosy Komba & Nosy Tanikely",
@@ -324,22 +327,22 @@
       "reserve-de-lokobe": {
         "title": "Riserva di Lokobe",
         "region": "Ambatozavavy, Nosy Be",
-        "summary": "Traversata in piroga tradizionale seguita da una passeggiata guidata nell'ultima foresta primaria dell'isola. Lemuri notturni, camaleonti e boa del Madagascar."
+        "summary": "Traversata in canoa tradizionale seguita da una camminata guidata nell'ultima foresta primaria dell'isola. Lemuri notturni, camaleonti e boa del Madagascar."
       },
       "nosy-sakatia": {
         "title": "Nosy Sakatia",
         "region": "Arcipelago di Nosy Be",
-        "summary": "L'isola delle orchidee, a 25 minuti di barca. Nuoto con le tartarughe verdi tra le praterie marine, spiagge deserte e pranzo davanti al mare."
+        "summary": "L'isola delle orchidee, a 25 minuti di barca. Nuotate con le tartarughe verdi tra le praterie marine, spiagge deserte e pranzo davanti al mare."
       },
       "mont-passot-coucher-de-soleil": {
         "title": "Mont Passot al tramonto",
         "region": "Nosy Be",
-        "summary": "Il punto più alto dell'isola e i suoi laghi sacri. Panorama a 360° sull'arcipelago mentre il sole scende sul canale del Mozambico."
+        "summary": "Il punto più alto dell'isola e i suoi laghi sacri. Un panorama a 360° sull'arcipelago mentre il sole tramonta sul canale del Mozambico."
       },
       "mangroves-ambatozavavy": {
         "title": "Mangrovie di Ambatozavavy",
         "region": "Ambatozavavy, Nosy Be",
-        "summary": "Navigazione in piroga lungo i canali di mangrovia. Uccelli, granchi violinisti e uno sguardo sulla vita quotidiana di un villaggio di pescatori sakalava."
+        "summary": "Escursione in canoa lungo i canali di mangrovia. Uccelli, granchi violinisti e uno sguardo sulla vita quotidiana di un villaggio di pescatori Sakalava."
       },
       "distillerie-ylang-ylang": {
         "title": "Distilleria di ylang-ylang",
@@ -368,7 +371,23 @@
       "mealAria": "Pasti",
       "distanceAria": "Distanza",
       "distanceValue": "{km} km",
+      "bestPeriod": "Periodo migliore: {period}",
+      "monthRangeJoiner": "a",
       "translationPending": "Questa pagina non è ancora tradotta — contenuto mostrato in francese."
+    },
+    "months": {
+      "1": "Gen",
+      "2": "Feb",
+      "3": "Mar",
+      "4": "Apr",
+      "5": "Mag",
+      "6": "Giu",
+      "7": "Lug",
+      "8": "Ago",
+      "9": "Set",
+      "10": "Ott",
+      "11": "Nov",
+      "12": "Dic"
     }
   },
   "about": {

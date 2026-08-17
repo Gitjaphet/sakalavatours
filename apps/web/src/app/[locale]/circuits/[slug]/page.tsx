@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-
+import { formatDepartureMonths } from '@/lib/format/departureMonths';
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getProduct, getProducts } from "@/lib/api/products";
 import { PageHero } from "@/components/layout/PageHero";
@@ -179,6 +179,19 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
             {product.is_fallback && (
               <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-700">
                 {t("detail.translationPending")}
+              </p>
+            )}
+
+            {product.departure_months.length > 0 && (
+              <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#1d4e5f]/8 px-3 py-1.5 text-xs font-medium text-[#1d4e5f]">
+                <IconCalendarEvent size={16} className="shrink-0" />
+                {t('detail.bestPeriod', {
+                  period: formatDepartureMonths(
+                    product.departure_months,
+                    (m: number) => t(`months.${m}`),
+                    t('detail.monthRangeJoiner')
+                  ),
+                })}
               </p>
             )}
 

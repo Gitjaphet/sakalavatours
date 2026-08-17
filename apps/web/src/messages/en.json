@@ -196,6 +196,8 @@
       "mealAria": "Meals",
       "distanceAria": "Distance",
       "distanceValue": "{km} km",
+      "bestPeriod": "Best period: {period}",
+      "monthRangeJoiner": "to",
       "translationPending": "This page isn't translated yet — showing French content."
     },
     "items": {
@@ -369,7 +371,23 @@
       "mealAria": "Meals",
       "distanceAria": "Distance",
       "distanceValue": "{km} km",
+      "bestPeriod": "Best period: {period}",
+      "monthRangeJoiner": "to",
       "translationPending": "This page isn't translated yet — showing French content."
+    },
+    "months": {
+      "1": "Jan",
+      "2": "Feb",
+      "3": "Mar",
+      "4": "Apr",
+      "5": "May",
+      "6": "Jun",
+      "7": "Jul",
+      "8": "Aug",
+      "9": "Sep",
+      "10": "Oct",
+      "11": "Nov",
+      "12": "Dec"
     }
   },
   "about": {

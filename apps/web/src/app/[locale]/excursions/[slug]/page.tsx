@@ -25,6 +25,7 @@ import {
   IconBed,
   IconToolsKitchen2,
   IconRoute,
+  IconCalendarEvent,
 } from "@tabler/icons-react";
 type Params = Promise<{ locale: string; slug: string }>;
 

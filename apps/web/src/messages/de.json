@@ -195,7 +195,10 @@
       "hotelAria": "Unterkunft",
       "mealAria": "Mahlzeiten",
       "distanceAria": "Entfernung",
-      "distanceValue": "{km} km"
+      "distanceValue": "{km} km",
+      "bestPeriod": "Beste Reisezeit: {period}",
+      "monthRangeJoiner": "bis",
+      "translationPending": "Diese Seite ist noch nicht übersetzt — Inhalt wird auf Französisch angezeigt."
     },
     "items": {
       "les-circuits-nord-de-madagascar-11jours-10-nuits": {
@@ -368,7 +371,23 @@
       "mealAria": "Mahlzeiten",
       "distanceAria": "Entfernung",
       "distanceValue": "{km} km",
+      "bestPeriod": "Beste Reisezeit: {period}",
+      "monthRangeJoiner": "bis",
       "translationPending": "Diese Seite ist noch nicht übersetzt — Inhalt wird auf Französisch angezeigt."
+    },
+    "months": {
+      "1": "Jan",
+      "2": "Feb",
+      "3": "Mär",
+      "4": "Apr",
+      "5": "Mai",
+      "6": "Jun",
+      "7": "Jul",
+      "8": "Aug",
+      "9": "Sep",
+      "10": "Okt",
+      "11": "Nov",
+      "12": "Dez"
     }
   },
   "about": {
