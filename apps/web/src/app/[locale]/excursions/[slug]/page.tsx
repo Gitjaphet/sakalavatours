@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { formatDepartureMonths } from '@/lib/format/departureMonths';
-import { getProduct, getProducts } from "@/lib/api/products";
+import { getProduct, getProducts, getRelatedProducts } from "@/lib/api/products";
+import { RelatedProducts } from "@/components/products/RelatedProducts";
 import { PageHero } from "@/components/layout/PageHero";
 import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
 import { Rating } from "@/components/ui/Rating";
@@ -107,6 +108,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
   // doit rendre un 404 plutôt qu'afficher un produit du mauvais type.
   if (!product || product.product_type !== "excursion") notFound();
 
+  const relatedProducts = await getRelatedProducts(product.related_slugs, locale);
   const t = await getTranslations({ locale, namespace: "excursions" });
   const tNav = await getTranslations({ locale, namespace: "nav" });
   const levelKey = LEVEL_KEYS[product.difficulty] ?? "facile";
@@ -445,6 +447,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
             </div>
           </aside>
         </div>
+        <RelatedProducts products={relatedProducts} />
       </main>
     </div>
   );
