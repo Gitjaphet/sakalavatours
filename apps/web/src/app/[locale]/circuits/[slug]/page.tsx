@@ -436,7 +436,7 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
             </div>
           </aside>
         </div>
-        <RelatedProducts products={relatedProducts} />
+        <RelatedProducts products={relatedProducts} title={t("detail.relatedTitle")} />
       </main>
     </div>
   );
