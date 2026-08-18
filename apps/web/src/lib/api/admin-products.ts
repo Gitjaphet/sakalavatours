@@ -64,10 +64,13 @@ export async function getAdminProduct(
 
   if (!res.ok) {
     const data = await res.json().catch(() => ({}));
-    throw new AdminApiError(
-      data.detail ?? `Erreur ${res.status}`,
-      res.status,
-    );
+    const message =
+    typeof data.detail === "string"
+        ? data.detail
+        : Array.isArray(data.detail)
+        ? data.detail.map((e: { msg?: string }) => e.msg).join(", ")
+        : `Erreur ${res.status}`;
+    throw new AdminApiError(message, res.status);
   }
 
   return res.json();
