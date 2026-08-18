@@ -1,3 +1,9 @@
+import { RequireAuth } from "../RequireAuth";
+
 export default function AdminDashboardPage() {
-  return <p>Dashboard — placeholder</p>;
+  return (
+    <RequireAuth>
+      <p>Dashboard — placeholder</p>
+    </RequireAuth>
+  );
 }

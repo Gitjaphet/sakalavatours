@@ -25,6 +25,7 @@ type AuthState = {
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  restoreSession: () => Promise<boolean>;
 };
 
 const AuthContext = createContext<AuthState | null>(null);
@@ -67,8 +68,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   }, []);
 
-  return (
-    <AuthContext.Provider value={{ accessToken, user, isLoading, login, logout }}>
+    const restoreSession = useCallback(async (): Promise<boolean> => {
+    try {
+      const res = await fetch("/api/admin/auth/refresh", { method: "POST" });
+      if (!res.ok) return false;
+
+      const data = await res.json();
+      setAccessToken(data.access_token);
+
+      const meRes = await fetch("/api/admin/auth/me", {
+        headers: { Authorization: `Bearer ${data.access_token}` },
+      });
+      if (!meRes.ok) return false;
+
+      const meData = await meRes.json();
+      setUser(meData);
+      return true;
+    } catch {
+      return false;
+    }
+  }, []);
+
+    return (
+    <AuthContext.Provider
+      value={{ accessToken, user, isLoading, login, logout, restoreSession }}
+    >
       {children}
     </AuthContext.Provider>
   );
