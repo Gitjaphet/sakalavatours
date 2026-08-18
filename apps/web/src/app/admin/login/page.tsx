@@ -1,15 +1,31 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../AuthContext";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const { login, isLoading } = useAuth();
+  const { login, isLoading, accessToken, user, restoreSession } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [checkingSession, setCheckingSession] = useState(true);
+
+  useEffect(() => {
+    if (accessToken && user) {
+      router.replace("/admin/dashboard");
+      return;
+    }
+
+    restoreSession().then((ok) => {
+      if (ok) {
+        router.replace("/admin/dashboard");
+      } else {
+        setCheckingSession(false);
+      }
+    });
+  }, [accessToken, user, restoreSession, router]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -20,6 +36,14 @@ export default function AdminLoginPage() {
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erreur de connexion");
     }
+  }
+
+  if (checkingSession) {
+    return (
+      <div className="flex min-h-screen items-center justify-center text-sm text-stone-500">
+        Chargement...
+      </div>
+    );
   }
 
   return (
