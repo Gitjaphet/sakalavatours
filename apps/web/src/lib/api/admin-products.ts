@@ -6,6 +6,7 @@ import type {
   ContentStatus,
   ProductDetail,
   ProductUpdate,
+  ProductCreate,        // ← cette ligne à ajouter
   MediaAdminRead,
 } from "@/types/api";
 
@@ -107,6 +108,34 @@ export async function updateAdminProduct(
 
   return res.json() as Promise<ProductDetail>;
   
+}
+
+
+export async function createAdminProduct(
+  accessToken: string,
+  payload: ProductCreate,
+): Promise<ProductDetail> {
+  const res = await fetch(`/api/admin/products`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    const message =
+      typeof data.detail === "string"
+        ? data.detail
+        : Array.isArray(data.detail)
+          ? data.detail.map((e: { msg?: string }) => e.msg).join(", ")
+          : `Erreur ${res.status}`;
+    throw new AdminApiError(message, res.status);
+  }
+
+  return res.json() as Promise<ProductDetail>;
 }
 
 

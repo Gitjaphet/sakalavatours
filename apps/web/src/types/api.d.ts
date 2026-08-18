@@ -207,3 +207,61 @@ export type MediaAdminRead = {
   photographer: string | null;
   created_at: string;
 };
+
+
+
+export type ProductTranslationIn = {
+  locale: string;
+  title: string;
+  subtitle?: string | null;
+  region_label?: string | null;
+  summary: string;
+  description?: string | null;
+  practical_info?: string | null;
+  meta_title?: string | null;
+  meta_description?: string | null;
+  og_title?: string | null;
+  og_description?: string | null;
+  is_machine_translated?: boolean;
+};
+
+export type ProductCreate = {
+  slug?: string;
+  product_type: "circuit" | "excursion";
+  product_format: ProductFormat;
+  difficulty?: DifficultyLevel;
+  status?: ContentStatus;
+
+  duration_days?: number | null;
+  duration_nights?: number | null;
+  duration_hours?: string | null;
+  departure_time?: string | null;
+  return_time?: string | null;
+  travel_minutes?: number | null;
+  transport?: TransportMode | null;
+
+  group_min?: number;
+  group_max?: number;
+  hotel_pickup?: boolean;
+  min_age?: number | null;
+
+  price_from: string;
+  currency?: string;
+  deposit_percent?: number | null;
+
+  destination_id?: string | null;
+  cover_media_id?: string | null;
+  is_featured?: boolean;
+  sort_order?: number;
+
+  is_indexable?: boolean;
+  sitemap_priority?: number;
+
+  translations: ProductTranslationIn[];
+  highlight_codes?: string[];
+  packing_codes?: string[];
+  departure_months?: number[];
+  gallery_media_ids?: string[];
+  // inclusions, itinerary, price_tiers, faqs : omis pour l'instant,
+  // même portée réduite que ProductUpdate — étape dédiée plus tard
+};
