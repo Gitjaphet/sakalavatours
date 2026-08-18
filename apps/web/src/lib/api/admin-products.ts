@@ -4,6 +4,8 @@
 import type {
   ProductAdminListResponse,
   ContentStatus,
+  ProductDetail,
+  ProductUpdate,
 } from "@/types/api";
 
 export class AdminApiError extends Error {
@@ -56,7 +58,7 @@ export async function getAdminProduct(
   accessToken: string,
   id: string,
   locale: string = "fr",
-): Promise<unknown> {
+): Promise<ProductDetail> {
   const res = await fetch(
     `/api/admin/products/${id}?locale=${locale}`,
     { headers: { Authorization: `Bearer ${accessToken}` } },
@@ -73,5 +75,34 @@ export async function getAdminProduct(
     throw new AdminApiError(message, res.status);
   }
 
-  return res.json();
+  return res.json() as Promise<ProductDetail>;
+}
+
+
+export async function updateAdminProduct(
+  accessToken: string,
+  id: string,
+  payload: ProductUpdate,
+): Promise<ProductDetail> {
+  const res = await fetch(`/api/admin/products/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    const message =
+      typeof data.detail === "string"
+        ? data.detail
+        : Array.isArray(data.detail)
+          ? data.detail.map((e: { msg?: string }) => e.msg).join(", ")
+          : `Erreur ${res.status}`;
+    throw new AdminApiError(message, res.status);
+  }
+
+  return res.json() as Promise<ProductDetail>;
 }
