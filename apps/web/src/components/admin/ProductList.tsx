@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/app/admin/AuthContext";
 import { listAdminProducts, AdminApiError } from "@/lib/api/admin-products";
+import Link from "next/link";
 import type { ProductAdminListItem } from "@/types/api";
 
 export function ProductList() {
@@ -59,17 +60,24 @@ export function ProductList() {
           </tr>
         </thead>
         <tbody>
-          {items.map((item) => (
-            <tr key={item.id} className="border-b border-stone-100">
-              <td className="py-2">{item.title}</td>
-              <td className="py-2">{item.product_type}</td>
-              <td className="py-2">{item.status}</td>
-              <td className="py-2">{item.is_published ? "Oui" : "Non"}</td>
-              <td className="py-2">
+        {items.map((item) => (
+            <tr
+            key={item.id}
+            className="cursor-pointer border-b border-stone-100 hover:bg-stone-50"
+            >
+            <td className="py-2">
+                <Link href={`/admin/products/${item.id}`} className="block">
+                {item.title}
+                </Link>
+            </td>
+            <td className="py-2">{item.product_type}</td>
+            <td className="py-2">{item.status}</td>
+            <td className="py-2">{item.is_published ? "Oui" : "Non"}</td>
+            <td className="py-2">
                 {item.price_from} {item.currency}
-              </td>
+            </td>
             </tr>
-          ))}
+        ))}
         </tbody>
       </table>
     </div>

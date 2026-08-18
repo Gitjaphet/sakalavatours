@@ -50,3 +50,25 @@ export async function listAdminProducts(
 
   return res.json() as Promise<ProductAdminListResponse>;
 }
+
+
+export async function getAdminProduct(
+  accessToken: string,
+  id: string,
+  locale: string = "fr",
+): Promise<unknown> {
+  const res = await fetch(
+    `/api/admin/products/${id}?locale=${locale}`,
+    { headers: { Authorization: `Bearer ${accessToken}` } },
+  );
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new AdminApiError(
+      data.detail ?? `Erreur ${res.status}`,
+      res.status,
+    );
+  }
+
+  return res.json();
+}
