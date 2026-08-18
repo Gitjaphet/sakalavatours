@@ -10,7 +10,7 @@ import {
   AdminApiError,
 } from "@/lib/api/admin-products";
 import { productDetailToUpdate } from "@/lib/api/product-transform";
-import type { ProductDetail, ContentStatus } from "@/types/api";
+import type { ProductDetail } from "@/types/api";
 
 function ProductDetailContent({ id }: { id: string }) {
   const { accessToken } = useAuth();
@@ -21,7 +21,7 @@ function ProductDetailContent({ id }: { id: string }) {
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
 
   // Champs du formulaire, dérivés de `data` une fois chargé
-  const [status, setStatus] = useState<ContentStatus>("draft");
+ 
   const [isPublished, setIsPublished] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
   const [priceFrom, setPriceFrom] = useState("");
@@ -63,7 +63,7 @@ function ProductDetailContent({ id }: { id: string }) {
     try {
       const payload = {
         ...productDetailToUpdate(data),
-        status,
+       
         is_published: isPublished,
         is_featured: isFeatured,
         price_from: priceFrom,
@@ -95,18 +95,7 @@ function ProductDetailContent({ id }: { id: string }) {
           <div className="mb-6 max-w-sm space-y-4 rounded border border-stone-200 p-4">
             <h2 className="font-medium">{data.title}</h2>
 
-            <label className="block text-sm">
-              Statut
-              <select
-                value={status}
-                onChange={(e) => setStatus(e.target.value as ContentStatus)}
-                className="mt-1 block w-full rounded border border-stone-300 p-2"
-              >
-                <option value="draft">draft</option>
-                <option value="published">published</option>
-                <option value="archived">archived</option>
-              </select>
-            </label>
+            
 
             <label className="flex items-center gap-2 text-sm">
               <input
