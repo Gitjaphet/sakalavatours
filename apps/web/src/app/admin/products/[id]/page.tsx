@@ -1,3 +1,4 @@
+// apps/web/src/app/admin/products/[id]/page.tsx
 "use client";
 
 import { useEffect, useState, use } from "react";
@@ -10,6 +11,17 @@ import {
   AdminApiError,
 } from "@/lib/api/admin-products";
 import { productDetailToUpdate } from "@/lib/api/product-transform";
+import { EnumSelect } from "@/components/admin/EnumSelect";
+import {
+  PRODUCT_FORMAT_OPTIONS,
+  DIFFICULTY_OPTIONS,
+  TRANSPORT_OPTIONS,
+} from "@/lib/constants/product-enums";
+import type {
+  ProductFormat,
+  DifficultyLevel,
+  TransportMode,
+} from "@/lib/constants/product-enums";
 import type { ProductDetail } from "@/types/api";
 
 function ProductDetailContent({ id }: { id: string }) {
@@ -21,10 +33,16 @@ function ProductDetailContent({ id }: { id: string }) {
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
 
   // Champs du formulaire, dérivés de `data` une fois chargé
- 
   const [isPublished, setIsPublished] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
   const [priceFrom, setPriceFrom] = useState("");
+  const [slug, setSlug] = useState("");
+  const [productFormat, setProductFormat] = useState<ProductFormat>("full_day");
+  const [difficulty, setDifficulty] = useState<DifficultyLevel>("easy");
+  const [transport, setTransport] = useState<TransportMode | "">("");
+  const [groupMin, setGroupMin] = useState("2");
+  const [groupMax, setGroupMax] = useState("12");
+  const [hotelPickup, setHotelPickup] = useState(true);
 
   useEffect(() => {
     if (!accessToken) return;
@@ -37,9 +55,16 @@ function ProductDetailContent({ id }: { id: string }) {
       .then((result) => {
         if (cancelled) return;
         setData(result);
-        setIsPublished(true);// placeholder, corrigé ci-dessous
+        setIsPublished(true); // le GET ne renvoie un ProductDetail que si le produit est publié
         setIsFeatured(result.is_featured);
         setPriceFrom(result.price_from);
+        setSlug(result.slug);
+        setProductFormat(result.product_format);
+        setDifficulty(result.difficulty);
+        setTransport(result.transport ?? "");
+        setGroupMin(String(result.group_min));
+        setGroupMax(String(result.group_max));
+        setHotelPickup(result.hotel_pickup);
       })
       .catch((err) => {
         if (cancelled) return;
@@ -63,10 +88,16 @@ function ProductDetailContent({ id }: { id: string }) {
     try {
       const payload = {
         ...productDetailToUpdate(data),
-       
         is_published: isPublished,
         is_featured: isFeatured,
         price_from: priceFrom,
+        slug,
+        product_format: productFormat,
+        difficulty,
+        transport: transport === "" ? null : transport,
+        group_min: Number(groupMin),
+        group_max: Number(groupMax),
+        hotel_pickup: hotelPickup,
       };
       const updated = await updateAdminProduct(accessToken, id, payload);
       setData(updated);
@@ -95,8 +126,6 @@ function ProductDetailContent({ id }: { id: string }) {
           <div className="mb-6 max-w-sm space-y-4 rounded border border-stone-200 p-4">
             <h2 className="font-medium">{data.title}</h2>
 
-            
-
             <label className="flex items-center gap-2 text-sm">
               <input
                 type="checkbox"
@@ -123,6 +152,78 @@ function ProductDetailContent({ id }: { id: string }) {
                 onChange={(e) => setPriceFrom(e.target.value)}
                 className="mt-1 block w-full rounded border border-stone-300 p-2"
               />
+            </label>
+
+            <label className="block text-sm">
+              Slug
+              <input
+                type="text"
+                value={slug}
+                onChange={(e) => setSlug(e.target.value)}
+                className="mt-1 block w-full rounded border border-stone-300 p-2"
+              />
+            </label>
+
+            <EnumSelect
+              label="Format"
+              value={productFormat}
+              onChange={setProductFormat}
+              options={PRODUCT_FORMAT_OPTIONS}
+            />
+
+            <EnumSelect
+              label="Difficulté"
+              value={difficulty}
+              onChange={setDifficulty}
+              options={DIFFICULTY_OPTIONS}
+            />
+
+            <label className="block text-sm">
+              Transport
+              <select
+                value={transport}
+                onChange={(e) => setTransport(e.target.value as TransportMode | "")}
+                className="mt-1 block w-full rounded border border-stone-300 p-2"
+              >
+                <option value="">— Aucun —</option>
+                {TRANSPORT_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <div className="flex gap-4">
+              <label className="block text-sm">
+                Groupe min
+                <input
+                  type="number"
+                  min={1}
+                  value={groupMin}
+                  onChange={(e) => setGroupMin(e.target.value)}
+                  className="mt-1 block w-full rounded border border-stone-300 p-2"
+                />
+              </label>
+              <label className="block text-sm">
+                Groupe max
+                <input
+                  type="number"
+                  min={1}
+                  value={groupMax}
+                  onChange={(e) => setGroupMax(e.target.value)}
+                  className="mt-1 block w-full rounded border border-stone-300 p-2"
+                />
+              </label>
+            </div>
+
+            <label className="flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                checked={hotelPickup}
+                onChange={(e) => setHotelPickup(e.target.checked)}
+              />
+              Transfert hôtel inclus
             </label>
 
             <button

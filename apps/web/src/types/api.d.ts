@@ -2,7 +2,7 @@
 
 export type AdminRole = "owner" | "admin" | "editor";
 
-export type ContentStatus = "draft" | "published" | "archived";
+export type ContentStatus = "draft" | "scheduled" | "published" | "archived";
 
 export type ProductAdminListItem = {
   id: string;
@@ -19,6 +19,12 @@ export type ProductAdminListItem = {
   title: string;
   translated_locales: string[];
 };
+
+import type {
+  ProductFormat,
+  DifficultyLevel,
+  TransportMode,
+} from "@/lib/constants/product-enums";
 
 export type ProductAdminListResponse = {
   items: ProductAdminListItem[];
@@ -88,8 +94,9 @@ export type ProductDetail = {
   id: string;
   slug: string;
   product_type: "circuit" | "excursion";
-  product_format: string;
-  difficulty: string;
+  product_format: ProductFormat;
+  difficulty: DifficultyLevel;
+  transport: TransportMode | null;
   title: string;
   subtitle: string | null;
   region_label: string | null;
@@ -133,8 +140,9 @@ export type ProductDetail = {
 export type ProductUpdate = {
   slug?: string;
   product_type?: "circuit" | "excursion";
-  product_format?: string;
-  difficulty?: string;
+  product_format?: ProductFormat;
+  difficulty?: DifficultyLevel;
+  transport?: TransportMode | null;
   status?: ContentStatus;
   is_published?: boolean;
 
