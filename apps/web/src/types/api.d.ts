@@ -177,4 +177,33 @@ export type ProductUpdate = {
   gallery_media_ids?: string[];
   // translations, itinerary, faqs, inclusions, price_tiers : omis pour l'instant
   // (champs multi-locale, traités dans une étape dédiée)
+  
+};
+
+// --- Admin · Médias ---
+
+export type CoverMediaLike = {
+  id: string;
+  url: string;
+  alt_text: string | null;
+};
+
+
+export type MediaAdminRead = {
+  id: string;
+  kind: "image" | "video" | "document";
+  url: string;
+  width: number | null;
+  height: number | null;
+  blurhash: string | null;
+  alt_text: string;
+  caption: string | null;
+  title: string | null;
+  filename: string;
+  file_size: number;
+  mime_type: string;
+  folder: string | null;
+  is_public: boolean;
+  photographer: string | null;
+  created_at: string;
 };

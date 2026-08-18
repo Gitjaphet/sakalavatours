@@ -6,6 +6,7 @@ import type {
   ContentStatus,
   ProductDetail,
   ProductUpdate,
+  MediaAdminRead,
 } from "@/types/api";
 
 export class AdminApiError extends Error {
@@ -105,4 +106,34 @@ export async function updateAdminProduct(
   }
 
   return res.json() as Promise<ProductDetail>;
+  
+}
+
+
+export async function listAdminMedia(
+  accessToken: string,
+  params: { folder?: string; limit?: number; offset?: number } = {},
+): Promise<MediaAdminRead[]> {
+  const search = new URLSearchParams();
+  if (params.folder) search.set("folder", params.folder);
+  if (params.limit !== undefined) search.set("limit", String(params.limit));
+  if (params.offset !== undefined) search.set("offset", String(params.offset));
+
+  const query = search.toString();
+  const res = await fetch(`/api/admin/media${query ? `?${query}` : ""}`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    const message =
+      typeof data.detail === "string"
+        ? data.detail
+        : Array.isArray(data.detail)
+          ? data.detail.map((e: { msg?: string }) => e.msg).join(", ")
+          : `Erreur ${res.status}`;
+    throw new AdminApiError(message, res.status);
+  }
+
+  return res.json() as Promise<MediaAdminRead[]>;
 }

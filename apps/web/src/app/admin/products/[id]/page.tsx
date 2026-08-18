@@ -12,6 +12,7 @@ import {
 } from "@/lib/api/admin-products";
 import { productDetailToUpdate } from "@/lib/api/product-transform";
 import { EnumSelect } from "@/components/admin/EnumSelect";
+import { CoverPicker } from "@/components/admin/CoverPicker";
 import {
   PRODUCT_FORMAT_OPTIONS,
   DIFFICULTY_OPTIONS,
@@ -22,7 +23,8 @@ import type {
   DifficultyLevel,
   TransportMode,
 } from "@/lib/constants/product-enums";
-import type { ProductDetail } from "@/types/api";
+import type { ProductDetail, CoverMediaLike } from "@/types/api";
+
 
 function ProductDetailContent({ id }: { id: string }) {
   const { accessToken } = useAuth();
@@ -43,6 +45,7 @@ function ProductDetailContent({ id }: { id: string }) {
   const [groupMin, setGroupMin] = useState("2");
   const [groupMax, setGroupMax] = useState("12");
   const [hotelPickup, setHotelPickup] = useState(true);
+  const [coverMedia, setCoverMedia] = useState<CoverMediaLike | null>(null);
 
   useEffect(() => {
     if (!accessToken) return;
@@ -65,6 +68,7 @@ function ProductDetailContent({ id }: { id: string }) {
         setGroupMin(String(result.group_min));
         setGroupMax(String(result.group_max));
         setHotelPickup(result.hotel_pickup);
+        setCoverMedia(result.cover);
       })
       .catch((err) => {
         if (cancelled) return;
@@ -98,6 +102,7 @@ function ProductDetailContent({ id }: { id: string }) {
         group_min: Number(groupMin),
         group_max: Number(groupMax),
         hotel_pickup: hotelPickup,
+        cover_media_id: coverMedia?.id ?? null,
       };
       const updated = await updateAdminProduct(accessToken, id, payload);
       setData(updated);
@@ -225,6 +230,17 @@ function ProductDetailContent({ id }: { id: string }) {
               />
               Transfert hôtel inclus
             </label>
+
+            {coverMedia && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={coverMedia.url}
+                alt={coverMedia.alt_text ?? ""}
+                className="h-24 w-full rounded object-cover"
+              />
+            )}
+
+            <CoverPicker coverMediaId={coverMedia?.id ?? null} onSelect={setCoverMedia} />
 
             <button
               onClick={handleSave}
