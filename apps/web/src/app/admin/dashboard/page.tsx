@@ -1,8 +1,10 @@
+// apps/web/src/app/admin/dashboard/page.tsx
 "use client";
 
 import { useRouter } from "next/navigation";
 import { RequireAuth } from "../RequireAuth";
 import { useAuth } from "../AuthContext";
+import { ProductList } from "@/components/admin/ProductList";
 
 function DashboardContent() {
   const router = useRouter();
@@ -27,7 +29,8 @@ function DashboardContent() {
         </button>
       </header>
       <main className="p-6">
-        <p>Dashboard — placeholder</p>
+        <h1 className="mb-4 text-xl font-semibold">Produits</h1>
+        <ProductList />
       </main>
     </div>
   );
