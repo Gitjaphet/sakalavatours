@@ -88,8 +88,12 @@ async def list_products(
     return products, total
 
 
-async def get_by_slug(session: AsyncSession, slug: str) -> Product | None:
-    stmt = _published(select(Product).where(Product.slug == slug))
+async def get_by_slug(
+    session: AsyncSession, slug: str, *, published_only: bool = True
+) -> Product | None:
+    stmt = select(Product).where(Product.slug == slug, Product.deleted_at.is_(None))
+    if published_only:
+        stmt = _published(stmt)
     return (await session.exec(stmt)).first()
 
 

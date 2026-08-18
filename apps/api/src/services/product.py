@@ -180,11 +180,11 @@ async def list_for_locale(
 
 
 async def get_detail_for_locale(
-    session: AsyncSession, slug: str, locale: str
+    session: AsyncSession, slug: str, locale: str, *, published_only: bool = True
 ) -> ProductDetail | None:
     chain = locale_chain(locale)
 
-    product = await repo.get_by_slug(session, slug)
+    product = await repo.get_by_slug(session, slug, published_only=published_only)
     if product is None:
         return None
 

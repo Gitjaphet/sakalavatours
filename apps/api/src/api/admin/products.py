@@ -155,11 +155,9 @@ async def create_product(
     )
     await session.commit()
 
-    detail = await read_service.get_detail_for_locale(session, product.slug, "fr")
-    if detail is None:
-        # Produit créé en brouillon : la lecture publique ne le voit pas.
-        # On renvoie tout de même une réponse plutôt qu'une erreur.
-        detail = await read_service.get_detail_for_locale(session, product.slug, "fr")
+    detail = await read_service.get_detail_for_locale(
+        session, product.slug, "fr", published_only=False
+    )
     return detail  # type: ignore[return-value]
 
 
@@ -170,12 +168,14 @@ async def get_product(
     locale: Annotated[str, Query(max_length=5)] = "fr",
 ) -> ProductDetail:
     product = await _get_or_404(session, product_id)
-    detail = await read_service.get_detail_for_locale(session, product.slug, locale)
+    detail = await read_service.get_detail_for_locale(
+        session, product.slug, locale, published_only=False
+    )
 
     if detail is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Produit non publié — utilisez la prévisualisation",
+            detail="Produit introuvable",
         )
     return detail
 
@@ -219,7 +219,9 @@ async def update_product(
     await session.commit()
     await session.refresh(product)
 
-    detail = await read_service.get_detail_for_locale(session, product.slug, "fr")
+    detail = await read_service.get_detail_for_locale(
+        session, product.slug, "fr", published_only=False
+    )
     return detail  # type: ignore[return-value]
 
 
