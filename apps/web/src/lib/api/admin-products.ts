@@ -137,3 +137,44 @@ export async function listAdminMedia(
 
   return res.json() as Promise<MediaAdminRead[]>;
 }
+
+
+export async function uploadAdminMedia(
+  accessToken: string,
+  params: {
+    file: File;
+    altText: string;
+    folder?: string;
+    isPublic?: boolean;
+    photographer?: string;
+  },
+): Promise<MediaAdminRead> {
+  const formData = new FormData();
+  formData.append("file", params.file);
+  formData.append(
+    "translations_json",
+    JSON.stringify([{ locale: "fr", alt_text: params.altText }]),
+  );
+  if (params.folder) formData.append("folder", params.folder);
+  formData.append("is_public", String(params.isPublic ?? true));
+  if (params.photographer) formData.append("photographer", params.photographer);
+
+  const res = await fetch("/api/admin/media/upload", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${accessToken}` },
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    const message =
+      typeof data.detail === "string"
+        ? data.detail
+        : Array.isArray(data.detail)
+          ? data.detail.map((e: { msg?: string }) => e.msg).join(", ")
+          : `Erreur ${res.status}`;
+    throw new AdminApiError(message, res.status);
+  }
+
+  return res.json() as Promise<MediaAdminRead>;
+}
