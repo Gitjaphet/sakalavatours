@@ -207,3 +207,27 @@ export async function uploadAdminMedia(
 
   return res.json() as Promise<MediaAdminRead>;
 }
+
+
+export async function deleteAdminProduct(
+  accessToken: string,
+  id: string,
+): Promise<{ message: string }> {
+  const res = await fetch(`/api/admin/products/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    const message =
+      typeof data.detail === "string"
+        ? data.detail
+        : Array.isArray(data.detail)
+          ? data.detail.map((e: { msg?: string }) => e.msg).join(", ")
+          : `Erreur ${res.status}`;
+    throw new AdminApiError(message, res.status);
+  }
+
+  return res.json() as Promise<{ message: string }>;
+}

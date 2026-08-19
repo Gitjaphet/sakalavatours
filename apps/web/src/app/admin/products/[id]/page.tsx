@@ -8,8 +8,10 @@ import { useAuth } from "../../AuthContext";
 import {
   getAdminProduct,
   updateAdminProduct,
+  deleteAdminProduct,
   AdminApiError,
 } from "@/lib/api/admin-products";
+import { useRouter } from "next/navigation";
 import { productDetailToUpdate } from "@/lib/api/product-transform";
 import { EnumSelect } from "@/components/admin/EnumSelect";
 import { CoverPicker } from "@/components/admin/CoverPicker";
@@ -27,12 +29,15 @@ import type { ProductDetail, CoverMediaLike } from "@/types/api";
 
 
 function ProductDetailContent({ id }: { id: string }) {
-  const { accessToken } = useAuth();
+  const { accessToken, user } = useAuth();
+  const router = useRouter();
+  
   const [data, setData] = useState<ProductDetail | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // Champs du formulaire, dérivés de `data` une fois chargé
   const [isPublished, setIsPublished] = useState(false);
@@ -46,6 +51,28 @@ function ProductDetailContent({ id }: { id: string }) {
   const [groupMax, setGroupMax] = useState("12");
   const [hotelPickup, setHotelPickup] = useState(true);
   const [coverMedia, setCoverMedia] = useState<CoverMediaLike | null>(null);
+
+  const canDelete = user?.role === "owner" || user?.role === "admin";
+
+
+  async function handleDelete() {
+    if (!accessToken || !data) return;
+    const confirmed = window.confirm(
+      `Supprimer définitivement « ${data.title} » ? Cette action archive le produit et le retire du site.`,
+    );
+    if (!confirmed) return;
+
+    setIsDeleting(true);
+    try {
+      await deleteAdminProduct(accessToken, id);
+      router.push("/admin/dashboard");
+    } catch (err) {
+      const message =
+        err instanceof AdminApiError ? err.message : "Erreur inattendue";
+      setSaveMessage(`Erreur : ${message}`);
+      setIsDeleting(false);
+    }
+  }
 
   useEffect(() => {
     if (!accessToken) return;
@@ -251,6 +278,19 @@ function ProductDetailContent({ id }: { id: string }) {
             </button>
 
             {saveMessage && <p className="text-sm">{saveMessage}</p>}
+
+            <p className="text-xs text-stone-400">DEBUG role: {user?.role ?? "null"}</p>
+
+            {canDelete && (
+              <button
+                onClick={handleDelete}
+                disabled={isDeleting}
+                className="mt-2 rounded border border-red-300 px-4 py-2 text-sm text-red-600 hover:bg-red-50 disabled:opacity-50"
+              >
+                {isDeleting ? "Suppression…" : "Supprimer ce produit"}
+              </button>
+            )}
+            
           </div>
 
           <pre className="overflow-auto rounded bg-stone-100 p-4 text-xs">
