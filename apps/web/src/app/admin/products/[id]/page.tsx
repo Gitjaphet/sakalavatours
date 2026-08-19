@@ -279,8 +279,6 @@ function ProductDetailContent({ id }: { id: string }) {
 
             {saveMessage && <p className="text-sm">{saveMessage}</p>}
 
-            <p className="text-xs text-stone-400">DEBUG role: {user?.role ?? "null"}</p>
-
             {canDelete && (
               <button
                 onClick={handleDelete}
