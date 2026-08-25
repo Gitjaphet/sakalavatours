@@ -79,7 +79,8 @@ async def _set_translations(session, product_id: UUID, translations) -> None:
         delete(ProductTranslation).where(ProductTranslation.product_id == product_id)
     )
     for t in translations:
-        session.add(ProductTranslation(product_id=product_id, **t.model_dump()))
+        data = t if isinstance(t, dict) else t.model_dump()
+        session.add(ProductTranslation(product_id=product_id, **data))
 
 
 async def _set_highlights(session, product_id: UUID, codes: list[str]) -> None:
@@ -193,13 +194,15 @@ async def _set_price_tiers(session, product_id: UUID, tiers) -> None:
         delete(ProductPriceTier).where(ProductPriceTier.product_id == product_id)
     )
     for t in tiers:
-        session.add(ProductPriceTier(product_id=product_id, **t.model_dump()))
+        data = t if isinstance(t, dict) else t.model_dump()
+        session.add(ProductPriceTier(product_id=product_id, **data))
 
 
 async def _set_faqs(session, product_id: UUID, faqs) -> None:
     await session.exec(delete(ProductFaq).where(ProductFaq.product_id == product_id))
     for f in faqs:
-        session.add(ProductFaq(product_id=product_id, **f.model_dump()))
+        data = f if isinstance(f, dict) else f.model_dump()
+        session.add(ProductFaq(product_id=product_id, **data))
 
 
 async def get_admin_detail(session: AsyncSession, product: Product) -> ProductAdminDetail:
