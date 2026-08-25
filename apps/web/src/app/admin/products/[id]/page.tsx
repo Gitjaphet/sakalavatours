@@ -194,6 +194,16 @@ function ProductDetailContent({ id }: { id: string }) {
         hotel_pickup: hotelPickup,
         cover_media_id: coverMedia?.id ?? null,
         translations: Object.values(translations),
+        itinerary: itinerary.map((step) => ({
+          day_number: step.day_number,
+          time_label: step.time_label,
+          sort_order: step.sort_order,
+          is_optional: step.is_optional,
+          media_id: step.media_id,
+          hotel_name: step.hotel_name,
+          distance_km: step.distance_km,
+          translations: Object.values(step.translations),
+        })),
       };
       const updated = await updateAdminProduct(accessToken, id, payload);
       setData(updated);
@@ -469,27 +479,218 @@ function ProductDetailContent({ id }: { id: string }) {
               <div className="space-y-2">
                 {itinerary.map((step) => {
                   const tr = step.translations[activeLocale];
+
+                  function updateStep(patch: Partial<ItineraryStepState>) {
+                    setItinerary((prev) =>
+                      prev.map((s) => (s.clientId === step.clientId ? { ...s, ...patch } : s)),
+                    );
+                  }
+
+                  function updateStepTranslation(patch: Partial<ItineraryTranslationIn>) {
+                    setItinerary((prev) =>
+                      prev.map((s) =>
+                        s.clientId === step.clientId
+                          ? {
+                              ...s,
+                              translations: {
+                                ...s.translations,
+                                [activeLocale]: { ...s.translations[activeLocale], ...patch },
+                              },
+                            }
+                          : s,
+                      ),
+                    );
+                  }
+
                   return (
-                    <div
+                    <details
                       key={step.clientId}
                       className="rounded border border-stone-200 p-3 text-sm"
                     >
-                      <div className="flex items-center justify-between">
+                      <summary className="flex cursor-pointer items-center justify-between">
                         <span className="font-medium">
                           Jour {step.day_number}
                           {step.time_label ? ` · ${step.time_label}` : ""}
+                          {" · "}
+                          {tr ? tr.title : `pas de traduction ${activeLocale.toUpperCase()}`}
                         </span>
                         {step.is_optional && (
                           <span className="text-xs text-stone-500">optionnel</span>
                         )}
+                      </summary>
+
+                      <div className="mt-3 space-y-3">
+                        <div className="flex gap-3">
+                          <label className="block text-sm">
+                            Jour
+                            <input
+                              type="number"
+                              min={1}
+                              value={step.day_number}
+                              onChange={(e) => updateStep({ day_number: Number(e.target.value) })}
+                              className="mt-1 block w-20 rounded border border-stone-300 p-2"
+                            />
+                          </label>
+                          <label className="block text-sm">
+                            Heure
+                            <input
+                              type="text"
+                              value={step.time_label ?? ""}
+                              onChange={(e) => updateStep({ time_label: e.target.value || null })}
+                              placeholder="07h30"
+                              className="mt-1 block w-24 rounded border border-stone-300 p-2"
+                            />
+                          </label>
+                        </div>
+
+                        <label className="flex items-center gap-2 text-sm">
+                          <input
+                            type="checkbox"
+                            checked={step.is_optional}
+                            onChange={(e) => updateStep({ is_optional: e.target.checked })}
+                          />
+                          Étape optionnelle
+                        </label>
+
+                        <label className="block text-sm">
+                          Nom de l&apos;hôtel
+                          <input
+                            type="text"
+                            value={step.hotel_name ?? ""}
+                            onChange={(e) => updateStep({ hotel_name: e.target.value || null })}
+                            className="mt-1 block w-full rounded border border-stone-300 p-2"
+                          />
+                        </label>
+
+                        <label className="block text-sm">
+                          Distance (km)
+                          <input
+                            type="number"
+                            min={0}
+                            value={step.distance_km ?? ""}
+                            onChange={(e) =>
+                              updateStep({
+                                distance_km: e.target.value === "" ? null : Number(e.target.value),
+                              })
+                            }
+                            className="mt-1 block w-24 rounded border border-stone-300 p-2"
+                          />
+                        </label>
+
+                        {tr ? (
+                          <div className="space-y-2 border-t border-stone-100 pt-2">
+                            <label className="block text-sm">
+                              Titre ({activeLocale.toUpperCase()})
+                              <input
+                                type="text"
+                                value={tr.title}
+                                onChange={(e) => updateStepTranslation({ title: e.target.value })}
+                                className="mt-1 block w-full rounded border border-stone-300 p-2"
+                              />
+                            </label>
+                            <label className="block text-sm">
+                              Description
+                              <textarea
+                                value={tr.description ?? ""}
+                                onChange={(e) =>
+                                  updateStepTranslation({ description: e.target.value })
+                                }
+                                rows={3}
+                                className="mt-1 block w-full rounded border border-stone-300 p-2"
+                              />
+                            </label>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const confirmed = window.confirm(
+                                  `Retirer la traduction ${activeLocale.toUpperCase()} de cette étape ?`,
+                                );
+                                if (!confirmed) return;
+                                setItinerary((prev) =>
+                                  prev.map((s) => {
+                                    if (s.clientId !== step.clientId) return s;
+                                    const nextTr = { ...s.translations };
+                                    delete nextTr[activeLocale];
+                                    return { ...s, translations: nextTr };
+                                  }),
+                                );
+                              }}
+                              className="text-sm text-red-600 hover:underline"
+                            >
+                              Retirer cette traduction
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="rounded border border-dashed border-stone-300 p-3 text-center">
+                            <p className="mb-2 text-xs text-stone-500">
+                              Aucune traduction {activeLocale.toUpperCase()} pour cette étape.
+                            </p>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setItinerary((prev) =>
+                                  prev.map((s) =>
+                                    s.clientId === step.clientId
+                                      ? {
+                                          ...s,
+                                          translations: {
+                                            ...s.translations,
+                                            [activeLocale]: { locale: activeLocale, title: "" },
+                                          },
+                                        }
+                                      : s,
+                                  ),
+                                )
+                              }
+                              className="rounded bg-stone-900 px-3 py-1.5 text-sm text-white"
+                            >
+                              Ajouter la traduction {activeLocale.toUpperCase()}
+                            </button>
+                          </div>
+                        )}
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const confirmed = window.confirm(
+                              `Supprimer définitivement cette étape (Jour ${step.day_number}) ?`,
+                            );
+                            if (!confirmed) return;
+                            setItinerary((prev) => prev.filter((s) => s.clientId !== step.clientId));
+                          }}
+                          className="text-sm text-red-600 hover:underline"
+                        >
+                          Supprimer cette étape
+                        </button>
                       </div>
-                      <p className="mt-1 text-stone-700">
-                        {tr ? tr.title : `— pas de traduction ${activeLocale.toUpperCase()} —`}
-                      </p>
-                    </div>
+                    </details>
                   );
                 })}
               </div>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setItinerary((prev) => [
+                    ...prev,
+                    {
+                      clientId: makeClientId(),
+                      id: null,
+                      day_number: prev.length > 0 ? prev[prev.length - 1].day_number : 1,
+                      time_label: null,
+                      sort_order: prev.length,
+                      is_optional: false,
+                      media_id: null,
+                      hotel_name: null,
+                      distance_km: null,
+                      translations: {},
+                    },
+                  ])
+                }
+                className="mt-3 rounded border border-stone-300 px-3 py-1.5 text-sm hover:bg-stone-50"
+              >
+                Ajouter une étape
+              </button>
             </div>
 
             <button
