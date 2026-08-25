@@ -17,6 +17,7 @@ from uuid import UUID
 from sqlmodel import delete, select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
+from src.core.config import settings
 from src.models.enums import ContentStatus
 from src.models.product import (
     Product,
@@ -33,11 +34,22 @@ from src.models.product import (
 )
 from src.models.system import AdminUser
 from src.models.taxonomy import Highlight, Inclusion, PackingItem
-from src.schemas.admin_product import ItineraryItemIn, ProductCreate, ProductUpdate
+from src.repositories import product as repo
+from src.schemas.admin_product import (
+    FaqOut,
+    InclusionLinkIn,
+    ItineraryItemAdminOut,
+    ItineraryItemIn,
+    ItineraryTranslationOut,
+    PriceTierOut,
+    ProductAdminDetail,
+    ProductCreate,
+    ProductTranslationOut,
+    ProductUpdate,
+)
 from src.services import slug as slug_service
 
 ENTITY = "product"
-
 
 class ProductError(Exception):
     """Erreur métier. Le routeur la traduit en 400."""
@@ -188,6 +200,109 @@ async def _set_faqs(session, product_id: UUID, faqs) -> None:
     await session.exec(delete(ProductFaq).where(ProductFaq.product_id == product_id))
     for f in faqs:
         session.add(ProductFaq(product_id=product_id, **f.model_dump()))
+
+
+async def get_admin_detail(session: AsyncSession, product: Product) -> ProductAdminDetail:
+    """Fiche complète pour l'édition : toutes les langues, sans repli.
+
+    Contrairement à read_service.get_detail_for_locale, on ne résout rien
+    ici — chaque traduction existante est renvoyée telle quelle, groupée
+    par entité. C'est au frontend de décider quoi en faire (onglets).
+    """
+    locales = settings.SUPPORTED_LOCALES
+
+    translations = await repo.get_translations(session, [product.id], locales)
+    translations_out = [
+        ProductTranslationOut.model_validate(tr)
+        for (pid, _loc), tr in translations.items()
+        if pid == product.id
+    ]
+
+    itinerary_rows = await repo.get_itinerary(session, product.id, locales)
+    items_map: dict[UUID, ItineraryItemAdminOut] = {}
+    for item, item_tr in itinerary_rows:
+        if item.id not in items_map:
+            items_map[item.id] = ItineraryItemAdminOut(
+                id=item.id,
+                day_number=item.day_number,
+                time_label=item.time_label,
+                sort_order=item.sort_order,
+                is_optional=item.is_optional,
+                media_id=item.media_id,
+                hotel_name=item.hotel_name,
+                distance_km=item.distance_km,
+                translations=[],
+            )
+        items_map[item.id].translations.append(
+            ItineraryTranslationOut.model_validate(item_tr)
+        )
+    itinerary_out = sorted(
+        items_map.values(), key=lambda i: (i.day_number, i.sort_order)
+    )
+
+    faqs = await repo.get_faqs(session, product.id, locales)
+    faqs_out = [FaqOut.model_validate(f) for f in faqs]
+
+    tiers = await repo.get_price_tiers(session, product.id)
+    tiers_out = [PriceTierOut.model_validate(t) for t in tiers]
+
+    # ── Codes de taxonomie : les tables de liaison ne portent que des UUID ──
+    highlight_rows = await repo.get_highlights(session, [product.id], locales)
+    highlight_codes = sorted({code for code, *_ in highlight_rows.get(product.id, [])})
+
+    inclusion_rows = await repo.get_inclusions(session, product.id, locales)
+    seen_incl: dict[str, tuple[bool, int]] = {}
+    for link, incl, _tr in inclusion_rows:
+        seen_incl[incl.code] = (link.is_included, link.sort_order)
+    inclusions_out = [
+        InclusionLinkIn(code=code, is_included=is_incl, sort_order=order)
+        for code, (is_incl, order) in sorted(seen_incl.items(), key=lambda kv: kv[1][1])
+    ]
+
+    packing_rows = await repo.get_packing_items(session, product.id, locales)
+    packing_codes = sorted({pack.code for pack, _tr in packing_rows})
+
+    gallery_ids = await repo.get_gallery_ids(session, product.id)
+    departure_months = await repo.get_departure_months(session, product.id)
+
+    return ProductAdminDetail(
+        id=product.id,
+        slug=product.slug,
+        product_type=product.product_type,
+        product_format=product.product_format,
+        difficulty=product.difficulty,
+        status=product.status,
+        is_published=product.is_published,
+        duration_days=product.duration_days,
+        duration_nights=product.duration_nights,
+        duration_hours=product.duration_hours,
+        departure_time=product.departure_time,
+        return_time=product.return_time,
+        travel_minutes=product.travel_minutes,
+        transport=product.transport,
+        group_min=product.group_min,
+        group_max=product.group_max,
+        hotel_pickup=product.hotel_pickup,
+        min_age=product.min_age,
+        price_from=product.price_from,
+        currency=product.currency,
+        deposit_percent=product.deposit_percent,
+        destination_id=product.destination_id,
+        cover_media_id=product.cover_media_id,
+        is_featured=product.is_featured,
+        sort_order=product.sort_order,
+        is_indexable=product.is_indexable,
+        sitemap_priority=product.sitemap_priority,
+        translations=translations_out,
+        highlight_codes=highlight_codes,
+        inclusions=inclusions_out,
+        packing_codes=packing_codes,
+        departure_months=departure_months,
+        gallery_media_ids=gallery_ids,
+        itinerary=itinerary_out,
+        price_tiers=tiers_out,
+        faqs=faqs_out,
+    )
 
 
 async def create(

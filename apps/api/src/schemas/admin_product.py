@@ -242,5 +242,94 @@ class ProductAdminListResponse(BaseModel):
     limit: int
     offset: int
 
+class ProductTranslationOut(ProductTranslationIn):
+    """Traduction telle que stockée, avec son identifiant."""
+
+    model_config = ConfigDict(from_attributes=True)
+    id: UUID
+
+
+class ItineraryTranslationOut(ItineraryTranslationIn):
+    model_config = ConfigDict(from_attributes=True)
+    id: UUID
+
+
+class ItineraryItemAdminOut(BaseModel):
+    """Étape d'itinéraire avec TOUTES ses traductions, pour l'édition."""
+
+    model_config = ConfigDict(from_attributes=True)
+
+    id: UUID
+    day_number: int
+    time_label: str | None = None
+    sort_order: int = 0
+    is_optional: bool = False
+    media_id: UUID | None = None
+    hotel_name: str | None = None
+    distance_km: int | None = None
+    translations: list[ItineraryTranslationOut] = Field(default_factory=list)
+
+
+class PriceTierOut(PriceTierIn):
+    model_config = ConfigDict(from_attributes=True)
+    id: UUID
+
+
+class FaqOut(FaqIn):
+    model_config = ConfigDict(from_attributes=True)
+    id: UUID
+
+
+class ProductAdminDetail(BaseModel):
+    """Fiche produit complète pour l'édition admin : toutes les langues,
+    sans résolution de repli. Distinct de ProductDetail (schemas/product.py),
+    qui reste mono-langue pour l'usage public.
+    """
+
+    model_config = ConfigDict(from_attributes=True)
+
+    id: UUID
+    slug: str
+    product_type: ProductType
+    product_format: ProductFormat
+    difficulty: DifficultyLevel
+    status: ContentStatus
+    is_published: bool
+
+    duration_days: int | None = None
+    duration_nights: int | None = None
+    duration_hours: Decimal | None = None
+    departure_time: time | None = None
+    return_time: time | None = None
+    travel_minutes: int | None = None
+    transport: TransportMode | None = None
+
+    group_min: int
+    group_max: int
+    hotel_pickup: bool
+    min_age: int | None = None
+
+    price_from: Decimal
+    currency: str
+    deposit_percent: int | None = None
+
+    destination_id: UUID | None = None
+    cover_media_id: UUID | None = None
+    is_featured: bool
+    sort_order: int
+
+    is_indexable: bool
+    sitemap_priority: float
+
+    translations: list[ProductTranslationOut] = Field(default_factory=list)
+    highlight_codes: list[str] = Field(default_factory=list)
+    inclusions: list[InclusionLinkIn] = Field(default_factory=list)
+    packing_codes: list[str] = Field(default_factory=list)
+    departure_months: list[int] = Field(default_factory=list)
+    gallery_media_ids: list[UUID] = Field(default_factory=list)
+    itinerary: list[ItineraryItemAdminOut] = Field(default_factory=list)
+    price_tiers: list[PriceTierOut] = Field(default_factory=list)
+    faqs: list[FaqOut] = Field(default_factory=list)
+
 
 ItineraryItemIn.model_rebuild()

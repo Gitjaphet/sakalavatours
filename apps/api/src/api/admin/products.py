@@ -18,6 +18,7 @@ from src.api.deps import CurrentUser, SessionDep, require_role
 from src.models.enums import AdminRole, AuditAction, ContentStatus, ProductType
 from src.models.product import Product, ProductTranslation
 from src.schemas.admin_product import (
+    ProductAdminDetail,
     ProductAdminListItem,
     ProductAdminListResponse,
     ProductCreate,
@@ -178,6 +179,15 @@ async def get_product(
             detail="Produit introuvable",
         )
     return detail
+
+@router.get("/{product_id}/translations", response_model=ProductAdminDetail)
+async def get_product_translations(
+    product_id: UUID,
+    session: SessionDep,
+) -> ProductAdminDetail:
+    """Fiche complète pour l'édition : toutes les langues, sans repli."""
+    product = await _get_or_404(session, product_id)
+    return await service.get_admin_detail(session, product)
 
 
 @router.patch("/{product_id}", response_model=ProductDetail)
