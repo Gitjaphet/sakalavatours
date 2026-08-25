@@ -48,6 +48,15 @@ type ItineraryStepState = {
   translations: Record<string, ItineraryTranslationIn>;
 };
 
+type FaqState = {
+  clientId: string;
+  id: string | null;
+  locale: string;
+  question: string;
+  answer: string;
+  sort_order: number;
+};
+
 function makeClientId(): string {
   return typeof crypto !== "undefined" && "randomUUID" in crypto
     ? crypto.randomUUID()
@@ -82,6 +91,8 @@ function ProductDetailContent({ id }: { id: string }) {
   const [translations, setTranslations] = useState<Record<string, ProductTranslationIn>>({});
   const [activeLocale, setActiveLocale] = useState<string>(routing.defaultLocale);
   const [itinerary, setItinerary] = useState<ItineraryStepState[]>([]);
+
+  const [faqs, setFaqs] = useState<FaqState[]>([]);
 
   const canDelete = user?.role === "owner" || user?.role === "admin";
 
@@ -159,6 +170,17 @@ function ProductDetailContent({ id }: { id: string }) {
           };
         });
       setItinerary(steps);
+
+        const faqStates: FaqState[] = adminDetail.faqs.map((f) => ({
+        clientId: makeClientId(),
+        id: f.id,
+        locale: f.locale,
+        question: f.question,
+        answer: f.answer,
+        sort_order: f.sort_order ?? 0,
+      }));
+      setFaqs(faqStates);
+
     })
     .catch((err) => {
       if (cancelled) return;
@@ -203,6 +225,12 @@ function ProductDetailContent({ id }: { id: string }) {
           hotel_name: step.hotel_name,
           distance_km: step.distance_km,
           translations: Object.values(step.translations),
+        })),
+        faqs: faqs.map((f) => ({
+          locale: f.locale,
+          question: f.question,
+          answer: f.answer,
+          sort_order: f.sort_order,
         })),
       };
       const updated = await updateAdminProduct(accessToken, id, payload);
@@ -691,7 +719,104 @@ function ProductDetailContent({ id }: { id: string }) {
               >
                 Ajouter une étape
               </button>
+
             </div>
+
+            {/* --- FAQ --- */}
+            <div className="border-t border-stone-200 pt-4">
+              <h3 className="mb-2 text-sm font-medium">
+                FAQ ({faqs.filter((f) => f.locale === activeLocale).length} question
+                {faqs.filter((f) => f.locale === activeLocale).length > 1 ? "s" : ""}{" "}
+                en {activeLocale.toUpperCase()})
+              </h3>
+
+              <div className="space-y-2">
+                {faqs
+                  .filter((f) => f.locale === activeLocale)
+                  .map((faq) => (
+                    <details
+                      key={faq.clientId}
+                      className="rounded border border-stone-200 p-3 text-sm"
+                    >
+                      <summary className="cursor-pointer font-medium">
+                        {faq.question || "(question vide)"}
+                      </summary>
+
+                      <div className="mt-3 space-y-2">
+                        <label className="block text-sm">
+                          Question
+                          <input
+                            type="text"
+                            value={faq.question}
+                            onChange={(e) =>
+                              setFaqs((prev) =>
+                                prev.map((f) =>
+                                  f.clientId === faq.clientId
+                                    ? { ...f, question: e.target.value }
+                                    : f,
+                                ),
+                              )
+                            }
+                            className="mt-1 block w-full rounded border border-stone-300 p-2"
+                          />
+                        </label>
+
+                        <label className="block text-sm">
+                          Réponse
+                          <textarea
+                            value={faq.answer}
+                            onChange={(e) =>
+                              setFaqs((prev) =>
+                                prev.map((f) =>
+                                  f.clientId === faq.clientId
+                                    ? { ...f, answer: e.target.value }
+                                    : f,
+                                ),
+                              )
+                            }
+                            rows={3}
+                            className="mt-1 block w-full rounded border border-stone-300 p-2"
+                          />
+                        </label>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const confirmed = window.confirm("Supprimer cette question ?");
+                            if (!confirmed) return;
+                            setFaqs((prev) => prev.filter((f) => f.clientId !== faq.clientId));
+                          }}
+                          className="text-sm text-red-600 hover:underline"
+                        >
+                          Supprimer cette question
+                        </button>
+                      </div>
+                    </details>
+                  ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setFaqs((prev) => [
+                    ...prev,
+                    {
+                      clientId: makeClientId(),
+                      id: null,
+                      locale: activeLocale,
+                      question: "",
+                      answer: "",
+                      sort_order: prev.filter((f) => f.locale === activeLocale).length,
+                    },
+                  ])
+                }
+                className="mt-3 rounded border border-stone-300 px-3 py-1.5 text-sm hover:bg-stone-50"
+              >
+                Ajouter une question ({activeLocale.toUpperCase()})
+              </button>
+            </div>
+
+            
 
             <button
               onClick={handleSave}
