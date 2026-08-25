@@ -26,8 +26,33 @@ import type {
   DifficultyLevel,
   TransportMode,
 } from "@/lib/constants/product-enums";
-import type { ProductDetail, CoverMediaLike, ProductTranslationIn } from "@/types/api";
+import type {
+  ProductDetail,
+  CoverMediaLike,
+  ProductTranslationIn,
+  ItineraryTranslationIn,
+} from "@/types/api";
+
 import { routing } from "@/i18n/routing";
+
+type ItineraryStepState = {
+  clientId: string;
+  id: string | null;
+  day_number: number;
+  time_label: string | null;
+  sort_order: number;
+  is_optional: boolean;
+  media_id: string | null;
+  hotel_name: string | null;
+  distance_km: number | null;
+  translations: Record<string, ItineraryTranslationIn>;
+};
+
+function makeClientId(): string {
+  return typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : `tmp-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
 
 
 function ProductDetailContent({ id }: { id: string }) {
@@ -56,6 +81,7 @@ function ProductDetailContent({ id }: { id: string }) {
 
   const [translations, setTranslations] = useState<Record<string, ProductTranslationIn>>({});
   const [activeLocale, setActiveLocale] = useState<string>(routing.defaultLocale);
+  const [itinerary, setItinerary] = useState<ItineraryStepState[]>([]);
 
   const canDelete = user?.role === "owner" || user?.role === "admin";
 
@@ -110,6 +136,29 @@ function ProductDetailContent({ id }: { id: string }) {
         byLocale[tr.locale] = tr;
       }
       setTranslations(byLocale);
+
+      const steps: ItineraryStepState[] = adminDetail.itinerary
+        .slice()
+        .sort((a, b) => a.day_number - b.day_number || a.sort_order - b.sort_order)
+        .map((item) => {
+          const byLocaleItem: Record<string, ItineraryTranslationIn> = {};
+          for (const tr of item.translations) {
+            byLocaleItem[tr.locale] = tr;
+          }
+          return {
+            clientId: makeClientId(),
+            id: item.id,
+            day_number: item.day_number,
+            time_label: item.time_label,
+            sort_order: item.sort_order,
+            is_optional: item.is_optional,
+            media_id: item.media_id,
+            hotel_name: item.hotel_name,
+            distance_km: item.distance_km,
+            translations: byLocaleItem,
+          };
+        });
+      setItinerary(steps);
     })
     .catch((err) => {
       if (cancelled) return;
@@ -409,6 +458,38 @@ function ProductDetailContent({ id }: { id: string }) {
                   </button>
                 </div>
               )}
+            </div>
+
+            {/* --- Itinéraire --- */}
+            <div className="border-t border-stone-200 pt-4">
+              <h3 className="mb-2 text-sm font-medium">
+                Itinéraire ({itinerary.length} étape{itinerary.length > 1 ? "s" : ""})
+              </h3>
+
+              <div className="space-y-2">
+                {itinerary.map((step) => {
+                  const tr = step.translations[activeLocale];
+                  return (
+                    <div
+                      key={step.clientId}
+                      className="rounded border border-stone-200 p-3 text-sm"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-medium">
+                          Jour {step.day_number}
+                          {step.time_label ? ` · ${step.time_label}` : ""}
+                        </span>
+                        {step.is_optional && (
+                          <span className="text-xs text-stone-500">optionnel</span>
+                        )}
+                      </div>
+                      <p className="mt-1 text-stone-700">
+                        {tr ? tr.title : `— pas de traduction ${activeLocale.toUpperCase()} —`}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
             <button
