@@ -5,12 +5,13 @@ import { useEffect, useState, use } from "react";
 import Link from "next/link";
 import { RequireAuth } from "../../RequireAuth";
 import { useAuth } from "../../AuthContext";
-import {
-  getAdminProduct,
-  updateAdminProduct,
-  deleteAdminProduct,
-  AdminApiError,
-} from "@/lib/api/admin-products";
+import { 
+  getAdminProduct, 
+  getAdminProductTranslations, 
+  updateAdminProduct, 
+  deleteAdminProduct, 
+  AdminApiError
+ } from "@/lib/api/admin-products";
 import { useRouter } from "next/navigation";
 import { productDetailToUpdate } from "@/lib/api/product-transform";
 import { EnumSelect } from "@/components/admin/EnumSelect";
@@ -25,7 +26,8 @@ import type {
   DifficultyLevel,
   TransportMode,
 } from "@/lib/constants/product-enums";
-import type { ProductDetail, CoverMediaLike } from "@/types/api";
+import type { ProductDetail, CoverMediaLike, ProductTranslationIn } from "@/types/api";
+import { routing } from "@/i18n/routing";
 
 
 function ProductDetailContent({ id }: { id: string }) {
@@ -52,6 +54,9 @@ function ProductDetailContent({ id }: { id: string }) {
   const [hotelPickup, setHotelPickup] = useState(true);
   const [coverMedia, setCoverMedia] = useState<CoverMediaLike | null>(null);
 
+  const [translations, setTranslations] = useState<Record<string, ProductTranslationIn>>({});
+  const [activeLocale, setActiveLocale] = useState<string>(routing.defaultLocale);
+
   const canDelete = user?.role === "owner" || user?.role === "admin";
 
 
@@ -75,42 +80,51 @@ function ProductDetailContent({ id }: { id: string }) {
   }
 
   useEffect(() => {
-    if (!accessToken) return;
+  if (!accessToken) return;
 
-    let cancelled = false;
-    setIsLoading(true);
-    setError(null);
+  let cancelled = false;
+  setIsLoading(true);
+  setError(null);
 
-    getAdminProduct(accessToken, id)
-      .then((result) => {
-        if (cancelled) return;
-        setData(result);
-        setIsPublished(true); // le GET ne renvoie un ProductDetail que si le produit est publié
-        setIsFeatured(result.is_featured);
-        setPriceFrom(result.price_from);
-        setSlug(result.slug);
-        setProductFormat(result.product_format);
-        setDifficulty(result.difficulty);
-        setTransport(result.transport ?? "");
-        setGroupMin(String(result.group_min));
-        setGroupMax(String(result.group_max));
-        setHotelPickup(result.hotel_pickup);
-        setCoverMedia(result.cover);
-      })
-      .catch((err) => {
-        if (cancelled) return;
-        const message =
-          err instanceof AdminApiError ? err.message : "Erreur inattendue";
-        setError(message);
-      })
-      .finally(() => {
-        if (!cancelled) setIsLoading(false);
-      });
+  Promise.all([
+    getAdminProduct(accessToken, id),
+    getAdminProductTranslations(accessToken, id),
+  ])
+    .then(([result, adminDetail]) => {
+      if (cancelled) return;
+      setData(result);
+      setIsPublished(true);
+      setIsFeatured(result.is_featured);
+      setPriceFrom(result.price_from);
+      setSlug(result.slug);
+      setProductFormat(result.product_format);
+      setDifficulty(result.difficulty);
+      setTransport(result.transport ?? "");
+      setGroupMin(String(result.group_min));
+      setGroupMax(String(result.group_max));
+      setHotelPickup(result.hotel_pickup);
+      setCoverMedia(result.cover);
 
-    return () => {
-      cancelled = true;
-    };
-  }, [accessToken, id]);
+      const byLocale: Record<string, ProductTranslationIn> = {};
+      for (const tr of adminDetail.translations) {
+        byLocale[tr.locale] = tr;
+      }
+      setTranslations(byLocale);
+    })
+    .catch((err) => {
+      if (cancelled) return;
+      const message =
+        err instanceof AdminApiError ? err.message : "Erreur inattendue";
+      setError(message);
+    })
+    .finally(() => {
+      if (!cancelled) setIsLoading(false);
+    });
+
+  return () => {
+    cancelled = true;
+  };
+}, [accessToken, id]);
 
   async function handleSave() {
     if (!accessToken || !data) return;
@@ -130,6 +144,7 @@ function ProductDetailContent({ id }: { id: string }) {
         group_max: Number(groupMax),
         hotel_pickup: hotelPickup,
         cover_media_id: coverMedia?.id ?? null,
+        translations: Object.values(translations),
       };
       const updated = await updateAdminProduct(accessToken, id, payload);
       setData(updated);
@@ -268,6 +283,133 @@ function ProductDetailContent({ id }: { id: string }) {
             )}
 
             <CoverPicker coverMediaId={coverMedia?.id ?? null} onSelect={setCoverMedia} />
+
+
+            {/* --- Traductions par langue --- */}
+            <div className="border-t border-stone-200 pt-4">
+              <h3 className="mb-2 text-sm font-medium">Contenu traduit</h3>
+
+              <div className="mb-3 flex gap-1 border-b border-stone-200">
+                {routing.locales.map((loc) => {
+                  const hasContent = Boolean(translations[loc]);
+                  return (
+                    <button
+                      key={loc}
+                      type="button"
+                      onClick={() => setActiveLocale(loc)}
+                      className={`px-3 py-1.5 text-sm border-b-2 ${
+                        activeLocale === loc
+                          ? "border-stone-900 font-medium"
+                          : "border-transparent text-stone-500 hover:text-stone-800"
+                      }`}
+                    >
+                      {loc.toUpperCase()}
+                      {hasContent && <span className="ml-1 text-green-600">●</span>}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {translations[activeLocale] ? (
+                <div className="space-y-3">
+                  <label className="block text-sm">
+                    Titre
+                    <input
+                      type="text"
+                      value={translations[activeLocale].title}
+                      onChange={(e) =>
+                        setTranslations((prev) => ({
+                          ...prev,
+                          [activeLocale]: { ...prev[activeLocale], title: e.target.value },
+                        }))
+                      }
+                      className="mt-1 block w-full rounded border border-stone-300 p-2"
+                    />
+                  </label>
+
+                  <label className="block text-sm">
+                    Sous-titre
+                    <input
+                      type="text"
+                      value={translations[activeLocale].subtitle ?? ""}
+                      onChange={(e) =>
+                        setTranslations((prev) => ({
+                          ...prev,
+                          [activeLocale]: { ...prev[activeLocale], subtitle: e.target.value },
+                        }))
+                      }
+                      className="mt-1 block w-full rounded border border-stone-300 p-2"
+                    />
+                  </label>
+
+                  <label className="block text-sm">
+                    Résumé
+                    <textarea
+                      value={translations[activeLocale].summary}
+                      onChange={(e) =>
+                        setTranslations((prev) => ({
+                          ...prev,
+                          [activeLocale]: { ...prev[activeLocale], summary: e.target.value },
+                        }))
+                      }
+                      rows={3}
+                      className="mt-1 block w-full rounded border border-stone-300 p-2"
+                    />
+                  </label>
+
+                  <label className="block text-sm">
+                    Description
+                    <textarea
+                      value={translations[activeLocale].description ?? ""}
+                      onChange={(e) =>
+                        setTranslations((prev) => ({
+                          ...prev,
+                          [activeLocale]: { ...prev[activeLocale], description: e.target.value },
+                        }))
+                      }
+                      rows={6}
+                      className="mt-1 block w-full rounded border border-stone-300 p-2"
+                    />
+                  </label>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const confirmed = window.confirm(
+                        `Retirer la traduction ${activeLocale.toUpperCase()} ? Elle sera supprimée à l'enregistrement.`,
+                      );
+                      if (!confirmed) return;
+                      setTranslations((prev) => {
+                        const next = { ...prev };
+                        delete next[activeLocale];
+                        return next;
+                      });
+                    }}
+                    className="text-sm text-red-600 hover:underline"
+                  >
+                    Retirer cette traduction
+                  </button>
+                </div>
+              ) : (
+                <div className="rounded border border-dashed border-stone-300 p-4 text-center">
+                  <p className="mb-2 text-sm text-stone-500">
+                    Aucune traduction {activeLocale.toUpperCase()}.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setTranslations((prev) => ({
+                        ...prev,
+                        [activeLocale]: { locale: activeLocale, title: "", summary: "" },
+                      }))
+                    }
+                    className="rounded bg-stone-900 px-3 py-1.5 text-sm text-white"
+                  >
+                    Ajouter la traduction {activeLocale.toUpperCase()}
+                  </button>
+                </div>
+              )}
+            </div>
 
             <button
               onClick={handleSave}
