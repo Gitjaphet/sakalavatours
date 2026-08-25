@@ -57,6 +57,19 @@ type FaqState = {
   sort_order: number;
 };
 
+
+type PriceTierState = {
+  clientId: string;
+  id: string | null;
+  label_code: string;
+  price: string;
+  min_pax: number | null;
+  max_pax: number | null;
+  is_private: boolean;
+  sort_order: number;
+};
+
+
 function makeClientId(): string {
   return typeof crypto !== "undefined" && "randomUUID" in crypto
     ? crypto.randomUUID()
@@ -93,6 +106,8 @@ function ProductDetailContent({ id }: { id: string }) {
   const [itinerary, setItinerary] = useState<ItineraryStepState[]>([]);
 
   const [faqs, setFaqs] = useState<FaqState[]>([]);
+
+  const [priceTiers, setPriceTiers] = useState<PriceTierState[]>([]);
 
   const canDelete = user?.role === "owner" || user?.role === "admin";
 
@@ -181,6 +196,18 @@ function ProductDetailContent({ id }: { id: string }) {
       }));
       setFaqs(faqStates);
 
+        const tierStates: PriceTierState[] = adminDetail.price_tiers.map((t) => ({
+        clientId: makeClientId(),
+        id: t.id,
+        label_code: t.label_code,
+        price: t.price,
+        min_pax: t.min_pax ?? null,
+        max_pax: t.max_pax ?? null,
+        is_private: t.is_private ?? false,
+        sort_order: t.sort_order ?? 0,
+      }));
+      setPriceTiers(tierStates);
+
     })
     .catch((err) => {
       if (cancelled) return;
@@ -231,6 +258,14 @@ function ProductDetailContent({ id }: { id: string }) {
           question: f.question,
           answer: f.answer,
           sort_order: f.sort_order,
+        })),
+        price_tiers: priceTiers.map((t) => ({
+          label_code: t.label_code,
+          price: t.price,
+          min_pax: t.min_pax,
+          max_pax: t.max_pax,
+          is_private: t.is_private,
+          sort_order: t.sort_order,
         })),
       };
       const updated = await updateAdminProduct(accessToken, id, payload);
@@ -816,7 +851,152 @@ function ProductDetailContent({ id }: { id: string }) {
               </button>
             </div>
 
-            
+            {/* --- Tarifs --- */}
+            <div className="border-t border-stone-200 pt-4">
+              <h3 className="mb-2 text-sm font-medium">
+                Tarifs ({priceTiers.length} palier{priceTiers.length > 1 ? "s" : ""})
+              </h3>
+
+              <div className="space-y-2">
+                {priceTiers.map((tier) => (
+                  <div
+                    key={tier.clientId}
+                    className="rounded border border-stone-200 p-3 text-sm space-y-2"
+                  >
+                    <label className="block text-sm">
+                      Code d&apos;étiquette
+                      <input
+                        type="text"
+                        value={tier.label_code}
+                        onChange={(e) =>
+                          setPriceTiers((prev) =>
+                            prev.map((t) =>
+                              t.clientId === tier.clientId
+                                ? { ...t, label_code: e.target.value }
+                                : t,
+                            ),
+                          )
+                        }
+                        placeholder="adult, child, private…"
+                        className="mt-1 block w-full rounded border border-stone-300 p-2"
+                      />
+                    </label>
+
+                    <label className="block text-sm">
+                      Prix
+                      <input
+                        type="text"
+                        value={tier.price}
+                        onChange={(e) =>
+                          setPriceTiers((prev) =>
+                            prev.map((t) =>
+                              t.clientId === tier.clientId ? { ...t, price: e.target.value } : t,
+                            ),
+                          )
+                        }
+                        className="mt-1 block w-full rounded border border-stone-300 p-2"
+                      />
+                    </label>
+
+                    <div className="flex gap-3">
+                      <label className="block text-sm">
+                        Pax min
+                        <input
+                          type="number"
+                          min={1}
+                          value={tier.min_pax ?? ""}
+                          onChange={(e) =>
+                            setPriceTiers((prev) =>
+                              prev.map((t) =>
+                                t.clientId === tier.clientId
+                                  ? {
+                                      ...t,
+                                      min_pax: e.target.value === "" ? null : Number(e.target.value),
+                                    }
+                                  : t,
+                              ),
+                            )
+                          }
+                          className="mt-1 block w-24 rounded border border-stone-300 p-2"
+                        />
+                      </label>
+                      <label className="block text-sm">
+                        Pax max
+                        <input
+                          type="number"
+                          min={1}
+                          value={tier.max_pax ?? ""}
+                          onChange={(e) =>
+                            setPriceTiers((prev) =>
+                              prev.map((t) =>
+                                t.clientId === tier.clientId
+                                  ? {
+                                      ...t,
+                                      max_pax: e.target.value === "" ? null : Number(e.target.value),
+                                    }
+                                  : t,
+                              ),
+                            )
+                          }
+                          className="mt-1 block w-24 rounded border border-stone-300 p-2"
+                        />
+                      </label>
+                    </div>
+
+                    <label className="flex items-center gap-2 text-sm">
+                      <input
+                        type="checkbox"
+                        checked={tier.is_private}
+                        onChange={(e) =>
+                          setPriceTiers((prev) =>
+                            prev.map((t) =>
+                              t.clientId === tier.clientId
+                                ? { ...t, is_private: e.target.checked }
+                                : t,
+                            ),
+                          )
+                        }
+                      />
+                      Tarif privatif
+                    </label>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const confirmed = window.confirm("Supprimer ce palier tarifaire ?");
+                        if (!confirmed) return;
+                        setPriceTiers((prev) => prev.filter((t) => t.clientId !== tier.clientId));
+                      }}
+                      className="text-sm text-red-600 hover:underline"
+                    >
+                      Supprimer ce palier
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setPriceTiers((prev) => [
+                    ...prev,
+                    {
+                      clientId: makeClientId(),
+                      id: null,
+                      label_code: "",
+                      price: "0",
+                      min_pax: null,
+                      max_pax: null,
+                      is_private: false,
+                      sort_order: prev.length,
+                    },
+                  ])
+                }
+                className="mt-3 rounded border border-stone-300 px-3 py-1.5 text-sm hover:bg-stone-50"
+              >
+                Ajouter un palier
+              </button>
+            </div>
 
             <button
               onClick={handleSave}
