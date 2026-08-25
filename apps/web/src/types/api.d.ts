@@ -175,8 +175,11 @@ export type ProductUpdate = {
   packing_codes?: string[];
   departure_months?: number[];
   gallery_media_ids?: string[];
-  // translations, itinerary, faqs, inclusions, price_tiers : omis pour l'instant
-  // (champs multi-locale, traités dans une étape dédiée)
+  translations?: ProductTranslationIn[];
+  inclusions?: InclusionLinkIn[];
+  itinerary?: ItineraryItemIn[];
+  price_tiers?: PriceTierIn[];
+  faqs?: FaqIn[];
   
 };
 
@@ -264,4 +267,122 @@ export type ProductCreate = {
   gallery_media_ids?: string[];
   // inclusions, itinerary, price_tiers, faqs : omis pour l'instant,
   // même portée réduite que ProductUpdate — étape dédiée plus tard
+};
+
+
+
+// --- Admin · Produits (lecture multi-locale, GET /admin/products/{id}/translations) ---
+
+export type ProductTranslationOut = ProductTranslationIn & {
+  id: string;
+};
+
+export type ItineraryTranslationIn = {
+  locale: string;
+  title: string;
+  description?: string | null;
+  location_label?: string | null;
+  meal_plan?: string | null;
+};
+
+export type ItineraryTranslationOut = ItineraryTranslationIn & {
+  id: string;
+};
+
+export type ItineraryItemIn = {
+  day_number?: number;
+  time_label?: string | null;
+  sort_order?: number;
+  is_optional?: boolean;
+  media_id?: string | null;
+  hotel_name?: string | null;
+  distance_km?: number | null;
+  translations: ItineraryTranslationIn[];
+};
+
+export type ItineraryItemAdminOut = {
+  id: string;
+  day_number: number;
+  time_label: string | null;
+  sort_order: number;
+  is_optional: boolean;
+  media_id: string | null;
+  hotel_name: string | null;
+  distance_km: number | null;
+  translations: ItineraryTranslationOut[];
+};
+
+export type FaqIn = {
+  locale: string;
+  question: string;
+  answer: string;
+  sort_order?: number;
+};
+
+export type FaqOut = FaqIn & {
+  id: string;
+};
+
+export type PriceTierIn = {
+  label_code: string;
+  price: string;
+  min_pax?: number | null;
+  max_pax?: number | null;
+  is_private?: boolean;
+  sort_order?: number;
+};
+
+export type PriceTierOut = PriceTierIn & {
+  id: string;
+};
+
+export type InclusionLinkIn = {
+  code: string;
+  is_included?: boolean;
+  sort_order?: number;
+};
+
+export type ProductAdminDetail = {
+  id: string;
+  slug: string;
+  product_type: "circuit" | "excursion";
+  product_format: ProductFormat;
+  difficulty: DifficultyLevel;
+  status: ContentStatus;
+  is_published: boolean;
+
+  duration_days: number | null;
+  duration_nights: number | null;
+  duration_hours: string | null;
+  departure_time: string | null;
+  return_time: string | null;
+  travel_minutes: number | null;
+  transport: TransportMode | null;
+
+  group_min: number;
+  group_max: number;
+  hotel_pickup: boolean;
+  min_age: number | null;
+
+  price_from: string;
+  currency: string;
+  deposit_percent: number | null;
+
+  destination_id: string | null;
+  cover_media_id: string | null;
+  is_featured: boolean;
+  sort_order: number;
+
+  is_indexable: boolean;
+  sitemap_priority: number;
+
+  translations: ProductTranslationOut[];
+  highlight_codes: string[];
+  inclusions: InclusionLinkIn[];
+  packing_codes: string[];
+  departure_months: number[];
+  gallery_media_ids: string[];
+  itinerary: ItineraryItemAdminOut[];
+  price_tiers: PriceTierOut[];
+  faqs: FaqOut[];
 };
