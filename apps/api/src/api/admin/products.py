@@ -30,6 +30,7 @@ from src.services import admin_product as service
 from src.services import audit
 from src.services import product as read_service
 from src.services.admin_product import ProductError
+from src.services.revalidation import revalidate_product
 
 router = APIRouter(
     prefix="/products",
@@ -156,6 +157,8 @@ async def create_product(
     )
     await session.commit()
 
+    await revalidate_product(product.slug)
+
     detail = await read_service.get_detail_for_locale(
         session, product.slug, "fr", published_only=False
     )
@@ -229,6 +232,10 @@ async def update_product(
     await session.commit()
     await session.refresh(product)
 
+    if before.slug != product.slug:
+        await revalidate_product(before.slug)
+    await revalidate_product(product.slug)
+
     detail = await read_service.get_detail_for_locale(
         session, product.slug, "fr", published_only=False
     )
@@ -272,5 +279,7 @@ async def delete_product(
         ip_address=_client_ip(request),
     )
     await session.commit()
+
+    await revalidate_product(product.slug)
 
     return MessageResponse(message=f"Produit « {product.slug} » archivé")
