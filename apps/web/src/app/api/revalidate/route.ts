@@ -1,6 +1,6 @@
 // apps/web/src/app/api/revalidate/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { revalidateTag } from "next/cache";
+import { revalidateTag, revalidatePath } from "next/cache";
 
 export async function POST(request: NextRequest) {
   const secret = request.headers.get("x-revalidate-secret");
@@ -26,6 +26,11 @@ export async function POST(request: NextRequest) {
 
   revalidateTag(`product:${slug}`, "max");
   revalidateTag("products", "max");
+
+  for (const locale of ["fr", "en", "de", "it"]) {
+    revalidatePath(`/${locale}/excursions/${slug}`);
+    revalidatePath(`/${locale}/circuits/${slug}`);
+  }
 
   return NextResponse.json({ revalidated: true, slug });
 }
