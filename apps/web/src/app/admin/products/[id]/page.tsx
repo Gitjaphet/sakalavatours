@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { productDetailToUpdate } from "@/lib/api/product-transform";
 import { EnumSelect } from "@/components/admin/EnumSelect";
 import { CoverPicker } from "@/components/admin/CoverPicker";
+import { GalleryPicker } from "@/components/admin/GalleryPicker";
 import {
   PRODUCT_FORMAT_OPTIONS,
   DIFFICULTY_OPTIONS,
@@ -69,6 +70,12 @@ type PriceTierState = {
   sort_order: number;
 };
 
+type GalleryMediaItem = {
+  id: string;
+  url: string;
+  alt_text: string | null;
+};
+
 
 function makeClientId(): string {
   return typeof crypto !== "undefined" && "randomUUID" in crypto
@@ -108,6 +115,8 @@ function ProductDetailContent({ id }: { id: string }) {
   const [faqs, setFaqs] = useState<FaqState[]>([]);
 
   const [priceTiers, setPriceTiers] = useState<PriceTierState[]>([]);
+
+  const [galleryMedia, setGalleryMedia] = useState<GalleryMediaItem[]>([]);
 
   const canDelete = user?.role === "owner" || user?.role === "admin";
 
@@ -156,6 +165,10 @@ function ProductDetailContent({ id }: { id: string }) {
       setGroupMax(String(result.group_max));
       setHotelPickup(result.hotel_pickup);
       setCoverMedia(result.cover);
+
+      setGalleryMedia(
+        result.gallery.map((m) => ({ id: m.id, url: m.url, alt_text: m.alt_text })),
+      );
 
       const byLocale: Record<string, ProductTranslationIn> = {};
       for (const tr of adminDetail.translations) {
@@ -267,6 +280,7 @@ function ProductDetailContent({ id }: { id: string }) {
           is_private: t.is_private,
           sort_order: t.sort_order,
         })),
+        gallery_media_ids: galleryMedia.map((m) => m.id),
       };
       const updated = await updateAdminProduct(accessToken, id, payload);
       setData(updated);
@@ -405,6 +419,8 @@ function ProductDetailContent({ id }: { id: string }) {
             )}
 
             <CoverPicker coverMediaId={coverMedia?.id ?? null} onSelect={setCoverMedia} />
+
+            <GalleryPicker items={galleryMedia} onChange={setGalleryMedia} />
 
 
             {/* --- Traductions par langue --- */}
