@@ -24,8 +24,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ detail: "slug manquant" }, { status: 400 });
   }
 
-  revalidateTag(`product:${slug}`, "max");
-  revalidateTag("products", "max");
+  revalidateTag(`product:${slug}`, { expire: 0 });
+  revalidateTag("products", { expire: 0 });
 
   for (const locale of ["fr", "en", "de", "it"]) {
     revalidatePath(`/${locale}/excursions/${slug}`);
