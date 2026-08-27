@@ -32,6 +32,7 @@ import type {
   CoverMediaLike,
   ProductTranslationIn,
   ItineraryTranslationIn,
+  InclusionLinkIn,
 } from "@/types/api";
 
 import { routing } from "@/i18n/routing";
@@ -117,6 +118,12 @@ function ProductDetailContent({ id }: { id: string }) {
   const [priceTiers, setPriceTiers] = useState<PriceTierState[]>([]);
 
   const [galleryMedia, setGalleryMedia] = useState<GalleryMediaItem[]>([]);
+
+  const [highlightCodes, setHighlightCodes] = useState<string>("");
+  const [packingCodes, setPackingCodes] = useState<string>("");
+  const [inclusions, setInclusions] = useState<InclusionLinkIn[]>([]);
+  const [departureMonths, setDepartureMonths] = useState<number[]>([]);
+  const [relatedSlugs, setRelatedSlugs] = useState<string>("");
 
   const canDelete = user?.role === "owner" || user?.role === "admin";
 
@@ -221,6 +228,12 @@ function ProductDetailContent({ id }: { id: string }) {
       }));
       setPriceTiers(tierStates);
 
+      setHighlightCodes(adminDetail.highlight_codes.join(", "));
+      setPackingCodes(adminDetail.packing_codes.join(", "));
+      setInclusions(adminDetail.inclusions);
+      setDepartureMonths(adminDetail.departure_months);
+      setRelatedSlugs(result.related_slugs.join(", "));
+
     })
     .catch((err) => {
       if (cancelled) return;
@@ -281,6 +294,16 @@ function ProductDetailContent({ id }: { id: string }) {
           sort_order: t.sort_order,
         })),
         gallery_media_ids: galleryMedia.map((m) => m.id),
+        highlight_codes: highlightCodes
+          .split(",")
+          .map((c) => c.trim())
+          .filter(Boolean),
+        packing_codes: packingCodes
+          .split(",")
+          .map((c) => c.trim())
+          .filter(Boolean),
+        inclusions,
+        departure_months: departureMonths,
       };
       const updated = await updateAdminProduct(accessToken, id, payload);
       setData(updated);
@@ -1012,6 +1035,118 @@ function ProductDetailContent({ id }: { id: string }) {
               >
                 Ajouter un palier
               </button>
+            </div>
+
+            {/* --- Taxonomies et divers --- */}
+            <div className="border-t border-stone-200 pt-4 space-y-4">
+              <h3 className="text-sm font-medium">Points forts, prestations et divers</h3>
+
+              <label className="block text-sm">
+                Points forts (codes séparés par des virgules)
+                <input
+                  type="text"
+                  value={highlightCodes}
+                  onChange={(e) => setHighlightCodes(e.target.value)}
+                  placeholder="snorkeling, lighthouse…"
+                  className="mt-1 block w-full rounded border border-stone-300 p-2"
+                />
+              </label>
+
+              <label className="block text-sm">
+                Affaires à prévoir (codes séparés par des virgules)
+                <input
+                  type="text"
+                  value={packingCodes}
+                  onChange={(e) => setPackingCodes(e.target.value)}
+                  placeholder="swimsuit, towel…"
+                  className="mt-1 block w-full rounded border border-stone-300 p-2"
+                />
+              </label>
+
+              <div>
+                <p className="mb-1 text-sm">Prestations ({inclusions.length})</p>
+                <div className="space-y-2">
+                  {inclusions.map((inc, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        value={inc.code}
+                        onChange={(e) =>
+                          setInclusions((prev) =>
+                            prev.map((i, n) => (n === idx ? { ...i, code: e.target.value } : i)),
+                          )
+                        }
+                        className="flex-1 rounded border border-stone-300 p-2 text-sm"
+                      />
+                      <label className="flex items-center gap-1 text-xs">
+                        <input
+                          type="checkbox"
+                          checked={inc.is_included ?? true}
+                          onChange={(e) =>
+                            setInclusions((prev) =>
+                              prev.map((i, n) =>
+                                n === idx ? { ...i, is_included: e.target.checked } : i,
+                              ),
+                            )
+                          }
+                        />
+                        inclus
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => setInclusions((prev) => prev.filter((_, n) => n !== idx))}
+                        className="text-sm text-red-600"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setInclusions((prev) => [
+                      ...prev,
+                      { code: "", is_included: true, sort_order: prev.length },
+                    ])
+                  }
+                  className="mt-2 rounded border border-stone-300 px-3 py-1.5 text-sm hover:bg-stone-50"
+                >
+                  Ajouter une prestation
+                </button>
+              </div>
+
+              <div>
+                <p className="mb-1 text-sm">Mois recommandés</p>
+                <div className="flex flex-wrap gap-2">
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((m) => (
+                    <label key={m} className="flex items-center gap-1 text-xs">
+                      <input
+                        type="checkbox"
+                        checked={departureMonths.includes(m)}
+                        onChange={(e) =>
+                          setDepartureMonths((prev) =>
+                            e.target.checked
+                              ? [...prev, m].sort((a, b) => a - b)
+                              : prev.filter((x) => x !== m),
+                          )
+                        }
+                      />
+                      {m}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <label className="block text-sm">
+                Produits liés (lecture seule)
+                <input
+                  type="text"
+                  value={relatedSlugs}
+                  readOnly
+                  className="mt-1 block w-full rounded border border-stone-200 bg-stone-50 p-2 text-stone-500"
+                />
+              </label>
             </div>
 
             <button
