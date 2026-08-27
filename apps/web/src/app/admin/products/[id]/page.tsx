@@ -1135,9 +1135,7 @@ function ProductDetailContent({ id }: { id: string }) {
             
           </div>
 
-          <pre className="overflow-auto rounded bg-stone-100 p-4 text-xs">
-            {JSON.stringify(data, null, 2)}
-          </pre>
+         
         </>
       )}
     </div>
