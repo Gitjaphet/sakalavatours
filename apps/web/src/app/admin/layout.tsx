@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AuthProvider } from "./AuthContext";
+import { AdminShell } from "./AdminShell";
 import "../[locale]/globals.css";
 
 const inter = Inter({
@@ -22,7 +23,9 @@ export default function AdminLayout({
   return (
     <html lang="fr" className={inter.variable}>
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <AdminShell>{children}</AdminShell>
+        </AuthProvider>
       </body>
     </html>
   );
