@@ -36,6 +36,7 @@ import type {
 } from "@/types/api";
 
 import { routing } from "@/i18n/routing";
+import { TaxonomyPicker } from "@/components/admin/TaxonomyPicker";
 
 type ItineraryStepState = {
   clientId: string;
@@ -119,8 +120,8 @@ function ProductDetailContent({ id }: { id: string }) {
 
   const [galleryMedia, setGalleryMedia] = useState<GalleryMediaItem[]>([]);
 
-  const [highlightCodes, setHighlightCodes] = useState<string>("");
-  const [packingCodes, setPackingCodes] = useState<string>("");
+  const [highlightCodes, setHighlightCodes] = useState<string[]>([]);
+  const [packingCodes, setPackingCodes] = useState<string[]>([]);
   const [inclusions, setInclusions] = useState<InclusionLinkIn[]>([]);
   const [departureMonths, setDepartureMonths] = useState<number[]>([]);
   const [relatedSlugs, setRelatedSlugs] = useState<string>("");
@@ -228,8 +229,8 @@ function ProductDetailContent({ id }: { id: string }) {
       }));
       setPriceTiers(tierStates);
 
-      setHighlightCodes(adminDetail.highlight_codes.join(", "));
-      setPackingCodes(adminDetail.packing_codes.join(", "));
+      setHighlightCodes(adminDetail.highlight_codes);
+      setPackingCodes(adminDetail.packing_codes);
       setInclusions(adminDetail.inclusions);
       setDepartureMonths(adminDetail.departure_months);
       setRelatedSlugs(result.related_slugs.join(", "));
@@ -294,14 +295,8 @@ function ProductDetailContent({ id }: { id: string }) {
           sort_order: t.sort_order,
         })),
         gallery_media_ids: galleryMedia.map((m) => m.id),
-        highlight_codes: highlightCodes
-          .split(",")
-          .map((c) => c.trim())
-          .filter(Boolean),
-        packing_codes: packingCodes
-          .split(",")
-          .map((c) => c.trim())
-          .filter(Boolean),
+        highlight_codes: highlightCodes,
+        packing_codes: packingCodes,
         inclusions,
         departure_months: departureMonths,
       };
@@ -1041,44 +1036,46 @@ function ProductDetailContent({ id }: { id: string }) {
             <div className="border-t border-stone-200 pt-4 space-y-4">
               <h3 className="text-sm font-medium">Points forts, prestations et divers</h3>
 
-              <label className="block text-sm">
-                Points forts (codes séparés par des virgules)
-                <input
-                  type="text"
-                  value={highlightCodes}
-                  onChange={(e) => setHighlightCodes(e.target.value)}
-                  placeholder="snorkeling, lighthouse…"
-                  className="mt-1 block w-full rounded border border-stone-300 p-2"
-                />
-              </label>
+              <TaxonomyPicker
+                type="highlights"
+                label="Points forts"
+                selected={highlightCodes}
+                onChange={setHighlightCodes}
+              />
 
-              <label className="block text-sm">
-                Affaires à prévoir (codes séparés par des virgules)
-                <input
-                  type="text"
-                  value={packingCodes}
-                  onChange={(e) => setPackingCodes(e.target.value)}
-                  placeholder="swimsuit, towel…"
-                  className="mt-1 block w-full rounded border border-stone-300 p-2"
-                />
-              </label>
+              <TaxonomyPicker
+                type="packing-items"
+                label="Affaires à prévoir"
+                selected={packingCodes}
+                onChange={setPackingCodes}
+              />
 
               <div>
-                <p className="mb-1 text-sm">Prestations ({inclusions.length})</p>
-                <div className="space-y-2">
-                  {inclusions.map((inc, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <input
-                        type="text"
-                        value={inc.code}
-                        onChange={(e) =>
-                          setInclusions((prev) =>
-                            prev.map((i, n) => (n === idx ? { ...i, code: e.target.value } : i)),
-                          )
-                        }
-                        className="flex-1 rounded border border-stone-300 p-2 text-sm"
-                      />
-                      <label className="flex items-center gap-1 text-xs">
+                <TaxonomyPicker
+                  type="inclusions"
+                  label={`Prestations (${inclusions.length})`}
+                  selected={inclusions.map((i) => i.code)}
+                  onChange={(codes) =>
+                    setInclusions(
+                      codes.map((code, idx) => {
+                        const existing = inclusions.find((i) => i.code === code);
+                        return {
+                          code,
+                          is_included: existing?.is_included ?? true,
+                          sort_order: idx,
+                        };
+                      }),
+                    )
+                  }
+                />
+
+                {inclusions.length > 0 && (
+                  <div className="mt-2 space-y-1">
+                    <p className="text-xs text-stone-500">
+                      Cocher = inclus, décocher = en supplément
+                    </p>
+                    {inclusions.map((inc, idx) => (
+                      <label key={inc.code} className="flex items-center gap-2 text-xs">
                         <input
                           type="checkbox"
                           checked={inc.is_included ?? true}
@@ -1090,30 +1087,11 @@ function ProductDetailContent({ id }: { id: string }) {
                             )
                           }
                         />
-                        inclus
+                        {inc.code}
                       </label>
-                      <button
-                        type="button"
-                        onClick={() => setInclusions((prev) => prev.filter((_, n) => n !== idx))}
-                        className="text-sm text-red-600"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  ))}
-                </div>
-                <button
-                  type="button"
-                  onClick={() =>
-                    setInclusions((prev) => [
-                      ...prev,
-                      { code: "", is_included: true, sort_order: prev.length },
-                    ])
-                  }
-                  className="mt-2 rounded border border-stone-300 px-3 py-1.5 text-sm hover:bg-stone-50"
-                >
-                  Ajouter une prestation
-                </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div>
