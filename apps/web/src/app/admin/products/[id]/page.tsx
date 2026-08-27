@@ -1051,47 +1051,33 @@ function ProductDetailContent({ id }: { id: string }) {
               />
 
               <div>
-                <TaxonomyPicker
-                  type="inclusions"
-                  label={`Prestations (${inclusions.length})`}
-                  selected={inclusions.map((i) => i.code)}
-                  onChange={(codes) =>
-                    setInclusions(
-                      codes.map((code, idx) => {
-                        const existing = inclusions.find((i) => i.code === code);
-                        return {
-                          code,
-                          is_included: existing?.is_included ?? true,
-                          sort_order: idx,
-                        };
-                      }),
-                    )
-                  }
-                />
+                  <TaxonomyPicker
+                    type="inclusions"
+                    label={`Prestations (${inclusions.length})`}
+                    selected={inclusions.map((i) => i.code)}
+                    onChange={(codes) =>
+                      setInclusions(
+                        codes.map((code, idx) => {
+                          const existing = inclusions.find((i) => i.code === code);
+                          return {
+                            code,
+                            is_included: existing?.is_included ?? true,
+                            sort_order: idx,
+                          };
+                        }),
+                      )
+                    }
+                    includedMap={Object.fromEntries(
+                      inclusions.map((i) => [i.code, i.is_included ?? true]),
+                    )}
+                    onIncludedChange={(code, isIncluded) =>
+                      setInclusions((prev) =>
+                        prev.map((i) => (i.code === code ? { ...i, is_included: isIncluded } : i)),
+                      )
+                    }
+                  />
 
-                {inclusions.length > 0 && (
-                  <div className="mt-2 space-y-1">
-                    <p className="text-xs text-stone-500">
-                      Cocher = inclus, décocher = en supplément
-                    </p>
-                    {inclusions.map((inc, idx) => (
-                      <label key={inc.code} className="flex items-center gap-2 text-xs">
-                        <input
-                          type="checkbox"
-                          checked={inc.is_included ?? true}
-                          onChange={(e) =>
-                            setInclusions((prev) =>
-                              prev.map((i, n) =>
-                                n === idx ? { ...i, is_included: e.target.checked } : i,
-                              ),
-                            )
-                          }
-                        />
-                        {inc.code}
-                      </label>
-                    ))}
-                  </div>
-                )}
+                
               </div>
 
               <div>

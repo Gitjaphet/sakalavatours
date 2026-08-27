@@ -19,11 +19,16 @@ export function TaxonomyPicker({
   label,
   selected,
   onChange,
+  includedMap,
+  onIncludedChange,
 }: {
   type: TaxonomyType;
   label: string;
   selected: string[];
   onChange: (codes: string[]) => void;
+  /** Prestations uniquement : état inclus/non inclus par code. */
+  includedMap?: Record<string, boolean>;
+  onIncludedChange?: (code: string, isIncluded: boolean) => void;
 }) {
   const { accessToken } = useAuth();
   const [available, setAvailable] = useState<TaxonomyOut[]>([]);
@@ -93,6 +98,23 @@ export function TaxonomyPicker({
           </option>
         ))}
       </select>
+        {includedMap && onIncludedChange && selected.length > 0 && (
+        <div className="mt-2 space-y-1">
+          <p className="text-xs text-stone-500">
+            Cocher = inclus, décocher = en supplément
+          </p>
+          {selected.map((code) => (
+            <label key={code} className="flex items-center gap-2 text-xs">
+              <input
+                type="checkbox"
+                checked={includedMap[code] ?? true}
+                onChange={(e) => onIncludedChange(code, e.target.checked)}
+              />
+              {labelFor(code)}
+            </label>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
