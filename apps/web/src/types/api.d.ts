@@ -386,3 +386,45 @@ export type ProductAdminDetail = {
   price_tiers: PriceTierOut[];
   faqs: FaqOut[];
 };
+
+
+// --- Admin · Taxonomies ---
+
+export type TaxonomyType = "highlights" | "inclusions" | "packing-items";
+
+export type TaxonomyTranslationIn = {
+  locale: string;
+  label: string;
+  detail?: string | null;
+};
+
+export type TaxonomyTranslationOut = TaxonomyTranslationIn & {
+  id: string;
+};
+
+export type TaxonomyOut = {
+  id: string;
+  code: string;
+  icon: string | null;
+  sort_order: number;
+  translations: TaxonomyTranslationOut[];
+};
+
+export type TaxonomyListResponse = {
+  items: TaxonomyOut[];
+  total: number;
+};
+
+export type TaxonomyCreate = {
+  code: string;
+  icon?: string | null;
+  sort_order?: number;
+  translations: TaxonomyTranslationIn[];
+};
+
+export type TaxonomyUpdate = {
+  code?: string;
+  icon?: string | null;
+  sort_order?: number;
+  translations?: TaxonomyTranslationIn[];
+};
