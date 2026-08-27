@@ -100,14 +100,17 @@ async def _set_inclusions(session, product_id: UUID, links) -> None:
     await session.exec(
         delete(ProductInclusion).where(ProductInclusion.product_id == product_id)
     )
-    ids = await _codes_to_ids(session, Inclusion, [l.code for l in links])
-    for link in links:
+    normalized = [
+        l if isinstance(l, dict) else l.model_dump() for l in links
+    ]
+    ids = await _codes_to_ids(session, Inclusion, [l["code"] for l in normalized])
+    for link in normalized:
         session.add(
             ProductInclusion(
                 product_id=product_id,
-                inclusion_id=ids[link.code],
-                is_included=link.is_included,
-                sort_order=link.sort_order,
+                inclusion_id=ids[link["code"]],
+                is_included=link.get("is_included", True),
+                sort_order=link.get("sort_order", 0),
             )
         )
 
