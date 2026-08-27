@@ -1,7 +1,7 @@
 // apps/web/src/app/admin/AdminShell.tsx
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "./AuthContext";
@@ -13,6 +13,7 @@ const NAV = [
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
   const { user, logout } = useAuth();
 
   // La page de connexion n'a pas de navigation : elle s'affiche en pleine page.
@@ -88,7 +89,10 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           )}
           <button
             type="button"
-            onClick={logout}
+              onClick={async () => {
+              await logout();
+              router.push("/admin/login");
+            }}
             className="w-full rounded-md px-3 py-2 text-left text-sm text-stone-600 transition-colors hover:bg-stone-100"
           >
             Se déconnecter

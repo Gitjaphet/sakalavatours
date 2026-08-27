@@ -2,7 +2,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { RequireAuth } from "../RequireAuth";
 import { useAuth } from "../AuthContext";
 import { AdminApiError } from "@/lib/api/admin-products";
@@ -143,12 +142,7 @@ function TaxonomiesContent() {
 
   return (
     <div className="p-6">
-      <Link
-        href="/admin/dashboard"
-        className="text-sm text-stone-500 hover:text-stone-900"
-      >
-        ← Retour au tableau de bord
-      </Link>
+      
       <h1 className="mt-2 mb-4 text-xl font-semibold">Taxonomies</h1>
 
       <div className="mb-4 flex gap-1 border-b border-stone-200">
@@ -168,7 +162,7 @@ function TaxonomiesContent() {
         ))}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_400px]">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
         <div>
           {isLoading && <p className="text-stone-500">Chargement…</p>}
           {error && <p className="text-red-600">Erreur : {error}</p>}
