@@ -539,6 +539,13 @@
       "successTitle": "Anfrage eingegangen",
       "reference": "Referenz",
       "successNote": "Bewahren Sie diese Referenz auf — damit finden wir Ihre Anfrage für {product} wieder."
-    }
+    },
+    "country": "Ihr Land",
+    "countryPlaceholder": "Auswählen…",
+    "countryOther": "Anderes Land",
+    "noteTitle": "Gut zu wissen",
+    "noteRequired": "Mit einem Stern (*) markierte Felder sind Pflichtfelder. Die übrigen helfen uns bei der Vorbereitung, sind aber freiwillig.",
+    "noteHotel": "Ihre Unterkunft: Mit dem Namen Ihres Hotels können wir die Abholung organisieren, sofern sie im Ausflug enthalten ist.",
+    "noteAlternative": "Ausweichtermin: ein zweiter Termin, der Ihnen passen würde, falls der erste nicht verfügbar ist."
   }
 }

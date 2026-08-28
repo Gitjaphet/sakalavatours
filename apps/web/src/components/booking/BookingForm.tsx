@@ -28,6 +28,7 @@ export function BookingForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
   const [hotel, setHotel] = useState("");
   const [requestedDate, setRequestedDate] = useState("");
   const [alternativeDate, setAlternativeDate] = useState("");
@@ -61,6 +62,7 @@ export function BookingForm({
         customer_name: name.trim(),
         customer_email: email.trim(),
         customer_phone: phone.trim() || null,
+        customer_country: country || null,
         preferred_locale: locale,
         hotel_name: hotel.trim() || null,
         requested_date: requestedDate,
@@ -166,6 +168,32 @@ export function BookingForm({
           </label>
 
           <label className="block text-sm">
+            <span className="font-medium text-stone-900">{t("country")}</span>
+            <select
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              className="mt-1.5 block w-full rounded-xl border border-stone-300 p-3 text-sm focus:border-[#1d4e5f] focus:outline-none"
+            >
+              <option value="">{t("countryPlaceholder")}</option>
+              <option value="FR">France</option>
+              <option value="IT">Italie</option>
+              <option value="DE">Allemagne</option>
+              <option value="CH">Suisse</option>
+              <option value="BE">Belgique</option>
+              <option value="MG">Madagascar</option>
+              <option value="GB">Royaume-Uni</option>
+              <option value="US">États-Unis</option>
+              <option value="CA">Canada</option>
+              <option value="ES">Espagne</option>
+              <option value="NL">Pays-Bas</option>
+              <option value="ZA">Afrique du Sud</option>
+              <option value="RE">La Réunion</option>
+              <option value="MU">Maurice</option>
+              <option value="XX">{t("countryOther")}</option>
+            </select>
+          </label>
+
+          <label className="block text-sm">
             <span className="font-medium text-stone-900">{t("hotel")}</span>
             <input
               type="text"
@@ -261,7 +289,17 @@ export function BookingForm({
           {isSending ? t("sending") : t("submit")}
         </button>
 
-        <p className="text-center text-xs text-stone-500">{t("privacy")}</p>
+        <div className="space-y-2 rounded-xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600">
+          <p>
+            <span className="font-medium text-stone-900">{t("noteTitle")}</span>
+          </p>
+          <p>{t("noteRequired")}</p>
+          <p>{t("noteHotel")}</p>
+          <p>{t("noteAlternative")}</p>
+          <p className="border-t border-stone-200 pt-2 text-stone-500">
+            {t("privacy")}
+          </p>
+        </div>
       </div>
     </div>
   );

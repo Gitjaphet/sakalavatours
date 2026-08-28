@@ -539,6 +539,13 @@
       "successTitle": "Richiesta ricevuta",
       "reference": "Riferimento",
       "successNote": "Conserva questo riferimento: ci permette di ritrovare la tua richiesta per {product}."
-    }
+    },
+    "country": "Il tuo paese",
+    "countryPlaceholder": "Seleziona…",
+    "countryOther": "Altro paese",
+    "noteTitle": "Buono a sapersi",
+    "noteRequired": "I campi contrassegnati con un asterisco (*) sono obbligatori. Gli altri ci aiutano a preparare meglio la tua uscita, ma sono facoltativi.",
+    "noteHotel": "Dove alloggi: il nome del tuo hotel ci permette di organizzare il transfer quando è incluso nell'uscita.",
+    "noteAlternative": "Data alternativa: una seconda data che ti andrebbe bene, nel caso la prima non fosse disponibile."
   }
 }
