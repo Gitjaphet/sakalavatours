@@ -186,8 +186,7 @@ function ReviewDetailContent({ id }: { id: string }) {
             <p className="mb-4 text-xs text-stone-500">
               {review.author_country ?? "Pays non précisé"}
               {review.travel_date && ` · voyage du ${formatDate(review.travel_date)}`}
-              {review.product_title && ` · ${review.product_title}`}
-              {!review.product_title && " · avis sur l'agence"}
+              {review.product ? ` · ${review.product.title}` : " · avis sur l'agence"}
             </p>
             {review.title && (
               <p className="mb-2 font-medium text-stone-900">{review.title}</p>

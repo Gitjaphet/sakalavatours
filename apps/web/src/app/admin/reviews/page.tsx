@@ -174,7 +174,7 @@ function ReviewsContent() {
                       )}
                       <span className="text-stone-400">
                         {" · "}
-                        {r.product_title ?? "Agence"}
+                        {r.product?.title ?? "Agence"}
                       </span>
                     </p>
                     <p className="truncate text-sm text-stone-500">

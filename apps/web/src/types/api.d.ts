@@ -554,9 +554,14 @@ export type BookingUpdateRequest = {
 
 export type ReviewStatus = "pending" | "approved" | "rejected" | "spam";
 
+export type ReviewProductRef = {
+  id: string;
+  title: string;
+  slug: string;
+};
+
 export type ReviewAdminRead = {
   id: string;
-  product_id: string | null;
 
   author_name: string;
   author_email: string;
@@ -587,10 +592,8 @@ export type ReviewAdminRead = {
   is_featured: boolean;
   created_at: string;
 
-  // Renseignés par la liste uniquement (jointure produit côté backend).
-  // La fiche détail les renvoie à null.
-  product_title: string | null;
-  product_slug: string | null;
+  // null signifie « avis portant sur l'agence », jamais « non chargé ».
+  product: ReviewProductRef | null;
 };
 
 export type ReviewAdminListResponse = {
