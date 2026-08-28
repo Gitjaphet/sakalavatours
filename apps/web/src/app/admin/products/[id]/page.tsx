@@ -312,38 +312,52 @@ function ProductDetailContent({ id }: { id: string }) {
     }
   }
 
-  return (
-    <div className="p-6">
+    return (
+    <div className="p-8">
       <Link href="/admin/dashboard" className="text-sm text-stone-500 hover:text-stone-900">
         ← Retour à la liste
       </Link>
-      <h1 className="mt-2 mb-4 text-xl font-semibold">Détail produit</h1>
 
-      {isLoading && <p className="text-stone-500">Chargement…</p>}
-      {error && <p className="text-red-600">Erreur : {error}</p>}
+      {isLoading && <p className="mt-4 text-stone-500">Chargement…</p>}
+      {error && <p className="mt-4 text-red-600">Erreur : {error}</p>}
 
       {data && (
         <>
-          <div className="mb-6 max-w-sm space-y-4 rounded border border-stone-200 p-4">
-            <h2 className="font-medium">{data.title}</h2>
+          <div className="mb-6 mt-2 flex items-center justify-between gap-4">
+            <h1 className="text-2xl font-semibold text-stone-900">{data.title}</h1>
+            <div className="flex items-center gap-3">
+              {saveMessage && (
+                <span
+                  className={`text-sm ${
+                    saveMessage.startsWith("Erreur") ? "text-red-600" : "text-[#1a6b2f]"
+                  }`}
+                >
+                  {saveMessage}
+                </span>
+              )}
+              {canDelete && (
+                <button
+                  onClick={handleDelete}
+                  disabled={isDeleting}
+                  className="rounded-md border border-red-300 px-4 py-2 text-sm text-red-600 hover:bg-red-50 disabled:opacity-50"
+                >
+                  {isDeleting ? "Suppression…" : "Supprimer"}
+                </button>
+              )}
+              <button
+                onClick={handleSave}
+                disabled={isSaving}
+                className="rounded-md bg-[#1a6b2f] px-5 py-2 text-sm font-medium text-white hover:bg-[#155726] disabled:opacity-50"
+              >
+                {isSaving ? "Enregistrement…" : "Enregistrer"}
+              </button>
+            </div>
+          </div>
 
-            <label className="flex items-center gap-2 text-sm">
-              <input
-                type="checkbox"
-                checked={isPublished}
-                onChange={(e) => setIsPublished(e.target.checked)}
-              />
-              Publié
-            </label>
+          <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
+            <div className="space-y-4 rounded-lg border border-stone-200 bg-white p-5">
 
-            <label className="flex items-center gap-2 text-sm">
-              <input
-                type="checkbox"
-                checked={isFeatured}
-                onChange={(e) => setIsFeatured(e.target.checked)}
-              />
-              Mis en avant
-            </label>
+            
 
             <label className="block text-sm">
               Prix (à partir de)
@@ -355,15 +369,7 @@ function ProductDetailContent({ id }: { id: string }) {
               />
             </label>
 
-            <label className="block text-sm">
-              Slug
-              <input
-                type="text"
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-                className="mt-1 block w-full rounded border border-stone-300 p-2"
-              />
-            </label>
+            
 
             <EnumSelect
               label="Format"
@@ -1113,29 +1119,42 @@ function ProductDetailContent({ id }: { id: string }) {
               </label>
             </div>
 
-            <button
-              onClick={handleSave}
-              disabled={isSaving}
-              className="rounded bg-stone-900 px-4 py-2 text-sm text-white disabled:opacity-50"
-            >
-              {isSaving ? "Enregistrement…" : "Enregistrer"}
-            </button>
+            </div>
 
-            {saveMessage && <p className="text-sm">{saveMessage}</p>}
+            <div className="space-y-4">
+              <div className="space-y-4 rounded-lg border border-stone-200 bg-white p-5">
+                <h3 className="text-sm font-semibold text-stone-900">Publication</h3>
 
-            {canDelete && (
-              <button
-                onClick={handleDelete}
-                disabled={isDeleting}
-                className="mt-2 rounded border border-red-300 px-4 py-2 text-sm text-red-600 hover:bg-red-50 disabled:opacity-50"
-              >
-                {isDeleting ? "Suppression…" : "Supprimer ce produit"}
-              </button>
-            )}
-            
+                <label className="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={isPublished}
+                    onChange={(e) => setIsPublished(e.target.checked)}
+                  />
+                  Publié
+                </label>
+
+                <label className="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={isFeatured}
+                    onChange={(e) => setIsFeatured(e.target.checked)}
+                  />
+                  Mis en avant
+                </label>
+
+                <label className="block text-sm">
+                  Slug
+                  <input
+                    type="text"
+                    value={slug}
+                    onChange={(e) => setSlug(e.target.value)}
+                    className="mt-1 block w-full rounded border border-stone-300 p-2"
+                  />
+                </label>
+              </div>
+            </div>
           </div>
-
-         
         </>
       )}
     </div>
