@@ -548,3 +548,75 @@ export type BookingUpdateRequest = {
   balance_paid_at?: string | null;
   hotel_name?: string | null;
 };
+
+
+// --- Admin · Avis ---
+
+export type ReviewStatus = "pending" | "approved" | "rejected" | "spam";
+
+export type ReviewAdminRead = {
+  id: string;
+  product_id: string | null;
+
+  author_name: string;
+  author_email: string;
+  author_country: string | null;
+
+  rating: number;
+  title: string | null;
+  body: string;
+  locale: string;
+  travel_date: string | null;
+
+  status: ReviewStatus;
+  is_verified: boolean;
+  booking_reference: string | null;
+  email_verified_at: string | null;
+
+  moderated_by: string | null;
+  moderated_at: string | null;
+  rejection_reason: string | null;
+
+  admin_reply: string | null;
+  admin_replied_at: string | null;
+  published_at: string | null;
+
+  submitted_ip: string | null;
+  spam_score: number | null;
+
+  is_featured: boolean;
+  created_at: string;
+
+  // Renseignés par la liste uniquement (jointure produit côté backend).
+  // La fiche détail les renvoie à null.
+  product_title: string | null;
+  product_slug: string | null;
+};
+
+export type ReviewAdminListResponse = {
+  items: ReviewAdminRead[];
+  total: number;
+  limit: number;
+  offset: number;
+  counts_by_status: Record<string, number>;
+};
+
+export type ReviewListParams = {
+  status?: ReviewStatus;
+  product_id?: string;
+  min_rating?: number;
+  max_rating?: number;
+  limit?: number;
+  offset?: number;
+};
+
+export type ReviewModerateRequest = {
+  status: ReviewStatus;
+  rejection_reason?: string | null;
+  is_verified?: boolean | null;
+  is_featured?: boolean | null;
+};
+
+export type ReviewReplyRequest = {
+  admin_reply: string;
+};
