@@ -65,7 +65,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             À venir
           </p>
           <ul className="mt-1 space-y-1">
-            {["Réservations", "Avis", "Médias", "Blog"].map((label) => (
+            {["Avis", "Médias", "Blog"].map((label) => (
               <li
                 key={label}
                 className="cursor-not-allowed rounded-md px-3 py-2 text-sm text-stone-300"
