@@ -428,3 +428,52 @@ export type TaxonomyUpdate = {
   sort_order?: number;
   translations?: TaxonomyTranslationIn[];
 };
+
+// --- Admin · Réservations ---
+
+export type BookingStatus =
+  | "new"
+  | "contacted"
+  | "quoted"
+  | "pending_payment"
+  | "confirmed"
+  | "completed"
+  | "cancelled"
+  | "expired";
+
+export type BookingSource = "website" | "phone" | "email" | "walk_in" | "partner";
+
+export type BookingListItem = {
+  id: string;
+  reference: string;
+  status: BookingStatus;
+  product_title: string;
+  customer_name: string;
+  customer_email: string;
+  customer_phone: string | null;
+  requested_date: string;
+  adults: number;
+  children: number;
+  total_amount: string;
+  currency: string;
+  assigned_to: string | null;
+  source: BookingSource;
+  created_at: string;
+  expires_at: string | null;
+};
+
+export type BookingListResponse = {
+  items: BookingListItem[];
+  total: number;
+  limit: number;
+  offset: number;
+  counts_by_status: Record<string, number>;
+};
+
+export type BookingListParams = {
+  status?: BookingStatus;
+  only_open?: boolean;
+  search?: string;
+  limit?: number;
+  offset?: number;
+};

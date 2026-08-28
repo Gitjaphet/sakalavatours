@@ -8,6 +8,7 @@ import { useAuth } from "./AuthContext";
 
 const NAV = [
   { href: "/admin/dashboard", label: "Tableau de bord" },
+  { href: "/admin/bookings", label: "Réservations" },
   { href: "/admin/taxonomies", label: "Taxonomies" },
 ];
 
