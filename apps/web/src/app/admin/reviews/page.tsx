@@ -43,7 +43,8 @@ const TABS: { key: TabKey; label: string }[] = [
 function riskBadge(score: number | null): { label: string; className: string } {
   if (score === null) return { label: "—", className: "bg-stone-100 text-stone-500" };
   const value = score.toFixed(2).replace(".", ",");
-  if (score >= 0.6) return { label: value, className: "bg-red-50 text-red-700" };
+  if (score >= 0.6)
+    return { label: value, className: "bg-red-600 text-white font-semibold" };
   if (score >= 0.3) return { label: value, className: "bg-amber-50 text-amber-800" };
   return { label: value, className: "bg-green-50 text-green-800" };
 }
@@ -92,7 +93,7 @@ function ReviewsContent() {
   }, [accessToken, activeTab, minRating]);
 
   return (
-    <div className="p-8">
+    <div className="max-w-5xl p-8">
       <h1 className="mb-6 text-2xl font-semibold text-stone-900">Avis</h1>
 
       <div className="mb-4 flex flex-wrap gap-1 border-b border-stone-200">
