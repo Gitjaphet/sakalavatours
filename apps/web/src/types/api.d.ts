@@ -477,3 +477,74 @@ export type BookingListParams = {
   limit?: number;
   offset?: number;
 };
+
+export type BookingAdminRead = {
+  id: string;
+  reference: string;
+  status: BookingStatus;
+
+  product_id: string | null;
+  product_slug: string;
+  product_title: string;
+  product_type: "circuit" | "excursion";
+  unit_price: string;
+  currency: string;
+
+  customer_name: string;
+  customer_email: string;
+  customer_phone: string | null;
+  customer_country: string | null;
+  preferred_locale: string;
+  hotel_name: string | null;
+
+  requested_date: string;
+  alternative_date: string | null;
+  adults: number;
+  children: number;
+  customer_message: string | null;
+
+  total_amount: string;
+  deposit_amount: string | null;
+  deposit_paid_at: string | null;
+  balance_paid_at: string | null;
+
+  assigned_to: string | null;
+  internal_notes: string | null;
+  cancellation_reason: string | null;
+
+  first_contacted_at: string | null;
+  quoted_at: string | null;
+  confirmed_at: string | null;
+  completed_at: string | null;
+  expires_at: string | null;
+
+  source: BookingSource;
+  utm_source: string | null;
+  utm_campaign: string | null;
+
+  created_at: string;
+  updated_at: string;
+};
+
+export type BookingHistoryItem = {
+  from_status: BookingStatus | null;
+  to_status: BookingStatus;
+  changed_by: string | null;
+  note: string | null;
+  is_automatic: boolean;
+  created_at: string;
+};
+
+export type BookingTransitionRequest = {
+  to_status: BookingStatus;
+  note?: string | null;
+};
+
+export type BookingUpdateRequest = {
+  assigned_to?: string | null;
+  internal_notes?: string | null;
+  deposit_amount?: string | null;
+  deposit_paid_at?: string | null;
+  balance_paid_at?: string | null;
+  hotel_name?: string | null;
+};
