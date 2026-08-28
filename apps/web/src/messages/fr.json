@@ -538,15 +538,16 @@
       "errorUnexpected": "L'envoi a échoué. Réessayez dans un instant ou contactez-nous par WhatsApp.",
       "successTitle": "Demande bien reçue",
       "reference": "Référence",
-      "successNote": "Conservez cette référence : elle nous permet de retrouver votre demande pour {product}."
-      },
-    "country": "Votre pays",
-    "countryPlaceholder": "Sélectionnez…",
-    "countryOther": "Autre pays",
-    "noteTitle": "Bon à savoir",
-    "noteRequired": "Les champs marqués d'une étoile (*) sont obligatoires. Les autres nous aident à mieux préparer votre sortie, mais restent facultatifs.",
-    "noteHotel": "Votre hébergement : le nom de votre hôtel nous permet d'organiser le transfert quand il est inclus dans la sortie.",
-    "noteAlternative": "Date de repli : une seconde date qui vous conviendrait, si jamais la première n'était pas disponible."
+      "successNote": "Conservez cette référence : elle nous permet de retrouver votre demande pour {product}.",
+      "country": "Votre pays",
+      "countryPlaceholder": "Sélectionnez…",
+      "countryOther": "Autre pays",
+      "noteTitle": "Bon à savoir",
+      "noteRequired": "Les champs marqués d'une étoile (*) sont obligatoires. Les autres nous aident à mieux préparer votre sortie, mais restent facultatifs.",
+      "noteHotel": "Votre hébergement : le nom de votre hôtel nous permet d'organiser le transfert quand il est inclus dans la sortie.",
+      "noteAlternative": "Date de repli : une seconde date qui vous conviendrait, si jamais la première n'était pas disponible."
+      }
+    
   }
 
 }

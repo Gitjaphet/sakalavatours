@@ -538,14 +538,15 @@
       "errorUnexpected": "Sending failed. Please try again shortly, or reach us on WhatsApp.",
       "successTitle": "Request received",
       "reference": "Reference",
-      "successNote": "Keep this reference — it lets us find your request for {product}."
-    },
-    "country": "Your country",
-    "countryPlaceholder": "Select…",
-    "countryOther": "Other country",
-    "noteTitle": "Good to know",
-    "noteRequired": "Fields marked with a star (*) are required. The others help us prepare your trip but are optional.",
-    "noteHotel": "Where you're staying: your hotel name lets us arrange pick-up when it's included in the trip.",
-    "noteAlternative": "Alternative date: a second date that would work for you, in case the first one isn't available."
+      "successNote": "Keep this reference — it lets us find your request for {product}.",
+      "country": "Your country",
+      "countryPlaceholder": "Select…",
+      "countryOther": "Other country",
+      "noteTitle": "Good to know",
+      "noteRequired": "Fields marked with a star (*) are required. The others help us prepare your trip but are optional.",
+      "noteHotel": "Where you're staying: your hotel name lets us arrange pick-up when it's included in the trip.",
+      "noteAlternative": "Alternative date: a second date that would work for you, in case the first one isn't available."
+      }
+    
   }
 }
