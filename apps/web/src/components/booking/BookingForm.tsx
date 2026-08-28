@@ -5,7 +5,15 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { createBooking, BookingError } from "@/lib/api/bookings";
 import type { BookingConfirmation } from "@/lib/api/bookings";
-import { IconCheck, IconAlertCircle } from "@tabler/icons-react";
+import {
+  IconCheck,
+  IconAlertCircle,
+  IconInfoCircle,
+  IconAsterisk,
+  IconBuildingCottage,
+  IconCalendarPlus,
+  IconLock,
+} from "@tabler/icons-react";
 
 type ProductOption = {
   slug: string;
@@ -289,14 +297,45 @@ export function BookingForm({
           {isSending ? t("sending") : t("submit")}
         </button>
 
-        <div className="space-y-2 rounded-xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600">
-          <p>
-            <span className="font-medium text-stone-900">{t("noteTitle")}</span>
+                <div className="rounded-2xl border border-[#F4A261]/30 bg-[#FDF6EE] p-5">
+          <p className="flex items-center gap-2 text-sm font-semibold text-[#1d4e5f]">
+            <IconInfoCircle size={18} stroke={1.8} className="shrink-0 text-[#E76F51]" />
+            {t("noteTitle")}
           </p>
-          <p>{t("noteRequired")}</p>
-          <p>{t("noteHotel")}</p>
-          <p>{t("noteAlternative")}</p>
-          <p className="border-t border-stone-200 pt-2 text-stone-500">
+
+          <ul className="mt-4 space-y-3.5">
+            <li className="flex gap-3">
+              <IconAsterisk
+                size={15}
+                stroke={2}
+                className="mt-0.5 shrink-0 text-[#E76F51]"
+              />
+              <p className="text-sm leading-relaxed text-stone-700">
+                {t("noteRequired")}
+              </p>
+            </li>
+            <li className="flex gap-3">
+              <IconBuildingCottage
+                size={16}
+                stroke={1.8}
+                className="mt-0.5 shrink-0 text-[#1d4e5f]"
+              />
+              <p className="text-sm leading-relaxed text-stone-700">{t("noteHotel")}</p>
+            </li>
+            <li className="flex gap-3">
+              <IconCalendarPlus
+                size={16}
+                stroke={1.8}
+                className="mt-0.5 shrink-0 text-[#1d4e5f]"
+              />
+              <p className="text-sm leading-relaxed text-stone-700">
+                {t("noteAlternative")}
+              </p>
+            </li>
+          </ul>
+
+          <p className="mt-4 flex items-center gap-2 border-t border-[#F4A261]/25 pt-3.5 text-xs text-stone-500">
+            <IconLock size={14} stroke={1.8} className="shrink-0" />
             {t("privacy")}
           </p>
         </div>
