@@ -503,5 +503,42 @@
       "excursions": "Vedi le nostre escursioni",
       "contact": "Scrivici"
     }
+  },
+    "reservation": {
+    "meta": {
+      "title": "Prenota la tua escursione o il tuo tour — Sakalava Tours Nosy Be",
+      "description": "Prenota online la tua escursione a Nosy Be o il tuo tour nel nord del Madagascar. Risposta entro 24 ore, guide locali, piccoli gruppi."
+    },
+    "eyebrow": "Prenotazione",
+    "pageTitle": "Prenota la tua uscita",
+    "pageIntro": "Dicci cosa ti interessa e in quale data. Ti rispondiamo entro 24 ore con la disponibilità e il dettaglio delle tariffe.",
+    "breadcrumb": "Prenota",
+    "formTitle": "La tua richiesta",
+    "formIntro": "Nessun pagamento in questa fase. Confermiamo prima la disponibilità, poi ti inviamo tutti i dettagli.",
+    "form": {
+      "product": "Escursione o tour",
+      "productPlaceholder": "Scegli un'uscita…",
+      "excursions": "Escursioni giornaliere",
+      "circuits": "Tour di più giorni",
+      "name": "Nome e cognome",
+      "email": "Indirizzo email",
+      "phone": "Telefono o WhatsApp",
+      "hotel": "Dove alloggi",
+      "hotelPlaceholder": "Nome dell'hotel, per il transfer",
+      "date": "Data desiderata",
+      "alternativeDate": "Data alternativa",
+      "adults": "Adulti",
+      "children": "Bambini",
+      "message": "Il tuo messaggio",
+      "messagePlaceholder": "Esigenze alimentari, mobilità ridotta, occasione speciale, domande…",
+      "submit": "Invia la richiesta",
+      "sending": "Invio in corso…",
+      "privacy": "I tuoi dati servono solo per gestire questa richiesta. Nessuna email commerciale.",
+      "errorRequired": "Scegli un'uscita e inserisci nome, email e data desiderata.",
+      "errorUnexpected": "Invio non riuscito. Riprova tra poco oppure scrivici su WhatsApp.",
+      "successTitle": "Richiesta ricevuta",
+      "reference": "Riferimento",
+      "successNote": "Conserva questo riferimento: ci permette di ritrovare la tua richiesta per {product}."
+    }
   }
 }

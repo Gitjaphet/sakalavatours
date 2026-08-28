@@ -503,5 +503,42 @@
       "excursions": "See our excursions",
       "contact": "Write to us"
     }
+  }, 
+    "reservation": {
+    "meta": {
+      "title": "Book your day trip or tour — Sakalava Tours Nosy Be",
+      "description": "Book your Nosy Be day trip or northern Madagascar tour online. Reply within 24 hours, local guides, small groups."
+    },
+    "eyebrow": "Booking",
+    "pageTitle": "Book your trip",
+    "pageIntro": "Tell us what interests you and when you'd like to go. We reply within 24 hours with availability and full pricing.",
+    "breadcrumb": "Book",
+    "formTitle": "Your request",
+    "formIntro": "No payment at this stage. We confirm availability first, then send you the full details.",
+    "form": {
+      "product": "Day trip or tour",
+      "productPlaceholder": "Choose a trip…",
+      "excursions": "Day trips",
+      "circuits": "Multi-day tours",
+      "name": "Full name",
+      "email": "Email address",
+      "phone": "Phone or WhatsApp",
+      "hotel": "Where you're staying",
+      "hotelPlaceholder": "Hotel name, for pick-up",
+      "date": "Preferred date",
+      "alternativeDate": "Alternative date",
+      "adults": "Adults",
+      "children": "Children",
+      "message": "Your message",
+      "messagePlaceholder": "Dietary needs, reduced mobility, special occasion, questions…",
+      "submit": "Send my request",
+      "sending": "Sending…",
+      "privacy": "Your details are used only to handle this request. No marketing emails.",
+      "errorRequired": "Please choose a trip and fill in your name, email and preferred date.",
+      "errorUnexpected": "Sending failed. Please try again shortly, or reach us on WhatsApp.",
+      "successTitle": "Request received",
+      "reference": "Reference",
+      "successNote": "Keep this reference — it lets us find your request for {product}."
+    }
   }
 }

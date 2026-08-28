@@ -503,5 +503,42 @@
       "excursions": "Unsere Ausflüge ansehen",
       "contact": "Schreiben Sie uns"
     }
+  },
+    "reservation": {
+    "meta": {
+      "title": "Ausflug oder Rundreise buchen — Sakalava Tours Nosy Be",
+      "description": "Buchen Sie Ihren Tagesausflug auf Nosy Be oder Ihre Rundreise im Norden Madagaskars. Antwort innerhalb von 24 Stunden, einheimische Guides, kleine Gruppen."
+    },
+    "eyebrow": "Buchung",
+    "pageTitle": "Buchen Sie Ihren Ausflug",
+    "pageIntro": "Sagen Sie uns, was Sie interessiert und wann Sie fahren möchten. Wir antworten innerhalb von 24 Stunden mit Verfügbarkeit und Preisdetails.",
+    "breadcrumb": "Buchen",
+    "formTitle": "Ihre Anfrage",
+    "formIntro": "In diesem Schritt fällt keine Zahlung an. Wir prüfen zuerst die Verfügbarkeit und senden Ihnen dann alle Einzelheiten.",
+    "form": {
+      "product": "Ausflug oder Rundreise",
+      "productPlaceholder": "Wählen Sie einen Ausflug…",
+      "excursions": "Tagesausflüge",
+      "circuits": "Mehrtägige Rundreisen",
+      "name": "Vollständiger Name",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefon oder WhatsApp",
+      "hotel": "Ihre Unterkunft",
+      "hotelPlaceholder": "Name des Hotels, für die Abholung",
+      "date": "Wunschtermin",
+      "alternativeDate": "Ausweichtermin",
+      "adults": "Erwachsene",
+      "children": "Kinder",
+      "message": "Ihre Nachricht",
+      "messagePlaceholder": "Ernährung, eingeschränkte Mobilität, besonderer Anlass, Fragen…",
+      "submit": "Anfrage senden",
+      "sending": "Wird gesendet…",
+      "privacy": "Ihre Daten werden ausschließlich für diese Anfrage verwendet. Keine Werbemails.",
+      "errorRequired": "Bitte wählen Sie einen Ausflug und geben Sie Name, E-Mail und Wunschtermin an.",
+      "errorUnexpected": "Das Senden ist fehlgeschlagen. Versuchen Sie es gleich noch einmal oder schreiben Sie uns auf WhatsApp.",
+      "successTitle": "Anfrage eingegangen",
+      "reference": "Referenz",
+      "successNote": "Bewahren Sie diese Referenz auf — damit finden wir Ihre Anfrage für {product} wieder."
+    }
   }
 }

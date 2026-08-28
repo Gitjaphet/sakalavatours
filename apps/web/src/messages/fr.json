@@ -503,5 +503,43 @@
       "excursions": "Voir nos excursions",
       "contact": "Nous écrire"
     }
+  },
+    "reservation": {
+    "meta": {
+      "title": "Réserver votre excursion ou circuit — Sakalava Tours Nosy Be",
+      "description": "Réservez en ligne votre excursion à Nosy Be ou votre circuit dans le nord de Madagascar. Réponse sous 24 heures, guides francophones, petits groupes."
+    },
+    "eyebrow": "Réservation",
+    "pageTitle": "Réservez votre sortie",
+    "pageIntro": "Dites-nous ce qui vous intéresse et à quelle date : nous vous répondons sous 24 heures avec la disponibilité et le détail du tarif.",
+    "breadcrumb": "Réserver",
+    "formTitle": "Votre demande",
+    "formIntro": "Aucun paiement à cette étape. Nous confirmons d'abord la disponibilité, puis nous vous envoyons le détail complet.",
+    "form": {
+      "product": "Excursion ou circuit",
+      "productPlaceholder": "Choisissez une sortie…",
+      "excursions": "Excursions à la journée",
+      "circuits": "Circuits de plusieurs jours",
+      "name": "Nom complet",
+      "email": "Adresse email",
+      "phone": "Téléphone ou WhatsApp",
+      "hotel": "Votre hébergement",
+      "hotelPlaceholder": "Nom de l'hôtel, pour le transfert",
+      "date": "Date souhaitée",
+      "alternativeDate": "Date de repli",
+      "adults": "Adultes",
+      "children": "Enfants",
+      "message": "Votre message",
+      "messagePlaceholder": "Régime alimentaire, mobilité réduite, occasion particulière, questions…",
+      "submit": "Envoyer ma demande",
+      "sending": "Envoi en cours…",
+      "privacy": "Vos coordonnées servent uniquement à traiter cette demande. Aucun envoi commercial.",
+      "errorRequired": "Merci de renseigner la sortie, votre nom, votre email et la date souhaitée.",
+      "errorUnexpected": "L'envoi a échoué. Réessayez dans un instant ou contactez-nous par WhatsApp.",
+      "successTitle": "Demande bien reçue",
+      "reference": "Référence",
+      "successNote": "Conservez cette référence : elle nous permet de retrouver votre demande pour {product}."
+    }
   }
+
 }
