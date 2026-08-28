@@ -198,7 +198,7 @@ async def list_reviews(
             travel_date=r.travel_date,
             is_verified=r.is_verified,
             admin_reply=r.admin_reply,
-            published_at=r.moderated_at or r.created_at,
+            published_at=r.published_at or r.moderated_at or r.created_at,
             product_slug=product_slug,
         )
         for r in reviews
