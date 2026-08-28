@@ -104,6 +104,14 @@ class ReviewListResponse(BaseModel):
     limit: int
     offset: int
     aggregate: ReviewAggregate
+    
+
+class ReviewProductRef(BaseModel):
+    """Produit rattaché à un avis, résolu dans la locale par défaut."""
+
+    id: UUID
+    title: str
+    slug: str
 
 
 class ReviewAdminRead(BaseModel):
@@ -112,8 +120,7 @@ class ReviewAdminRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     id: UUID
-    product_id: UUID | None
-
+    
     author_name: str
     author_email: EmailStr
     author_country: str | None
@@ -143,11 +150,9 @@ class ReviewAdminRead(BaseModel):
     is_featured: bool
     created_at: datetime
 
-    # Renseignés uniquement par la liste de modération (jointure produit).
-    # La fiche détail les laisse à None : elle affiche déjà le produit
-    # par ailleurs.
-    product_title: str | None = None
-    product_slug: str | None = None
+    # None signifie « avis portant sur l'agence », jamais « information
+    # non chargée » : les deux routes admin renseignent ce champ.
+    product: ReviewProductRef | None = None
 
 
 class ReviewAdminListResponse(BaseModel):

@@ -22,9 +22,7 @@ from sqlalchemy import func
 from sqlmodel import select
 
 from src.api.deps import CurrentUser, SessionDep, require_role
-from src.core.config import settings
 from src.models.enums import AdminRole, AuditAction, ReviewStatus
-from src.models.product import Product, ProductTranslation
 from src.models.review import Review
 from src.schemas.review import (
     ReviewAdminListResponse,
@@ -62,6 +60,14 @@ async def _get_or_404(session, review_id: UUID) -> Review:
         )
     return review
 
+async def _to_admin_read(session, review: Review) -> ReviewAdminRead:
+    """Sérialise un avis unitaire, produit résolu compris."""
+    item = ReviewAdminRead.model_validate(review)
+    if review.product_id:
+        refs = await service.load_product_refs(session, [review.product_id])
+        item.product = refs.get(review.product_id)
+    return item
+
 
 @router.get("", response_model=ReviewAdminListResponse)
 async def list_reviews(
@@ -93,26 +99,15 @@ async def list_reviews(
             stmt = stmt.where(Review.rating <= max_rating)
         return stmt
 
-    # Deux jointures externes : product_id est nullable (un avis sur
-    # l'agence n'a pas de produit) et une traduction peut manquer. Un
-    # INNER JOIN ferait disparaître ces avis de la file de modération.
+    
     stmt = (
-        apply(
-            select(Review, ProductTranslation.title, Product.slug)
-            .where(Review.deleted_at.is_(None))
-            .outerjoin(Product, Product.id == Review.product_id)
-            .outerjoin(
-                ProductTranslation,
-                (ProductTranslation.product_id == Review.product_id)
-                & (ProductTranslation.locale == settings.DEFAULT_LOCALE),
-            )
-        )
+        apply(select(Review).where(Review.deleted_at.is_(None)))
         .order_by(Review.spam_score.desc().nullslast(), Review.created_at.desc())
         .limit(limit)
         .offset(offset)
     )
 
-    rows = list((await session.exec(stmt)).all())
+    reviews = list((await session.exec(stmt)).all())
     total = (await session.exec(apply(count_base))).one()
 
     counts_stmt = (
@@ -122,11 +117,14 @@ async def list_reviews(
     )
     counts = {s.value: c for s, c in (await session.exec(counts_stmt)).all()}
 
+    refs = await service.load_product_refs(
+        session, [r.product_id for r in reviews]
+    )
+
     items: list[ReviewAdminRead] = []
-    for review, product_title, product_slug in rows:
+    for review in reviews:
         item = ReviewAdminRead.model_validate(review)
-        item.product_title = product_title
-        item.product_slug = product_slug
+        item.product = refs.get(review.product_id) if review.product_id else None
         items.append(item)
 
     return ReviewAdminListResponse(
@@ -141,7 +139,7 @@ async def list_reviews(
 @router.get("/{review_id}", response_model=ReviewAdminRead)
 async def get_review(review_id: UUID, session: SessionDep) -> ReviewAdminRead:
     review = await _get_or_404(session, review_id)
-    return ReviewAdminRead.model_validate(review)
+    return await _to_admin_read(session, review)
 
 
 @router.post("/{review_id}/moderate", response_model=ReviewAdminRead)
@@ -191,7 +189,7 @@ async def moderate_review(
     await session.commit()
     await session.refresh(review)
 
-    return ReviewAdminRead.model_validate(review)
+    return await _to_admin_read(session, review)
 
 
 @router.post("/{review_id}/reply", response_model=ReviewAdminRead)
@@ -229,4 +227,4 @@ async def reply_to_review(
     await session.commit()
     await session.refresh(review)
 
-    return ReviewAdminRead.model_validate(review)
+    return await _to_admin_read(session, review)

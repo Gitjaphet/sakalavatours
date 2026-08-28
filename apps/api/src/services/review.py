@@ -246,3 +246,38 @@ async def refresh_product_rating(session: AsyncSession, product_id: UUID) -> Non
         )
         product.review_count = count or 0
         session.add(product)
+
+
+
+async def load_product_refs(
+    session: AsyncSession, product_ids: list[UUID]
+) -> dict[UUID, "ReviewProductRef"]:
+    """Résout les produits rattachés à un lot d'avis.
+
+    Une seule requête quel que soit le nombre d'avis : la file de
+    modération peut en afficher cent, un SELECT par ligne serait un N+1.
+    Le titre vit dans ProductTranslation, d'où la jointure sur la locale
+    par défaut.
+    """
+    from src.core.config import settings
+    from src.models.product import Product, ProductTranslation
+    from src.schemas.review import ReviewProductRef
+
+    ids = [pid for pid in set(product_ids) if pid is not None]
+    if not ids:
+        return {}
+
+    stmt = (
+        select(Product.id, ProductTranslation.title, Product.slug)
+        .join(
+            ProductTranslation,
+            (ProductTranslation.product_id == Product.id)
+            & (ProductTranslation.locale == settings.DEFAULT_LOCALE),
+        )
+        .where(Product.id.in_(ids))
+    )
+
+    return {
+        pid: ReviewProductRef(id=pid, title=title, slug=slug)
+        for pid, title, slug in (await session.exec(stmt)).all()
+    }
