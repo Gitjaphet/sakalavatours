@@ -22,7 +22,9 @@ from sqlalchemy import func
 from sqlmodel import select
 
 from src.api.deps import CurrentUser, SessionDep, require_role
+from src.core.config import settings
 from src.models.enums import AdminRole, AuditAction, ReviewStatus
+from src.models.product import Product, ProductTranslation
 from src.models.review import Review
 from src.schemas.review import (
     ReviewAdminListResponse,
@@ -76,7 +78,6 @@ async def list_reviews(
     Tri par score de spam décroissant : les avis suspects remontent en
     tête, ce qui accélère le travail du modérateur.
     """
-    base = select(Review).where(Review.deleted_at.is_(None))
     count_base = (
         select(func.count()).select_from(Review).where(Review.deleted_at.is_(None))
     )
@@ -92,14 +93,26 @@ async def list_reviews(
             stmt = stmt.where(Review.rating <= max_rating)
         return stmt
 
+    # Deux jointures externes : product_id est nullable (un avis sur
+    # l'agence n'a pas de produit) et une traduction peut manquer. Un
+    # INNER JOIN ferait disparaître ces avis de la file de modération.
     stmt = (
-        apply(base)
+        apply(
+            select(Review, ProductTranslation.title, Product.slug)
+            .where(Review.deleted_at.is_(None))
+            .outerjoin(Product, Product.id == Review.product_id)
+            .outerjoin(
+                ProductTranslation,
+                (ProductTranslation.product_id == Review.product_id)
+                & (ProductTranslation.locale == settings.DEFAULT_LOCALE),
+            )
+        )
         .order_by(Review.spam_score.desc().nullslast(), Review.created_at.desc())
         .limit(limit)
         .offset(offset)
     )
 
-    reviews = list((await session.exec(stmt)).all())
+    rows = list((await session.exec(stmt)).all())
     total = (await session.exec(apply(count_base))).one()
 
     counts_stmt = (
@@ -109,8 +122,15 @@ async def list_reviews(
     )
     counts = {s.value: c for s, c in (await session.exec(counts_stmt)).all()}
 
+    items: list[ReviewAdminRead] = []
+    for review, product_title, product_slug in rows:
+        item = ReviewAdminRead.model_validate(review)
+        item.product_title = product_title
+        item.product_slug = product_slug
+        items.append(item)
+
     return ReviewAdminListResponse(
-        items=[ReviewAdminRead.model_validate(r) for r in reviews],
+        items=items,
         total=total,
         limit=limit,
         offset=offset,

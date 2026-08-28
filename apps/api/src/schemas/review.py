@@ -143,6 +143,12 @@ class ReviewAdminRead(BaseModel):
     is_featured: bool
     created_at: datetime
 
+    # Renseignés uniquement par la liste de modération (jointure produit).
+    # La fiche détail les laisse à None : elle affiche déjà le produit
+    # par ailleurs.
+    product_title: str | None = None
+    product_slug: str | None = None
+
 
 class ReviewAdminListResponse(BaseModel):
     items: list[ReviewAdminRead]
