@@ -126,6 +126,9 @@ function ProductDetailContent({ id }: { id: string }) {
   const [departureMonths, setDepartureMonths] = useState<number[]>([]);
   const [relatedSlugs, setRelatedSlugs] = useState<string>("");
 
+  const [isIndexable, setIsIndexable] = useState(true);
+  const [sitemapPriority, setSitemapPriority] = useState("0.7");
+
   const canDelete = user?.role === "owner" || user?.role === "admin";
 
 
@@ -234,6 +237,8 @@ function ProductDetailContent({ id }: { id: string }) {
       setInclusions(adminDetail.inclusions);
       setDepartureMonths(adminDetail.departure_months);
       setRelatedSlugs(result.related_slugs.join(", "));
+      setIsIndexable(adminDetail.is_indexable);
+      setSitemapPriority(String(adminDetail.sitemap_priority));
 
     })
     .catch((err) => {
@@ -299,6 +304,8 @@ function ProductDetailContent({ id }: { id: string }) {
         packing_codes: packingCodes,
         inclusions,
         departure_months: departureMonths,
+        is_indexable: isIndexable,
+        sitemap_priority: Number(sitemapPriority),
       };
       const updated = await updateAdminProduct(accessToken, id, payload);
       setData(updated);
@@ -1151,6 +1158,34 @@ function ProductDetailContent({ id }: { id: string }) {
                     onChange={(e) => setSlug(e.target.value)}
                     className="mt-1 block w-full rounded border border-stone-300 p-2"
                   />
+                </label>
+              </div>
+              <div className="space-y-4 rounded-lg border border-stone-200 bg-white p-5">
+                <h3 className="text-sm font-semibold text-stone-900">Référencement</h3>
+
+                <label className="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={isIndexable}
+                    onChange={(e) => setIsIndexable(e.target.checked)}
+                  />
+                  Indexable par Google
+                </label>
+
+                <label className="block text-sm">
+                  Priorité sitemap
+                  <input
+                    type="number"
+                    min={0}
+                    max={1}
+                    step={0.1}
+                    value={sitemapPriority}
+                    onChange={(e) => setSitemapPriority(e.target.value)}
+                    className="mt-1 block w-24 rounded border border-stone-300 p-2"
+                  />
+                  <span className="mt-1 block text-xs text-stone-500">
+                    Entre 0 et 1 — 0.7 par défaut, plus haut pour les pages phares
+                  </span>
                 </label>
               </div>
             </div>
