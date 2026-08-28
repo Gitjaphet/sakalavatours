@@ -10,6 +10,7 @@ const NAV = [
   { href: "/admin/dashboard", label: "Tableau de bord" },
   { href: "/admin/bookings", label: "Réservations" },
   { href: "/admin/taxonomies", label: "Taxonomies" },
+  { href: "/admin/reviews", label: "Avis" },
 ];
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
@@ -65,7 +66,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             À venir
           </p>
           <ul className="mt-1 space-y-1">
-            {["Avis", "Médias", "Blog"].map((label) => (
+            {["Médias", "Blog"].map((label) => (
               <li
                 key={label}
                 className="cursor-not-allowed rounded-md px-3 py-2 text-sm text-stone-300"
