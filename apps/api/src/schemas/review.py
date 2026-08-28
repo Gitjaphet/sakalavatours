@@ -135,6 +135,7 @@ class ReviewAdminRead(BaseModel):
 
     admin_reply: str | None
     admin_replied_at: datetime | None
+    published_at: datetime | None
 
     submitted_ip: str | None
     spam_score: float | None

@@ -166,6 +166,14 @@ async def moderate(
     if is_featured is not None:
         review.is_featured = is_featured
 
+    if new_status is ReviewStatus.APPROVED:
+        # Un avis publié ne doit plus porter de motif de rejet : il
+        # resterait visible dans la fiche de modération et induirait
+        # l'équipe en erreur.
+        review.rejection_reason = None
+        if review.published_at is None:
+            review.published_at = review.moderated_at
+
     session.add(review)
     return review
 

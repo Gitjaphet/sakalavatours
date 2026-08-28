@@ -83,6 +83,15 @@ class Review(UUIDMixin, TimestampMixin, SoftDeleteMixin, table=True):
         default=None, sa_type=DateTime(timezone=True)
     )
 
+    # ── Publication ────────────────────────────────────────────────────
+    # Figée à la première approbation. Une re-modération ultérieure ne la
+    # déplace pas : la date affichée publiquement doit rester stable.
+    published_at: datetime | None = Field(
+        default=None, sa_type=DateTime(timezone=True)
+    )
+
+    # ── Traçabilité anti-spam ──────────────────────────────────────────
+
     # ── Traçabilité anti-spam ──────────────────────────────────────────
     # ⚠ RGPD : données techniques à purger après un délai raisonnable
     # (12 mois), et strictement absentes des réponses publiques.
