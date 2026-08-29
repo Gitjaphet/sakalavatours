@@ -21,14 +21,7 @@ export const navLinks = [
 export type NavLink = (typeof navLinks)[number];
 export type NavKey = NavLink["key"];
 
-/** Sous-ensemble affiché dans le pill compact au scroll (desktop uniquement) */
-export const compactNavKeys: readonly NavKey[] = [
-  "tours",
-  "excursion",
-  "blog",
-  "galerie",
-  "contact",
-];
+
 
 // ─── Coordonnées ─────────────────────────────────────────────────────────────
 
@@ -56,8 +49,10 @@ export const mailtoHref = `mailto:${contactInfo.email}`;
 export const businessInfo = {
   name: "Sakalava Tours",
   legalName: "Sakalava Tours",
-  /** ⚠ Remplacer par le domaine définitif avant la mise en production */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://sakalavatours.vercel.app",
+    /** Domaine cible : sakalavatour.com. Tant qu'il n'est pas branché sur
+   *  Vercel, NEXT_PUBLIC_SITE_URL pointe sur l'URL qui répond réellement —
+   *  déclarer un domaine qui ne résout pas ferait indexer des liens morts. */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://sakalavatour.com",
   logo: "/images/brand/logo.png",
   addressLocality: "Nosy Be",
   addressRegion: "Diana",
