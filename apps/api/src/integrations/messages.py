@@ -209,3 +209,49 @@ Modérer : {settings.ADMIN_BASE_URL}/reviews/{review_id}
     )
 
     return subject, text, html
+
+
+def review_email_verification(
+    author_name: str, token: str, locale: str
+) -> tuple[str, str, str]:
+    """Demande de confirmation d'adresse au déposant d'un avis.
+
+    Le lien pointe vers le site public, dans la langue de l'avis — pas
+    vers l'API : le visiteur doit atterrir sur une page du site, pas sur
+    une réponse JSON.
+    """
+    url = f"{settings.PUBLIC_SITE_URL}/{locale}/avis/confirmation?token={token}"
+    subject = "Confirmez votre avis — Sakalava Tours"
+
+    text = f"""Bonjour {author_name},
+
+Merci pour votre avis. Confirmez votre adresse email pour qu'il soit
+transmis à notre équipe :
+
+{url}
+
+Ce lien est valable 48 heures. Si vous n'êtes pas à l'origine de cet
+avis, ignorez ce message.
+
+Sakalava Tours
+"""
+
+    html = _wrap_html(
+        "Confirmez votre avis",
+        f"""
+        <p style="margin:0 0 20px;font-size:15px;color:#444;">
+          Bonjour <strong>{author_name}</strong>, merci pour votre avis.
+          Confirmez votre adresse email pour qu'il soit transmis à notre équipe.
+        </p>
+        <a href="{url}"
+           style="display:inline-block;background:#1d4e5f;color:#fff;text-decoration:none;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:600;">
+          Confirmer mon avis
+        </a>
+        <p style="margin:20px 0 0;font-size:13px;color:#888;">
+          Lien valable 48 heures. Si vous n'êtes pas à l'origine de cet avis,
+          ignorez ce message.
+        </p>
+        """,
+    )
+
+    return subject, text, html

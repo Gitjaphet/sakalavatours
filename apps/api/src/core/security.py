@@ -26,7 +26,7 @@ _hasher = PasswordHasher()
 
 ALGORITHM = "HS256"
 
-TokenType = Literal["access", "refresh"]
+TokenType = Literal["access", "refresh", "email_verify"]
 
 
 # ─────────────────────────────────────────────────────────────────────────
@@ -112,6 +112,21 @@ def create_refresh_token(user_id: UUID) -> tuple[str, str]:
         subject=user_id,
         token_type="refresh",
         expires_delta=timedelta(days=settings.REFRESH_TOKEN_DAYS),
+    )
+
+
+def create_email_verify_token(review_id: UUID) -> tuple[str, str]:
+    """Jeton de confirmation d'adresse, envoyé au déposant d'un avis.
+
+    48 heures : assez pour qu'un email passé en indésirable soit
+    retrouvé, assez court pour qu'un lien intercepté plus tard ne serve
+    à rien. Aucun stockage — la signature suffit à prouver l'origine, et
+    email_verified_at témoigne du résultat.
+    """
+    return _create_token(
+        subject=review_id,
+        token_type="email_verify",
+        expires_delta=timedelta(hours=48),
     )
 
 

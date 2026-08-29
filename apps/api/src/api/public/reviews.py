@@ -18,6 +18,7 @@ from src.api.deps import RedisDep, SessionDep
 from src.integrations import messages
 from src.integrations.email import send as send_email
 from src.core.config import settings
+from src.core.security import create_email_verify_token
 from src.models.enums import ReviewStatus
 from src.models.product import Product
 from src.models.review import Review
@@ -69,6 +70,7 @@ async def submit_review(
     # Honeypot : réponse de succès factice pour ne rien apprendre au robot
     if payload.website:
         return ReviewSubmitResponse()
+    
 
     ip = _client_ip(request)
     email = payload.author_email.lower().strip()
@@ -111,6 +113,30 @@ async def submit_review(
 
     # Alerte de modération. Sans elle, un avis peut dormir des semaines
     # en file d'attente sans que personne ne le sache.
+    # Confirmation d'adresse. La locale de l'avis n'est pas validée à la
+    # saisie : on retombe sur la langue par défaut plutôt que de
+    # construire un lien vers une locale inexistante.
+    locale = (
+        review.locale
+        if review.locale in settings.SUPPORTED_LOCALES
+        else settings.DEFAULT_LOCALE
+    )
+    verify_token, _ = create_email_verify_token(review.id)
+    subject, text, html = messages.review_email_verification(
+        author_name=review.author_name,
+        token=verify_token,
+        locale=locale,
+    )
+    background.add_task(
+        send_email,
+        to=review.author_email,
+        subject=subject,
+        text_body=text,
+        html_body=html,
+    )
+
+    # Alerte de modération. Sans elle, un avis peut dormir des semaines
+    # en file d'attente sans que personne ne le sache.
     if settings.AGENCY_NOTIFY_EMAIL:
         subject, text, html = messages.review_alert_to_agency(
             author_name=review.author_name,
@@ -127,6 +153,54 @@ async def submit_review(
         )
 
     return ReviewSubmitResponse()
+
+@router.post("/verify", response_model=ReviewSubmitResponse)
+async def verify_review_email(
+    token: Annotated[str, Query(min_length=10, max_length=2000)],
+    session: SessionDep,
+) -> ReviewSubmitResponse:
+    """Confirme l'adresse email du déposant d'un avis.
+
+    Idempotente : un second clic sur le même lien renvoie un succès sans
+    rien modifier. Une erreur alarmerait un visiteur qui a simplement
+    rouvert l'email.
+    """
+    import jwt
+
+    from src.core.security import decode_token
+
+    try:
+        payload = decode_token(token, "email_verify")
+    except jwt.InvalidTokenError:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Lien invalide ou expiré. Déposez à nouveau votre avis.",
+        ) from None
+
+    review = (
+        await session.exec(
+            select(Review).where(
+                Review.id == UUID(payload["sub"]),
+                Review.deleted_at.is_(None),
+            )
+        )
+    ).first()
+
+    if review is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Avis introuvable"
+        )
+
+    if review.email_verified_at is None:
+        from datetime import UTC, datetime
+
+        review.email_verified_at = datetime.now(UTC)
+        session.add(review)
+        await session.commit()
+
+    return ReviewSubmitResponse(
+        message="Merci, votre adresse est confirmée. Votre avis sera publié après vérification par notre équipe."
+    )
 
 
 @router.get("", response_model=ReviewListResponse)
