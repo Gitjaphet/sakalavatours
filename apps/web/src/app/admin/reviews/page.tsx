@@ -224,6 +224,14 @@ function ReviewsContent() {
                           ✓ vérifié
                         </span>
                       )}
+                      {!r.email_verified_at && (
+                        <span
+                          className="ml-1.5 text-xs text-stone-400"
+                          title="Adresse email non confirmée"
+                        >
+                          email non confirmé
+                        </span>
+                      )}
                       <span className="text-stone-400">
                         {" · "}
                         {r.product?.title ?? "Agence"}

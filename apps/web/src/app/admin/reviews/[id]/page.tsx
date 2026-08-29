@@ -368,6 +368,9 @@ function ReviewDetailContent({ id }: { id: string }) {
               <br />
               Référence · {review.booking_reference ?? "aucune"}
               <br />
+              Email confirmé ·{" "}
+              {review.email_verified_at ? formatDate(review.email_verified_at) : "non"}
+              <br />
               Reçu le · {formatDate(review.created_at)}
               <br />
               Modéré le · {formatDate(review.moderated_at)}
