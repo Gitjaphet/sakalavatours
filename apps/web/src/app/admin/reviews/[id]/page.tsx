@@ -198,12 +198,27 @@ function ReviewDetailContent({ id }: { id: string }) {
 
           {review.rejection_reason && (
             <div className="mb-3 rounded-lg border border-stone-200 bg-stone-50 p-4">
-              <p className="mb-1 text-sm font-medium text-stone-700">Motif du rejet</p>
+              <p className="mb-1 text-sm font-medium text-stone-700">
+                {review.status === "spam"
+                  ? "Motif du classement en spam"
+                  : "Motif du rejet"}
+              </p>
               <p className="text-sm text-stone-600">{review.rejection_reason}</p>
             </div>
           )}
 
-          <div className="rounded-lg border border-stone-200 bg-white p-5">
+          {(review.status === "rejected" || review.status === "spam") && (
+            <p className="rounded-lg border border-dashed border-stone-300 p-4 text-sm text-stone-500">
+              Cet avis n&apos;est pas publié : une réponse ne serait visible de
+              personne. Publiez-le d&apos;abord pour pouvoir y répondre.
+            </p>
+          )}
+
+          <div
+            className={`rounded-lg border border-stone-200 bg-white p-5 ${
+              review.status === "rejected" || review.status === "spam" ? "hidden" : ""
+            }`}
+          >
             <p className="mb-1 font-medium text-stone-900">Réponse de l&apos;agence</p>
             <p className="mb-3 text-xs text-amber-700">
               ⚠ Une réponse publiée ne peut plus être retirée, seulement modifiée.
@@ -257,7 +272,7 @@ function ReviewDetailContent({ id }: { id: string }) {
                     type="button"
                     onClick={() => void submitModeration(pendingStatus, reason.trim())}
                     disabled={isSaving || !reason.trim()}
-                    className="flex-1 rounded bg-red-600 px-3 py-2 text-sm font-medium text-white disabled:opacity-40"
+                    className="flex-1 rounded bg-red-600 px-3 py-2 text-sm font-medium text-white disabled:bg-stone-200 disabled:text-stone-400"
                   >
                     Confirmer
                   </button>
