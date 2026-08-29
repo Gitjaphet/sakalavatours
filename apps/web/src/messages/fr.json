@@ -548,6 +548,17 @@
       "noteAlternative": "Date de repli : une seconde date qui vous conviendrait, si jamais la première n'était pas disponible."
       }
     
+  },
+    "avisConfirmation": {
+    "metaTitle": "Confirmation de votre avis",
+    "eyebrow": "Avis voyageurs",
+    "pageTitle": "Confirmez votre avis",
+    "breadcrumb": "Confirmation",
+    "title": "Une dernière étape",
+    "intro": "Confirmez votre adresse email pour que votre avis soit transmis à notre équipe.",
+    "action": "Confirmer mon avis",
+    "pending": "Confirmation en cours…",
+    "missing": "Ce lien est incomplet. Ouvrez le lien reçu par email."
   }
 
 }

@@ -548,5 +548,17 @@
       "noteAlternative": "Data alternativa: una seconda data che ti andrebbe bene, nel caso la prima non fosse disponibile."
     }
     
+  },
+
+    "avisConfirmation": {
+    "metaTitle": "Conferma la tua recensione",
+    "eyebrow": "Recensioni dei viaggiatori",
+    "pageTitle": "Conferma la tua recensione",
+    "breadcrumb": "Conferma",
+    "title": "Un ultimo passaggio",
+    "intro": "Conferma il tuo indirizzo email affinché la recensione venga inviata al nostro team.",
+    "action": "Conferma la recensione",
+    "pending": "Conferma in corso…",
+    "missing": "Questo link è incompleto. Apri il link ricevuto via email."
   }
 }

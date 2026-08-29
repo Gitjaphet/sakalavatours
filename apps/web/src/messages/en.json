@@ -548,5 +548,19 @@
       "noteAlternative": "Alternative date: a second date that would work for you, in case the first one isn't available."
       }
     
+  },
+
+    "avisConfirmation": {
+    "metaTitle": "Confirm your review",
+    "eyebrow": "Traveller reviews",
+    "pageTitle": "Confirm your review",
+    "breadcrumb": "Confirmation",
+    "title": "One last step",
+    "intro": "Confirm your email address so your review can be sent to our team.",
+    "action": "Confirm my review",
+    "pending": "Confirming…",
+    "missing": "This link is incomplete. Please open the link you received by email."
   }
+
+  
 }
