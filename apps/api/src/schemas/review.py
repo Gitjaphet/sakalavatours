@@ -163,6 +163,29 @@ class ReviewAdminListResponse(BaseModel):
     counts_by_status: dict[str, int] = Field(default_factory=dict)
 
 
+
+class ReviewScopeAggregate(BaseModel):
+    """Note agrégée d'un périmètre de balisage.
+
+    Un périmètre = un JSON-LD distinct : l'agence porte le TravelAgency,
+    chaque produit son TouristTrip. Les deux ont leur propre seuil à
+    franchir, d'où l'absence de total global — il ne correspondrait à
+    aucun balisage réel.
+    """
+
+    product: ReviewProductRef | None = None
+    approved_count: int
+    verified_count: int
+    is_schema_eligible: bool
+
+
+class ReviewAggregatesResponse(BaseModel):
+    # Le seuil vient du backend : le dupliquer côté frontend garantirait
+    # qu'ils divergent un jour.
+    threshold: int
+    scopes: list[ReviewScopeAggregate]
+
+
 class ReviewModerateRequest(BaseModel):
     """Décision de modération."""
 

@@ -27,6 +27,7 @@ from src.models.review import Review
 from src.schemas.review import (
     ReviewAdminListResponse,
     ReviewAdminRead,
+    ReviewAggregatesResponse,
     ReviewModerateRequest,
     ReviewReplyRequest,
 )
@@ -133,6 +134,21 @@ async def list_reviews(
         limit=limit,
         offset=offset,
         counts_by_status=counts,
+    )
+
+
+@router.get("/aggregates", response_model=ReviewAggregatesResponse)
+async def get_aggregates(session: SessionDep) -> ReviewAggregatesResponse:
+    """Périmètres de balisage n'ayant pas atteint le seuil d'éligibilité.
+
+    Déclarée avant /{review_id} : sans quoi FastAPI interpréterait
+    « aggregates » comme un identifiant.
+    """
+    from src.services.review import MIN_REVIEWS_FOR_SCHEMA
+
+    scopes = await service.compute_scope_aggregates(session)
+    return ReviewAggregatesResponse(
+        threshold=MIN_REVIEWS_FOR_SCHEMA, scopes=scopes
     )
 
 

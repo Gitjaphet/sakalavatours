@@ -281,3 +281,57 @@ async def load_product_refs(
         pid: ReviewProductRef(id=pid, title=title, slug=slug)
         for pid, title, slug in (await session.exec(stmt)).all()
     }
+
+
+
+
+async def compute_scope_aggregates(
+    session: AsyncSession, *, only_ineligible: bool = True
+) -> list["ReviewScopeAggregate"]:
+    """Compte les avis approuvés et vérifiés par périmètre de balisage.
+
+    Un seul GROUP BY quel que soit le nombre de produits : appeler
+    compute_aggregate en boucle sur le catalogue chargerait chaque avis
+    en mémoire, ce qui ne tient pas à l'échelle.
+
+    only_ineligible réduit la réponse aux périmètres qui n'atteignent pas
+    encore le seuil — les seuls sur lesquels l'agence a une action à
+    mener. Un site mûr renvoie une liste vide.
+    """
+    from src.schemas.review import ReviewScopeAggregate
+
+    stmt = (
+        select(
+            Review.product_id,
+            func.count(),
+            func.count().filter(Review.is_verified.is_(True)),
+        )
+        .where(
+            Review.status == ReviewStatus.APPROVED,
+            Review.deleted_at.is_(None),
+        )
+        .group_by(Review.product_id)
+    )
+
+    rows = list((await session.exec(stmt)).all())
+    refs = await load_product_refs(
+        session, [pid for pid, _, _ in rows if pid is not None]
+    )
+
+    scopes: list[ReviewScopeAggregate] = []
+    for product_id, approved, verified in rows:
+        eligible = verified >= MIN_REVIEWS_FOR_SCHEMA
+        if only_ineligible and eligible:
+            continue
+        scopes.append(
+            ReviewScopeAggregate(
+                product=refs.get(product_id) if product_id else None,
+                approved_count=approved,
+                verified_count=verified,
+                is_schema_eligible=eligible,
+            )
+        )
+
+    # Périmètre agence en tête, produits ensuite par volume décroissant.
+    scopes.sort(key=lambda s: (s.product is not None, -s.verified_count))
+    return scopes
