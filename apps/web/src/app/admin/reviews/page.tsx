@@ -6,8 +6,12 @@ import Link from "next/link";
 import { RequireAuth } from "../RequireAuth";
 import { useAuth } from "../AuthContext";
 import { AdminApiError } from "@/lib/api/admin-products";
-import { listAdminReviews } from "@/lib/api/admin-reviews";
-import type { ReviewAdminRead, ReviewStatus } from "@/types/api";
+import { getAdminReviewAggregates, listAdminReviews } from "@/lib/api/admin-reviews";
+import type {
+  ReviewAdminRead,
+  ReviewScopeAggregate,
+  ReviewStatus,
+} from "@/types/api";
 
 const STATUS_LABELS: Record<ReviewStatus, string> = {
   pending: "En attente",
@@ -58,6 +62,29 @@ function ReviewsContent() {
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<TabKey>("pending");
   const [minRating, setMinRating] = useState<string>("");
+  const [scopes, setScopes] = useState<ReviewScopeAggregate[]>([]);
+  const [threshold, setThreshold] = useState(0);
+
+  // Rechargé après chaque modération : approuver ou vérifier un avis
+  // change l'éligibilité, le bandeau doit suivre.
+  useEffect(() => {
+    if (!accessToken) return;
+
+    let cancelled = false;
+    getAdminReviewAggregates(accessToken)
+      .then((data) => {
+        if (cancelled) return;
+        setScopes(data.scopes);
+        setThreshold(data.threshold);
+      })
+      .catch(() => {
+        // Le bandeau est indicatif : son échec ne doit pas masquer la file.
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [accessToken, activeTab]);
 
   useEffect(() => {
     if (!accessToken) return;
@@ -94,7 +121,32 @@ function ReviewsContent() {
 
   return (
     <div className="max-w-5xl p-8">
-      <h1 className="mb-6 text-2xl font-semibold text-stone-900">Avis</h1>
+      <h1 className="mb-4 text-2xl font-semibold text-stone-900">Avis</h1>
+
+      {scopes.length > 0 && (
+        <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4">
+          <p className="mb-1 text-sm font-medium text-amber-900">
+            Note agrégée non déclarée à Google
+          </p>
+          <p className="mb-2 text-sm text-amber-800">
+            Il faut {threshold} avis vérifiés pour qu&apos;une note soit déclarée.
+            En dessous, le site affiche la note sans la transmettre — un balisage
+            calculé sur des avis non vérifiables expose à une sanction.
+          </p>
+          <ul className="text-sm text-amber-900">
+            {scopes.map((s) => (
+              <li key={s.product?.id ?? "agency"}>
+                {s.product?.title ?? "Agence"} · {s.verified_count}/{threshold}{" "}
+                vérifiés
+                <span className="text-amber-700">
+                  {" "}
+                  ({s.approved_count} publié{s.approved_count > 1 ? "s" : ""})
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="mb-4 flex flex-wrap gap-1 border-b border-stone-200">
         {TABS.map((tab) => {

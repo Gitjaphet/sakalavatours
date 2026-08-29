@@ -623,3 +623,16 @@ export type ReviewModerateRequest = {
 export type ReviewReplyRequest = {
   admin_reply: string;
 };
+
+
+export type ReviewScopeAggregate = {
+  product: ReviewProductRef | null;
+  approved_count: number;
+  verified_count: number;
+  is_schema_eligible: boolean;
+};
+
+export type ReviewAggregatesResponse = {
+  threshold: number;
+  scopes: ReviewScopeAggregate[];
+};

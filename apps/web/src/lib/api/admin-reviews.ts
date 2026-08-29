@@ -5,6 +5,7 @@ import { AdminApiError } from "./admin-products";
 import type {
   ReviewAdminListResponse,
   ReviewAdminRead,
+  ReviewAggregatesResponse,
   ReviewListParams,
   ReviewModerateRequest,
   ReviewReplyRequest,
@@ -117,4 +118,22 @@ export async function replyToAdminReview(
   });
 
   return handleResponse<ReviewAdminRead>(res);
+}
+
+
+
+/**
+ * Périmètres de balisage sous le seuil d'éligibilité.
+ *
+ * Un périmètre = un JSON-LD : l'agence porte le TravelAgency, chaque
+ * produit son TouristTrip. Le seuil vient du backend, jamais codé ici.
+ */
+export async function getAdminReviewAggregates(
+  accessToken: string,
+): Promise<ReviewAggregatesResponse> {
+  const res = await fetch("/api/admin/reviews/aggregates", {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  return handleResponse<ReviewAggregatesResponse>(res);
 }
