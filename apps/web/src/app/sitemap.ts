@@ -4,6 +4,11 @@ import { businessInfo } from "@/lib/nav-config";
 import { getProducts } from "@/lib/api/products";
 import { routing } from "@/i18n/routing";
 
+// Régénéré toutes les heures : un build lancé pendant une indisponibilité
+// de l'API produirait sinon un sitemap sans produits, figé jusqu'au
+// déploiement suivant.
+export const revalidate = 3600;
+
 /** Pages fixes, hors fiches produit. */
 const STATIC_PATHS = [
   "",
@@ -31,9 +36,12 @@ function languages(path: string): Record<string, string> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Plafond de l'API : limit ne peut dépasser 100. Au-delà, elle renvoie
+  // un 422 que apiGetSafe convertit en liste vide — le sitemap sortirait
+  // sans aucune fiche produit, sans erreur visible.
   const [circuits, excursions] = await Promise.all([
-    getProducts(routing.defaultLocale, { type: "circuit", limit: 200 }),
-    getProducts(routing.defaultLocale, { type: "excursion", limit: 200 }),
+    getProducts(routing.defaultLocale, { type: "circuit", limit: 100 }),
+    getProducts(routing.defaultLocale, { type: "excursion", limit: 100 }),
   ]);
 
   const productPaths = [
