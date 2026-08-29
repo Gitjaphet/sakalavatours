@@ -165,7 +165,7 @@ function ProductDetailContent({ id }: { id: string }) {
     .then(([result, adminDetail]) => {
       if (cancelled) return;
       setData(result);
-      setIsPublished(true);
+      setIsPublished(adminDetail.is_published);
       setIsFeatured(result.is_featured);
       setPriceFrom(result.price_from);
       setSlug(result.slug);
