@@ -91,7 +91,7 @@ export default async function AvisPage({ params }: { params: Params }) {
               empty: t("empty"),
               verified: t("verified"),
               agencyReply: t("agencyReply"),
-              basedOn: t("basedOn"),
+              basedOn: t("basedOn", { count: aggregate.count }),
               traveledIn: t("traveledIn"),
             }}
           />

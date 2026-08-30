@@ -41,7 +41,10 @@ export function ReviewList({ items, aggregate, locale, labels }: Props) {
 
   return (
     <div>
-      {aggregate.average && (
+      {/* La moyenne n'est affichée qu'une fois le seuil de crédibilité
+          atteint — le même que celui qui autorise le balisage. En dessous,
+          « 3,0 sur 1 avis » dessert plus qu'il n'informe. */}
+      {aggregate.average && aggregate.is_schema_eligible && (
         <div className="mb-10 text-center">
           <p className="text-4xl font-semibold text-stone-900">
             {aggregate.average.replace(".", ",")}
@@ -51,7 +54,7 @@ export function ReviewList({ items, aggregate, locale, labels }: Props) {
             <Stars rating={Math.round(Number(aggregate.average))} />
           </p>
           <p className="mt-1 text-sm text-stone-500">
-            {labels.basedOn.replace("{count}", String(aggregate.count))}
+            {labels.basedOn}
           </p>
         </div>
       )}

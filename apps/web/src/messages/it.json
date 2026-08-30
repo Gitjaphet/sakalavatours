@@ -575,7 +575,7 @@
     "empty": "Nessuna recensione pubblicata al momento. Hai viaggiato con noi? Il tuo parere sarebbe prezioso.",
     "verified": "Viaggio verificato",
     "agencyReply": "Risposta di Sakalava Tours",
-    "basedOn": "Su {count} recensioni pubblicate",
+    "basedOn": "{count, plural, one {Su # recensione pubblicata} other {Su # recensioni pubblicate}}",
     "traveledIn": "Viaggio del"
   }
 }

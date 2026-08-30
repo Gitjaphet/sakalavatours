@@ -574,7 +574,7 @@
     "empty": "No reviews published yet. Have you travelled with us? Your feedback would mean a lot.",
     "verified": "Verified trip",
     "agencyReply": "Reply from Sakalava Tours",
-    "basedOn": "Based on {count} published reviews",
+    "basedOn": "{count, plural, one {Based on # published review} other {Based on # published reviews}}",
     "traveledIn": "Travelled in"
   }
 

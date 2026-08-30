@@ -573,7 +573,7 @@
     "empty": "Aucun avis publié pour le moment. Vous avez voyagé avec nous ? Votre retour serait précieux.",
     "verified": "Voyage vérifié",
     "agencyReply": "Réponse de Sakalava Tours",
-    "basedOn": "Sur {count} avis publiés",
+    "basedOn": "{count, plural, one {Sur # avis publié} other {Sur # avis publiés}}",
     "traveledIn": "Voyage en"
   }
 
