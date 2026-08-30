@@ -39,7 +39,7 @@ def _wrap_html(title: str, body_html: str) -> str:
         <tr><td style="padding:20px 32px;background:#FDFAF6;border-top:1px solid #eee;">
           <p style="margin:0;font-size:12px;color:#888;">
             Sakalava Tours &middot; Nosy Be, Madagascar<br>
-            Cet email vous a été envoyé suite à votre demande sur sakalavatours.com
+            Cet email vous a été envoyé suite à votre demande sur {settings.PUBLIC_SITE_URL.split("//")[-1]}
           </p>
         </td></tr>
       </table>
