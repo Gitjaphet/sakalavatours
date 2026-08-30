@@ -601,7 +601,8 @@
       "errorRequired": "Indica un voto, il tuo nome, la tua email e una recensione di almeno 30 caratteri.",
       "errorUnexpected": "Invio non riuscito. Riprova tra poco.",
       "successTitle": "Grazie per la tua recensione",
-      "privacy": "La tua email non sarà mai visualizzata né usata per fini commerciali."
+      "privacy": "La tua email non sarà mai visualizzata né usata per fini commerciali.",
+      "requiredNote": "I campi contrassegnati con un asterisco (*) sono obbligatori. Gli altri sono facoltativi."
     }
   }
 }

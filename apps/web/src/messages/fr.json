@@ -599,7 +599,9 @@
       "errorRequired": "Merci d'indiquer une note, votre prénom, votre email et un avis d'au moins 30 caractères.",
       "errorUnexpected": "L'envoi a échoué. Réessayez dans un instant.",
       "successTitle": "Merci pour votre avis",
-      "privacy": "Votre email ne sera jamais affiché ni utilisé à des fins commerciales."
+      "privacy": "Votre email ne sera jamais affiché ni utilisé à des fins commerciales.",
+      "requiredNote": "Les champs marqués d'une étoile (*) sont obligatoires. Les autres sont facultatifs."
+      
     }
   }
 

@@ -92,6 +92,8 @@ export function ReviewForm({
   return (
     <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)] sm:p-8">
       <div className="space-y-5">
+        <p className="text-xs text-stone-500">{t("requiredNote")}</p>
+
         <div>
           <span className="block text-sm font-medium text-stone-900">
             {t("rating")} *

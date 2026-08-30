@@ -601,7 +601,8 @@
       "errorRequired": "Bitte geben Sie eine Bewertung, Ihren Vornamen, Ihre E-Mail und einen Text von mindestens 30 Zeichen an.",
       "errorUnexpected": "Senden fehlgeschlagen. Bitte versuchen Sie es gleich erneut.",
       "successTitle": "Danke für Ihre Bewertung",
-      "privacy": "Ihre E-Mail wird niemals angezeigt oder für Werbung verwendet."
+      "privacy": "Ihre E-Mail wird niemals angezeigt oder für Werbung verwendet.",
+      "requiredNote": "Mit einem Stern (*) markierte Felder sind Pflichtfelder. Die übrigen sind optional."
     }
   }
 }

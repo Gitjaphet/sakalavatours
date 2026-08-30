@@ -600,7 +600,8 @@
       "errorRequired": "Please provide a rating, your first name, your email and a review of at least 30 characters.",
       "errorUnexpected": "Sending failed. Please try again in a moment.",
       "successTitle": "Thank you for your review",
-      "privacy": "Your email will never be displayed or used for marketing."
+      "privacy": "Your email will never be displayed or used for marketing.",
+      "requiredNote": "Fields marked with an asterisk (*) are required. The others are optional."
     }
   }
 
