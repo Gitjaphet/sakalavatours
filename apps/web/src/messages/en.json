@@ -602,7 +602,10 @@
       "successTitle": "Thank you for your review",
       "privacy": "Your email will never be displayed or used for marketing.",
       "requiredNote": "Fields marked with an asterisk (*) are required. The others are optional.",
-      "successMessage": "It will be published after review by our team. Don't forget to confirm your address — we've just sent you an email."
+      "successMessage": "It will be published after review by our team. Don't forget to confirm your address — we've just sent you an email.",
+      "country": "Your country",
+      "countryPlaceholder": "Select…"
+      
     }
   }
 

@@ -603,7 +603,10 @@
       "successTitle": "Grazie per la tua recensione",
       "privacy": "La tua email non sarà mai visualizzata né usata per fini commerciali.",
       "requiredNote": "I campi contrassegnati con un asterisco (*) sono obbligatori. Gli altri sono facoltativi.",
-      "successMessage": "Sarà pubblicata dopo la verifica del nostro team. Ricordati di confermare il tuo indirizzo: ti abbiamo appena inviato un'email."
+      "successMessage": "Sarà pubblicata dopo la verifica del nostro team. Ricordati di confermare il tuo indirizzo: ti abbiamo appena inviato un'email.",
+      "country": "Il tuo paese",
+      "countryPlaceholder": "Seleziona…"
+      
     }
   }
 }

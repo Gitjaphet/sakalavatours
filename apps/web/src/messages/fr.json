@@ -601,7 +601,9 @@
       "successTitle": "Merci pour votre avis",
       "privacy": "Votre email ne sera jamais affiché ni utilisé à des fins commerciales.",
       "requiredNote": "Les champs marqués d'une étoile (*) sont obligatoires. Les autres sont facultatifs.",
-      "successMessage": "Il sera publié après vérification par notre équipe. Pensez à confirmer votre adresse : nous venons de vous envoyer un email."
+      "successMessage": "Il sera publié après vérification par notre équipe. Pensez à confirmer votre adresse : nous venons de vous envoyer un email.",
+      "country": "Votre pays",
+      "countryPlaceholder": "Sélectionnez…"
       
     }
   }
