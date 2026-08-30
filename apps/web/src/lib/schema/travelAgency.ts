@@ -1,16 +1,35 @@
-// src/lib/schema/travelAgency.ts
-// TravelAgency — alimente le Knowledge Panel sur une recherche de marque.
-//
-// ⚠ Aucun aggregateRating ici : les notes du catalogue sont des mocks, et
-// publier une note inventée expose à une action manuelle Google.
+// ⚠ aggregateRating n'est émis que si le backend l'autorise, via
+// `is_schema_eligible` : au moins trois avis APPROUVÉS ET VÉRIFIÉS.
+// Publier une note calculée sur des avis non vérifiables est le premier
+// motif d'action manuelle Google sur les sites de tourisme.
 
 import { businessInfo, contactInfo, socialLinks } from "@/lib/nav-config";
 import { FOUNDING_YEAR } from "@/lib/about-data";
+import type { ReviewAggregate } from "@/lib/api/reviews";
 
 /** Codes BCP-47 des langues dans lesquelles l'agence accompagne */
 const SPOKEN_LANGUAGES = ["fr", "en", "de", "it", "mg"] as const;
 
-export function buildTravelAgencySchema(locale: string, description: string) {
+export function buildTravelAgencySchema(
+  locale: string,
+  description: string,
+  aggregate?: ReviewAggregate,
+) {
+  const rating =
+    aggregate?.is_schema_eligible && aggregate.average
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: aggregate.average,
+            // Seuls les avis vérifiés sont déclarés : la moyenne affichée
+            // sur le site peut porter sur davantage d'avis.
+            reviewCount: aggregate.verified_count,
+            bestRating: 5,
+            worstRating: 1,
+          },
+        }
+      : {};
+
   return {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
@@ -43,5 +62,6 @@ export function buildTravelAgencySchema(locale: string, description: string) {
     ],
     knowsLanguage: [...SPOKEN_LANGUAGES],
     sameAs: socialLinks.map((s) => s.href),
+    ...rating,
   };
 }

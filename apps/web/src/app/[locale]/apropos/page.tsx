@@ -9,6 +9,7 @@ import { aboutValues, aboutPillars, aboutFaqKeys, aboutStats } from "@/lib/about
 import { buildBreadcrumbSchema } from "@/lib/schema/breadcrumb";
 import { buildFaqSchema } from "@/lib/schema/faqPage";
 import { buildTravelAgencySchema } from "@/lib/schema/travelAgency";
+import { getReviews } from "@/lib/api/reviews";
 import { businessInfo } from "@/lib/nav-config";
 import { Reveal } from "@/components/ui/Reveal";
 import { getProducts } from "@/lib/api/products";
@@ -68,10 +69,13 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
   // Compte réel du catalogue — jamais un chiffre inventé sur une page publique.
   // limit: 1 suffit : seul `total` nous intéresse ici, pas les items.
-  const [{ total: circuitsTotal }, { total: excursionsTotal }] =
+  // L'agrégat sert au aggregateRating du TravelAgency, émis uniquement si
+  // le backend le déclare éligible.
+  const [{ total: circuitsTotal }, { total: excursionsTotal }, { aggregate }] =
     await Promise.all([
       getProducts(locale, { type: "circuit", limit: 1 }),
       getProducts(locale, { type: "excursion", limit: 1 }),
+      getReviews({ limit: 1 }),
     ]);
   const destinationsCount = circuitsTotal + excursionsTotal;
 
@@ -90,7 +94,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       { name: t("breadcrumb") },
     ]),
     buildFaqSchema(faqEntries),
-    buildTravelAgencySchema(locale, t("meta.description")),
+    buildTravelAgencySchema(locale, t("meta.description"), aggregate),
     {
       "@context": "https://schema.org",
       "@type": "AboutPage",
