@@ -39,7 +39,19 @@ export function ReviewForm({
 
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [confirmation, setConfirmation] = useState<string | null>(null);
+  const [isSent, setIsSent] = useState(false);
+
+   // Codes ISO traduits par le navigateur dans la langue de la page —
+  // évite de maintenir quatre listes de noms de pays.
+  const COUNTRY_CODES = [
+    "FR", "IT", "DE", "CH", "BE", "MG", "GB",
+    "US", "CA", "ES", "NL", "ZA", "RE", "MU",
+  ];
+  const countryNames = new Intl.DisplayNames([locale], { type: "region" });
+  const countries = COUNTRY_CODES.map((code) => ({
+    code,
+    label: countryNames.of(code) ?? code,
+  })).sort((a, b) => a.label.localeCompare(b.label, locale));
 
   const circuits = products.filter((p) => p.product_type === "circuit");
   const excursions = products.filter((p) => p.product_type === "excursion");
@@ -59,7 +71,9 @@ export function ReviewForm({
 
     setIsSending(true);
     try {
-      const message = await submitReview({
+      // Le message du backend est ignoré : c'est un texte d'interface, il
+      // doit suivre la langue de la page et non celle de l'API.
+      await submitReview({
         product_slug: productSlug || null,
         author_name: name.trim(),
         author_email: email.trim(),
@@ -72,7 +86,7 @@ export function ReviewForm({
         booking_reference: reference.trim() || null,
         website,
       });
-      setConfirmation(message);
+      setIsSent(true);
     } catch (err) {
       setError(err instanceof ReviewError && err.message ? err.message : t("errorUnexpected"));
     } finally {
@@ -80,7 +94,7 @@ export function ReviewForm({
     }
   }
 
-  if (confirmation) {
+  if (isSent) {
     return (
       <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-8 text-center shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
         <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-emerald-50 text-emerald-600">
@@ -89,7 +103,9 @@ export function ReviewForm({
         <h2 className="mt-5 font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
           {t("successTitle")}
         </h2>
-        <p className="mt-3 text-sm leading-relaxed text-stone-600">{confirmation}</p>
+        <p className="mt-3 text-sm leading-relaxed text-stone-600">
+          {t("successMessage")}
+        </p>
       </div>
     );
   }
@@ -181,6 +197,22 @@ export function ReviewForm({
             />
           </label>
         </div>
+
+        <label className="block text-sm">
+          <span className="font-medium text-stone-900">{t("country")}</span>
+          <select
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            className="mt-1.5 w-full rounded-xl border border-stone-300 px-3 py-2.5 text-sm"
+          >
+            <option value="">{t("countryPlaceholder")}</option>
+            {countries.map((c) => (
+              <option key={c.code} value={c.code}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+        </label>
 
         <label className="block text-sm">
           <span className="font-medium text-stone-900">{t("title")}</span>

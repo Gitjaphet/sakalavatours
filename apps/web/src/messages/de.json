@@ -602,7 +602,8 @@
       "errorUnexpected": "Senden fehlgeschlagen. Bitte versuchen Sie es gleich erneut.",
       "successTitle": "Danke für Ihre Bewertung",
       "privacy": "Ihre E-Mail wird niemals angezeigt oder für Werbung verwendet.",
-      "requiredNote": "Mit einem Stern (*) markierte Felder sind Pflichtfelder. Die übrigen sind optional."
+      "requiredNote": "Mit einem Stern (*) markierte Felder sind Pflichtfelder. Die übrigen sind optional.",
+      "successMessage": "Sie wird nach Prüfung durch unser Team veröffentlicht. Bitte bestätigen Sie Ihre Adresse — wir haben Ihnen soeben eine E-Mail geschickt."
     }
   }
 }
