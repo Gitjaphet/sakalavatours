@@ -115,7 +115,10 @@ export function ReviewForm({
               <button
                 key={n}
                 type="button"
-                onClick={() => setRating(n)}
+                onClick={() => {
+                  setRating(n);
+                  setError(null);
+                }}
                 aria-label={t("ratingOf", { n })}
                 className={`text-3xl transition-colors ${
                   n <= rating ? "text-[#F4A261]" : "text-stone-300 hover:text-[#F4A261]/50"
@@ -195,13 +198,22 @@ export function ReviewForm({
           <span className="font-medium text-stone-900">{t("body")} *</span>
           <textarea
             value={body}
-            onChange={(e) => setBody(e.target.value)}
+            onChange={(e) => {
+              setBody(e.target.value);
+              setError(null);
+            }}
             rows={6}
             maxLength={5000}
             placeholder={t("bodyPlaceholder")}
             className="mt-1.5 w-full rounded-xl border border-stone-300 px-3 py-2.5 text-sm"
           />
-          <span className="mt-1 block text-xs text-stone-400">
+          <span
+            className={`mt-1 block text-xs ${
+              body.trim().length > 0 && body.trim().length < 30
+                ? "text-[#E76F51]"
+                : "text-stone-400"
+            }`}
+          >
             {t("bodyHint", { min: 30, current: body.trim().length })}
           </span>
         </label>
