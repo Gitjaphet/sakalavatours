@@ -559,6 +559,22 @@
     "action": "Confirmer mon avis",
     "pending": "Confirmation en cours…",
     "missing": "Ce lien est incomplet. Ouvrez le lien reçu par email."
+  },
+    "avis": {
+    "meta": {
+      "title": "Avis de nos voyageurs — Sakalava Tours",
+      "description": "Les retours de nos clients sur leurs excursions et circuits à Nosy Be. Avis vérifiés, publiés après modération."
+    },
+    "eyebrow": "Ils nous ont fait confiance",
+    "pageTitle": "Avis de nos voyageurs",
+    "pageIntro": "Chaque avis est lu et publié par notre équipe. Nous ne supprimons pas les retours critiques : ils nous aident à progresser.",
+    "breadcrumb": "Avis",
+    "listTitle": "Ce qu'ils en disent",
+    "empty": "Aucun avis publié pour le moment. Vous avez voyagé avec nous ? Votre retour serait précieux.",
+    "verified": "Voyage vérifié",
+    "agencyReply": "Réponse de Sakalava Tours",
+    "basedOn": "Sur {count} avis publiés",
+    "traveledIn": "Voyage en"
   }
 
 }
