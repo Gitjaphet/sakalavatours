@@ -10,6 +10,42 @@ function Stars({ rating }: { rating: number }) {
   );
 }
 
+/** Palette dérivée des couleurs de marque, assez foncée pour du texte blanc. */
+const MONOGRAM_COLORS = [
+  "#1d4e5f",
+  "#E76F51",
+  "#1a6b2f",
+  "#8B5E34",
+  "#5B4B8A",
+  "#0F766E",
+];
+
+/**
+ * Couleur stable pour un auteur donné.
+ *
+ * Dérivée du nom plutôt que tirée au hasard : la même personne garde la
+ * même couleur d'un rendu à l'autre, y compris entre serveur et client.
+ */
+function monogramColor(name: string): string {
+  let hash = 0;
+  for (const char of name) {
+    hash = (hash * 31 + char.codePointAt(0)!) % 9973;
+  }
+  return MONOGRAM_COLORS[hash % MONOGRAM_COLORS.length];
+}
+
+function Monogram({ name }: { name: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-sm font-semibold text-white"
+      style={{ background: monogramColor(name) }}
+    >
+      {name.trim().charAt(0).toUpperCase()}
+    </span>
+  );
+}
+
 function formatDate(iso: string, locale: string): string {
   return new Date(iso).toLocaleDateString(locale, {
     month: "long",
@@ -65,8 +101,9 @@ export function ReviewList({ items, aggregate, locale, labels }: Props) {
             key={r.id}
             className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm"
           >
-            <div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
-              <p className="font-medium text-stone-900">
+            <div className="mb-2 flex items-start gap-3">
+              <Monogram name={r.author_name} />
+              <p className="flex-1 font-medium text-stone-900">
                 {r.author_name}
                 {r.author_country && (
                   <span className="ml-2 text-sm font-normal text-stone-400">
@@ -79,7 +116,9 @@ export function ReviewList({ items, aggregate, locale, labels }: Props) {
                   </span>
                 )}
               </p>
-              <Stars rating={r.rating} />
+              <span className="shrink-0">
+                <Stars rating={r.rating} />
+              </span>
             </div>
 
             {r.title && (
