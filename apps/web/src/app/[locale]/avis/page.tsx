@@ -5,7 +5,9 @@ import { PageHero } from "@/components/layout/PageHero";
 import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
 import { Squiggle } from "@/components/ui/Doodles";
 import { ReviewList } from "@/components/reviews/ReviewList";
+import { ReviewForm } from "@/components/reviews/ReviewForm";
 import { getReviews } from "@/lib/api/reviews";
+import { getProducts } from "@/lib/api/products";
 import { buildBreadcrumbSchema } from "@/lib/schema/breadcrumb";
 import { routing } from "@/i18n/routing";
 
@@ -41,7 +43,17 @@ export default async function AvisPage({ params }: { params: Params }) {
 
   // Sans product_slug : uniquement les avis portant sur l'agence. Les avis
   // d'un produit vivent sur sa fiche — jamais le même texte sur deux URL.
-  const { items, aggregate } = await getReviews({ limit: 50 });
+  const [{ items, aggregate }, catalogue] = await Promise.all([
+    getReviews({ limit: 50 }),
+    // Plafond de l'API : 100 par appel.
+    getProducts(locale, { limit: 100 }),
+  ]);
+
+  const products = catalogue.items.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    product_type: p.product_type,
+  }));
 
   // Pas de JSON-LD d'entité ici : le TravelAgency est déclaré sur /apropos,
   // et c'est là que l'aggregateRating devra être rattaché. Deux entités du
@@ -95,6 +107,18 @@ export default async function AvisPage({ params }: { params: Params }) {
               traveledIn: t("traveledIn"),
             }}
           />
+
+          <div className="mt-16 mb-8 text-center">
+            <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900 sm:text-3xl">
+              {t("form.sectionTitle")}
+            </h2>
+            <Squiggle className="mx-auto mt-2 h-2 w-24 opacity-50" color="#F4A261" />
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-stone-600">
+              {t("form.sectionIntro")}
+            </p>
+          </div>
+
+          <ReviewForm products={products} locale={locale} />
         </div>
       </main>
     </div>

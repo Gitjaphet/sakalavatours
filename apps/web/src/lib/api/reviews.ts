@@ -76,3 +76,57 @@ export async function getReviews(
     { tags: ["reviews"] },
   );
 }
+
+
+
+export type ReviewSubmitPayload = {
+  product_slug?: string | null;
+  author_name: string;
+  author_email: string;
+  author_country?: string | null;
+  rating: number;
+  title?: string | null;
+  body: string;
+  locale: string;
+  travel_date?: string | null;
+  booking_reference?: string | null;
+  /** Honeypot : rempli uniquement par les robots. */
+  website?: string;
+};
+
+export class ReviewError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "ReviewError";
+  }
+}
+
+/**
+ * Dépose un avis. Publication après modération humaine.
+ *
+ * Passe par le proxy Next plutôt que par l'API directement : l'adresse IP
+ * vue par le backend doit être celle du visiteur, transmise par
+ * X-Forwarded-For, sinon le quota par IP compterait tout le monde ensemble.
+ */
+export async function submitReview(payload: ReviewSubmitPayload): Promise<string> {
+  const res = await fetch("/api/reviews", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await res.json().catch(() => ({}));
+
+  if (!res.ok) {
+    const detail = data?.detail;
+    if (typeof detail === "string") throw new ReviewError(detail);
+    if (Array.isArray(detail)) {
+      throw new ReviewError(
+        detail.map((e: { msg?: string }) => e?.msg).filter(Boolean).join(" · "),
+      );
+    }
+    throw new ReviewError("");
+  }
+
+  return data.message ?? "";
+}

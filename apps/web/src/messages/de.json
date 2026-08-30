@@ -576,6 +576,32 @@
     "verified": "Geprüfte Reise",
     "agencyReply": "Antwort von Sakalava Tours",
     "basedOn": "{count, plural, one {Basierend auf # veröffentlichten Bewertung} other {Basierend auf # veröffentlichten Bewertungen}}",
-    "traveledIn": "Reise im"
+    "traveledIn": "Reise im",
+    "form": {
+      "sectionTitle": "Waren Sie mit uns unterwegs?",
+      "sectionIntro": "Ihre Rückmeldung hilft künftigen Reisenden bei der Wahl — und uns, besser zu werden.",
+      "rating": "Ihre Bewertung",
+      "ratingOf": "{n} von 5",
+      "product": "Welche Tour?",
+      "productAgency": "Eine Bewertung zur Agentur allgemein",
+      "excursions": "Ausflüge",
+      "circuits": "Rundreisen",
+      "name": "Ihr Vorname",
+      "email": "Ihre E-Mail",
+      "title": "Titel Ihrer Bewertung",
+      "titlePlaceholder": "In wenigen Worten…",
+      "body": "Ihre Bewertung",
+      "bodyPlaceholder": "Was Ihnen gefallen hat, was besser sein könnte…",
+      "bodyHint": "{current} / {min} Zeichen mindestens",
+      "travelDate": "Reisedatum",
+      "reference": "Buchungsreferenz",
+      "referenceNote": "Wenn Sie Ihre Buchungsreferenz zur Hand haben, wird Ihre Bewertung als geprüfte Reise gekennzeichnet — ein Vertrauensbeweis für künftige Reisende.",
+      "submit": "Bewertung veröffentlichen",
+      "sending": "Wird gesendet…",
+      "errorRequired": "Bitte geben Sie eine Bewertung, Ihren Vornamen, Ihre E-Mail und einen Text von mindestens 30 Zeichen an.",
+      "errorUnexpected": "Senden fehlgeschlagen. Bitte versuchen Sie es gleich erneut.",
+      "successTitle": "Danke für Ihre Bewertung",
+      "privacy": "Ihre E-Mail wird niemals angezeigt oder für Werbung verwendet."
+    }
   }
 }

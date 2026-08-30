@@ -574,7 +574,33 @@
     "verified": "Voyage vérifié",
     "agencyReply": "Réponse de Sakalava Tours",
     "basedOn": "{count, plural, one {Sur # avis publié} other {Sur # avis publiés}}",
-    "traveledIn": "Voyage en"
+    "traveledIn": "Voyage en",
+    "form": {
+      "sectionTitle": "Vous avez voyagé avec nous ?",
+      "sectionIntro": "Votre retour aide les prochains voyageurs à choisir — et nous à progresser.",
+      "rating": "Votre note",
+      "ratingOf": "{n} sur 5",
+      "product": "Quelle sortie ?",
+      "productAgency": "Un avis sur l'agence en général",
+      "excursions": "Excursions",
+      "circuits": "Circuits",
+      "name": "Votre prénom",
+      "email": "Votre email",
+      "title": "Titre de votre avis",
+      "titlePlaceholder": "En quelques mots…",
+      "body": "Votre avis",
+      "bodyPlaceholder": "Ce que vous avez aimé, ce qui pourrait être amélioré…",
+      "bodyHint": "{current} / {min} caractères minimum",
+      "travelDate": "Date du voyage",
+      "reference": "Référence de réservation",
+      "referenceNote": "Si vous avez votre référence sous la main, votre avis sera signalé comme voyage vérifié — un gage de confiance pour les futurs voyageurs.",
+      "submit": "Publier mon avis",
+      "sending": "Envoi en cours…",
+      "errorRequired": "Merci d'indiquer une note, votre prénom, votre email et un avis d'au moins 30 caractères.",
+      "errorUnexpected": "L'envoi a échoué. Réessayez dans un instant.",
+      "successTitle": "Merci pour votre avis",
+      "privacy": "Votre email ne sera jamais affiché ni utilisé à des fins commerciales."
+    }
   }
 
 }
