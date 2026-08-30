@@ -4,7 +4,12 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { submitReview, ReviewError } from "@/lib/api/reviews";
-import { IconCheck, IconAlertCircle, IconInfoCircle } from "@tabler/icons-react";
+import {
+  IconCheck,
+  IconAlertCircle,
+  IconInfoCircle,
+  IconAsterisk,
+} from "@tabler/icons-react";
 
 type ProductOption = {
   slug: string;
@@ -92,7 +97,14 @@ export function ReviewForm({
   return (
     <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)] sm:p-8">
       <div className="space-y-5">
-        <p className="text-xs text-stone-500">{t("requiredNote")}</p>
+        <p className="flex gap-2 text-xs leading-relaxed text-stone-500">
+            <IconAsterisk
+            size={15}
+            stroke={2}
+            className="mt-0.5 shrink-0 text-[#E76F51]"
+          />
+          {t("requiredNote")}
+        </p>
 
         <div>
           <span className="block text-sm font-medium text-stone-900">
