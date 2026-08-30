@@ -10,6 +10,7 @@ type Props = {
     action: string;
     pending: string;
     missing: string;
+    success: string;
   };
 };
 
@@ -29,8 +30,10 @@ export function ReviewVerification({ token, labels }: Props) {
       const data = await res.json();
 
       if (res.ok) {
+        // Le message de l'API est en français : c'est un texte d'interface,
+        // il doit suivre la langue de la page.
         setState("done");
-        setMessage(data.message ?? "");
+        setMessage(labels.success);
       } else {
         setState("error");
         setMessage(data.detail ?? "");

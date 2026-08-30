@@ -75,6 +75,7 @@ export default async function ReviewConfirmationPage({
               action: t("action"),
               pending: t("pending"),
               missing: t("missing"),
+              success: t("success"),
             }}
           />
         </div>

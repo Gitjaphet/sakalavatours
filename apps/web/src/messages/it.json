@@ -551,15 +551,16 @@
   },
 
     "avisConfirmation": {
-    "metaTitle": "Conferma la tua recensione",
-    "eyebrow": "Recensioni dei viaggiatori",
-    "pageTitle": "Conferma la tua recensione",
-    "breadcrumb": "Conferma",
-    "title": "Un ultimo passaggio",
-    "intro": "Conferma il tuo indirizzo email affinché la recensione venga inviata al nostro team.",
-    "action": "Conferma la recensione",
-    "pending": "Conferma in corso…",
-    "missing": "Questo link è incompleto. Apri il link ricevuto via email."
+      "metaTitle": "Conferma la tua recensione",
+      "eyebrow": "Recensioni dei viaggiatori",
+      "pageTitle": "Conferma la tua recensione",
+      "breadcrumb": "Conferma",
+      "title": "Un ultimo passaggio",
+      "intro": "Conferma il tuo indirizzo email affinché la recensione venga inviata al nostro team.",
+      "action": "Conferma la recensione",
+      "pending": "Conferma in corso…",
+      "missing": "Questo link è incompleto. Apri il link ricevuto via email.",
+      "success": "Grazie, il tuo indirizzo è confermato. La tua recensione sarà pubblicata dopo la verifica del nostro team."
   },
 
     "avis": {
@@ -606,7 +607,7 @@
       "successMessage": "Sarà pubblicata dopo la verifica del nostro team. Ricordati di confermare il tuo indirizzo: ti abbiamo appena inviato un'email.",
       "country": "Il tuo paese",
       "countryPlaceholder": "Seleziona…"
-      
+
     }
   }
 }

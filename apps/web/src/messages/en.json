@@ -551,15 +551,16 @@
   },
 
     "avisConfirmation": {
-    "metaTitle": "Confirm your review",
-    "eyebrow": "Traveller reviews",
-    "pageTitle": "Confirm your review",
-    "breadcrumb": "Confirmation",
-    "title": "One last step",
-    "intro": "Confirm your email address so your review can be sent to our team.",
-    "action": "Confirm my review",
-    "pending": "Confirming…",
-    "missing": "This link is incomplete. Please open the link you received by email."
+      "metaTitle": "Confirm your review",
+      "eyebrow": "Traveller reviews",
+      "pageTitle": "Confirm your review",
+      "breadcrumb": "Confirmation",
+      "title": "One last step",
+      "intro": "Confirm your email address so your review can be sent to our team.",
+      "action": "Confirm my review",
+      "pending": "Confirming…",
+      "missing": "This link is incomplete. Please open the link you received by email.",
+      "success": "Thank you, your address is confirmed. Your review will be published after review by our team."
   },
     "avis": {
     "meta": {
@@ -605,7 +606,7 @@
       "successMessage": "It will be published after review by our team. Don't forget to confirm your address — we've just sent you an email.",
       "country": "Your country",
       "countryPlaceholder": "Select…"
-      
+
     }
   }
 

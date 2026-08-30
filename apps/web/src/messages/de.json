@@ -551,15 +551,16 @@
   },
 
     "avisConfirmation": {
-    "metaTitle": "Bewertung bestätigen",
-    "eyebrow": "Reisebewertungen",
-    "pageTitle": "Bestätigen Sie Ihre Bewertung",
-    "breadcrumb": "Bestätigung",
-    "title": "Ein letzter Schritt",
-    "intro": "Bestätigen Sie Ihre E-Mail-Adresse, damit Ihre Bewertung an unser Team übermittelt wird.",
-    "action": "Bewertung bestätigen",
-    "pending": "Wird bestätigt…",
-    "missing": "Dieser Link ist unvollständig. Bitte öffnen Sie den Link aus Ihrer E-Mail."
+      "metaTitle": "Bewertung bestätigen",
+      "eyebrow": "Reisebewertungen",
+      "pageTitle": "Bestätigen Sie Ihre Bewertung",
+      "breadcrumb": "Bestätigung",
+      "title": "Ein letzter Schritt",
+      "intro": "Bestätigen Sie Ihre E-Mail-Adresse, damit Ihre Bewertung an unser Team übermittelt wird.",
+      "action": "Bewertung bestätigen",
+      "pending": "Wird bestätigt…",
+      "missing": "Dieser Link ist unvollständig. Bitte öffnen Sie den Link aus Ihrer E-Mail.",
+      "success": "Danke, Ihre Adresse ist bestätigt. Ihre Bewertung wird nach Prüfung durch unser Team veröffentlicht."
   },
 
     "avis": {

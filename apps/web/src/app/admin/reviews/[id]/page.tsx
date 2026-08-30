@@ -163,6 +163,23 @@ function ReviewDetailContent({ id }: { id: string }) {
         >
           {STATUS_LABELS[review.status]}
         </span>
+
+        {/* Adresse confirmée : atteste que l'email existe et que quelqu'un
+            l'a lu. Distinct de « vérifié », qui atteste du voyage. */}
+        <span
+          className={`rounded-full px-2 py-1 text-xs font-medium ${
+            review.email_verified_at
+              ? "bg-green-50 text-green-700"
+              : "bg-stone-100 text-stone-500"
+          }`}
+          title={
+            review.email_verified_at
+              ? "L'auteur a cliqué le lien reçu par email"
+              : "L'adresse email n'a pas été confirmée"
+          }
+        >
+          {review.email_verified_at ? "Email confirmé" : "Email non confirmé"}
+        </span>
       </div>
 
       {notice && (
@@ -368,9 +385,7 @@ function ReviewDetailContent({ id }: { id: string }) {
               <br />
               Référence · {review.booking_reference ?? "aucune"}
               <br />
-              Email confirmé ·{" "}
-              {review.email_verified_at ? formatDate(review.email_verified_at) : "non"}
-              <br />
+              
               Reçu le · {formatDate(review.created_at)}
               <br />
               Modéré le · {formatDate(review.moderated_at)}
