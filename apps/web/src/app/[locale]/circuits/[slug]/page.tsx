@@ -15,6 +15,8 @@ import { buildBreadcrumbSchema } from "@/lib/schema/breadcrumb";
 import { buildFaqSchema } from "@/lib/schema/faqPage";
 import { sanitizeHtml } from "@/lib/sanitize-html";
 import { buildTouristTripSchema } from "@/lib/schema/touristTrip";
+import { getReviews } from "@/lib/api/reviews";
+import { ReviewList } from "@/components/reviews/ReviewList";
 import {
   IconCheck,
   IconX,
@@ -105,9 +107,16 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
   // doit rendre un 404 plutôt qu'afficher un produit du mauvais type.
   if (!product || product.product_type !== "circuit") notFound();
 
-  const relatedProducts = await getRelatedProducts(product.related_slugs, locale);
+  // Avis de ce circuit uniquement : ceux portant sur l'agence vivent sur
+  // /avis, jamais le même texte sur deux URL.
+  const [relatedProducts, reviews] = await Promise.all([
+    getRelatedProducts(product.related_slugs, locale),
+    getReviews({ productSlug: slug, limit: 20 }),
+  ]);
   const t = await getTranslations({ locale, namespace: "circuits" });
   const tNav = await getTranslations({ locale, namespace: "nav" });
+  // Libellés d'avis partagés avec /avis — une seule source de traduction.
+  const tAvis = await getTranslations({ locale, namespace: "avis" });
   const levelKey = LEVEL_KEYS[product.difficulty] ?? "facile";
   const included = product.inclusions.filter((i) => i.is_included);
   const excluded = product.inclusions.filter((i) => !i.is_included);
@@ -136,7 +145,7 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
       priceFrom: product.price_from,
       currency: product.currency,
       maxAttendees: product.group_max,
-    }),
+    }, reviews.aggregate),
     ...(hasFaqs ? [buildFaqSchema(product.faqs)] : []),
   ];
 
@@ -384,6 +393,29 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
                       />
                     </div>
                   ))}
+                </div>
+              </section>
+            )}
+
+            {reviews.items.length > 0 && (
+              <section className="mt-10">
+                <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
+                  {t("detail.reviewsTitle")}
+                </h2>
+                <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
+                <div className="mt-6">
+                  <ReviewList
+                    items={reviews.items}
+                    aggregate={reviews.aggregate}
+                    locale={locale}
+                    labels={{
+                      empty: "",
+                      verified: tAvis("verified"),
+                      agencyReply: tAvis("agencyReply"),
+                      basedOn: tAvis("basedOn", { count: reviews.aggregate.count }),
+                      traveledIn: tAvis("traveledIn"),
+                    }}
+                  />
                 </div>
               </section>
             )}

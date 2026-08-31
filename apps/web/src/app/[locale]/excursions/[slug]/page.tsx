@@ -118,9 +118,9 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
   ]);
   const t = await getTranslations({ locale, namespace: "excursions" });
   const tNav = await getTranslations({ locale, namespace: "nav" });
+  const levelKey = LEVEL_KEYS[product.difficulty] ?? "facile";
   // Libellés d'avis partagés avec /avis — une seule source de traduction.
   const tAvis = await getTranslations({ locale, namespace: "avis" });
-  const levelKey = LEVEL_KEYS[product.difficulty] ?? "facile";
   const formatKey = FORMAT_KEYS[product.product_format] ?? "journee";
   const included = product.inclusions.filter((i) => i.is_included);
   const excluded = product.inclusions.filter((i) => !i.is_included);
