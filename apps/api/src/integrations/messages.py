@@ -384,3 +384,58 @@ Sakalava Tours
     )
 
     return subject, text, html
+
+
+
+
+def contact_alert_to_agency(
+    name: str,
+    email: str,
+    phone: str | None,
+    subject_line: str | None,
+    message: str,
+    contact_id,
+) -> tuple[str, str, str]:
+    """Notification d'un message reçu via le formulaire de contact.
+
+    Reprend l'intégralité du message : l'agence doit pouvoir répondre
+    depuis sa boîte sans ouvrir l'administration.
+    """
+    label = subject_line or "Sans objet"
+    subject = f"[Contact] {label} — {name}"
+
+    text = f"""NOUVEAU MESSAGE DE CONTACT
+
+De      : {name}
+Email   : {email}
+Téléphone : {phone or "non renseigné"}
+Objet   : {label}
+
+{message}
+
+Répondre directement à {email}
+Suivi : {settings.ADMIN_BASE_URL}/messages/{contact_id}
+"""
+
+    html = _wrap_html(
+        "Nouveau message de contact",
+        f"""
+        <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;background:#FDFAF6;border-radius:12px;padding:16px;margin:0 0 20px;">
+          <tr><td style="padding:6px 12px;font-size:14px;color:#666;">De</td>
+              <td style="padding:6px 12px;font-size:14px;color:#2B2620;font-weight:600;">{name}</td></tr>
+          <tr><td style="padding:6px 12px;font-size:14px;color:#666;">Email</td>
+              <td style="padding:6px 12px;font-size:14px;"><a href="mailto:{email}" style="color:#1d4e5f;">{email}</a></td></tr>
+          <tr><td style="padding:6px 12px;font-size:14px;color:#666;">Téléphone</td>
+              <td style="padding:6px 12px;font-size:14px;color:#2B2620;">{phone or "non renseigné"}</td></tr>
+          <tr><td style="padding:6px 12px;font-size:14px;color:#666;">Objet</td>
+              <td style="padding:6px 12px;font-size:14px;color:#2B2620;">{label}</td></tr>
+        </table>
+        <p style="margin:0 0 20px;font-size:15px;line-height:1.7;color:#444;white-space:pre-wrap;">{message}</p>
+        <a href="mailto:{email}"
+           style="display:inline-block;background:#1d4e5f;color:#fff;text-decoration:none;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:600;">
+          Répondre à {name}
+        </a>
+        """,
+    )
+
+    return subject, text, html
