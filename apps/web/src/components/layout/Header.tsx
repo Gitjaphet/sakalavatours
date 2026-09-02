@@ -13,7 +13,10 @@ import Image from "next/image";
 
 /** Déclenchement de la capsule : assez bas pour ne pas clignoter au moindre scroll */
 const SCROLL_THRESHOLD = 48;
+/** Routes exactes avec bandeau sombre */
 const DARK_HERO_ROUTES: readonly string[] = ["/", "/circuits", "/excursions", "/apropos", "/reservation", "/avis", "/avis/confirmation", "/contact", "/galerie"];
+/** Préfixes de routes dynamiques (fiches détail) avec bandeau sombre */
+const DARK_HERO_PREFIXES: readonly string[] = ["/circuits/", "/excursions/"];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +33,9 @@ export function Header() {
 
   
   /** Pages avec un bandeau sombre sous la nav — ajouter les nouvelles routes ici */
-  const hasDarkHero = DARK_HERO_ROUTES.includes(pathname);
+  const hasDarkHero =
+  DARK_HERO_ROUTES.includes(pathname) ||
+  DARK_HERO_PREFIXES.some((prefix) => pathname.startsWith(prefix));
   const overlay = hasDarkHero && !scrolled;
 
   return (
