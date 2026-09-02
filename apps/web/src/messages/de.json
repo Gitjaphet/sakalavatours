@@ -644,5 +644,16 @@
       "successMessage": "Unser Team antwortet innerhalb von 24 Stunden. Prüfen Sie bitte auch Ihren Spam-Ordner.",
       "privacy": "Ihre Angaben dienen ausschließlich der Beantwortung. Keine Werbemails."
     }
+  },
+    "galerie": {
+    "meta": {
+      "title": "Fotogalerie — Nosy Be und der Archipel | Sakalava Tours",
+      "description": "Unsere Fotos von Nosy Be: Nosy Iranja, Lokobe, Cap Diego, Montagne d'Ambre. Aufnahmen von unseren Ausflügen und Rundreisen."
+    },
+    "eyebrow": "In Bildern",
+    "pageTitle": "Galerie",
+    "pageIntro": "Nosy Be und der Archipel, wie unsere Reisenden sie erleben. Klicken Sie auf ein Foto, um den passenden Ausflug zu sehen.",
+    "breadcrumb": "Galerie",
+    "empty": "Die Fotos folgen in Kürze."
   }
 }
