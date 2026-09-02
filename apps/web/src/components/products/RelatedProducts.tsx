@@ -25,7 +25,7 @@ export function RelatedProducts({ products, title, intro, seeAllHref, seeAllLabe
 
   return (
     <section className="mt-16 border-t border-stone-200 bg-[#F6F1E9] py-14 sm:py-16">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900 sm:text-3xl">
             {title}
@@ -40,7 +40,7 @@ export function RelatedProducts({ products, title, intro, seeAllHref, seeAllLabe
 
         <div className="mx-auto mt-8 flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
           {displayed.map((product) => (
-            <div key={product.id} className="w-full sm:max-w-sm">
+            <div key={product.id} className="w-full sm:max-w-md">
               {product.product_type === "circuit" ? (
                 <CircuitCard circuit={product} />
               ) : (
