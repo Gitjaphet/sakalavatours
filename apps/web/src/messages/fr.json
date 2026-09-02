@@ -203,6 +203,7 @@
       "monthRangeJoiner": "à",
       "relatedTitle": "Vous aimerez aussi",
       "relatedIntro": "D'autres expériences près de Nosy Be, sélectionnées pour prolonger votre voyage.",
+      "seeAll": "Voir tous les circuits",
       "translationPending": "Cette fiche n'est pas encore traduite : contenu affiché en français."
     },
     "items": {
@@ -383,6 +384,7 @@
       "monthRangeJoiner": "à",
       "relatedTitle": "Vous aimerez aussi",
       "relatedIntro": "D'autres expériences près de Nosy Be, sélectionnées pour prolonger votre voyage.",
+      "seeAll": "Voir toutes les excursions",
       "translationPending": "Cette fiche n'est pas encore traduite : contenu affiché en français."
   },
   "months": {
