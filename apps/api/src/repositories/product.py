@@ -185,7 +185,17 @@ async def get_itinerary(
             ProductItineraryItem.product_id == product_id,
             ProductItineraryTranslation.locale.in_(locales),
         )
-        .order_by(ProductItineraryItem.day_number, ProductItineraryItem.sort_order)
+        # Même règle que pour les taxonomies : la meilleure locale d'abord,
+        # sinon la déduplication côté service garde une langue au hasard.
+        .order_by(
+            ProductItineraryItem.day_number,
+            ProductItineraryItem.sort_order,
+            case(
+                {loc: i for i, loc in enumerate(locales)},
+                value=ProductItineraryTranslation.locale,
+                else_=len(locales),
+            ),
+        )
     )
     return list((await session.exec(stmt)).all())
 
