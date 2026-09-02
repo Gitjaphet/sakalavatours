@@ -306,29 +306,6 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
                 </div>
               </section>
             )}
-
-            {reviews.items.length > 0 && (
-              <section className="mt-10">
-                <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
-                  {t("detail.reviewsTitle")}
-                </h2>
-                <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
-                <div className="mt-6">
-                  <ReviewList
-                    items={reviews.items}
-                    aggregate={reviews.aggregate}
-                    locale={locale}
-                    labels={{
-                      empty: "",
-                      verified: tAvis("verified"),
-                      agencyReply: tAvis("agencyReply"),
-                      basedOn: tAvis("basedOn", { count: reviews.aggregate.count }),
-                      traveledIn: tAvis("traveledIn"),
-                    }}
-                  />
-                </div>
-              </section>
-            )}
           </div>
 
           <aside className="h-fit lg:sticky lg:top-24">
@@ -441,6 +418,29 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
               </div>
             )}
           </aside>
+
+          {reviews.items.length > 0 && (
+            <section className="mt-10 lg:col-span-2">
+              <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
+                {t("detail.reviewsTitle")}
+              </h2>
+              <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
+              <div className="mt-6">
+                <ReviewList
+                  items={reviews.items}
+                  aggregate={reviews.aggregate}
+                  locale={locale}
+                  labels={{
+                    empty: "",
+                    verified: tAvis("verified"),
+                    agencyReply: tAvis("agencyReply"),
+                    basedOn: tAvis("basedOn", { count: reviews.aggregate.count }),
+                    traveledIn: tAvis("traveledIn"),
+                  }}
+                />
+              </div>
+            </section>
+          )}
         </div>
         <RelatedProducts products={relatedProducts} title={t("detail.relatedTitle")} />
       </main>
