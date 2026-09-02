@@ -202,6 +202,7 @@
       "bestPeriod": "Meilleure période : {period}",
       "monthRangeJoiner": "à",
       "relatedTitle": "Vous aimerez aussi",
+      "relatedIntro": "D'autres expériences près de Nosy Be, sélectionnées pour prolonger votre voyage.",
       "translationPending": "Cette fiche n'est pas encore traduite : contenu affiché en français."
     },
     "items": {
@@ -381,6 +382,7 @@
       "bestPeriod": "Meilleure période : {period}",
       "monthRangeJoiner": "à",
       "relatedTitle": "Vous aimerez aussi",
+      "relatedIntro": "D'autres expériences près de Nosy Be, sélectionnées pour prolonger votre voyage.",
       "translationPending": "Cette fiche n'est pas encore traduite : contenu affiché en français."
   },
   "months": {

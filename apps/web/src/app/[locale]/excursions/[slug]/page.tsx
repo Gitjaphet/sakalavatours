@@ -448,7 +448,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
             />
           </section>
         </div>
-        <RelatedProducts products={relatedProducts} title={t("detail.relatedTitle")} />
+        <RelatedProducts products={relatedProducts} title={t("detail.relatedTitle")} intro={t("detail.relatedIntro")} />
       </main>
     </div>
   );
