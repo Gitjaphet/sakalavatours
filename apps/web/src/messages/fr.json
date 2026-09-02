@@ -585,9 +585,11 @@
     "form": {
       "sectionTitle": "Vous avez voyagé avec nous ?",
       "sectionIntro": "Votre retour aide les prochains voyageurs à choisir — et nous à progresser.",
+      "cta": "Laisser un avis",
       "rating": "Votre note",
       "ratingOf": "{n} sur 5",
       "product": "Quelle sortie ?",
+      "aboutProduct": "Votre avis concerne",
       "productAgency": "Un avis sur l'agence en général",
       "excursions": "Excursions",
       "circuits": "Circuits",

@@ -20,13 +20,17 @@ type ProductOption = {
 export function ReviewForm({
   products,
   locale,
+  lockedProduct,
 }: {
   products: ProductOption[];
   locale: string;
+  /** Quand fourni, le produit est présélectionné et non modifiable — pour
+   *  le formulaire affiché sur une fiche circuit/excursion précise. */
+  lockedProduct?: { slug: string; title: string };
 }) {
   const t = useTranslations("avis.form");
 
-  const [productSlug, setProductSlug] = useState("");
+  const [productSlug, setProductSlug] = useState(lockedProduct?.slug ?? "");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState("");
@@ -146,34 +150,43 @@ export function ReviewForm({
           </div>
         </div>
 
-        <label className="block text-sm">
-          <span className="font-medium text-stone-900">{t("product")}</span>
-          <select
-            value={productSlug}
-            onChange={(e) => setProductSlug(e.target.value)}
-            className="mt-1.5 w-full rounded-xl border border-stone-300 px-3 py-2.5 text-sm"
-          >
-            <option value="">{t("productAgency")}</option>
-            {excursions.length > 0 && (
-              <optgroup label={t("excursions")}>
-                {excursions.map((p) => (
-                  <option key={p.slug} value={p.slug}>
-                    {p.title}
-                  </option>
-                ))}
-              </optgroup>
-            )}
-            {circuits.length > 0 && (
-              <optgroup label={t("circuits")}>
-                {circuits.map((p) => (
-                  <option key={p.slug} value={p.slug}>
-                    {p.title}
-                  </option>
-                ))}
-              </optgroup>
-            )}
-          </select>
-        </label>
+        {lockedProduct ? (
+          <div className="rounded-xl border border-stone-200 bg-[#FDFAF6] px-3 py-2.5 text-sm">
+            <span className="block text-xs font-medium text-stone-500">
+              {t("aboutProduct")}
+            </span>
+            <span className="font-medium text-stone-900">{lockedProduct.title}</span>
+          </div>
+        ) : (
+          <label className="block text-sm">
+            <span className="font-medium text-stone-900">{t("product")}</span>
+            <select
+              value={productSlug}
+              onChange={(e) => setProductSlug(e.target.value)}
+              className="mt-1.5 w-full rounded-xl border border-stone-300 px-3 py-2.5 text-sm"
+            >
+              <option value="">{t("productAgency")}</option>
+              {excursions.length > 0 && (
+                <optgroup label={t("excursions")}>
+                  {excursions.map((p) => (
+                    <option key={p.slug} value={p.slug}>
+                      {p.title}
+                    </option>
+                  ))}
+                </optgroup>
+              )}
+              {circuits.length > 0 && (
+                <optgroup label={t("circuits")}>
+                  {circuits.map((p) => (
+                    <option key={p.slug} value={p.slug}>
+                      {p.title}
+                    </option>
+                  ))}
+                </optgroup>
+              )}
+            </select>
+          </label>
+        )}
 
         <div className="grid gap-5 sm:grid-cols-2">
           <label className="block text-sm">

@@ -17,6 +17,7 @@ import { sanitizeHtml } from "@/lib/sanitize-html";
 import { buildTouristTripSchema } from "@/lib/schema/touristTrip";
 import { getReviews } from "@/lib/api/reviews";
 import { ReviewList } from "@/components/reviews/ReviewList";
+import { ReviewFormToggle } from "@/components/reviews/ReviewFormToggle";
 import {
   IconCheck,
   IconX,
@@ -402,30 +403,33 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
               </section>
             )}
 
-            {reviews.items.length > 0 && (
-              <section className="mt-10">
-                <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
-                  {t("detail.reviewsTitle")}
-                </h2>
-                <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
-                <div className="mt-6">
-                  <ReviewList
-                    items={reviews.items}
-                    aggregate={reviews.aggregate}
-                    locale={locale}
-                    labels={{
-                      empty: "",
-                      verified: tAvis("verified"),
-                      agencyReply: tAvis("agencyReply"),
-                      basedOn: tAvis("basedOn", { count: reviews.aggregate.count }),
-                      traveledIn: tAvis("traveledIn"),
-                      showMore: tAvis("showMore", { count: Math.max(reviews.items.length - 4, 0) }),
-                      showLess: tAvis("showLess"),
-                    }}
-                  />
-                </div>
-              </section>
-            )}
+            <section className="mt-10">
+              <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
+                {t("detail.reviewsTitle")}
+              </h2>
+              <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
+              <div className="mt-6">
+                <ReviewList
+                  items={reviews.items}
+                  aggregate={reviews.aggregate}
+                  locale={locale}
+                  labels={{
+                    empty: tAvis("empty"),
+                    verified: tAvis("verified"),
+                    agencyReply: tAvis("agencyReply"),
+                    basedOn: tAvis("basedOn", { count: reviews.aggregate.count }),
+                    traveledIn: tAvis("traveledIn"),
+                    showMore: tAvis("showMore", { count: Math.max(reviews.items.length - 4, 0) }),
+                    showLess: tAvis("showLess"),
+                  }}
+                />
+              </div>
+              <ReviewFormToggle
+                locale={locale}
+                lockedProduct={{ slug: product.slug, title: product.title }}
+                ctaLabel={tAvis("form.cta")}
+              />
+            </section>
           </div>
 
           <aside className="h-fit lg:sticky lg:top-24">

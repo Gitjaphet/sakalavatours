@@ -586,9 +586,11 @@
     "form": {
       "sectionTitle": "Have you travelled with us?",
       "sectionIntro": "Your feedback helps future travellers choose — and helps us improve.",
+      "cta": "Leave a review",
       "rating": "Your rating",
       "ratingOf": "{n} out of 5",
       "product": "Which trip?",
+      "aboutProduct": "Your review is about",
       "productAgency": "A review about the agency in general",
       "excursions": "Excursions",
       "circuits": "Tours",

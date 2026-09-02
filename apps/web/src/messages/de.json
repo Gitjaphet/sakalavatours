@@ -587,9 +587,11 @@
     "form": {
       "sectionTitle": "Waren Sie mit uns unterwegs?",
       "sectionIntro": "Ihre Rückmeldung hilft künftigen Reisenden bei der Wahl — und uns, besser zu werden.",
+      "cta": "Bewertung abgeben",
       "rating": "Ihre Bewertung",
       "ratingOf": "{n} von 5",
       "product": "Welche Tour?",
+      "aboutProduct": "Ihre Bewertung betrifft",
       "productAgency": "Eine Bewertung zur Agentur allgemein",
       "excursions": "Ausflüge",
       "circuits": "Rundreisen",
