@@ -38,14 +38,16 @@ export function RelatedProducts({ products, title, intro, seeAllHref, seeAllLabe
           )}
         </div>
 
-        <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2">
-          {displayed.map((product) =>
-            product.product_type === "circuit" ? (
-              <CircuitCard key={product.id} circuit={product} />
-            ) : (
-              <ExcursionCard key={product.id} excursion={product} />
-            ),
-          )}
+        <div className="mx-auto mt-8 flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
+          {displayed.map((product) => (
+            <div key={product.id} className="w-full sm:max-w-sm">
+              {product.product_type === "circuit" ? (
+                <CircuitCard circuit={product} />
+              ) : (
+                <ExcursionCard excursion={product} />
+              )}
+            </div>
+          ))}
         </div>
 
         {seeAllHref && seeAllLabel && (
