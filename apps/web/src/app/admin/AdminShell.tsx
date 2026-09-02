@@ -11,6 +11,7 @@ const NAV = [
   { href: "/admin/bookings", label: "Réservations" },
   { href: "/admin/taxonomies", label: "Taxonomies" },
   { href: "/admin/reviews", label: "Avis" },
+  { href: "/admin/messages", label: "Messages" },
 ];
 
 export function AdminShell({ children }: { children: React.ReactNode }) {

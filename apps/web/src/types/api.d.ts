@@ -636,3 +636,47 @@ export type ReviewAggregatesResponse = {
   threshold: number;
   scopes: ReviewScopeAggregate[];
 };
+
+
+
+// --- Admin · Messages de contact ---
+
+export type ContactAdminRead = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string | null;
+  subject: string | null;
+  message: string;
+  locale: string;
+
+  is_read: boolean;
+  is_archived: boolean;
+  replied_at: string | null;
+  handled_by: string | null;
+
+  submitted_ip: string | null;
+  spam_score: number | null;
+  created_at: string;
+};
+
+export type ContactAdminListResponse = {
+  items: ContactAdminRead[];
+  total: number;
+  limit: number;
+  offset: number;
+  unread_count: number;
+};
+
+export type ContactListParams = {
+  is_archived?: boolean;
+  is_read?: boolean;
+  limit?: number;
+  offset?: number;
+};
+
+export type ContactUpdateRequest = {
+  is_read?: boolean | null;
+  is_archived?: boolean | null;
+  mark_replied?: boolean | null;
+};
