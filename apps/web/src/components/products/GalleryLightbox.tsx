@@ -8,6 +8,8 @@ export type GalleryImage = {
   id: string;
   url: string;
   alt: string;
+  width?: number | null;
+  height?: number | null;
 };
 
 export function GalleryLightbox({ images, compact = false }: { images: GalleryImage[]; compact?: boolean }) {
@@ -31,7 +33,6 @@ export function GalleryLightbox({ images, compact = false }: { images: GalleryIm
       if (e.key === "ArrowRight") next();
     };
     window.addEventListener("keydown", onKey);
-    // Empêche le scroll de la page derrière la visionneuse.
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
@@ -42,25 +43,48 @@ export function GalleryLightbox({ images, compact = false }: { images: GalleryIm
 
   return (
     <>
-      <div className={compact ? "grid grid-cols-4 gap-1.5" : "mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3"}>
-        {images.map((img, i) => (
-          <button
-            key={img.id}
-            type="button"
-            onClick={() => setOpenIndex(i)}
-            className="group relative aspect-square overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261]"
-            aria-label={img.alt}
-          >
-            <Image
-              src={img.url}
-              alt={img.alt}
-              fill
-              sizes="(max-width: 640px) 50vw, 33vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </button>
-        ))}
-      </div>
+      {compact ? (
+        <div className="columns-2 gap-1.5">
+          {images.map((img, i) => (
+            <button
+              key={img.id}
+              type="button"
+              onClick={() => setOpenIndex(i)}
+              className="group relative mb-1.5 block w-full break-inside-avoid overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261]"
+              aria-label={img.alt}
+            >
+              <Image
+                src={img.url}
+                alt={img.alt}
+                width={img.width ?? 400}
+                height={img.height ?? 400}
+                sizes="160px"
+                className="w-full transition-transform duration-500 group-hover:scale-105"
+              />
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {images.map((img, i) => (
+            <button
+              key={img.id}
+              type="button"
+              onClick={() => setOpenIndex(i)}
+              className="group relative aspect-square overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261]"
+              aria-label={img.alt}
+            >
+              <Image
+                src={img.url}
+                alt={img.alt}
+                fill
+                sizes="(max-width: 640px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </button>
+          ))}
+        </div>
+      )}
 
       {openIndex !== null && (
         <div

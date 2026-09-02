@@ -165,6 +165,8 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
     id: media.id,
     url: media.url,
     alt: media.alt_text || product.title,
+    width: media.width,
+    height: media.height,
   }));
 
   // Garde fiabilisée : rating_average est string | null côté API — un
