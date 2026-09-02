@@ -362,6 +362,8 @@
       "day": "Giorno {number}",
       "optional": "Facoltativo",
       "inclusionsTitle": "Incluso e non incluso",
+      "includedTitle": "Incluso",
+      "excludedTitle": "Non incluso",
       "packingTitle": "Cosa portare",
       "practicalTitle": "Informazioni utili",
       "faqTitle": "Domande frequenti",

@@ -362,6 +362,8 @@
       "day": "Tag {number}",
       "optional": "Optional",
       "inclusionsTitle": "Inklusive und nicht inklusive Leistungen",
+      "includedTitle": "Inbegriffen",
+      "excludedTitle": "Nicht inbegriffen",
       "packingTitle": "Packliste",
       "practicalTitle": "Gut zu wissen",
       "faqTitle": "Häufig gestellte Fragen",
