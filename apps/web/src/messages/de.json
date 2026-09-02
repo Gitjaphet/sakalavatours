@@ -610,5 +610,39 @@
       "country": "Ihr Land",
       "countryPlaceholder": "Auswählen…"
     }
+  },
+    "contact": {
+    "meta": {
+      "title": "Kontakt — Sakalava Tours, Nosy Be",
+      "description": "Eine Frage zu unseren Ausflügen oder Rundreisen auf Nosy Be? Schreiben Sie uns, wir antworten innerhalb von 24 Stunden."
+    },
+    "eyebrow": "Sprechen wir über Ihre Reise",
+    "pageTitle": "Kontakt",
+    "pageIntro": "Eine Frage, ein Reiseplan, ein besonderer Wunsch: Unser Team antwortet innerhalb von 24 Stunden.",
+    "breadcrumb": "Kontakt",
+    "formTitle": "Schreiben Sie uns",
+    "directTitle": "Direkt erreichen",
+    "country": "Madagaskar",
+    "bookingNote": "Möchten Sie einen Ausflug oder eine Rundreise buchen? Das Buchungsformular geht schneller.",
+    "bookingCta": "Online buchen",
+    "form": {
+      "requiredNote": "Mit einem Stern (*) markierte Felder sind Pflichtfelder. Die übrigen sind optional.",
+      "name": "Ihr Name",
+      "email": "Ihre E-Mail",
+      "phone": "Telefon oder WhatsApp",
+      "phonePlaceholder": "Damit wir Sie bei Bedarf zurückrufen können",
+      "subject": "Betreff",
+      "subjectPlaceholder": "In wenigen Worten…",
+      "message": "Ihre Nachricht",
+      "messagePlaceholder": "Beschreiben Sie uns Ihr Vorhaben oder Ihre Frage…",
+      "messageHint": "{current} / {min} Zeichen mindestens",
+      "submit": "Nachricht senden",
+      "sending": "Wird gesendet…",
+      "errorRequired": "Bitte geben Sie Ihren Namen, Ihre E-Mail und eine Nachricht von mindestens 20 Zeichen an.",
+      "errorUnexpected": "Senden fehlgeschlagen. Bitte versuchen Sie es gleich erneut oder rufen Sie uns an.",
+      "successTitle": "Nachricht erhalten",
+      "successMessage": "Unser Team antwortet innerhalb von 24 Stunden. Prüfen Sie bitte auch Ihren Spam-Ordner.",
+      "privacy": "Ihre Angaben dienen ausschließlich der Beantwortung. Keine Werbemails."
+    }
   }
 }

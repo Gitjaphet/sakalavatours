@@ -610,6 +610,40 @@
       "countryPlaceholder": "Select…"
 
     }
+  },
+    "contact": {
+    "meta": {
+      "title": "Contact us — Sakalava Tours, Nosy Be",
+      "description": "A question about our excursions or tours in Nosy Be? Write to us, we reply within 24 hours."
+    },
+    "eyebrow": "Let's talk about your trip",
+    "pageTitle": "Contact us",
+    "pageIntro": "A question, a trip in mind, a special request: our team replies within 24 hours.",
+    "breadcrumb": "Contact",
+    "formTitle": "Write to us",
+    "directTitle": "Reach us directly",
+    "country": "Madagascar",
+    "bookingNote": "Looking to book an excursion or a tour? The booking form is quicker.",
+    "bookingCta": "Book online",
+    "form": {
+      "requiredNote": "Fields marked with an asterisk (*) are required. The others are optional.",
+      "name": "Your name",
+      "email": "Your email",
+      "phone": "Phone or WhatsApp",
+      "phonePlaceholder": "So we can call you back if needed",
+      "subject": "Subject",
+      "subjectPlaceholder": "In a few words…",
+      "message": "Your message",
+      "messagePlaceholder": "Tell us about your plans or your question…",
+      "messageHint": "{current} / {min} characters minimum",
+      "submit": "Send my message",
+      "sending": "Sending…",
+      "errorRequired": "Please provide your name, your email and a message of at least 20 characters.",
+      "errorUnexpected": "Sending failed. Please try again in a moment or give us a call.",
+      "successTitle": "Message received",
+      "successMessage": "Our team will reply within 24 hours. Do check your spam folder.",
+      "privacy": "Your details are used only to reply to you. No marketing emails."
+    }
   }
 
 

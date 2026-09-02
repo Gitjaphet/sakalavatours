@@ -611,5 +611,39 @@
       "countryPlaceholder": "Seleziona…"
 
     }
+  },
+    "contact": {
+    "meta": {
+      "title": "Contattaci — Sakalava Tours, Nosy Be",
+      "description": "Una domanda sulle nostre escursioni o sui circuiti a Nosy Be? Scrivici, rispondiamo entro 24 ore."
+    },
+    "eyebrow": "Parliamo del tuo viaggio",
+    "pageTitle": "Contattaci",
+    "pageIntro": "Una domanda, un progetto di viaggio, una richiesta particolare: il nostro team risponde entro 24 ore.",
+    "breadcrumb": "Contatti",
+    "formTitle": "Scrivici",
+    "directTitle": "Contattarci direttamente",
+    "country": "Madagascar",
+    "bookingNote": "Vuoi prenotare un'escursione o un circuito? Il modulo di prenotazione è più rapido.",
+    "bookingCta": "Prenota online",
+    "form": {
+      "requiredNote": "I campi contrassegnati con un asterisco (*) sono obbligatori. Gli altri sono facoltativi.",
+      "name": "Il tuo nome",
+      "email": "La tua email",
+      "phone": "Telefono o WhatsApp",
+      "phonePlaceholder": "Per richiamarti se necessario",
+      "subject": "Oggetto",
+      "subjectPlaceholder": "In poche parole…",
+      "message": "Il tuo messaggio",
+      "messagePlaceholder": "Raccontaci il tuo progetto o la tua domanda…",
+      "messageHint": "{current} / {min} caratteri minimo",
+      "submit": "Invia il messaggio",
+      "sending": "Invio in corso…",
+      "errorRequired": "Indica il tuo nome, la tua email e un messaggio di almeno 20 caratteri.",
+      "errorUnexpected": "Invio non riuscito. Riprova tra poco oppure chiamaci.",
+      "successTitle": "Messaggio ricevuto",
+      "successMessage": "Il nostro team risponde entro 24 ore. Controlla anche la posta indesiderata.",
+      "privacy": "I tuoi dati servono solo a risponderti. Nessuna email commerciale."
+    }
   }
 }
