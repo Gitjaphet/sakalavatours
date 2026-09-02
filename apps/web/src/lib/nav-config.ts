@@ -13,7 +13,6 @@ export const navLinks = [
   { key: "tours", href: "/circuits" },
   { key: "excursion", href: "/excursions" },
   { key: "apropos", href: "/apropos" },
-  { key: "blog", href: "/blog" },
   { key: "galerie", href: "/galerie" },
   { key: "contact", href: "/contact" },
 ] as const;
