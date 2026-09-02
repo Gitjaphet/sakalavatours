@@ -110,14 +110,23 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
 
   // Avis de ce produit uniquement : ceux portant sur l'agence vivent sur
   // /avis, jamais le même texte sur deux URL.
-  const [relatedProducts, reviews] = await Promise.all([
+  const [linkedProducts, reviews] = await Promise.all([
     getRelatedProducts(product.related_slugs, locale),
     getReviews({ productSlug: slug, limit: 50 }),
   ]);
+
+  // Aucune fiche ne doit être un cul-de-sac : sans liaison configurée,
+  // on propose d'autres excursions plutôt que de masquer la section.
+  const relatedProducts =
+    linkedProducts.length > 0
+      ? linkedProducts
+      : (await getProducts(locale, { type: "excursion", limit: 4 })).items.filter(
+          (p) => p.slug !== product.slug,
+        );
   // Une excursion sans couverture propre reprend celle du premier
   // circuit lié qui en a une, avant de retomber sur l'image générique.
   const heroCover =
-    product.cover ?? relatedProducts.find((p) => p.cover)?.cover ?? null;
+    product.cover ?? linkedProducts.find((p) => p.cover)?.cover ?? null;
   const t = await getTranslations({ locale, namespace: "excursions" });
   const tNav = await getTranslations({ locale, namespace: "nav" });
   const levelKey = LEVEL_KEYS[product.difficulty] ?? "facile";
