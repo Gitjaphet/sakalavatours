@@ -185,6 +185,8 @@
       "day": "Jour {number}",
       "optional": "Optionnel",
       "inclusionsTitle": "Inclus et non inclus",
+      "includedTitle": "Inclus",
+      "excludedTitle": "Non inclus",
       "packingTitle": "À prévoir",
       "practicalTitle": "Informations pratiques",
       "faqTitle": "Questions fréquentes",

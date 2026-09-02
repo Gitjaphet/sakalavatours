@@ -185,6 +185,8 @@
       "day": "Day {number}",
       "optional": "Optional",
       "inclusionsTitle": "What's included",
+      "includedTitle": "Included",
+      "excludedTitle": "Not included",
       "packingTitle": "What to bring",
       "practicalTitle": "Good to know",
       "faqTitle": "Frequently asked questions",

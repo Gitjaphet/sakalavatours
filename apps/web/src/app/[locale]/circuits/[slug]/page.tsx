@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { formatDepartureMonths } from '@/lib/format/departureMonths';
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { RelatedProducts } from "@/components/products/RelatedProducts";
+import { ItineraryTimeline, type ItineraryStepData } from "@/components/products/ItineraryTimeline";
+import { GalleryLightbox, type GalleryImage } from "@/components/products/GalleryLightbox";
 import { getProduct, getProducts, getRelatedProducts } from "@/lib/api/products";
 import { PageHero } from "@/components/layout/PageHero";
 import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
@@ -25,9 +26,6 @@ import {
   IconUsers,
   IconCalendarEvent,
   IconChevronDown,
-  IconBed,
-  IconToolsKitchen2,
-  IconRoute,
 } from "@tabler/icons-react";
 
 type Params = Promise<{ locale: string; slug: string }>;
@@ -127,6 +125,44 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
   const included = product.inclusions.filter((i) => i.is_included);
   const excluded = product.inclusions.filter((i) => !i.is_included);
 
+  const itinerarySteps: ItineraryStepData[] = product.itinerary.map((step) => {
+    const meta: ItineraryStepData["meta"] = [];
+    if (step.location_label) {
+      meta.push({ icon: "location", label: step.location_label, srLabel: t("detail.locationAria") });
+    }
+    if (step.hotel_name) {
+      meta.push({ icon: "hotel", label: step.hotel_name, srLabel: t("detail.hotelAria") });
+    }
+    if (step.meal_plan) {
+      meta.push({ icon: "meal", label: step.meal_plan, srLabel: t("detail.mealAria") });
+    }
+    if (step.distance_km !== null) {
+      meta.push({
+        icon: "distance",
+        label: t("detail.distanceValue", { km: step.distance_km }),
+        srLabel: t("detail.distanceAria"),
+      });
+    }
+    const dayLabel = step.time_label
+      ? `${t("detail.day", { number: step.day_number })} · ${step.time_label}`
+      : t("detail.day", { number: step.day_number });
+    return {
+      dayLabel,
+      optionalLabel: step.is_optional ? t("detail.optional") : undefined,
+      title: step.title,
+      description: step.description,
+      meta,
+    };
+  });
+
+  const galleryImages: GalleryImage[] = product.gallery.map((media) => ({
+    id: media.id,
+    url: media.url,
+    alt: media.alt_text || product.title,
+    width: media.width,
+    height: media.height,
+  }));
+
   const hasRating =
     product.rating_average !== null &&
     Number(product.rating_average) > 0 &&
@@ -225,125 +261,7 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
                   {t("detail.itineraryTitle")}
                 </h2>
                 <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
-                <ol className="mt-6 space-y-3 border-l-2 border-[#1d4e5f]/15 pl-6">
-                  {product.itinerary.map((step, i) => {
-                    const hasMeta =
-                      step.location_label || step.hotel_name || step.meal_plan || step.distance_km;
-
-                    return (
-                      <li key={i} className="relative">
-                        <span
-                          aria-hidden="true"
-                          className="absolute -left-[1.95rem] top-4 h-3 w-3 rounded-full bg-[#F4A261]"
-                        />
-                        <details
-                          className="group overflow-hidden rounded-2xl border border-stone-200 bg-white transition-shadow open:shadow-sm"
-                          open={i === 0}
-                        >
-                          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 marker:content-none">
-                            <div className="min-w-0">
-                              <p className="text-xs font-semibold uppercase tracking-wide text-[#1d4e5f]">
-                                {t("detail.day", { number: step.day_number })}
-                                {step.time_label && ` · ${step.time_label}`}
-                                {step.is_optional && ` · ${t("detail.optional")}`}
-                              </p>
-                              <h3 className="mt-0.5 text-base font-semibold text-stone-900">
-                                {step.title}
-                              </h3>
-                            </div>
-                            <IconChevronDown
-                              size={18}
-                              className="shrink-0 text-stone-400 transition-transform duration-300 group-open:rotate-180"
-                            />
-                          </summary>
-
-                          <div className="border-t border-stone-100 px-4 pb-4 pt-3">
-                            {step.description && (
-                              <p className="whitespace-pre-line text-sm leading-relaxed text-stone-600">
-                                {step.description}
-                              </p>
-                            )}
-
-                            {hasMeta && (
-                              <div className="mt-3 flex flex-wrap gap-2">
-                                {step.location_label && (
-                                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600">
-                                    <IconMapPin size={14} stroke={2} className="text-[#1d4e5f]" />
-                                    <span className="sr-only">{t("detail.locationAria")}:</span>
-                                    {step.location_label}
-                                  </span>
-                                )}
-                                {step.hotel_name && (
-                                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600">
-                                    <IconBed size={14} stroke={2} className="text-[#1d4e5f]" />
-                                    <span className="sr-only">{t("detail.hotelAria")}:</span>
-                                    {step.hotel_name}
-                                  </span>
-                                )}
-                                {step.meal_plan && (
-                                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600">
-                                    <IconToolsKitchen2 size={14} stroke={2} className="text-[#1d4e5f]" />
-                                    <span className="sr-only">{t("detail.mealAria")}:</span>
-                                    {step.meal_plan}
-                                  </span>
-                                )}
-                                {step.distance_km !== null && (
-                                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600">
-                                    <IconRoute size={14} stroke={2} className="text-[#1d4e5f]" />
-                                    <span className="sr-only">{t("detail.distanceAria")}:</span>
-                                    {t("detail.distanceValue", { km: step.distance_km })}
-                                  </span>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                        </details>
-                      </li>
-                    );
-                  })}
-                </ol>
-              </section>
-            )}
-
-            {(included.length > 0 || excluded.length > 0) && (
-              <section className="mt-10">
-                <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
-                  {t("detail.inclusionsTitle")}
-                </h2>
-                <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
-                <div className="mt-6 grid gap-x-8 gap-y-2 sm:grid-cols-2">
-                  {included.map((inc) => (
-                    <p key={inc.code} className="flex items-start gap-2 text-sm text-stone-700">
-                      <IconCheck size={16} stroke={2.4} className="mt-0.5 shrink-0 text-emerald-600" />
-                      {inc.label}
-                    </p>
-                  ))}
-                  {excluded.map((inc) => (
-                    <p key={inc.code} className="flex items-start gap-2 text-sm text-stone-400">
-                      <IconX size={16} stroke={2.4} className="mt-0.5 shrink-0 text-stone-300" />
-                      {inc.label}
-                    </p>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {product.packing_items.length > 0 && (
-              <section className="mt-10">
-                <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
-                  {t("detail.packingTitle")}
-                </h2>
-                <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
-                <ul className="mt-6 flex flex-wrap gap-2">
-                  {product.packing_items.map((item) => (
-                    <li
-                      key={item.code}
-                      className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-600"
-                    >
-                      {item.label}
-                    </li>
-                  ))}
-                </ul>
+                <ItineraryTimeline steps={itinerarySteps} />
               </section>
             )}
 
@@ -377,27 +295,6 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
                       </summary>
                       <p className="mt-2 text-sm leading-relaxed text-stone-600">{faq.answer}</p>
                     </details>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {product.gallery.length > 0 && (
-              <section className="mt-10">
-                <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
-                  {t("detail.galleryTitle")}
-                </h2>
-                <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
-                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  {product.gallery.map((media) => (
-                    <div key={media.id} className="relative aspect-square overflow-hidden rounded-2xl">
-                      <Image
-                        src={media.url}
-                        alt={media.alt_text || product.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
                   ))}
                 </div>
               </section>
@@ -477,6 +374,71 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
                 {t("detail.callCta")}
               </Link>
             </div>
+
+            {(included.length > 0 || excluded.length > 0 || product.packing_items.length > 0 || product.gallery.length > 0) && (
+              <div className="mt-5 space-y-5">
+                {included.length > 0 && (
+                  <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
+                    <h3 className="text-sm font-semibold text-stone-900">
+                      {t("detail.includedTitle")}
+                    </h3>
+                    <div className="mt-3 space-y-2">
+                      {included.map((inc) => (
+                        <p key={inc.code} className="flex items-start gap-2 text-sm text-stone-700">
+                          <IconCheck size={16} stroke={2.4} className="mt-0.5 shrink-0 text-emerald-600" />
+                          {inc.label}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {excluded.length > 0 && (
+                  <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
+                    <h3 className="text-sm font-semibold text-stone-900">
+                      {t("detail.excludedTitle")}
+                    </h3>
+                    <div className="mt-3 space-y-2">
+                      {excluded.map((inc) => (
+                        <p key={inc.code} className="flex items-start gap-2 text-sm text-stone-400">
+                          <IconX size={16} stroke={2.4} className="mt-0.5 shrink-0 text-stone-300" />
+                          {inc.label}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {product.packing_items.length > 0 && (
+                  <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
+                    <h3 className="text-sm font-semibold text-stone-900">
+                      {t("detail.packingTitle")}
+                    </h3>
+                    <ul className="mt-3 flex flex-wrap gap-2">
+                      {product.packing_items.map((item) => (
+                        <li
+                          key={item.code}
+                          className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600"
+                        >
+                          {item.label}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {product.gallery.length > 0 && (
+                  <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
+                    <h3 className="text-sm font-semibold text-stone-900">
+                      {t("detail.galleryTitle")}
+                    </h3>
+                    <div className="mt-3">
+                      <GalleryLightbox images={galleryImages} compact />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </aside>
         </div>
         <RelatedProducts products={relatedProducts} title={t("detail.relatedTitle")} />

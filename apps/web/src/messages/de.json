@@ -185,6 +185,8 @@
       "day": "Tag {number}",
       "optional": "Optional",
       "inclusionsTitle": "Inbegriffen und nicht inbegriffen",
+      "includedTitle": "Inbegriffen",
+      "excludedTitle": "Nicht inbegriffen",
       "packingTitle": "Was Sie mitbringen sollten",
       "practicalTitle": "Praktische Informationen",
       "faqTitle": "Häufig gestellte Fragen",
