@@ -1,12 +1,12 @@
 // src/app/[locale]/excursions/[slug]/page.tsx
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { formatDepartureMonths } from '@/lib/format/departureMonths';
 import { getProduct, getProducts, getRelatedProducts } from "@/lib/api/products";
 import { RelatedProducts } from "@/components/products/RelatedProducts";
 import { ItineraryTimeline, type ItineraryStepData } from "@/components/products/ItineraryTimeline";
+import { GalleryLightbox, type GalleryImage } from "@/components/products/GalleryLightbox";
 import { PageHero } from "@/components/layout/PageHero";
 import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
 import { Rating } from "@/components/ui/Rating";
@@ -161,6 +161,12 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
     };
   });
 
+  const galleryImages: GalleryImage[] = product.gallery.map((media) => ({
+    id: media.id,
+    url: media.url,
+    alt: media.alt_text || product.title,
+  }));
+
   // Garde fiabilisée : rating_average est string | null côté API — un
   // check "truthy" laisserait passer une chaîne "0".
   const hasRating =
@@ -305,18 +311,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
                   {t("detail.galleryTitle")}
                 </h2>
                 <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
-                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  {product.gallery.map((media) => (
-                    <div key={media.id} className="relative aspect-square overflow-hidden rounded-2xl">
-                      <Image
-                        src={media.url}
-                        alt={media.alt_text || product.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
+                <GalleryLightbox images={galleryImages} />
               </section>
             )}
 
