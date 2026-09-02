@@ -260,63 +260,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
                   {t("detail.itineraryTitle")}
                 </h2>
                 <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
-                <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_280px]">
-                  <ItineraryTimeline steps={itinerarySteps} />
-
-                  {(included.length > 0 || excluded.length > 0 || product.packing_items.length > 0) && (
-                    <aside className="space-y-5 lg:sticky lg:top-24 lg:self-start">
-                      {included.length > 0 && (
-                        <div className="rounded-2xl border border-stone-200 bg-white p-5">
-                          <h3 className="text-sm font-semibold text-stone-900">
-                            {t("detail.includedTitle")}
-                          </h3>
-                          <div className="mt-3 space-y-2">
-                            {included.map((inc) => (
-                              <p key={inc.code} className="flex items-start gap-2 text-sm text-stone-700">
-                                <IconCheck size={16} stroke={2.4} className="mt-0.5 shrink-0 text-emerald-600" />
-                                {inc.label}
-                              </p>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {excluded.length > 0 && (
-                        <div className="rounded-2xl border border-stone-200 bg-white p-5">
-                          <h3 className="text-sm font-semibold text-stone-900">
-                            {t("detail.excludedTitle")}
-                          </h3>
-                          <div className="mt-3 space-y-2">
-                            {excluded.map((inc) => (
-                              <p key={inc.code} className="flex items-start gap-2 text-sm text-stone-400">
-                                <IconX size={16} stroke={2.4} className="mt-0.5 shrink-0 text-stone-300" />
-                                {inc.label}
-                              </p>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {product.packing_items.length > 0 && (
-                        <div className="rounded-2xl border border-stone-200 bg-white p-5">
-                          <h3 className="text-sm font-semibold text-stone-900">
-                            {t("detail.packingTitle")}
-                          </h3>
-                          <ul className="mt-3 flex flex-wrap gap-2">
-                            {product.packing_items.map((item) => (
-                              <li
-                                key={item.code}
-                                className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600"
-                              >
-                                {item.label}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </aside>
-                  )}
-                </div>
+                <ItineraryTimeline steps={itinerarySteps} />
               </section>
             )}
 
@@ -444,6 +388,60 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
                 {t("detail.callCta")}
               </Link>
             </div>
+
+            {(included.length > 0 || excluded.length > 0 || product.packing_items.length > 0) && (
+              <div className="mt-5 space-y-5">
+                {included.length > 0 && (
+                  <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
+                    <h3 className="text-sm font-semibold text-stone-900">
+                      {t("detail.includedTitle")}
+                    </h3>
+                    <div className="mt-3 space-y-2">
+                      {included.map((inc) => (
+                        <p key={inc.code} className="flex items-start gap-2 text-sm text-stone-700">
+                          <IconCheck size={16} stroke={2.4} className="mt-0.5 shrink-0 text-emerald-600" />
+                          {inc.label}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {excluded.length > 0 && (
+                  <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
+                    <h3 className="text-sm font-semibold text-stone-900">
+                      {t("detail.excludedTitle")}
+                    </h3>
+                    <div className="mt-3 space-y-2">
+                      {excluded.map((inc) => (
+                        <p key={inc.code} className="flex items-start gap-2 text-sm text-stone-400">
+                          <IconX size={16} stroke={2.4} className="mt-0.5 shrink-0 text-stone-300" />
+                          {inc.label}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {product.packing_items.length > 0 && (
+                  <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
+                    <h3 className="text-sm font-semibold text-stone-900">
+                      {t("detail.packingTitle")}
+                    </h3>
+                    <ul className="mt-3 flex flex-wrap gap-2">
+                      {product.packing_items.map((item) => (
+                        <li
+                          key={item.code}
+                          className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600"
+                        >
+                          {item.label}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
           </aside>
         </div>
         <RelatedProducts products={relatedProducts} title={t("detail.relatedTitle")} />
