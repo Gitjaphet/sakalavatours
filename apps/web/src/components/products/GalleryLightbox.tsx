@@ -48,7 +48,7 @@ export function GalleryLightbox({ images, compact = false }: { images: GalleryIm
             key={img.id}
             type="button"
             onClick={() => setOpenIndex(i)}
-            className="group relative aspect-square overflow-hidden rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261]"
+            className="group relative aspect-square overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A261]"
             aria-label={img.alt}
           >
             <Image
