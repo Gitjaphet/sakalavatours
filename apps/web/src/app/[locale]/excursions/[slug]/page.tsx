@@ -111,7 +111,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
   // /avis, jamais le même texte sur deux URL.
   const [relatedProducts, reviews] = await Promise.all([
     getRelatedProducts(product.related_slugs, locale),
-    getReviews({ productSlug: slug, limit: 20 }),
+    getReviews({ productSlug: slug, limit: 50 }),
   ]);
   // Une excursion sans couverture propre reprend celle du premier
   // circuit lié qui en a une, avant de retomber sur l'image générique.
@@ -436,6 +436,8 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
                     agencyReply: tAvis("agencyReply"),
                     basedOn: tAvis("basedOn", { count: reviews.aggregate.count }),
                     traveledIn: tAvis("traveledIn"),
+                    showMore: tAvis("showMore", { count: Math.max(reviews.items.length - 4, 0) }),
+                    showLess: tAvis("showLess"),
                   }}
                 />
               </div>

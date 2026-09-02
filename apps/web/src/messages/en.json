@@ -581,6 +581,8 @@
     "agencyReply": "Reply from Sakalava Tours",
     "basedOn": "{count, plural, one {Based on # published review} other {Based on # published reviews}}",
     "traveledIn": "Travelled in",
+    "showMore": "{count, plural, one {Show # more review} other {Show # more reviews}}",
+    "showLess": "Show fewer reviews",
     "form": {
       "sectionTitle": "Have you travelled with us?",
       "sectionIntro": "Your feedback helps future travellers choose — and helps us improve.",

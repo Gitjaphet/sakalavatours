@@ -105,6 +105,8 @@ export default async function AvisPage({ params }: { params: Params }) {
               agencyReply: t("agencyReply"),
               basedOn: t("basedOn", { count: aggregate.count }),
               traveledIn: t("traveledIn"),
+              showMore: t("showMore", { count: Math.max(items.length - 4, 0) }),
+              showLess: t("showLess"),
             }}
           />
 
