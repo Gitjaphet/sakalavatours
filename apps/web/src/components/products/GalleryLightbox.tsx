@@ -10,7 +10,7 @@ export type GalleryImage = {
   alt: string;
 };
 
-export function GalleryLightbox({ images }: { images: GalleryImage[] }) {
+export function GalleryLightbox({ images, compact = false }: { images: GalleryImage[]; compact?: boolean }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const close = useCallback(() => setOpenIndex(null), []);
@@ -42,7 +42,7 @@ export function GalleryLightbox({ images }: { images: GalleryImage[] }) {
 
   return (
     <>
-      <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <div className={compact ? "grid grid-cols-4 gap-1.5" : "mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3"}>
         {images.map((img, i) => (
           <button
             key={img.id}

@@ -305,16 +305,6 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
               </section>
             )}
 
-            {product.gallery.length > 0 && (
-              <section className="mt-10">
-                <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
-                  {t("detail.galleryTitle")}
-                </h2>
-                <Squiggle className="mt-1 h-2 w-20 opacity-50" color="#F4A261" />
-                <GalleryLightbox images={galleryImages} />
-              </section>
-            )}
-
             {reviews.items.length > 0 && (
               <section className="mt-10">
                 <h2 className="font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
@@ -384,7 +374,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
               </Link>
             </div>
 
-            {(included.length > 0 || excluded.length > 0 || product.packing_items.length > 0) && (
+            {(included.length > 0 || excluded.length > 0 || product.packing_items.length > 0 || product.gallery.length > 0) && (
               <div className="mt-5 space-y-5">
                 {included.length > 0 && (
                   <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
@@ -433,6 +423,17 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
                         </li>
                       ))}
                     </ul>
+                  </div>
+                )}
+
+                {product.gallery.length > 0 && (
+                  <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
+                    <h3 className="text-sm font-semibold text-stone-900">
+                      {t("detail.galleryTitle")}
+                    </h3>
+                    <div className="mt-3">
+                      <GalleryLightbox images={galleryImages} compact />
+                    </div>
                   </div>
                 )}
               </div>
