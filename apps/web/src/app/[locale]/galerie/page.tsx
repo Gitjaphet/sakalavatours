@@ -47,6 +47,9 @@ export default async function GaleriePage({ params }: { params: Params }) {
     items.map((p) => getProduct(p.slug, locale)),
   );
 
+  // Déduplication par identifiant : une même image peut servir de
+  // couverture à un produit et figurer dans la galerie d'un autre.
+  const seen = new Set<string>();
   const photos = details.flatMap((product) => {
     if (!product) return [];
     const path =
@@ -61,11 +64,17 @@ export default async function GaleriePage({ params }: { params: Params }) {
       ...product.gallery,
     ];
 
-    return media.map((m) => ({
-      ...m,
-      productTitle: product.title,
-      path,
-    }));
+    return media
+      .filter((m) => {
+        if (seen.has(m.id)) return false;
+        seen.add(m.id);
+        return true;
+      })
+      .map((m) => ({
+        ...m,
+        productTitle: product.title,
+        path,
+      }));
   });
 
   const jsonLd = [
@@ -103,19 +112,22 @@ export default async function GaleriePage({ params }: { params: Params }) {
               {t("empty")}
             </p>
           ) : (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {photos.map((photo, i) => (
+            // Maçonnerie en CSS pur : chaque image garde ses proportions
+            // d'origine, sans JavaScript ni décalage de mise en page.
+            <div className="columns-2 gap-3 sm:columns-3 lg:columns-4">
+              {photos.map((photo) => (
                 <Link
-                  key={`${photo.id}-${i}`}
+                  key={photo.id}
                   href={photo.path}
-                  className="group relative aspect-square overflow-hidden rounded-2xl"
+                  className="group relative mb-3 block break-inside-avoid overflow-hidden rounded-2xl"
                 >
                   <Image
                     src={photo.url}
                     alt={photo.alt_text || photo.productTitle}
-                    fill
+                    width={photo.width ?? 800}
+                    height={photo.height ?? 600}
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full transition-transform duration-500 group-hover:scale-105"
                   />
                   <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100">
                     {photo.productTitle}
