@@ -162,6 +162,45 @@ function NewProductModal({
   );
 }
 
+type TabKey = "all" | "excursion" | "circuit";
+
+const TABS: { key: TabKey; label: string }[] = [
+  { key: "all", label: "Toutes" },
+  { key: "excursion", label: "Excursions" },
+  { key: "circuit", label: "Circuits" },
+];
+
+const STATUS_STYLES: Record<string, string> = {
+  published: "bg-emerald-50 text-emerald-700 ring-emerald-600/20",
+  draft: "bg-amber-50 text-amber-700 ring-amber-600/20",
+  archived: "bg-stone-100 text-stone-600 ring-stone-500/20",
+};
+
+function StatusBadge({ status }: { status: string }) {
+  const style = STATUS_STYLES[status] ?? STATUS_STYLES.archived;
+  return (
+    <span
+      className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset ${style}`}
+    >
+      {status}
+    </span>
+  );
+}
+
+function formatPrice(amount: string, currency: string): string {
+  const value = Number(amount);
+  if (Number.isNaN(value)) return `${amount} ${currency}`;
+  try {
+    return new Intl.NumberFormat("fr-FR", {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format(value);
+  } catch {
+    return `${Math.round(value)} ${currency}`;
+  }
+}
+
 export function ProductList() {
   const { accessToken } = useAuth();
   const router = useRouter();
@@ -170,6 +209,8 @@ export function ProductList() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [tab, setTab] = useState<TabKey>("all");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     if (!accessToken) return;
@@ -204,56 +245,133 @@ export function ProductList() {
     router.push(`/admin/products/${id}`);
   };
 
-  if (isLoading) return <p className="text-stone-500">Chargement…</p>;
-  if (error) return <p className="text-red-600">Erreur : {error}</p>;
+  // Filtrage côté client : la liste tient en une page (50 max), inutile
+  // de refaire un aller-retour serveur à chaque changement d'onglet.
+  const visible = items.filter((item) => {
+    if (tab !== "all" && item.product_type !== tab) return false;
+    if (query.trim() && !item.title.toLowerCase().includes(query.trim().toLowerCase()))
+      return false;
+    return true;
+  });
+
+  const counts = {
+    all: items.length,
+    excursion: items.filter((i) => i.product_type === "excursion").length,
+    circuit: items.filter((i) => i.product_type === "circuit").length,
+  };
+
+  if (isLoading)
+    return (
+      <div className="space-y-3">
+        {[0, 1, 2, 3].map((i) => (
+          <div key={i} className="h-14 animate-pulse rounded-lg bg-stone-100" />
+        ))}
+      </div>
+    );
+  if (error)
+    return (
+      <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+        Erreur : {error}
+      </div>
+    );
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
-        <p className="text-sm text-stone-500">{total} produit(s)</p>
-        <button
-          onClick={() => setShowModal(true)}
-          className="rounded bg-stone-900 px-4 py-2 text-sm text-white hover:bg-stone-800"
-        >
-          Nouveau produit
-        </button>
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex gap-1 rounded-lg bg-stone-100 p-1">
+          {TABS.map((t) => (
+            <button
+              key={t.key}
+              type="button"
+              onClick={() => setTab(t.key)}
+              className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                tab === t.key
+                  ? "bg-white text-stone-900 shadow-sm"
+                  : "text-stone-600 hover:text-stone-900"
+              }`}
+            >
+              {t.label}
+              <span className="ml-1.5 text-xs text-stone-400">{counts[t.key]}</span>
+            </button>
+          ))}
+        </div>
+
+        <div className="flex flex-1 items-center justify-end gap-3">
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Rechercher…"
+            className="w-full max-w-xs rounded-lg border border-stone-300 px-3 py-2 text-sm focus:border-stone-400 focus:outline-none"
+          />
+          <button
+            onClick={() => setShowModal(true)}
+            className="shrink-0 rounded-lg bg-[#1a6b2f] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#155a27]"
+          >
+            Nouvelle activité
+          </button>
+        </div>
       </div>
 
-      {items.length === 0 ? (
-        <p className="text-stone-500">Aucun produit.</p>
+      {visible.length === 0 ? (
+        <div className="rounded-lg border border-dashed border-stone-300 p-10 text-center">
+          <p className="text-sm text-stone-500">
+            {query.trim() || tab !== "all"
+              ? "Aucune activité ne correspond à ce filtre."
+              : "Aucune activité pour le moment."}
+          </p>
+        </div>
       ) : (
-        <table className="w-full text-left text-sm">
-          <thead>
-            <tr className="border-b border-stone-200 text-stone-500">
-              <th className="py-2">Titre</th>
-              <th className="py-2">Type</th>
-              <th className="py-2">Statut</th>
-              <th className="py-2">Publié</th>
-              <th className="py-2">Prix</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item) => (
-              <tr
-                key={item.id}
-                className="cursor-pointer border-b border-stone-100 hover:bg-stone-50"
-              >
-                <td className="py-2">
-                  <Link href={`/admin/products/${item.id}`} className="block">
-                    {item.title}
-                  </Link>
-                </td>
-                <td className="py-2">{item.product_type}</td>
-                <td className="py-2">{item.status}</td>
-                <td className="py-2">{item.is_published ? "Oui" : "Non"}</td>
-                <td className="py-2">
-                  {item.price_from} {item.currency}
-                </td>
+        <div className="overflow-hidden rounded-lg border border-stone-200 bg-white">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-stone-50 text-xs uppercase tracking-wide text-stone-500">
+              <tr>
+                <th className="px-4 py-3 font-medium">Titre</th>
+                <th className="px-4 py-3 font-medium">Type</th>
+                <th className="px-4 py-3 font-medium">Statut</th>
+                <th className="px-4 py-3 font-medium">Publié</th>
+                <th className="px-4 py-3 text-right font-medium">Prix</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-stone-100">
+              {visible.map((item) => (
+                <tr key={item.id} className="transition-colors hover:bg-stone-50">
+                  <td className="px-4 py-3">
+                    <Link
+                      href={`/admin/products/${item.id}`}
+                      className="font-medium text-stone-900 hover:text-[#1a6b2f]"
+                    >
+                      {item.title}
+                    </Link>
+                  </td>
+                  <td className="px-4 py-3 capitalize text-stone-600">
+                    {item.product_type}
+                  </td>
+                  <td className="px-4 py-3">
+                    <StatusBadge status={item.status} />
+                  </td>
+                  <td className="px-4 py-3">
+                    <span
+                      className={
+                        item.is_published ? "text-emerald-600" : "text-stone-400"
+                      }
+                    >
+                      {item.is_published ? "Oui" : "Non"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 text-right font-medium tabular-nums text-stone-900">
+                    {formatPrice(item.price_from, item.currency)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
+
+      <p className="mt-3 text-xs text-stone-400">
+        {visible.length} affichée(s) sur {total} au total
+      </p>
 
       {showModal && (
         <NewProductModal

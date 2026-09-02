@@ -8,6 +8,7 @@ import { useAuth } from "./AuthContext";
 
 const NAV = [
   { href: "/admin/dashboard", label: "Tableau de bord" },
+  { href: "/admin/activites", label: "Activités" },
   { href: "/admin/bookings", label: "Réservations" },
   { href: "/admin/taxonomies", label: "Taxonomies" },
   { href: "/admin/reviews", label: "Avis" },
@@ -44,8 +45,13 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         <nav className="flex-1 p-3">
           <ul className="space-y-1">
             {NAV.map((item) => {
+              // Une fiche produit se modifie sous /admin/products/[id] :
+              // l'entrée « Activités » doit rester surlignée à ce moment-là.
               const isActive =
-                pathname === item.href || pathname.startsWith(`${item.href}/`);
+                pathname === item.href ||
+                pathname.startsWith(`${item.href}/`) ||
+                (item.href === "/admin/activites" &&
+                  pathname.startsWith("/admin/products"));
               return (
                 <li key={item.href}>
                   <Link
