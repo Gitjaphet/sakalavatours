@@ -113,6 +113,11 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
     getRelatedProducts(product.related_slugs, locale),
     getReviews({ productSlug: slug, limit: 20 }),
   ]);
+  // Un circuit sans couverture propre reprend celle de la première
+  // excursion liée qui en a une, avant de retomber sur l'image générique.
+  const heroCover =
+    product.cover ?? relatedProducts.find((p) => p.cover)?.cover ?? null;
+  
   const t = await getTranslations({ locale, namespace: "circuits" });
   const tNav = await getTranslations({ locale, namespace: "nav" });
   // Libellés d'avis partagés avec /avis — une seule source de traduction.
@@ -141,7 +146,7 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
       name: product.title,
       description: product.meta_description || product.summary,
       path: `/circuits/${product.slug}`,
-      image: product.cover?.url ?? "/images/backgrounds/baobab.jpeg",
+      image: heroCover?.url ?? "/images/backgrounds/baobab.jpeg",
       priceFrom: product.price_from,
       currency: product.currency,
       maxAttendees: product.group_max,
@@ -159,8 +164,8 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
       <PageHero
         title={product.title}
         intro={product.subtitle ?? undefined}
-        image={product.cover?.url ?? "/images/backgrounds/baobab.jpeg"}
-        imageAlt={product.cover?.alt_text ?? product.title}
+        image={heroCover?.url ?? "/images/backgrounds/baobab.jpeg"}
+        imageAlt={heroCover?.alt_text ?? product.title}
         breadcrumb={[
           { label: HOME_LABEL[locale] ?? HOME_LABEL.fr, href: "/" },
           { label: t("breadcrumb"), href: "/circuits" },
