@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { IconX, IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 
@@ -14,6 +15,11 @@ export type GalleryImage = {
 
 export function GalleryLightbox({ images, compact = false }: { images: GalleryImage[]; compact?: boolean }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const close = useCallback(() => setOpenIndex(null), []);
   const prev = useCallback(
@@ -86,7 +92,7 @@ export function GalleryLightbox({ images, compact = false }: { images: GalleryIm
         </div>
       )}
 
-      {openIndex !== null && (
+      {mounted && openIndex !== null && createPortal(
         <div
           role="dialog"
           aria-modal="true"
@@ -149,7 +155,8 @@ export function GalleryLightbox({ images, compact = false }: { images: GalleryIm
               {openIndex + 1} / {images.length}
             </p>
           )}
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );
