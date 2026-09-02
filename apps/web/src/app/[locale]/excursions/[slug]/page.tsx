@@ -116,6 +116,10 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
     getRelatedProducts(product.related_slugs, locale),
     getReviews({ productSlug: slug, limit: 20 }),
   ]);
+  // Une excursion sans couverture propre reprend celle du premier
+  // circuit lié qui en a une, avant de retomber sur l'image générique.
+  const heroCover =
+    product.cover ?? relatedProducts.find((p) => p.cover)?.cover ?? null;
   const t = await getTranslations({ locale, namespace: "excursions" });
   const tNav = await getTranslations({ locale, namespace: "nav" });
   const levelKey = LEVEL_KEYS[product.difficulty] ?? "facile";
@@ -154,7 +158,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
       name: product.title,
       description: product.meta_description || product.summary,
       path: `/excursions/${product.slug}`,
-      image: product.cover?.url ?? "/images/hero/nosy-tanikely.jpg",
+      image: heroCover?.url ?? "/images/hero/nosy-tanikely.jpg",
       priceFrom: product.price_from,
       currency: product.currency,
       maxAttendees: product.group_max,
@@ -172,8 +176,8 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
       <PageHero
         title={product.title}
         intro={product.subtitle ?? undefined}
-        image={product.cover?.url ?? "/images/hero/nosy-tanikely.jpg"}
-        imageAlt={product.cover?.alt_text ?? product.title}
+        image={heroCover?.url ?? "/images/hero/nosy-tanikely.jpg"}
+        imageAlt={heroCover?.alt_text ?? product.title}
         breadcrumb={[
           { label: HOME_LABEL[locale] ?? HOME_LABEL.fr, href: "/" },
           { label: t("breadcrumb"), href: "/excursions" },
