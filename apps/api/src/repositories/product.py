@@ -11,7 +11,7 @@ Toutes les fonctions chargent en LOT (plusieurs produits d'un coup) pour
 
 from uuid import UUID
 
-from sqlalchemy import func
+from sqlalchemy import case, func
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
@@ -202,7 +202,16 @@ async def get_inclusions(
             InclusionTranslation.locale.in_(locales),
             Inclusion.deleted_at.is_(None),
         )
-        .order_by(ProductInclusion.sort_order)
+        # Trie par priorité de locale : la déduplication côté service garde
+        # la première ligne, il faut donc que ce soit la meilleure langue.
+        .order_by(
+            ProductInclusion.sort_order,
+            case(
+                {loc: i for i, loc in enumerate(locales)},
+                value=InclusionTranslation.locale,
+                else_=len(locales),
+            ),
+        )
     )
     return list((await session.exec(stmt)).all())
 
@@ -222,7 +231,15 @@ async def get_packing_items(
             PackingItemTranslation.locale.in_(locales),
             PackingItem.deleted_at.is_(None),
         )
-        .order_by(ProductPackingItem.sort_order)
+        # Même règle que pour les inclusions : la meilleure locale d'abord.
+        .order_by(
+            ProductPackingItem.sort_order,
+            case(
+                {loc: i for i, loc in enumerate(locales)},
+                value=PackingItemTranslation.locale,
+                else_=len(locales),
+            ),
+        )
     )
     return list((await session.exec(stmt)).all())
 
