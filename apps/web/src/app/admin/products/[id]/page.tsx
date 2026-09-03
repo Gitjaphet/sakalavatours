@@ -33,6 +33,7 @@ import type {
   ProductTranslationIn,
   ItineraryTranslationIn,
   InclusionLinkIn,
+  ContentStatus,
 } from "@/types/api";
 
 import { routing } from "@/i18n/routing";
@@ -99,6 +100,7 @@ function ProductDetailContent({ id }: { id: string }) {
 
   // Champs du formulaire, dérivés de `data` une fois chargé
   const [isPublished, setIsPublished] = useState(false);
+  const [status, setStatus] = useState<ContentStatus>("draft");
   const [isFeatured, setIsFeatured] = useState(false);
   const [priceFrom, setPriceFrom] = useState("");
   const [slug, setSlug] = useState("");
@@ -167,6 +169,7 @@ function ProductDetailContent({ id }: { id: string }) {
       if (cancelled) return;
       setData(result);
       setIsPublished(adminDetail.is_published);
+      setStatus(adminDetail.status);
       setIsFeatured(result.is_featured);
       setPriceFrom(result.price_from);
       setSlug(result.slug);
@@ -266,6 +269,7 @@ function ProductDetailContent({ id }: { id: string }) {
       const payload = {
         ...productDetailToUpdate(data),
         is_published: isPublished,
+        status,
         is_featured: isFeatured,
         price_from: priceFrom,
         slug,
@@ -1243,6 +1247,23 @@ function ProductDetailContent({ id }: { id: string }) {
             <div className="space-y-4">
               <div className="space-y-4 rounded-lg border border-stone-200 bg-white p-5">
                 <h3 className="text-sm font-semibold text-stone-900">Publication</h3>
+
+                <label className="block text-sm">
+                  Statut
+                  <select
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value as ContentStatus)}
+                    className="mt-1 block w-full rounded border border-stone-300 p-2"
+                  >
+                    <option value="draft">Brouillon</option>
+                    <option value="published">Publié</option>
+                    <option value="scheduled">Programmé</option>
+                    <option value="archived">Archivé</option>
+                  </select>
+                  <span className="mt-1 block text-xs text-stone-500">
+                    Seul le statut « Publié » rend la fiche visible sur le site.
+                  </span>
+                </label>
 
                 <label className="flex items-center gap-2 text-sm">
                   <input
