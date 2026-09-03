@@ -34,10 +34,14 @@ function TimelineItem({
   step,
   index,
   side,
+  isOpen,
+  onToggle,
 }: {
   step: ItineraryStepData;
   index: number;
   side: "left" | "right";
+  isOpen: boolean;
+  onToggle: () => void;
 }) {
   const ref = useRef<HTMLLIElement>(null);
   const [visible, setVisible] = useState(index === 0);
@@ -59,6 +63,8 @@ function TimelineItem({
     return () => observer.disconnect();
   }, [index]);
 
+  const hasContent = Boolean(step.description) || step.meta.length > 0;
+
   return (
     <li
       ref={ref}
@@ -79,11 +85,18 @@ function TimelineItem({
           visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
         }`}
       >
-        <details
-          className="group overflow-hidden rounded-2xl border border-stone-200 bg-white transition-shadow open:shadow-sm"
-          open={index === 0}
+        <div
+          className={`overflow-hidden rounded-2xl border border-stone-200 bg-white transition-shadow ${
+            isOpen ? "shadow-sm" : ""
+          }`}
         >
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 marker:content-none">
+          <button
+            type="button"
+            onClick={onToggle}
+            disabled={!hasContent}
+            aria-expanded={isOpen}
+            className="flex w-full cursor-pointer items-center justify-between gap-3 px-4 py-3 text-left disabled:cursor-default"
+          >
             <div className="min-w-0">
               <p className="text-xs font-semibold uppercase tracking-wide text-[#1d4e5f]">
                 {step.dayLabel}
@@ -93,38 +106,51 @@ function TimelineItem({
                 {step.title}
               </h3>
             </div>
-            <IconChevronDown
-              size={18}
-              className="shrink-0 text-stone-400 transition-transform duration-300 group-open:rotate-180"
-            />
-          </summary>
-
-          <div className="border-t border-stone-100 px-4 pb-4 pt-3">
-            {step.description && (
-              <p className="whitespace-pre-line text-sm leading-relaxed text-stone-600">
-                {step.description}
-              </p>
+            {hasContent && (
+              <IconChevronDown
+                size={18}
+                className={`shrink-0 text-stone-400 transition-transform duration-300 ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+              />
             )}
+          </button>
 
-            {step.meta.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {step.meta.map((m, mi) => {
-                  const Icon = META_ICONS[m.icon];
-                  return (
-                    <span
-                      key={mi}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600"
-                    >
-                      <Icon size={14} stroke={2} className="text-[#1d4e5f]" />
-                      <span className="sr-only">{m.srLabel} :</span>
-                      {m.label}
-                    </span>
-                  );
-                })}
+          {/* Une seule étape ouverte à la fois : la hauteur est animée
+              plutôt que le contenu démonté, pour un repli fluide. */}
+          <div
+            className="grid transition-[grid-template-rows] duration-300 ease-in-out"
+            style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+          >
+            <div className="overflow-hidden">
+              <div className="border-t border-stone-100 px-4 pb-4 pt-3">
+                {step.description && (
+                  <p className="whitespace-pre-line text-sm leading-relaxed text-stone-600">
+                    {step.description}
+                  </p>
+                )}
+
+                {step.meta.length > 0 && (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {step.meta.map((m, mi) => {
+                      const Icon = META_ICONS[m.icon];
+                      return (
+                        <span
+                          key={mi}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-600"
+                        >
+                          <Icon size={14} stroke={2} className="text-[#1d4e5f]" />
+                          <span className="sr-only">{m.srLabel} :</span>
+                          {m.label}
+                        </span>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
-        </details>
+        </div>
       </div>
 
       {/* Colonne vide de l'autre côté, uniquement en desktop */}
@@ -134,6 +160,9 @@ function TimelineItem({
 }
 
 export function ItineraryTimeline({ steps }: { steps: ItineraryStepData[] }) {
+  // Accordéon : une seule étape ouverte, la première au chargement.
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   return (
     <ol
       className="relative mt-6 space-y-6 border-l-2 border-[#1d4e5f]/15 pl-6 lg:space-y-10 lg:border-l-0 lg:pl-0 lg:before:absolute lg:before:inset-y-0 lg:before:left-1/2 lg:before:w-px lg:before:-translate-x-1/2 lg:before:bg-[#1d4e5f]/15 lg:before:content-['']"
@@ -144,6 +173,8 @@ export function ItineraryTimeline({ steps }: { steps: ItineraryStepData[] }) {
           step={step}
           index={i}
           side={i % 2 === 0 ? "left" : "right"}
+          isOpen={openIndex === i}
+          onToggle={() => setOpenIndex((prev) => (prev === i ? null : i))}
         />
       ))}
     </ol>
