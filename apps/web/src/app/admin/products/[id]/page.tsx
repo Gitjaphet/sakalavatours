@@ -560,6 +560,99 @@ function ProductDetailContent({ id }: { id: string }) {
                     />
                   </label>
 
+                  <label className="block text-sm">
+                    Informations pratiques
+                    <textarea
+                      value={translations[activeLocale].practical_info ?? ""}
+                      onChange={(e) =>
+                        setTranslations((prev) => ({
+                          ...prev,
+                          [activeLocale]: {
+                            ...prev[activeLocale],
+                            practical_info: e.target.value,
+                          },
+                        }))
+                      }
+                      rows={4}
+                      className="mt-1 block w-full rounded border border-stone-300 p-2"
+                    />
+                    <span className="mt-1 block text-xs text-stone-500">
+                      Affiché en bas de fiche : conditions météo, marées, points
+                      d&apos;attention.
+                    </span>
+                  </label>
+
+                  <label className="block text-sm">
+                    Région (affichée sur les cartes)
+                    <input
+                      type="text"
+                      value={translations[activeLocale].region_label ?? ""}
+                      onChange={(e) =>
+                        setTranslations((prev) => ({
+                          ...prev,
+                          [activeLocale]: {
+                            ...prev[activeLocale],
+                            region_label: e.target.value,
+                          },
+                        }))
+                      }
+                      placeholder="Archipel de Nosy Be"
+                      className="mt-1 block w-full rounded border border-stone-300 p-2"
+                    />
+                  </label>
+
+                  <div className="rounded border border-stone-200 bg-stone-50 p-3">
+                    <p className="mb-2 text-xs font-medium uppercase tracking-wide text-stone-500">
+                      Référencement
+                    </p>
+
+                    <label className="block text-sm">
+                      Titre SEO
+                      <input
+                        type="text"
+                        maxLength={70}
+                        value={translations[activeLocale].meta_title ?? ""}
+                        onChange={(e) =>
+                          setTranslations((prev) => ({
+                            ...prev,
+                            [activeLocale]: {
+                              ...prev[activeLocale],
+                              meta_title: e.target.value,
+                            },
+                          }))
+                        }
+                        className="mt-1 block w-full rounded border border-stone-300 p-2"
+                      />
+                      <span className="mt-1 block text-xs text-stone-500">
+                        {(translations[activeLocale].meta_title ?? "").length}/70 —
+                        vide = titre du produit.
+                      </span>
+                    </label>
+
+                    <label className="mt-3 block text-sm">
+                      Description SEO
+                      <textarea
+                        maxLength={180}
+                        value={translations[activeLocale].meta_description ?? ""}
+                        onChange={(e) =>
+                          setTranslations((prev) => ({
+                            ...prev,
+                            [activeLocale]: {
+                              ...prev[activeLocale],
+                              meta_description: e.target.value,
+                            },
+                          }))
+                        }
+                        rows={3}
+                        className="mt-1 block w-full rounded border border-stone-300 p-2"
+                      />
+                      <span className="mt-1 block text-xs text-stone-500">
+                        {(translations[activeLocale].meta_description ?? "").length}/180
+                        — vide = résumé du produit.
+                      </span>
+                    </label>
+                  </div>
+
                   <button
                     type="button"
                     onClick={() => {
