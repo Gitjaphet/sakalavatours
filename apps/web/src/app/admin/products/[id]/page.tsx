@@ -106,6 +106,7 @@ function ProductDetailContent({ id }: { id: string }) {
   const [difficulty, setDifficulty] = useState<DifficultyLevel>("easy");
   const [transport, setTransport] = useState<TransportMode | "">("");
   const [groupMin, setGroupMin] = useState("2");
+  const [travelMinutes, setTravelMinutes] = useState("");
   const [groupMax, setGroupMax] = useState("12");
   const [hotelPickup, setHotelPickup] = useState(true);
   const [coverMedia, setCoverMedia] = useState<CoverMediaLike | null>(null);
@@ -173,6 +174,7 @@ function ProductDetailContent({ id }: { id: string }) {
       setDifficulty(result.difficulty);
       setTransport(result.transport ?? "");
       setGroupMin(String(result.group_min));
+      setTravelMinutes(result.travel_minutes === null ? "" : String(result.travel_minutes));
       setGroupMax(String(result.group_max));
       setHotelPickup(result.hotel_pickup);
       setCoverMedia(result.cover);
@@ -271,6 +273,7 @@ function ProductDetailContent({ id }: { id: string }) {
         difficulty,
         transport: transport === "" ? null : transport,
         group_min: Number(groupMin),
+        travel_minutes: travelMinutes.trim() === "" ? null : Number(travelMinutes),
         group_max: Number(groupMax),
         hotel_pickup: hotelPickup,
         cover_media_id: coverMedia?.id ?? null,
@@ -430,6 +433,22 @@ function ProductDetailContent({ id }: { id: string }) {
                 />
               </label>
             </div>
+
+            <label className="block text-sm">
+              Durée de trajet (minutes)
+              <input
+                type="number"
+                min={0}
+                value={travelMinutes}
+                onChange={(e) => setTravelMinutes(e.target.value)}
+                placeholder="90"
+                className="mt-1 block w-full rounded border border-stone-300 p-2"
+              />
+              <span className="mt-1 block text-xs text-stone-500">
+                Affiché sur les cartes : « 1 h 30 en bateau ». Laisser vide si
+                non pertinent.
+              </span>
+            </label>
 
             <label className="flex items-center gap-2 text-sm">
               <input
