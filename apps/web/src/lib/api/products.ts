@@ -84,6 +84,15 @@ export type ProductListItem = {
   content_locale: string;
 };
 
+/** Palier tarifaire : tarif enfant, tarif de groupe, tarif privatif… */
+export type PriceTier = {
+  label_code: string;
+  price: string;
+  min_pax: number | null;
+  max_pax: number | null;
+  is_private: boolean;
+};
+
 export type ProductDetail = ProductListItem & {
   description: string | null;
   practical_info: string | null;
@@ -96,6 +105,7 @@ export type ProductDetail = ProductListItem & {
   gallery: MediaOut[];
   departure_months: number[];
   related_slugs: string[];
+  price_tiers: PriceTier[];
 };
 
 export type ProductListResponse = {

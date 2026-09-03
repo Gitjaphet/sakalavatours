@@ -408,6 +408,39 @@ export default async function CircuitDetailPage({ params }: { params: Params }) 
                   </div>
                 )}
 
+                {product.price_tiers.length > 0 && (
+                  <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
+                    <h3 className="text-sm font-semibold text-stone-900">
+                      {t("priceTiersTitle")}
+                    </h3>
+                    <ul className="mt-3 divide-y divide-stone-100">
+                      {product.price_tiers.map((tier, i) => (
+                        <li key={i} className="flex items-baseline justify-between gap-3 py-2 first:pt-0 last:pb-0">
+                          <span className="min-w-0 text-sm text-stone-700">
+                            {tier.label_code}
+                            {tier.is_private && (
+                              <span className="ml-1.5 rounded-full bg-[#1d4e5f]/8 px-2 py-0.5 text-xs text-[#1d4e5f]">
+                                {t("priceTierPrivate")}
+                              </span>
+                            )}
+                            {tier.min_pax !== null && tier.max_pax !== null && (
+                              <span className="mt-0.5 block text-xs text-stone-400">
+                                {t("priceTierPax", { min: tier.min_pax, max: tier.max_pax })}
+                              </span>
+                            )}
+                          </span>
+                          <span className="shrink-0 text-sm font-semibold tabular-nums text-stone-900">
+                            {formatPrice(Number(tier.price), product.currency, locale)}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-3 text-xs leading-relaxed text-stone-400">
+                      {t("priceTiersNote")}
+                    </p>
+                  </div>
+                )}
+
                 {product.gallery.length > 0 && (
                   <div className="rounded-3xl border border-[#1d4e5f]/10 bg-white p-6 shadow-[0_16px_40px_-16px_rgba(8,34,43,0.25)]">
                     <h3 className="text-sm font-semibold text-stone-900">
