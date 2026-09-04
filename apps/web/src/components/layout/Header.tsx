@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { TopBar } from "./TopBar";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { navLinks } from "@/lib/nav-config";
+import { findActiveHref, navLinkClass } from "@/lib/nav-active";
 import { IconPhone, IconMenu2 } from "@tabler/icons-react";
 import { MobileMenu } from "./MobileMenu";
 import Image from "next/image";
@@ -37,6 +38,7 @@ export function Header() {
   DARK_HERO_ROUTES.includes(pathname) ||
   DARK_HERO_PREFIXES.some((prefix) => pathname.startsWith(prefix));
   const overlay = hasDarkHero && !scrolled;
+  const activeHref = findActiveHref(pathname);
 
   return (
     <>
@@ -103,11 +105,8 @@ export function Header() {
               <Link
                 key={link.key}
                 href={link.href}
-                className={`relative py-1 transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 ${
-                  overlay
-                    ? "hover:text-white after:bg-[#F4A261]"
-                    : "hover:text-[#E63946] after:bg-[#E63946]"
-                }`}
+                aria-current={link.href === activeHref ? "page" : undefined}
+                className={navLinkClass(link.href === activeHref, overlay)}
               >
                 {t(link.key)}
               </Link>
