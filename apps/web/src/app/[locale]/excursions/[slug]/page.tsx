@@ -144,6 +144,9 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
     return m > 0 ? t("durationHM", { h, m }) : t("durationH", { h });
   })();
 
+  const isMultiDay =
+    new Set(product.itinerary.map((s) => s.day_number)).size > 1;
+
   const itinerarySteps: ItineraryStepData[] = product.itinerary.map((step) => {
     const meta: ItineraryStepData["meta"] = [];
     if (step.location_label) {
@@ -163,7 +166,13 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
       });
     }
     return {
-      dayLabel: step.time_label ?? t("detail.day", { number: step.day_number }),
+      // Sur un programme multi-jours, l'heure seule ne suffit pas à situer
+      // l'étape : on préfixe alors par le jour.
+      dayLabel: isMultiDay
+        ? step.time_label
+          ? `${t("detail.day", { number: step.day_number })} · ${step.time_label}`
+          : t("detail.day", { number: step.day_number })
+        : (step.time_label ?? t("detail.day", { number: step.day_number })),
       optionalLabel: step.is_optional ? t("detail.optional") : undefined,
       title: step.title,
       description: step.description,
