@@ -70,7 +70,7 @@ export async function Footer() {
         <div className="bg-[#E76F51]">
           <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 sm:px-6 sm:py-7 lg:flex-row lg:items-center lg:justify-between lg:px-8">
             <div>
-              <p className="text-base font-medium text-white sm:text-lg">
+              <p className="font-[family-name:var(--font-courgette)] text-xl text-white sm:text-2xl">
                 {t("cta.title")}
               </p>
               <p className="mt-1 text-sm text-white/85">{t("cta.text")}</p>
