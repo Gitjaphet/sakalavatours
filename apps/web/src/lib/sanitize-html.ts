@@ -9,10 +9,14 @@
 //
 // Liste blanche volontairement restreinte au strict nécessaire d'un corps
 // de fiche produit (paragraphes, emphase, listes, liens). Toute balise hors
-// de cette liste est supprimée silencieusement par DOMPurify, pas rejetée
-// avec erreur — le contenu reste affichable même si une balise est filtrée.
+// de cette liste est supprimée silencieusement, pas rejetée avec erreur —
+// le contenu reste affichable même si une balise est filtrée.
+//
+// ⚠ Ne pas revenir à isomorphic-dompurify : il embarque jsdom, dont une
+// dépendance ESM casse le rendu serveur sur Vercel (ERR_REQUIRE_ESM).
+// `sanitize-html` fait le même travail sans jsdom.
 
-import DOMPurify from "isomorphic-dompurify";
+import sanitize from "sanitize-html";
 
 const ALLOWED_TAGS = [
   "p", "br",
@@ -23,14 +27,25 @@ const ALLOWED_TAGS = [
   "blockquote",
 ];
 
-const ALLOWED_ATTR = ["href", "target", "rel"];
-
 export function sanitizeHtml(html: string): string {
-  return DOMPurify.sanitize(html, {
-    ALLOWED_TAGS,
-    ALLOWED_ATTR,
-    // Empêche tout attribut on* (onclick, onerror...) même s'il passait
-    // au travers d'une future modification de la liste blanche ci-dessus.
-    FORBID_ATTR: ["style"],
+  return sanitize(html, {
+    allowedTags: ALLOWED_TAGS,
+    allowedAttributes: {
+      a: ["href", "target", "rel"],
+    },
+    // Seuls les liens web et mailto sont autorisés : écarte javascript:
+    // et data: même si un href passait la liste blanche ci-dessus.
+    allowedSchemes: ["http", "https", "mailto"],
+    // Un lien ouvert dans un nouvel onglet sans rel="noopener" expose la
+    // page d'origine ; on le force plutôt que de faire confiance à la saisie.
+    transformTags: {
+      a: (tagName, attribs) => ({
+        tagName,
+        attribs: attribs.target
+          ? { ...attribs, rel: "noopener noreferrer" }
+          : attribs,
+      }),
+    },
+    disallowedTagsMode: "discard",
   });
 }
