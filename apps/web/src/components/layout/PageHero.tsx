@@ -82,7 +82,7 @@ export function PageHero({
 
         <span
           aria-hidden="true"
-          className="mt-3 block h-1 w-14 rounded-full bg-gradient-to-r from-[#F4A261] to-[#E76F51] sm:mt-4 sm:w-20"
+          className="mt-3 block h-1 w-14 shrink-0 rounded-full bg-gradient-to-r from-[#F4A261] to-[#E76F51] sm:mt-4 sm:w-20"
         />
 
         {intro && (
