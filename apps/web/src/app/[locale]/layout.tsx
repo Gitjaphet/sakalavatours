@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingActions } from "@/components/layout/FloatingActions";
 import { RouteLoaderProvider } from "@/components/providers/RouteLoaderProvider";
 import { businessInfo } from "@/lib/nav-config";
 import "./globals.css";
@@ -120,12 +121,13 @@ export default async function LocaleLayout({
           }}
         />
       </head>
-      <body className="bg-[#FDFAF6] text-[#2B2620] antialiased">
+      <body className="bg-[#FDFAF6] pb-20 text-[#2B2620] antialiased lg:pb-0">
         <NextIntlClientProvider messages={messages}>
           <RouteLoaderProvider>
             <Header />
             {children}
             <Footer />
+            <FloatingActions />
           </RouteLoaderProvider>
         </NextIntlClientProvider>
       </body>

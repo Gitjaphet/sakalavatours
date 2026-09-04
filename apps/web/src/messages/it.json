@@ -685,5 +685,11 @@
     "pageIntro": "Nosy Be e l'arcipelago come li scoprono i nostri viaggiatori. Clicca su una foto per vedere l'escursione corrispondente.",
     "breadcrumb": "Galleria",
     "empty": "Le foto arrivano presto."
+  },
+  "floating": {
+    "whatsapp": "Scrivici",
+    "reserve": "Prenota",
+    "waDefault": "Buongiorno, vorrei informazioni sui vostri circuiti ed escursioni.",
+    "waProduct": "Buongiorno, sono interessato/a a: {page}"
   }
 }

@@ -685,5 +685,11 @@
     "pageIntro": "Nosy Be und der Archipel, wie unsere Reisenden sie erleben. Klicken Sie auf ein Foto, um den passenden Ausflug zu sehen.",
     "breadcrumb": "Galerie",
     "empty": "Die Fotos folgen in Kürze."
+  },
+  "floating": {
+    "whatsapp": "Schreiben Sie uns",
+    "reserve": "Buchen",
+    "waDefault": "Guten Tag, ich hätte gerne Informationen zu Ihren Touren und Ausflügen.",
+    "waProduct": "Guten Tag, ich interessiere mich für: {page}"
   }
 }

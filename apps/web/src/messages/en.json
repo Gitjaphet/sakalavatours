@@ -685,5 +685,11 @@
     "pageIntro": "Nosy Be and the archipelago as our travellers discover them. Click a photo to see the matching excursion.",
     "breadcrumb": "Gallery",
     "empty": "Photos coming soon."
+  },
+  "floating": {
+    "whatsapp": "Message us",
+    "reserve": "Book",
+    "waDefault": "Hello, I would like information about your tours and excursions.",
+    "waProduct": "Hello, I am interested in: {page}"
   }
 }
