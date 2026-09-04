@@ -83,3 +83,27 @@ export const socialLinks = [
     icon: "brand-whatsapp",
   },
 ] as const;
+// ─── Pied de page ────────────────────────────────────────────────────────────
+
+/** Colonne "Explorer" du footer. Les cles existantes reutilisent nav.<key> ;
+ *  avis et reservation exigent leurs propres cles footer.links.<key>. */
+export const footerExplore = [
+  { key: "tours", href: "/circuits", i18n: "nav" },
+  { key: "excursion", href: "/excursions", i18n: "nav" },
+  { key: "galerie", href: "/galerie", i18n: "nav" },
+  { key: "apropos", href: "/apropos", i18n: "nav" },
+  { key: "avis", href: "/avis", i18n: "footer" },
+  { key: "reservation", href: "/reservation", i18n: "footer" },
+] as const;
+
+/** Colonne "Destinations" : maillage interne vers les fiches produit.
+ *  RÈGLE : uniquement des produits au statut published, sinon 404 sur tout le
+ *  site. Libelles en dur : un nom de lieu ne se traduit pas.
+ *  A mettre a jour a la main quand un nouveau produit phare est publie. */
+export const footerDestinations = [
+  { label: "Nosy Iranja", href: "/excursions/nosy-iranja" },
+  { label: "Nosy Mitsio", href: "/excursions/nosy-mitsio" },
+  { label: "Montagne d'Ambre", href: "/excursions/montagne-d-ambre" },
+  { label: "Cap Diego", href: "/excursions/cap-diego" },
+  { label: "Tour en quad", href: "/excursions/tour-quad-nosy-be" },
+] as const;

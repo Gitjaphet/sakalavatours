@@ -81,7 +81,20 @@
   },
   "footer": {
     "rights": "Tous droits réservés",
-    "followUs": "Suivez-nous"
+    "followUs": "Suivez-nous",
+    "tagline": "Agence locale à Nosy Be depuis 2019. Circuits et excursions dans le nord de Madagascar.",
+    "exploreTitle": "Explorer",
+    "destinationsTitle": "Destinations",
+    "contactTitle": "Contact",
+    "links": {
+      "avis": "Avis voyageurs",
+      "reservation": "Réserver"
+    },
+    "cta": {
+      "title": "Une idée de voyage en tête ?",
+      "text": "Écrivez-nous, nous construisons votre itinéraire sur mesure.",
+      "button": "Nous contacter"
+    }
   },
   "common": {
     "loading": "Chargement…"
@@ -394,22 +407,22 @@
       "relatedIntro": "D'autres expériences près de Nosy Be, sélectionnées pour prolonger votre voyage.",
       "seeAll": "Voir toutes les excursions",
       "translationPending": "Cette fiche n'est pas encore traduite : contenu affiché en français."
+    },
+    "months": {
+      "1": "Jan",
+      "2": "Fév",
+      "3": "Mar",
+      "4": "Avr",
+      "5": "Mai",
+      "6": "Juin",
+      "7": "Juil",
+      "8": "Août",
+      "9": "Sep",
+      "10": "Oct",
+      "11": "Nov",
+      "12": "Déc"
+    }
   },
-  "months": {
-    "1": "Jan",
-    "2": "Fév",
-    "3": "Mar",
-    "4": "Avr",
-    "5": "Mai",
-    "6": "Juin",
-    "7": "Juil",
-    "8": "Août",
-    "9": "Sep",
-    "10": "Oct",
-    "11": "Nov",
-    "12": "Déc"
-  }
-},
   "about": {
     "meta": {
       "title": "Qui sommes-nous — Agence locale à Nosy Be depuis 2019 | Sakalava Tours",
@@ -522,7 +535,7 @@
       "contact": "Nous écrire"
     }
   },
-    "reservation": {
+  "reservation": {
     "meta": {
       "title": "Réserver votre excursion ou circuit — Sakalava Tours Nosy Be",
       "description": "Réservez en ligne votre excursion à Nosy Be ou votre circuit dans le nord de Madagascar. Réponse sous 24 heures, guides francophones, petits groupes."
@@ -564,22 +577,21 @@
       "noteRequired": "Les champs marqués d'une étoile (*) sont obligatoires. Les autres nous aident à mieux préparer votre sortie, mais restent facultatifs.",
       "noteHotel": "Votre hébergement : le nom de votre hôtel nous permet d'organiser le transfert quand il est inclus dans la sortie.",
       "noteAlternative": "Date de repli : une seconde date qui vous conviendrait, si jamais la première n'était pas disponible."
-      }
-    
+    }
   },
-    "avisConfirmation": {
-      "metaTitle": "Confirmation de votre avis",
-      "eyebrow": "Avis voyageurs",
-      "pageTitle": "Confirmez votre avis",
-      "breadcrumb": "Confirmation",
-      "title": "Une dernière étape",
-      "intro": "Confirmez votre adresse email pour que votre avis soit transmis à notre équipe.",
-      "action": "Confirmer mon avis",
-      "pending": "Confirmation en cours…",
-      "missing": "Ce lien est incomplet. Ouvrez le lien reçu par email.",
-      "success": "Merci, votre adresse est confirmée. Votre avis sera publié après vérification par notre équipe."
+  "avisConfirmation": {
+    "metaTitle": "Confirmation de votre avis",
+    "eyebrow": "Avis voyageurs",
+    "pageTitle": "Confirmez votre avis",
+    "breadcrumb": "Confirmation",
+    "title": "Une dernière étape",
+    "intro": "Confirmez votre adresse email pour que votre avis soit transmis à notre équipe.",
+    "action": "Confirmer mon avis",
+    "pending": "Confirmation en cours…",
+    "missing": "Ce lien est incomplet. Ouvrez le lien reçu par email.",
+    "success": "Merci, votre adresse est confirmée. Votre avis sera publié après vérification par notre équipe."
   },
-    "avis": {
+  "avis": {
     "meta": {
       "title": "Avis de nos voyageurs — Sakalava Tours",
       "description": "Les retours de nos clients sur leurs excursions et circuits à Nosy Be. Avis vérifiés, publiés après modération."
@@ -627,10 +639,9 @@
       "successMessage": "Il sera publié après vérification par notre équipe. Pensez à confirmer votre adresse : nous venons de vous envoyer un email.",
       "country": "Votre pays",
       "countryPlaceholder": "Sélectionnez…"
-      
     }
   },
-    "contact": {
+  "contact": {
     "meta": {
       "title": "Nous contacter — Sakalava Tours, Nosy Be",
       "description": "Une question sur nos excursions ou circuits à Nosy Be ? Écrivez-nous, nous répondons sous 24 heures."
@@ -664,7 +675,7 @@
       "privacy": "Vos coordonnées servent uniquement à vous répondre. Aucun envoi commercial."
     }
   },
-    "galerie": {
+  "galerie": {
     "meta": {
       "title": "Galerie photo — Nosy Be et l'archipel | Sakalava Tours",
       "description": "Nos photos de Nosy Be : Nosy Iranja, Lokobe, Cap Diego, Montagne d'Ambre. Images prises lors de nos excursions et circuits."
@@ -675,5 +686,4 @@
     "breadcrumb": "Galerie",
     "empty": "Les photos arrivent prochainement."
   }
-
 }

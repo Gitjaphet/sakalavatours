@@ -81,7 +81,20 @@
   },
   "footer": {
     "rights": "All rights reserved",
-    "followUs": "Follow us"
+    "followUs": "Follow us",
+    "tagline": "Local agency based in Nosy Be since 2019. Tours and excursions in northern Madagascar.",
+    "exploreTitle": "Explore",
+    "destinationsTitle": "Destinations",
+    "contactTitle": "Contact",
+    "links": {
+      "avis": "Traveller reviews",
+      "reservation": "Book"
+    },
+    "cta": {
+      "title": "Have a trip in mind?",
+      "text": "Write to us, we will build your itinerary together.",
+      "button": "Get in touch"
+    }
   },
   "common": {
     "loading": "Loading…"
@@ -521,8 +534,8 @@
       "excursions": "See our excursions",
       "contact": "Write to us"
     }
-  }, 
-    "reservation": {
+  },
+  "reservation": {
     "meta": {
       "title": "Book your day trip or tour — Sakalava Tours Nosy Be",
       "description": "Book your Nosy Be day trip or northern Madagascar tour online. Reply within 24 hours, local guides, small groups."
@@ -564,23 +577,21 @@
       "noteRequired": "Fields marked with a star (*) are required. The others help us prepare your trip but are optional.",
       "noteHotel": "Where you're staying: your hotel name lets us arrange pick-up when it's included in the trip.",
       "noteAlternative": "Alternative date: a second date that would work for you, in case the first one isn't available."
-      }
-    
+    }
   },
-
-    "avisConfirmation": {
-      "metaTitle": "Confirm your review",
-      "eyebrow": "Traveller reviews",
-      "pageTitle": "Confirm your review",
-      "breadcrumb": "Confirmation",
-      "title": "One last step",
-      "intro": "Confirm your email address so your review can be sent to our team.",
-      "action": "Confirm my review",
-      "pending": "Confirming…",
-      "missing": "This link is incomplete. Please open the link you received by email.",
-      "success": "Thank you, your address is confirmed. Your review will be published after review by our team."
+  "avisConfirmation": {
+    "metaTitle": "Confirm your review",
+    "eyebrow": "Traveller reviews",
+    "pageTitle": "Confirm your review",
+    "breadcrumb": "Confirmation",
+    "title": "One last step",
+    "intro": "Confirm your email address so your review can be sent to our team.",
+    "action": "Confirm my review",
+    "pending": "Confirming…",
+    "missing": "This link is incomplete. Please open the link you received by email.",
+    "success": "Thank you, your address is confirmed. Your review will be published after review by our team."
   },
-    "avis": {
+  "avis": {
     "meta": {
       "title": "Traveller reviews — Sakalava Tours",
       "description": "What our guests say about their excursions and tours in Nosy Be. Verified reviews, published after moderation."
@@ -628,10 +639,9 @@
       "successMessage": "It will be published after review by our team. Don't forget to confirm your address — we've just sent you an email.",
       "country": "Your country",
       "countryPlaceholder": "Select…"
-
     }
   },
-    "contact": {
+  "contact": {
     "meta": {
       "title": "Contact us — Sakalava Tours, Nosy Be",
       "description": "A question about our excursions or tours in Nosy Be? Write to us, we reply within 24 hours."
@@ -665,7 +675,7 @@
       "privacy": "Your details are used only to reply to you. No marketing emails."
     }
   },
-    "galerie": {
+  "galerie": {
     "meta": {
       "title": "Photo gallery — Nosy Be and the archipelago | Sakalava Tours",
       "description": "Our photos of Nosy Be: Nosy Iranja, Lokobe, Cap Diego, Montagne d'Ambre. Pictures taken during our excursions and tours."
@@ -676,6 +686,4 @@
     "breadcrumb": "Gallery",
     "empty": "Photos coming soon."
   }
-
-
 }
