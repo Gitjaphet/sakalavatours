@@ -13,6 +13,7 @@ const NAV = [
   { href: "/admin/taxonomies", label: "Taxonomies" },
   { href: "/admin/reviews", label: "Avis" },
   { href: "/admin/messages", label: "Messages" },
+  { href: "/admin/medias", label: "Médias" },
 ];
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
@@ -73,7 +74,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             À venir
           </p>
           <ul className="mt-1 space-y-1">
-            {["Médias", "Blog"].map((label) => (
+            {["Blog"].map((label) => (
               <li
                 key={label}
                 className="cursor-not-allowed rounded-md px-3 py-2 text-sm text-stone-300"

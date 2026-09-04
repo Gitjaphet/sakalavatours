@@ -254,3 +254,20 @@ export async function deleteAdminProduct(
 
   return res.json() as Promise<{ message: string }>;
 }
+
+export async function deleteAdminMedia(
+  accessToken: string,
+  mediaId: string,
+): Promise<void> {
+  const res = await fetch(`/api/admin/media/${mediaId}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    const message =
+      typeof data.detail === "string" ? data.detail : `Erreur ${res.status}`;
+    throw new AdminApiError(message, res.status);
+  }
+}
