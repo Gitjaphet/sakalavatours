@@ -5,6 +5,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import { RouteLoaderProvider } from "@/components/providers/RouteLoaderProvider";
 import { businessInfo } from "@/lib/nav-config";
 import "./globals.css";
@@ -124,6 +125,7 @@ export default async function LocaleLayout({
           <RouteLoaderProvider>
             <Header />
             {children}
+            <Footer />
           </RouteLoaderProvider>
         </NextIntlClientProvider>
       </body>
