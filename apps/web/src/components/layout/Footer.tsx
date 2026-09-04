@@ -59,11 +59,11 @@ export async function Footer() {
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[#0d2b32]/[0.92]"
+        className="absolute inset-0 bg-[#0d2b32]/[0.78]"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-b from-[#0d2b32] via-[#0d2b32]/85 to-[#0d2b32]"
+        className="absolute inset-0 bg-gradient-to-b from-[#0d2b32]/70 via-transparent to-[#0d2b32]/60"
       />
 
       <div className="relative">
