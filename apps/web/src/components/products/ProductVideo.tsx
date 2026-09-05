@@ -17,6 +17,7 @@
 
 import { useRef, useState } from "react";
 import { IconPlayerPlayFilled } from "@tabler/icons-react";
+import { RayCluster } from "@/components/ui/Doodles";
 import type { ProductVideo as ProductVideoData } from "@/lib/product-videos";
 
 /** "PT55S" ou "PT1M30S" vers "0:55" / "1:30". Retourne null si non reconnu. */
@@ -97,7 +98,11 @@ export function ProductVideo({
             )}
           </div>
 
-          <div className="sm:flex-1">
+          <div className="relative sm:flex-1">
+            <RayCluster
+              className="pointer-events-none absolute -top-6 right-0 hidden h-16 w-16 opacity-80 sm:block lg:h-20 lg:w-20"
+              color="#F4A261"
+            />
             <h2 className="hidden font-[family-name:var(--font-courgette)] text-[1.75rem] text-white sm:block">
               {title}
             </h2>
