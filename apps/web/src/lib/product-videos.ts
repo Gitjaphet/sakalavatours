@@ -33,7 +33,7 @@ export const productVideos: Record<string, ProductVideo> = {
     width: 540,
     height: 960,
     duration: "PT55S",
-    uploadDate: "2026-09-05",
+    uploadDate: "2026-09-05T10:00:00+03:00",
     i18nKey: "bivouacIranja",
   },
 };
