@@ -52,13 +52,17 @@ export function ProductVideo({
 
   return (
     <section className="mt-12 overflow-hidden rounded-2xl bg-[#0d2b32]">
-      <div className="px-5 py-8 sm:px-8 sm:py-10">
+      <div className="relative px-5 py-8 sm:px-8 sm:py-10">
         <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#F4A261]">
           {eyebrow}
         </p>
 
         {/* Titre au-dessus en mobile : sans lui, on ne voit qu'un rectangle
             vertical sans savoir de quoi il s'agit avant de faire defiler. */}
+        <RayCluster
+          className="pointer-events-none absolute right-4 top-5 h-14 w-14 opacity-75 sm:hidden"
+          color="#F4A261"
+        />
         <h2 className="mt-1.5 font-[family-name:var(--font-courgette)] text-2xl text-white sm:hidden">
           {title}
         </h2>
