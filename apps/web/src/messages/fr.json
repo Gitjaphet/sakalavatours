@@ -691,5 +691,12 @@
     "reserve": "Réserver",
     "waDefault": "Bonjour, je souhaite des informations sur vos excursions et circuits.",
     "waProduct": "Bonjour, je suis intéressé(e) par : {page}"
+  },
+  "videos": {
+    "bivouacIranja": {
+      "title": "Une soirée sur la plage",
+      "description": "Après le départ des bateaux de la journée, le bivouac de Nosy Iranja prend un rythme plus lent. Au coucher du soleil, les voyageurs se retrouvent sur le sable en attendant l'heure de dormir : les musiciens du village passent parfois jouer et chanter, on danse, d'autres soirs on préfère les jeux. Un moment de détente simple, sans programme, qui fait partie du voyage autant que les excursions du jour.",
+      "seoTitle": "Bivouac à Nosy Iranja : la soirée sur la plage au coucher du soleil"
+    }
   }
 }

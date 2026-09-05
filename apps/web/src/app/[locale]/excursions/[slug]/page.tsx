@@ -17,6 +17,10 @@ import { buildBreadcrumbSchema } from "@/lib/schema/breadcrumb";
 import { buildFaqSchema } from "@/lib/schema/faqPage";
 import { sanitizeHtml } from "@/lib/sanitize-html";
 import { buildTouristTripSchema } from "@/lib/schema/touristTrip";
+import { buildVideoSchema } from "@/lib/schema/videoObject";
+import { getProductVideo } from "@/lib/product-videos";
+import { ProductVideo } from "@/components/products/ProductVideo";
+import { businessInfo } from "@/lib/nav-config";
 import { getReviews } from "@/lib/api/reviews";
 import { ReviewList } from "@/components/reviews/ReviewList";
 import { ReviewFormToggle } from "@/components/reviews/ReviewFormToggle";
@@ -132,6 +136,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
   const levelKey = LEVEL_KEYS[product.difficulty] ?? "facile";
   // Libellés d'avis partagés avec /avis — une seule source de traduction.
   const tAvis = await getTranslations({ locale, namespace: "avis" });
+  const tVideo = await getTranslations({ locale, namespace: "videos" });
   const formatKey = FORMAT_KEYS[product.product_format] ?? "journee";
   const included = product.inclusions.filter((i) => i.is_included);
   const excluded = product.inclusions.filter((i) => !i.is_included);
@@ -199,6 +204,8 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
   // — condition partagée avec la section FAQ du JSX (règle Google FAQPage).
   const hasFaqs = product.faqs.length > 0;
 
+  const video = getProductVideo(product.slug);
+
   const jsonLd = [
     buildBreadcrumbSchema(locale, [
       { name: tNav("accueil"), path: "/" },
@@ -215,6 +222,19 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
       maxAttendees: product.group_max,
     }),
     ...(hasFaqs ? [buildFaqSchema(product.faqs)] : []),
+    ...(video
+      ? [
+          buildVideoSchema({
+            name: tVideo(`${video.i18nKey}.seoTitle`),
+            description: tVideo(`${video.i18nKey}.description`),
+            contentUrl: video.src,
+            thumbnailUrl: video.poster,
+            uploadDate: video.uploadDate,
+            duration: video.duration,
+            pageUrl: `${businessInfo.url}/${locale}/excursions/${product.slug}`,
+          }),
+        ]
+      : []),
   ];
 
   return (
@@ -278,6 +298,14 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
               <div
                 className="prose prose-stone max-w-none text-[15px] leading-relaxed text-stone-700"
                 dangerouslySetInnerHTML={{ __html: sanitizeHtml(product.description) }}
+              />
+            )}
+
+            {video && (
+              <ProductVideo
+                video={video}
+                title={tVideo(`${video.i18nKey}.title`)}
+                description={tVideo(`${video.i18nKey}.description`)}
               />
             )}
 
