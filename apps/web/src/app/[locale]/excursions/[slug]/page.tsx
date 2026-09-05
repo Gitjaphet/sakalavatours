@@ -304,6 +304,7 @@ export default async function ExcursionDetailPage({ params }: { params: Params }
             {video && (
               <ProductVideo
                 video={video}
+                eyebrow={tVideo(`${video.i18nKey}.eyebrow`)}
                 title={tVideo(`${video.i18nKey}.title`)}
                 description={tVideo(`${video.i18nKey}.description`)}
               />
