@@ -127,7 +127,7 @@ export function Header() {
 
           {/* CTA : masqué sous 1024px, il vit dans le menu burger */}
           <Link
-            href="/reservation"
+            href="/avis"
             className={`hidden whitespace-nowrap rounded-full text-sm font-medium transition-all duration-300 lg:inline-block ${
               overlay
                 ? "shadow-[0_10px_25px_-8px_rgba(231,111,81,0.9)] hover:-translate-y-0.5"
@@ -149,7 +149,7 @@ export function Header() {
                     }
             }
           >
-            {t("reserver")}
+            {t("avisClients")}
           </Link>
 
           <button

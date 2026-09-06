@@ -141,12 +141,12 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
 
         {/* ── CTA ─────────────────────────────────────────────────────── */}
         <Link
-          href="/reservation"
+          href="/avis"
           onClick={onClose}
           className="mx-5 mt-5 rounded-full py-3.5 text-center text-sm font-semibold text-white shadow-[0_12px_28px_-12px_rgba(231,111,81,0.95)]"
           style={{ background: "linear-gradient(135deg,#F4A261,#E76F51)" }}
         >
-          {t("reserver")}
+          {t("avisClients")}
         </Link>
 
         {/* ── Contact ─────────────────────────────────────────────────── */}
