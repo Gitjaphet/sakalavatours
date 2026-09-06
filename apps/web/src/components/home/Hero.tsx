@@ -115,7 +115,7 @@ export default function Hero({ destinations }: Props) {
         className={`${CONTAINER} grid flex-1 grid-cols-1 items-center gap-y-9 pb-8 pt-28 sm:gap-y-12 sm:pt-32 lg:grid-cols-12 lg:gap-x-16 lg:pb-6 lg:pt-36`}
       >
         <div className="min-w-0 lg:col-span-5">
-          <h1 className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#F4A261] sm:text-xs">
+          <h1 className="max-w-[22ch] text-[10px] font-medium uppercase tracking-[0.28em] text-[#F4A261] sm:max-w-none sm:text-xs lg:max-w-[26ch]">
             {t("pageTitle")}
           </h1>
 
