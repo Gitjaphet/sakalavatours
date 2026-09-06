@@ -56,7 +56,8 @@
       "eveningPlain": "Soirée",
       "days": "{days} jours, {nights} nuits",
       "daysOnly": "{days} jours"
-    }
+    },
+    "pageTitle": "Excursions et circuits à Nosy Be, Madagascar"
   },
   "HomePage": {
     "tagline": "Visitez les trésors de Madagascar autrement",

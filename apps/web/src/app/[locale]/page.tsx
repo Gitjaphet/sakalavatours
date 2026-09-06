@@ -66,12 +66,21 @@ export default async function HomePage({ params }: Props) {
   // Indispensable pour que la page reste statique (SSG) avec next-intl
   setRequestLocale(locale);
 
-  // Le hero porte jusqu'à 4 destinations : priorité aux coups de cœur
-  // (is_featured), complété par les produits suivants si moins de 4 sont
-  // marqués featured. C'est exactement le tri par défaut du backend
-  // (is_featured desc, sort_order, price_from desc) — aucun filtre à
-  // ajouter ici.
-  const { items: heroDestinations } = await getProducts(locale, { limit: 4 });
+  // Le hero porte 6 destinations : 3 excursions et 3 circuits, pour que les
+  // deux offres soient représentées quel que soit le tri. Le backend trie
+  // déjà par is_featured desc, sort_order, price_from desc — les coups de
+  // cœur remontent donc naturellement en tête de chaque type.
+  // On alterne excursion/circuit à l'affichage : le carrousel ne montre que
+  // 3 cartes à la fois, un bloc de 3 excursions suivi de 3 circuits ferait
+  // croire que l'agence ne propose qu'un seul type.
+  const [{ items: excursions }, { items: circuits }] = await Promise.all([
+    getProducts(locale, { type: "excursion", limit: 3 }),
+    getProducts(locale, { type: "circuit", limit: 3 }),
+  ]);
+
+  const heroDestinations = Array.from({ length: 6 }, (_, i) =>
+    i % 2 === 0 ? excursions[Math.floor(i / 2)] : circuits[Math.floor(i / 2)],
+  ).filter(Boolean);
 
   return (
     <>
