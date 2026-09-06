@@ -214,6 +214,7 @@ export default function Hero({ destinations }: Props) {
                         isActive={i === 0}
                         priority={index === 0 && i === 0}
                         onSelect={() => selectDestination(d.id)}
+                        href={productHref(d)}
                       />
                     </motion.div>
                   );

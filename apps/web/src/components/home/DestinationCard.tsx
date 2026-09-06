@@ -5,12 +5,14 @@ import Image from "next/image";
 import { useState } from "react";
 import { useTranslations, useFormatter } from "next-intl";
 import { IconUsers } from "@tabler/icons-react";
+import { Link } from "@/i18n/navigation";
 import type { ProductListItem } from "@/lib/api/products";
 
 type Props = {
   destination: ProductListItem;
   isActive: boolean;
   onSelect: () => void;
+  href: string;
   priority?: boolean;
 };
 
@@ -69,7 +71,7 @@ function Stars({ rating, label }: { rating: number; label: string }) {
   );
 }
 
-export default function DestinationCard({ destination, isActive, onSelect, priority = false }: Props) {
+export default function DestinationCard({ destination, isActive, onSelect, href, priority = false }: Props) {
   const [saved, setSaved] = useState(false);
   const t = useTranslations("hero");
   const format = useFormatter();
@@ -104,7 +106,7 @@ export default function DestinationCard({ destination, isActive, onSelect, prior
           : "shadow-[0_25px_50px_-25px_rgba(0,0,0,0.7)] ring-white/15",
       ].join(" ")}
       style={{ transitionTimingFunction: "var(--ease-ios)" }}
-      onClick={onSelect}
+      onClick={isActive ? undefined : onSelect}
     >
       {destination.cover ? (
         <Image
@@ -153,14 +155,19 @@ export default function DestinationCard({ destination, isActive, onSelect, prior
         )}
 
         <h2 className="mt-1.5 font-[family-name:var(--font-courgette)] text-[26px] font-normal leading-snug text-white sm:text-[20px] lg:text-2xl">
-          <button
-            type="button"
-            onClick={onSelect}
+          <Link
+            href={href}
+            onClick={(e) => {
+              if (!isActive) {
+                e.preventDefault();
+                onSelect();
+              }
+            }}
             className="pointer-events-auto text-left outline-none focus-visible:underline focus-visible:decoration-[#F4A261] focus-visible:decoration-2 focus-visible:underline-offset-4"
           >
             {destination.title}
             <span className="sr-only"> — {t("view", { name: destination.title })}</span>
-          </button>
+          </Link>
         </h2>
 
         <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5">
