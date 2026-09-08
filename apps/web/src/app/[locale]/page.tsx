@@ -7,6 +7,12 @@ import { businessInfo } from "@/lib/nav-config";
 
 import { routing } from "@/i18n/routing";
 import { getProducts } from "@/lib/api/products";
+import { HomeIntro } from "@/components/home/HomeIntro";
+import { HomeOffers } from "@/components/home/HomeOffers";
+import { HomeWhyUs } from "@/components/home/HomeWhyUs";
+import { HomeSeason } from "@/components/home/HomeSeason";
+import { HomeFaq, FAQ_KEYS } from "@/components/home/HomeFaq";
+import { buildFaqSchema } from "@/lib/schema/faqPage";
 import Hero from "@/components/home/Hero";
 
 type Props = {
@@ -82,9 +88,29 @@ export default async function HomePage({ params }: Props) {
     i % 2 === 0 ? excursions[Math.floor(i / 2)] : circuits[Math.floor(i / 2)],
   ).filter(Boolean);
 
+  // Le JSON-LD FAQPage reprend exactement les questions rendues par HomeFaq :
+  // Google exige que chaque Q/R balisee soit visible sur la page.
+  const tFaq = await getTranslations({ locale, namespace: "home.faq" });
+  const faqSchema = buildFaqSchema(
+    FAQ_KEYS.map((cle) => ({
+      question: tFaq(`${cle}.question`),
+      answer: tFaq(`${cle}.answer`),
+    })),
+  );
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Hero destinations={heroDestinations} />
+
+      <HomeIntro locale={locale} />
+      <HomeOffers locale={locale} />
+      <HomeWhyUs locale={locale} />
+      <HomeSeason locale={locale} />
+      <HomeFaq locale={locale} />
 
       {/*
         Sections suivantes, dans cet ordre (chacune = 1 composant dans

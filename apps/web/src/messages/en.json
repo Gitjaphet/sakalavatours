@@ -5,6 +5,98 @@
       "description": "Excursions and tours in Nosy Be: Nosy Iranja, Nosy Tanikely, Lokobe Reserve, Mont Passot. Local guides, small groups, online booking.",
       "ogAlt": "Sandbank of Nosy Iranja, Nosy Be archipelago, Madagascar",
       "keywords": "Nosy Be excursion, Nosy Be tour, Nosy Iranja, Nosy Tanikely, Lokobe, Mont Passot, Madagascar tour operator"
+    },
+    "_aValider": [
+      "why.small : fourchette 2-12 personnes verifiee, mais 'jamais plus de 12' est un engagement",
+      "why.price : 'aucun frais cache' est un engagement commercial",
+      "why.languages : le site est traduit en 4 langues, l'equipe les parle-t-elle vraiment ?",
+      "season : mois et conditions meteo inventes, a confirmer avec l'agence",
+      "faq.q1 : delai de reservation invente",
+      "faq.q3 : moyens de paiement inventes",
+      "faq.q4 : politique d'annulation inventee",
+      "intro.p3 : 'guides de la region' etendu a toute l'agence"
+    ],
+    "intro": {
+      "title": "A local agency in Nosy Be, northern Madagascar",
+      "p1": "Since 2019, Sakalava Tours has been running day excursions and multi-day tours departing from Nosy Be. The agency is based on the island, and our trips cover the archipelago as well as the rest of the north: Diego Suarez, the SAVA region, the red tsingy, Amber Mountain.",
+      "p2": "Our range runs from a half-day boat trip to a sandbank all the way to an eleven-day tour across northern Madagascar. Groups are between two and twelve people depending on the trip, and hotel transfer is included.",
+      "p3": "Nosy Iranja, Lokobe, Nosy Mitsio, the Emerald Sea: our guides travel these places all year round. If nothing matches exactly what you have in mind, we build the itinerary with you.",
+      "ctaExcursions": "See the excursions",
+      "ctaCircuits": "See the tours"
+    },
+    "offers": {
+      "seeAll": "See all",
+      "excursions": {
+        "meta": "Day trips",
+        "title": "Our excursions from Nosy Be",
+        "text": "Half-day to full-day trips: islets and sandbanks, the primary forest of Lokobe, the fishing village on Nosy Iranja, snorkelling on the reef. You are back at your hotel the same evening. This is the format that fits if you are already staying in Nosy Be."
+      },
+      "circuits": {
+        "meta": "Several days",
+        "title": "Our tours in northern Madagascar",
+        "text": "From two to eleven days, with accommodation and full board. The north cannot be seen in a day: the SAVA vanilla plantations, Diego Suarez bay, the red tsingy and the archipelago all take time. Every itinerary is guided by our local team."
+      }
+    },
+    "why": {
+      "title": "Why book with an agency based on the island",
+      "local": {
+        "title": "Guides from the region",
+        "text": "Our guides live in Nosy Be and the north. They know the tides, the seasons and the villages, not just the routes."
+      },
+      "small": {
+        "title": "Small groups",
+        "text": "Two to twelve people depending on the trip. Enough to share the experience, never enough to feel like mass tourism."
+      },
+      "price": {
+        "title": "Clearly stated prices",
+        "text": "The price per person is shown on every page, hotel transfer included. What you read is what you pay."
+      },
+      "languages": {
+        "title": "Four languages",
+        "text": "We correspond in French, English, German and Italian, before and during your stay."
+      }
+    },
+    "season": {
+      "title": "When to visit Nosy Be?",
+      "intro": "Nosy Be can be visited all year round, but each period has its own character. Here is how we see the seasons, to help you choose your dates.",
+      "dry": {
+        "months": "April to November",
+        "title": "The dry season",
+        "text": "Clear skies, calm sea, bearable heat. This is the safest period for boat trips to Iranja or Mitsio."
+      },
+      "green": {
+        "months": "December to March",
+        "title": "The rainy season",
+        "text": "Short, heavy showers, spectacular vegetation, fewer visitors. Sea trips depend more on the weather on the day."
+      },
+      "whales": {
+        "months": "July to September",
+        "title": "Humpback whale season",
+        "text": "Humpback whales move up the Mozambique Channel. They sometimes escort the boats on crossings to the archipelago."
+      }
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "q1": {
+        "question": "How far in advance should I book?",
+        "answer": "For a day excursion, a few days is usually enough. For a multi-day tour, allow two to three weeks, especially in high season when accommodation fills up quickly."
+      },
+      "q2": {
+        "question": "Is hotel transfer included?",
+        "answer": "Yes, on the vast majority of our excursions departing from Nosy Be. It is stated on each page, in the list of included services."
+      },
+      "q3": {
+        "question": "How does payment work?",
+        "answer": "We confirm availability first, then send you the payment details. The balance can be settled on site, in euros or ariary."
+      },
+      "q4": {
+        "question": "What happens if the weather cancels the trip?",
+        "answer": "Safety comes first: if the sea is too rough, we move the trip to another date during your stay, or offer an alternative on land."
+      },
+      "q5": {
+        "question": "Can an existing tour be adapted?",
+        "answer": "Yes. Our tours are proposals, not fixed programmes. Tell us what you are looking for and we will build the itinerary with you."
+      }
     }
   },
   "nav": {

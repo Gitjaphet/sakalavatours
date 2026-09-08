@@ -5,6 +5,98 @@
       "description": "Excursions et circuits à Nosy Be : Nosy Iranja, Nosy Tanikely, réserve de Lokobe, Mont Passot. Guides locaux, petits groupes, réservation en ligne.",
       "ogAlt": "Banc de sable de Nosy Iranja, archipel de Nosy Be, Madagascar",
       "keywords": "excursion Nosy Be, circuit Nosy Be, Nosy Iranja, Nosy Tanikely, Lokobe, Mont Passot, tour opérateur Madagascar"
+    },
+    "_aValider": [
+      "why.small : fourchette 2-12 personnes verifiee, mais 'jamais plus de 12' est un engagement",
+      "why.price : 'aucun frais cache' est un engagement commercial",
+      "why.languages : le site est traduit en 4 langues, l'equipe les parle-t-elle vraiment ?",
+      "season : mois et conditions meteo inventes, a confirmer avec l'agence",
+      "faq.q1 : delai de reservation invente",
+      "faq.q3 : moyens de paiement inventes",
+      "faq.q4 : politique d'annulation inventee",
+      "intro.p3 : 'guides de la region' etendu a toute l'agence"
+    ],
+    "intro": {
+      "title": "Une agence locale à Nosy Be, dans le nord de Madagascar",
+      "p1": "Sakalava Tours organise depuis 2019 des excursions à la journée et des circuits de plusieurs jours au départ de Nosy Be. L'agence est installée sur l'île, et nos sorties couvrent l'archipel comme le reste du nord : Diego Suarez, la région SAVA, les tsingy rouges, la Montagne d'Ambre.",
+      "p2": "Notre catalogue va de la demi-journée en bateau vers un banc de sable au circuit de onze jours à travers tout le nord de Madagascar. Les groupes comptent de deux à douze personnes selon les sorties, et le transfert depuis votre hôtel est compris.",
+      "p3": "Nosy Iranja, Lokobe, Nosy Mitsio, la Mer d'Émeraude : ce sont des lieux que nos guides parcourent toute l'année. Si rien ne correspond exactement à ce que vous cherchez, nous construisons l'itinéraire avec vous.",
+      "ctaExcursions": "Voir les excursions",
+      "ctaCircuits": "Voir les circuits"
+    },
+    "offers": {
+      "seeAll": "Tout voir",
+      "excursions": {
+        "meta": "À la journée",
+        "title": "Nos excursions au départ de Nosy Be",
+        "text": "Des sorties d'une demi-journée à une journée complète : îlots et bancs de sable, forêt primaire de Lokobe, village de pêcheurs de Nosy Iranja, snorkeling sur le récif. Vous rentrez dormir à votre hôtel le soir même. C'est la formule qui convient si vous séjournez déjà à Nosy Be."
+      },
+      "circuits": {
+        "meta": "Plusieurs jours",
+        "title": "Nos circuits dans le nord de Madagascar",
+        "text": "De deux à onze jours, avec hébergement et pension complète. Le nord ne se visite pas à la journée : la SAVA et ses plantations de vanille, la baie de Diego Suarez, les tsingy rouges et l'archipel demandent du temps. Chaque itinéraire est guidé par notre équipe locale."
+      }
+    },
+    "why": {
+      "title": "Pourquoi passer par une agence installée sur place",
+      "local": {
+        "title": "Guides de la région",
+        "text": "Nos guides vivent à Nosy Be et dans le nord. Ils connaissent les marées, les saisons et les villages, pas seulement les itinéraires."
+      },
+      "small": {
+        "title": "Petits groupes",
+        "text": "De deux à douze personnes selon les sorties. Assez pour partager, jamais assez pour faire du tourisme de masse."
+      },
+      "price": {
+        "title": "Prix annoncés clairement",
+        "text": "Le prix par personne est affiché sur chaque fiche, transfert hôtel compris. Ce que vous lisez est ce que vous payez."
+      },
+      "languages": {
+        "title": "Quatre langues",
+        "text": "Nous échangeons en français, anglais, allemand et italien, avant comme pendant votre séjour."
+      }
+    },
+    "season": {
+      "title": "Quand venir à Nosy Be ?",
+      "intro": "Nosy Be se visite toute l'année, mais chaque période a son caractère. Voici comment nous voyons la saison, pour vous aider à choisir vos dates.",
+      "dry": {
+        "months": "Avril à novembre",
+        "title": "La saison sèche",
+        "text": "Ciel dégagé, mer calme, chaleur supportable. C'est la période la plus sûre pour les sorties en bateau vers Iranja ou Mitsio."
+      },
+      "green": {
+        "months": "Décembre à mars",
+        "title": "La saison des pluies",
+        "text": "Averses courtes et intenses, végétation spectaculaire, moins de visiteurs. Les sorties en mer dépendent davantage de la météo du jour."
+      },
+      "whales": {
+        "months": "Juillet à septembre",
+        "title": "Le passage des baleines",
+        "text": "Les baleines à bosse remontent le canal du Mozambique. Il arrive qu'elles escortent les bateaux lors des traversées vers l'archipel."
+      }
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "q1": {
+        "question": "Combien de temps à l'avance faut-il réserver ?",
+        "answer": "Pour une excursion à la journée, quelques jours suffisent en général. Pour un circuit de plusieurs jours, comptez plutôt deux à trois semaines, surtout en haute saison où les hébergements se remplissent vite."
+      },
+      "q2": {
+        "question": "Le transfert depuis mon hôtel est-il inclus ?",
+        "answer": "Oui, sur la grande majorité de nos excursions au départ de Nosy Be. C'est indiqué sur chaque fiche, dans la liste des prestations incluses."
+      },
+      "q3": {
+        "question": "Comment se passe le paiement ?",
+        "answer": "Nous confirmons d'abord la disponibilité, puis nous vous envoyons le détail du règlement. Le solde peut être réglé sur place, en euros ou en ariary."
+      },
+      "q4": {
+        "question": "Que se passe-t-il si la météo empêche la sortie ?",
+        "answer": "La sécurité passe avant tout : si la mer est trop forte, nous reportons la sortie à une autre date de votre séjour, ou nous vous proposons une alternative à terre."
+      },
+      "q5": {
+        "question": "Peut-on adapter un circuit existant ?",
+        "answer": "Oui. Nos circuits sont des propositions, pas des programmes figés. Écrivez-nous ce que vous cherchez et nous construisons l'itinéraire avec vous."
+      }
     }
   },
   "nav": {

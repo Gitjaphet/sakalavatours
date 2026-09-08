@@ -5,6 +5,98 @@
       "description": "Escursioni e tour a Nosy Be: Nosy Iranja, Nosy Tanikely, riserva di Lokobe, Mont Passot. Guide locali, piccoli gruppi, prenotazione online.",
       "ogAlt": "Banco di sabbia di Nosy Iranja, arcipelago di Nosy Be, Madagascar",
       "keywords": "escursione Nosy Be, tour Nosy Be, Nosy Iranja, Nosy Tanikely, Lokobe, Mont Passot, tour operator Madagascar"
+    },
+    "_aValider": [
+      "why.small : fourchette 2-12 personnes verifiee, mais 'jamais plus de 12' est un engagement",
+      "why.price : 'aucun frais cache' est un engagement commercial",
+      "why.languages : le site est traduit en 4 langues, l'equipe les parle-t-elle vraiment ?",
+      "season : mois et conditions meteo inventes, a confirmer avec l'agence",
+      "faq.q1 : delai de reservation invente",
+      "faq.q3 : moyens de paiement inventes",
+      "faq.q4 : politique d'annulation inventee",
+      "intro.p3 : 'guides de la region' etendu a toute l'agence"
+    ],
+    "intro": {
+      "title": "Un'agenzia locale a Nosy Be, nel nord del Madagascar",
+      "p1": "Dal 2019 Sakalava Tours organizza escursioni in giornata e circuiti di più giorni con partenza da Nosy Be. L'agenzia ha sede sull'isola e le nostre uscite coprono l'arcipelago così come il resto del nord: Diego Suarez, la regione SAVA, gli tsingy rossi, la Montagna d'Ambra.",
+      "p2": "La nostra offerta va dalla mezza giornata in barca verso un banco di sabbia al circuito di undici giorni attraverso tutto il nord del Madagascar. I gruppi contano da due a dodici persone a seconda delle uscite e il transfer dall'hotel è incluso.",
+      "p3": "Nosy Iranja, Lokobe, Nosy Mitsio, il Mare di Smeraldo: sono luoghi che le nostre guide percorrono tutto l'anno. Se nulla corrisponde esattamente a ciò che cercate, costruiamo l'itinerario insieme a voi.",
+      "ctaExcursions": "Vedi le escursioni",
+      "ctaCircuits": "Vedi i circuiti"
+    },
+    "offers": {
+      "seeAll": "Vedi tutto",
+      "excursions": {
+        "meta": "In giornata",
+        "title": "Le nostre escursioni da Nosy Be",
+        "text": "Uscite da mezza giornata a una giornata intera: isolotti e banchi di sabbia, la foresta primaria di Lokobe, il villaggio di pescatori di Nosy Iranja, snorkeling sulla barriera. La sera rientrate in hotel. È la formula giusta se soggiornate già a Nosy Be."
+      },
+      "circuits": {
+        "meta": "Più giorni",
+        "title": "I nostri circuiti nel nord del Madagascar",
+        "text": "Da due a undici giorni, con alloggio e pensione completa. Il nord non si visita in giornata: le piantagioni di vaniglia della SAVA, la baia di Diego Suarez, gli tsingy rossi e l'arcipelago richiedono tempo. Ogni itinerario è guidato dal nostro team locale."
+      }
+    },
+    "why": {
+      "title": "Perché scegliere un'agenzia presente sul posto",
+      "local": {
+        "title": "Guide della regione",
+        "text": "Le nostre guide vivono a Nosy Be e nel nord. Conoscono le maree, le stagioni e i villaggi, non solo gli itinerari."
+      },
+      "small": {
+        "title": "Piccoli gruppi",
+        "text": "Da due a dodici persone a seconda delle uscite. Abbastanza per condividere, mai abbastanza per fare turismo di massa."
+      },
+      "price": {
+        "title": "Prezzi indicati chiaramente",
+        "text": "Il prezzo a persona è indicato su ogni scheda, transfer hotel incluso. Quello che leggete è quello che pagate."
+      },
+      "languages": {
+        "title": "Quattro lingue",
+        "text": "Comunichiamo in francese, inglese, tedesco e italiano, prima e durante il vostro soggiorno."
+      }
+    },
+    "season": {
+      "title": "Quando venire a Nosy Be?",
+      "intro": "Nosy Be si visita tutto l'anno, ma ogni periodo ha il suo carattere. Ecco come vediamo le stagioni, per aiutarvi a scegliere le date.",
+      "dry": {
+        "months": "Da aprile a novembre",
+        "title": "La stagione secca",
+        "text": "Cielo limpido, mare calmo, caldo sopportabile. È il periodo più sicuro per le uscite in barca verso Iranja o Mitsio."
+      },
+      "green": {
+        "months": "Da dicembre a marzo",
+        "title": "La stagione delle piogge",
+        "text": "Acquazzoni brevi e intensi, vegetazione spettacolare, meno visitatori. Le uscite in mare dipendono di più dal meteo del giorno."
+      },
+      "whales": {
+        "months": "Da luglio a settembre",
+        "title": "Il passaggio delle balene",
+        "text": "Le megattere risalgono il canale del Mozambico. Capita che accompagnino le barche durante le traversate verso l'arcipelago."
+      }
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "q1": {
+        "question": "Con quanto anticipo bisogna prenotare?",
+        "answer": "Per un'escursione in giornata bastano di solito alcuni giorni. Per un circuito di più giorni calcolate piuttosto due o tre settimane, soprattutto in alta stagione quando gli alloggi si riempiono in fretta."
+      },
+      "q2": {
+        "question": "Il transfer dall'hotel è incluso?",
+        "answer": "Sì, nella grande maggioranza delle nostre escursioni con partenza da Nosy Be. È indicato su ogni scheda, nell'elenco delle prestazioni incluse."
+      },
+      "q3": {
+        "question": "Come funziona il pagamento?",
+        "answer": "Confermiamo prima la disponibilità, poi vi inviamo i dettagli del pagamento. Il saldo può essere regolato sul posto, in euro o in ariary."
+      },
+      "q4": {
+        "question": "Cosa succede se il meteo impedisce l'uscita?",
+        "answer": "La sicurezza viene prima di tutto: se il mare è troppo mosso, spostiamo l'uscita a un'altra data del vostro soggiorno oppure vi proponiamo un'alternativa a terra."
+      },
+      "q5": {
+        "question": "Si può adattare un circuito esistente?",
+        "answer": "Sì. I nostri circuiti sono proposte, non programmi rigidi. Scriveteci cosa cercate e costruiamo insieme l'itinerario."
+      }
     }
   },
   "nav": {

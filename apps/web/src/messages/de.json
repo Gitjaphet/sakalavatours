@@ -5,6 +5,98 @@
       "description": "Ausflüge und Touren auf Nosy Be: Nosy Iranja, Nosy Tanikely, Lokobe-Reservat, Mont Passot. Lokale Guides, kleine Gruppen, Online-Buchung.",
       "ogAlt": "Sandbank von Nosy Iranja, Archipel von Nosy Be, Madagaskar",
       "keywords": "Ausflug Nosy Be, Tour Nosy Be, Nosy Iranja, Nosy Tanikely, Lokobe, Mont Passot, Reiseveranstalter Madagaskar"
+    },
+    "_aValider": [
+      "why.small : fourchette 2-12 personnes verifiee, mais 'jamais plus de 12' est un engagement",
+      "why.price : 'aucun frais cache' est un engagement commercial",
+      "why.languages : le site est traduit en 4 langues, l'equipe les parle-t-elle vraiment ?",
+      "season : mois et conditions meteo inventes, a confirmer avec l'agence",
+      "faq.q1 : delai de reservation invente",
+      "faq.q3 : moyens de paiement inventes",
+      "faq.q4 : politique d'annulation inventee",
+      "intro.p3 : 'guides de la region' etendu a toute l'agence"
+    ],
+    "intro": {
+      "title": "Eine lokale Agentur in Nosy Be, im Norden Madagaskars",
+      "p1": "Seit 2019 organisiert Sakalava Tours Tagesausflüge und mehrtägige Touren ab Nosy Be. Die Agentur hat ihren Sitz auf der Insel, und unsere Touren führen sowohl durch den Archipel als auch in den übrigen Norden: Diego Suarez, die Region SAVA, die roten Tsingy, das Amber-Gebirge.",
+      "p2": "Unser Angebot reicht vom halbtägigen Bootsausflug zu einer Sandbank bis zur elftägigen Rundreise durch den gesamten Norden Madagaskars. Die Gruppen umfassen je nach Tour zwei bis zwölf Personen, der Hoteltransfer ist inbegriffen.",
+      "p3": "Nosy Iranja, Lokobe, Nosy Mitsio, das Smaragdmeer: Unsere Guides sind das ganze Jahr über an diesen Orten unterwegs. Wenn nichts genau Ihren Vorstellungen entspricht, gestalten wir die Route gemeinsam mit Ihnen.",
+      "ctaExcursions": "Ausflüge ansehen",
+      "ctaCircuits": "Touren ansehen"
+    },
+    "offers": {
+      "seeAll": "Alle ansehen",
+      "excursions": {
+        "meta": "Tagesausflüge",
+        "title": "Unsere Ausflüge ab Nosy Be",
+        "text": "Von einem halben bis zu einem ganzen Tag: Inselchen und Sandbänke, der Urwald von Lokobe, das Fischerdorf auf Nosy Iranja, Schnorcheln am Riff. Abends sind Sie zurück in Ihrem Hotel. Diese Formel passt, wenn Sie bereits auf Nosy Be wohnen."
+      },
+      "circuits": {
+        "meta": "Mehrere Tage",
+        "title": "Unsere Touren im Norden Madagaskars",
+        "text": "Von zwei bis elf Tagen, mit Unterkunft und Vollpension. Der Norden lässt sich nicht an einem Tag erkunden: die Vanilleplantagen der SAVA, die Bucht von Diego Suarez, die roten Tsingy und der Archipel brauchen Zeit. Jede Route wird von unserem lokalen Team geführt."
+      }
+    },
+    "why": {
+      "title": "Warum eine Agentur vor Ort wählen",
+      "local": {
+        "title": "Guides aus der Region",
+        "text": "Unsere Guides leben auf Nosy Be und im Norden. Sie kennen die Gezeiten, die Jahreszeiten und die Dörfer, nicht nur die Routen."
+      },
+      "small": {
+        "title": "Kleine Gruppen",
+        "text": "Je nach Tour zwei bis zwölf Personen. Genug, um zu teilen, nie genug für Massentourismus."
+      },
+      "price": {
+        "title": "Klar ausgewiesene Preise",
+        "text": "Der Preis pro Person steht auf jeder Seite, Hoteltransfer inbegriffen. Was Sie lesen, zahlen Sie."
+      },
+      "languages": {
+        "title": "Vier Sprachen",
+        "text": "Wir kommunizieren auf Französisch, Englisch, Deutsch und Italienisch, vor und während Ihres Aufenthalts."
+      }
+    },
+    "season": {
+      "title": "Wann nach Nosy Be reisen?",
+      "intro": "Nosy Be lässt sich das ganze Jahr über bereisen, doch jede Zeit hat ihren eigenen Charakter. So sehen wir die Jahreszeiten, damit Sie Ihre Termine leichter wählen können.",
+      "dry": {
+        "months": "April bis November",
+        "title": "Die Trockenzeit",
+        "text": "Klarer Himmel, ruhige See, erträgliche Wärme. Das ist die sicherste Zeit für Bootsausflüge nach Iranja oder Mitsio."
+      },
+      "green": {
+        "months": "Dezember bis März",
+        "title": "Die Regenzeit",
+        "text": "Kurze, kräftige Schauer, üppige Vegetation, weniger Besucher. Ausfahrten hängen stärker vom Wetter des Tages ab."
+      },
+      "whales": {
+        "months": "Juli bis September",
+        "title": "Die Zeit der Wale",
+        "text": "Buckelwale ziehen durch den Kanal von Mosambik. Manchmal begleiten sie die Boote auf der Überfahrt zum Archipel."
+      }
+    },
+    "faq": {
+      "title": "Häufige Fragen",
+      "q1": {
+        "question": "Wie lange im Voraus sollte man buchen?",
+        "answer": "Für einen Tagesausflug genügen in der Regel einige Tage. Für eine mehrtägige Tour planen Sie eher zwei bis drei Wochen ein, besonders in der Hochsaison, wenn die Unterkünfte schnell belegt sind."
+      },
+      "q2": {
+        "question": "Ist der Hoteltransfer inbegriffen?",
+        "answer": "Ja, bei den allermeisten unserer Ausflüge ab Nosy Be. Es steht auf jeder Seite in der Liste der enthaltenen Leistungen."
+      },
+      "q3": {
+        "question": "Wie läuft die Bezahlung ab?",
+        "answer": "Wir bestätigen zuerst die Verfügbarkeit und senden Ihnen dann die Zahlungsdetails. Der Restbetrag kann vor Ort in Euro oder Ariary beglichen werden."
+      },
+      "q4": {
+        "question": "Was passiert, wenn das Wetter die Tour verhindert?",
+        "answer": "Sicherheit geht vor: Ist der Seegang zu stark, verschieben wir die Tour auf einen anderen Tag Ihres Aufenthalts oder schlagen eine Alternative an Land vor."
+      },
+      "q5": {
+        "question": "Lässt sich eine bestehende Tour anpassen?",
+        "answer": "Ja. Unsere Touren sind Vorschläge, keine starren Programme. Schreiben Sie uns, was Sie suchen, und wir gestalten die Route gemeinsam."
+      }
     }
   },
   "nav": {
