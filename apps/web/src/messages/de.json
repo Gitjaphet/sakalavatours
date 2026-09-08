@@ -115,7 +115,8 @@
       "intro": "Sandbänke, Urwälder, rote Tsingy und Fischerdörfer. Jedes Foto führt zum passenden Ausflug oder zur passenden Tour.",
       "typeExcursion": "Ausflug",
       "typeCircuit": "Tour",
-      "hint": "Wischen Sie, um die anderen Reiseziele zu entdecken"
+      "prev": "Vorherige Reiseziele",
+      "next": "Nächste Reiseziele"
     }
   },
   "nav": {

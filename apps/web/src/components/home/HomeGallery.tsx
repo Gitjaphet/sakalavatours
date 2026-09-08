@@ -15,6 +15,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getProducts } from "@/lib/api/products";
 import { SectionDivider } from "@/components/ui/SectionDivider";
+import { HomeGalleryScroller } from "@/components/home/HomeGalleryScroller";
 import { Sparkle } from "@/components/ui/Doodles";
 
 function productHref(type: string, slug: string): string {
@@ -52,7 +53,7 @@ export async function HomeGallery({ locale }: { locale: string }) {
 
       {/* Le conteneur deborde volontairement de la grille : le bandeau part
           du bord gauche de l'ecran, ce qui signale qu'il continue au-dela. */}
-      <div className="mt-8 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <HomeGalleryScroller prevLabel={t("prev")} nextLabel={t("next")}>
         <ul className="flex w-max snap-x snap-mandatory gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8">
           {avecImage.map((p) => (
             <li key={p.id} className="snap-start">
@@ -85,11 +86,7 @@ export async function HomeGallery({ locale }: { locale: string }) {
             </li>
           ))}
         </ul>
-      </div>
-
-      <p className="mx-auto mt-2 max-w-6xl px-4 text-sm text-stone-400 sm:px-6 lg:px-8">
-        {t("hint")}
-      </p>
+      </HomeGalleryScroller>
       </div>
     </section>
   );

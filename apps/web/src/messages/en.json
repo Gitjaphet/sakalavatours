@@ -115,7 +115,8 @@
       "intro": "Sandbanks, primary forests, red tsingy and fishing villages. Each photo leads to the matching excursion or tour.",
       "typeExcursion": "Excursion",
       "typeCircuit": "Tour",
-      "hint": "Swipe to see the other destinations"
+      "prev": "Previous destinations",
+      "next": "Next destinations"
     }
   },
   "nav": {

@@ -115,7 +115,8 @@
       "intro": "Bancs de sable, forêts primaires, tsingy rouges et villages de pêcheurs. Chaque photo mène à l'excursion ou au circuit correspondant.",
       "typeExcursion": "Excursion",
       "typeCircuit": "Circuit",
-      "hint": "Faites glisser pour découvrir les autres destinations"
+      "prev": "Destinations précédentes",
+      "next": "Destinations suivantes"
     }
   },
   "nav": {

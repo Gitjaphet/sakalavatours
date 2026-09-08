@@ -115,7 +115,8 @@
       "intro": "Banchi di sabbia, foreste primarie, tsingy rossi e villaggi di pescatori. Ogni foto porta all'escursione o al circuito corrispondente.",
       "typeExcursion": "Escursione",
       "typeCircuit": "Circuito",
-      "hint": "Scorri per scoprire le altre destinazioni"
+      "prev": "Destinazioni precedenti",
+      "next": "Destinazioni successive"
     }
   },
   "nav": {
