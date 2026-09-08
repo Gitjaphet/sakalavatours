@@ -9,6 +9,7 @@ import { routing } from "@/i18n/routing";
 import { getProducts } from "@/lib/api/products";
 import { HomeIntro } from "@/components/home/HomeIntro";
 import { HomeOffers } from "@/components/home/HomeOffers";
+import { HomeHighlights } from "@/components/home/HomeHighlights";
 import { HomeWhyUs } from "@/components/home/HomeWhyUs";
 import { HomeSeason } from "@/components/home/HomeSeason";
 import { HomeFaq, FAQ_KEYS } from "@/components/home/HomeFaq";
@@ -108,6 +109,7 @@ export default async function HomePage({ params }: Props) {
 
       <HomeIntro locale={locale} />
       <HomeOffers locale={locale} />
+      <HomeHighlights locale={locale} />
       <HomeWhyUs locale={locale} />
       <HomeSeason locale={locale} />
       <HomeFaq locale={locale} />

@@ -97,6 +97,17 @@
         "question": "Si può adattare un circuito esistente?",
         "answer": "Sì. I nostri circuiti sono proposte, non programmi rigidi. Scriveteci cosa cercate e costruiamo insieme l'itinerario."
       }
+    },
+    "highlights": {
+      "eyebrow": "Le nostre attività di punta",
+      "title": "Due modi di scoprire il nord",
+      "days": "{days} giorni / {nights} notti",
+      "dayTrip": "In giornata",
+      "from": "da",
+      "perPerson": "/ pers.",
+      "discover": "Scopri",
+      "allExcursions": "Vedi tutte le escursioni",
+      "allCircuits": "Vedi tutti i circuiti"
     }
   },
   "nav": {

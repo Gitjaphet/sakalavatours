@@ -97,6 +97,17 @@
         "question": "Peut-on adapter un circuit existant ?",
         "answer": "Oui. Nos circuits sont des propositions, pas des programmes figés. Écrivez-nous ce que vous cherchez et nous construisons l'itinéraire avec vous."
       }
+    },
+    "highlights": {
+      "eyebrow": "Nos activités phares",
+      "title": "Deux façons de découvrir le nord",
+      "days": "{days} jours / {nights} nuits",
+      "dayTrip": "À la journée",
+      "from": "dès",
+      "perPerson": "/ pers.",
+      "discover": "Découvrir",
+      "allExcursions": "Voir toutes les excursions",
+      "allCircuits": "Voir tous les circuits"
     }
   },
   "nav": {

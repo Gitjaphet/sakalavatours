@@ -97,6 +97,17 @@
         "question": "Lässt sich eine bestehende Tour anpassen?",
         "answer": "Ja. Unsere Touren sind Vorschläge, keine starren Programme. Schreiben Sie uns, was Sie suchen, und wir gestalten die Route gemeinsam."
       }
+    },
+    "highlights": {
+      "eyebrow": "Unsere Highlights",
+      "title": "Zwei Wege, den Norden zu entdecken",
+      "days": "{days} Tage / {nights} Nächte",
+      "dayTrip": "Tagesausflug",
+      "from": "ab",
+      "perPerson": "/ Pers.",
+      "discover": "Entdecken",
+      "allExcursions": "Alle Ausflüge ansehen",
+      "allCircuits": "Alle Touren ansehen"
     }
   },
   "nav": {

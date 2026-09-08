@@ -97,6 +97,17 @@
         "question": "Can an existing tour be adapted?",
         "answer": "Yes. Our tours are proposals, not fixed programmes. Tell us what you are looking for and we will build the itinerary with you."
       }
+    },
+    "highlights": {
+      "eyebrow": "Our featured trips",
+      "title": "Two ways to discover the north",
+      "days": "{days} days / {nights} nights",
+      "dayTrip": "Day trip",
+      "from": "from",
+      "perPerson": "/ person",
+      "discover": "Discover",
+      "allExcursions": "See all excursions",
+      "allCircuits": "See all tours"
     }
   },
   "nav": {
