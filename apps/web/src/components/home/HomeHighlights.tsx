@@ -14,7 +14,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { IconArrowRight } from "@tabler/icons-react";
 import { getProduct } from "@/lib/api/products";
-import { SectionWave } from "@/components/ui/SectionWave";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 
 /** Un produit par type d'offre, pour que les deux formules soient montrees. */
 const SLUGS_PHARES = [
@@ -22,8 +22,7 @@ const SLUGS_PHARES = [
   "les-circuits-nord-de-madagascar-11jours-10-nuits",
 ] as const;
 
-/** Fond de la section precedente — la vague doit s'y raccorder exactement. */
-const FOND_PRECEDENT = "#FDFAF6";
+
 
 function productHref(type: string, slug: string): string {
   return `/${type === "circuit" ? "circuits" : "excursions"}/${slug}`;
@@ -41,7 +40,7 @@ export async function HomeHighlights({ locale }: { locale: string }) {
 
   return (
     <section className="bg-[#1d4e5f]">
-      <SectionWave color={FOND_PRECEDENT} className="h-12 sm:h-16 lg:h-20" />
+      <SectionDivider forme="wave" color="#1d4e5f" className="h-12 sm:h-16 lg:h-20" />
 
       <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
         <div className="max-w-2xl">

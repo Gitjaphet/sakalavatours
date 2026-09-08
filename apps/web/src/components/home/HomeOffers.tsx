@@ -8,6 +8,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { IconArrowRight } from "@tabler/icons-react";
+import { RouteDivider } from "@/components/ui/SectionDivider";
 
 export async function HomeOffers({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "home.offers" });
@@ -30,7 +31,9 @@ export async function HomeOffers({ locale }: { locale: string }) {
   ];
 
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section className="bg-[#FDFAF6] pb-16 pt-8 sm:pb-20">
+      <RouteDivider className="h-12 sm:h-16" />
+      <div className="pt-6">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-6 sm:grid-cols-2 sm:gap-8">
           {blocs.map((bloc) => (
@@ -57,6 +60,7 @@ export async function HomeOffers({ locale }: { locale: string }) {
             </article>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

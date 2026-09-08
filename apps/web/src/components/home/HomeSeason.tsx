@@ -10,6 +10,7 @@
 
 import { getTranslations } from "next-intl/server";
 import { Squiggle } from "@/components/ui/Doodles";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 
 const PERIODES = ["dry", "green", "whales"] as const;
 
@@ -17,7 +18,9 @@ export async function HomeSeason({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "home.season" });
 
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section className="bg-[#F3E9DD] pb-16 sm:pb-20">
+      <SectionDivider forme="organic" color="#F3E9DD" className="h-10 sm:h-14" />
+      <div className="pt-10 sm:pt-12">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <h2 className="font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
@@ -47,6 +50,7 @@ export async function HomeSeason({ locale }: { locale: string }) {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

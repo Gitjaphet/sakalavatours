@@ -14,6 +14,8 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getProducts } from "@/lib/api/products";
+import { SectionDivider } from "@/components/ui/SectionDivider";
+import { Sparkle } from "@/components/ui/Doodles";
 
 function productHref(type: string, slug: string): string {
   return `/${type === "circuit" ? "circuits" : "excursions"}/${slug}`;
@@ -30,7 +32,10 @@ export async function HomeGallery({ locale }: { locale: string }) {
   if (avecImage.length < 4) return null;
 
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section className="relative bg-[#F3E9DD] pb-16 sm:pb-20">
+      <SectionDivider forme="diagonal" color="#F3E9DD" className="h-10 sm:h-14" />
+      <Sparkle className="pointer-events-none absolute right-8 top-20 hidden h-8 w-8 opacity-60 lg:block" color="#E76F51" />
+      <div className="pt-10 sm:pt-12">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#E76F51]">
@@ -85,6 +90,7 @@ export async function HomeGallery({ locale }: { locale: string }) {
       <p className="mx-auto mt-2 max-w-6xl px-4 text-sm text-stone-400 sm:px-6 lg:px-8">
         {t("hint")}
       </p>
+      </div>
     </section>
   );
 }
