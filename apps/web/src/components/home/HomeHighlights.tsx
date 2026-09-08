@@ -40,7 +40,7 @@ export async function HomeHighlights({ locale }: { locale: string }) {
 
   return (
     <section className="bg-[#1d4e5f]">
-      <SectionDivider forme="wave" color="#1d4e5f" className="h-12 sm:h-16 lg:h-20" />
+      <SectionDivider forme="wave" color="#FDFAF6" className="h-12 sm:h-16 lg:h-20" />
 
       <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
         <div className="max-w-2xl">
