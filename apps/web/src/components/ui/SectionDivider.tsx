@@ -21,7 +21,7 @@ type Forme = "wave" | "diagonal" | "arch" | "organic";
 const CHEMINS: Record<Forme, { d: string; viewBox: string }> = {
   wave: {
     viewBox: "0 0 1440 90",
-    d: "M0,44 C240,88 420,10 720,34 C1020,58 1200,86 1440,52 L1440,90 L0,90 Z",
+    d: "M0,0 C360,0 480,62 720,66 C980,70 1180,26 1440,8 L1440,0 Z",
   },
   diagonal: {
     viewBox: "0 0 1440 60",
