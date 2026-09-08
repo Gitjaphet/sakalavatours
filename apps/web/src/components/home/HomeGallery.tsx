@@ -54,7 +54,7 @@ export async function HomeGallery({ locale }: { locale: string }) {
       {/* Le conteneur deborde volontairement de la grille : le bandeau part
           du bord gauche de l'ecran, ce qui signale qu'il continue au-dela. */}
       <div className="mx-auto mt-8 max-w-6xl px-4 sm:px-6 lg:px-8">
-        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+        <ul className="grid grid-cols-2 gap-2.5 sm:gap-4 lg:grid-cols-3">
           {avecImage.map((p) => (
             <li key={p.id}>
               <Link
@@ -65,7 +65,7 @@ export async function HomeGallery({ locale }: { locale: string }) {
                   src={p.cover!.url}
                   alt={p.cover!.alt_text || p.title}
                   fill
-                  sizes="(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 31vw"
+                  sizes="(max-width: 1023px) 46vw, 31vw"
                   className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
                 />
                 <span
