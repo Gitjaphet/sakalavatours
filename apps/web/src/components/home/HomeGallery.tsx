@@ -15,7 +15,6 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getProducts } from "@/lib/api/products";
 import { SectionDivider } from "@/components/ui/SectionDivider";
-import { HomeGalleryScroller } from "@/components/home/HomeGalleryScroller";
 import { Sparkle } from "@/components/ui/Doodles";
 
 function productHref(type: string, slug: string): string {
@@ -27,10 +26,11 @@ export async function HomeGallery({ locale }: { locale: string }) {
   const { items } = await getProducts(locale, { limit: 20 });
 
   // Sans couverture, une carte serait un rectangle vide : on ecarte.
-  const avecImage = items.filter((p) => p.cover);
+  // Grille 3x3 : exactement 9 visuels, ni plus ni moins.
+  const avecImage = items.filter((p) => p.cover).slice(0, 9);
 
   // En dessous de 4 visuels, le bandeau ne defile pas et fait pauvre.
-  if (avecImage.length < 4) return null;
+  if (avecImage.length < 6) return null;
 
   return (
     <section className="relative bg-[#F3E9DD] pb-16 sm:pb-20">
@@ -53,19 +53,19 @@ export async function HomeGallery({ locale }: { locale: string }) {
 
       {/* Le conteneur deborde volontairement de la grille : le bandeau part
           du bord gauche de l'ecran, ce qui signale qu'il continue au-dela. */}
-      <HomeGalleryScroller prevLabel={t("prev")} nextLabel={t("next")}>
-        <ul className="flex w-max snap-x snap-mandatory gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-8 max-w-6xl px-4 sm:px-6 lg:px-8">
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {avecImage.map((p) => (
-            <li key={p.id} className="snap-start">
+            <li key={p.id}>
               <Link
                 href={productHref(p.product_type, p.slug)}
-                className="group relative block h-[260px] w-[190px] overflow-hidden rounded-xl bg-[#0d2b32] sm:h-[340px] sm:w-[250px]"
+                className="group relative block aspect-[4/5] w-full overflow-hidden bg-[#0d2b32]"
               >
                 <Image
                   src={p.cover!.url}
                   alt={p.cover!.alt_text || p.title}
                   fill
-                  sizes="(max-width: 639px) 190px, 250px"
+                  sizes="(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 31vw"
                   className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
                 />
                 <span
@@ -86,7 +86,7 @@ export async function HomeGallery({ locale }: { locale: string }) {
             </li>
           ))}
         </ul>
-      </HomeGalleryScroller>
+      </div>
       </div>
     </section>
   );
