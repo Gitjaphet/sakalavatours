@@ -19,14 +19,14 @@ export async function HomeFaq({ locale }: { locale: string }) {
   return (
     <section className="bg-[#FDFAF6] py-16 sm:py-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h2 className="font-[family-name:var(--font-courgette)] text-[1.75rem] leading-tight text-stone-900 sm:text-3xl">
+        <h2 className="font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
           {t("title")}
         </h2>
 
         <div className="mt-7 divide-y divide-stone-200 border-y border-stone-200">
           {FAQ_KEYS.map((cle) => (
             <details key={cle} className="group py-4">
-              <summary className="flex cursor-pointer items-center justify-between gap-4 text-[15px] font-medium text-stone-900 marker:content-none [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-stone-900 marker:content-none [&::-webkit-details-marker]:hidden">
                 {t(`${cle}.question`)}
                 <span
                   aria-hidden="true"
@@ -35,7 +35,7 @@ export async function HomeFaq({ locale }: { locale: string }) {
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-[15px] leading-[1.75] text-stone-600">
+              <p className="mt-3 text-base leading-relaxed text-stone-600">
                 {t(`${cle}.answer`)}
               </p>
             </details>

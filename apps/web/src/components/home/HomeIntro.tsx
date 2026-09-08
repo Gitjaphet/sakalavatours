@@ -15,12 +15,12 @@ export async function HomeIntro({ locale }: { locale: string }) {
     <section className="bg-[#FDFAF6] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
-          <h2 className="font-[family-name:var(--font-courgette)] text-[1.75rem] leading-tight text-stone-900 sm:text-4xl">
+          <h2 className="font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
             {t("title")}
           </h2>
           <Squiggle className="mt-2 h-2 w-24 opacity-50" color="#F4A261" />
 
-          <div className="mt-6 space-y-4 text-[15px] leading-[1.8] text-stone-700 sm:text-base">
+          <div className="mt-6 space-y-4 text-base leading-relaxed text-stone-600">
             <p>{t("p1")}</p>
             <p>{t("p2")}</p>
             <p>{t("p3")}</p>

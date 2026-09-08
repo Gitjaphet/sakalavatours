@@ -38,13 +38,13 @@ export async function HomeOffers({ locale }: { locale: string }) {
               key={bloc.key}
               className="flex flex-col rounded-2xl border border-stone-200 bg-[#FDFAF6] p-6 sm:p-8"
             >
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#E76F51]">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#E76F51]">
                 {bloc.meta}
               </p>
-              <h2 className="mt-2 font-[family-name:var(--font-courgette)] text-2xl text-stone-900">
+              <h2 className="mt-2 font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
                 {bloc.title}
               </h2>
-              <p className="mt-3 flex-1 text-[15px] leading-[1.75] text-stone-700">
+              <p className="mt-3 flex-1 text-base leading-relaxed text-stone-600">
                 {bloc.text}
               </p>
               <Link

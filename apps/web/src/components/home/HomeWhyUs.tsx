@@ -24,7 +24,7 @@ export async function HomeWhyUs({ locale }: { locale: string }) {
   return (
     <section className="bg-[#FDFAF6] py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h2 className="max-w-2xl font-[family-name:var(--font-courgette)] text-[1.75rem] leading-tight text-stone-900 sm:text-3xl">
+        <h2 className="max-w-2xl font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
           {t("title")}
         </h2>
 
@@ -36,7 +36,7 @@ export async function HomeWhyUs({ locale }: { locale: string }) {
                 <span className="grid h-11 w-11 place-items-center rounded-full bg-[#1d4e5f]/10 text-[#1d4e5f]">
                   <Icon size={20} stroke={1.7} />
                 </span>
-                <h3 className="mt-3.5 text-[15px] font-semibold text-stone-900">
+                <h3 className="mt-3.5 text-lg font-semibold text-stone-900">
                   {t(`${cle}.title`)}
                 </h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-stone-600">

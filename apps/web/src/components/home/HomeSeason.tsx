@@ -20,11 +20,11 @@ export async function HomeSeason({ locale }: { locale: string }) {
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
-          <h2 className="font-[family-name:var(--font-courgette)] text-[1.75rem] leading-tight text-stone-900 sm:text-3xl">
+          <h2 className="font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
             {t("title")}
           </h2>
           <Squiggle className="mt-2 h-2 w-20 opacity-50" color="#F4A261" />
-          <p className="mt-5 text-[15px] leading-[1.8] text-stone-700">
+          <p className="mt-5 text-base leading-relaxed text-stone-600">
             {t("intro")}
           </p>
         </div>
@@ -35,10 +35,10 @@ export async function HomeSeason({ locale }: { locale: string }) {
               key={cle}
               className="rounded-2xl border border-stone-200 p-5 sm:p-6"
             >
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#E76F51]">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#E76F51]">
                 {t(`${cle}.months`)}
               </p>
-              <h3 className="mt-2 text-[15px] font-semibold text-stone-900">
+              <h3 className="mt-2 text-lg font-semibold text-stone-900">
                 {t(`${cle}.title`)}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-stone-600">
