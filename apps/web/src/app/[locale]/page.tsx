@@ -8,6 +8,7 @@ import { businessInfo } from "@/lib/nav-config";
 import { routing } from "@/i18n/routing";
 import { getProducts } from "@/lib/api/products";
 import { HomeIntro } from "@/components/home/HomeIntro";
+import { HomeGallery } from "@/components/home/HomeGallery";
 import { HomeOffers } from "@/components/home/HomeOffers";
 import { HomeHighlights } from "@/components/home/HomeHighlights";
 import { HomeWhyUs } from "@/components/home/HomeWhyUs";
@@ -108,6 +109,7 @@ export default async function HomePage({ params }: Props) {
       <Hero destinations={heroDestinations} />
 
       <HomeIntro locale={locale} />
+      <HomeGallery locale={locale} />
       <HomeOffers locale={locale} />
       <HomeHighlights locale={locale} />
       <HomeWhyUs locale={locale} />

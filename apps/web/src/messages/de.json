@@ -108,6 +108,14 @@
       "discover": "Entdecken",
       "allExcursions": "Alle Ausflüge ansehen",
       "allCircuits": "Alle Touren ansehen"
+    },
+    "gallery": {
+      "eyebrow": "In Bildern",
+      "title": "Die Orte, an die wir unsere Reisenden bringen",
+      "intro": "Sandbänke, Urwälder, rote Tsingy und Fischerdörfer. Jedes Foto führt zum passenden Ausflug oder zur passenden Tour.",
+      "typeExcursion": "Ausflug",
+      "typeCircuit": "Tour",
+      "hint": "Wischen Sie, um die anderen Reiseziele zu entdecken"
     }
   },
   "nav": {

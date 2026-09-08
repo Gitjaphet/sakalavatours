@@ -108,6 +108,14 @@
       "discover": "Scopri",
       "allExcursions": "Vedi tutte le escursioni",
       "allCircuits": "Vedi tutti i circuiti"
+    },
+    "gallery": {
+      "eyebrow": "In immagini",
+      "title": "I luoghi dove accompagniamo i nostri viaggiatori",
+      "intro": "Banchi di sabbia, foreste primarie, tsingy rossi e villaggi di pescatori. Ogni foto porta all'escursione o al circuito corrispondente.",
+      "typeExcursion": "Escursione",
+      "typeCircuit": "Circuito",
+      "hint": "Scorri per scoprire le altre destinazioni"
     }
   },
   "nav": {
