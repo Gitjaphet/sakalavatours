@@ -30,13 +30,28 @@
       "excursions": {
         "meta": "In giornata",
         "title": "Le nostre escursioni da Nosy Be",
-        "text": "Uscite da mezza giornata a una giornata intera: isolotti e banchi di sabbia, la foresta primaria di Lokobe, il villaggio di pescatori di Nosy Iranja, snorkeling sulla barriera. La sera rientrate in hotel. È la formula giusta se soggiornate già a Nosy Be."
+        "text": "Uscite da mezza giornata a una giornata intera: isolotti e banchi di sabbia, la foresta primaria di Lokobe, il villaggio di pescatori di Nosy Iranja, snorkeling sulla barriera. La sera rientrate in hotel. È la formula giusta se soggiornate già a Nosy Be.",
+        "cta": "Vedi le escursioni",
+        "features": [
+          "Transfer dall'hotel incluso",
+          "Guida locale della zona",
+          "Gruppi da 2 a 12 persone"
+        ]
       },
       "circuits": {
         "meta": "Più giorni",
         "title": "I nostri circuiti nel nord del Madagascar",
-        "text": "Da due a undici giorni, con alloggio e pensione completa. Il nord non si visita in giornata: le piantagioni di vaniglia della SAVA, la baia di Diego Suarez, gli tsingy rossi e l'arcipelago richiedono tempo. Ogni itinerario è guidato dal nostro team locale."
-      }
+        "text": "Da due a undici giorni, con alloggio e pensione completa. Il nord non si visita in giornata: le piantagioni di vaniglia della SAVA, la baia di Diego Suarez, gli tsingy rossi e l'arcipelago richiedono tempo. Ogni itinerario è guidato dal nostro team locale.",
+        "cta": "Vedi i circuiti",
+        "features": [
+          "Alloggio e pensione completa",
+          "Da 2 a 11 giorni",
+          "Guidato dal nostro team locale"
+        ]
+      },
+      "priceFrom": "Da",
+      "perPerson": "/ pers.",
+      "priceAria": "Da {price} a persona"
     },
     "why": {
       "title": "Perché scegliere un'agenzia presente sul posto",

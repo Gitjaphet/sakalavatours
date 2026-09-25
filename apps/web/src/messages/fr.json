@@ -30,13 +30,28 @@
       "excursions": {
         "meta": "À la journée",
         "title": "Nos excursions au départ de Nosy Be",
-        "text": "Des sorties d'une demi-journée à une journée complète : îlots et bancs de sable, forêt primaire de Lokobe, village de pêcheurs de Nosy Iranja, snorkeling sur le récif. Vous rentrez dormir à votre hôtel le soir même. C'est la formule qui convient si vous séjournez déjà à Nosy Be."
+        "text": "Des sorties d'une demi-journée à une journée complète : îlots et bancs de sable, forêt primaire de Lokobe, village de pêcheurs de Nosy Iranja, snorkeling sur le récif. Vous rentrez dormir à votre hôtel le soir même. C'est la formule qui convient si vous séjournez déjà à Nosy Be.",
+        "cta": "Voir les excursions",
+        "features": [
+          "Transfert depuis votre hôtel inclus",
+          "Guide local de la région",
+          "Groupes de 2 à 12 personnes"
+        ]
       },
       "circuits": {
         "meta": "Plusieurs jours",
         "title": "Nos circuits dans le nord de Madagascar",
-        "text": "De deux à onze jours, avec hébergement et pension complète. Le nord ne se visite pas à la journée : la SAVA et ses plantations de vanille, la baie de Diego Suarez, les tsingy rouges et l'archipel demandent du temps. Chaque itinéraire est guidé par notre équipe locale."
-      }
+        "text": "De deux à onze jours, avec hébergement et pension complète. Le nord ne se visite pas à la journée : la SAVA et ses plantations de vanille, la baie de Diego Suarez, les tsingy rouges et l'archipel demandent du temps. Chaque itinéraire est guidé par notre équipe locale.",
+        "cta": "Voir les circuits",
+        "features": [
+          "Hébergement et pension complète",
+          "De 2 à 11 jours",
+          "Itinéraire guidé par notre équipe locale"
+        ]
+      },
+      "priceFrom": "Dès",
+      "perPerson": "/ pers.",
+      "priceAria": "À partir de {price} par personne"
     },
     "why": {
       "title": "Pourquoi passer par une agence installée sur place",

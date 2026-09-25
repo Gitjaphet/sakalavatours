@@ -30,13 +30,28 @@
       "excursions": {
         "meta": "Tagesausflüge",
         "title": "Unsere Ausflüge ab Nosy Be",
-        "text": "Von einem halben bis zu einem ganzen Tag: Inselchen und Sandbänke, der Urwald von Lokobe, das Fischerdorf auf Nosy Iranja, Schnorcheln am Riff. Abends sind Sie zurück in Ihrem Hotel. Diese Formel passt, wenn Sie bereits auf Nosy Be wohnen."
+        "text": "Von einem halben bis zu einem ganzen Tag: Inselchen und Sandbänke, der Urwald von Lokobe, das Fischerdorf auf Nosy Iranja, Schnorcheln am Riff. Abends sind Sie zurück in Ihrem Hotel. Diese Formel passt, wenn Sie bereits auf Nosy Be wohnen.",
+        "cta": "Ausflüge ansehen",
+        "features": [
+          "Hoteltransfer inklusive",
+          "Ortskundiger Guide",
+          "Gruppen von 2 bis 12 Personen"
+        ]
       },
       "circuits": {
         "meta": "Mehrere Tage",
         "title": "Unsere Touren im Norden Madagaskars",
-        "text": "Von zwei bis elf Tagen, mit Unterkunft und Vollpension. Der Norden lässt sich nicht an einem Tag erkunden: die Vanilleplantagen der SAVA, die Bucht von Diego Suarez, die roten Tsingy und der Archipel brauchen Zeit. Jede Route wird von unserem lokalen Team geführt."
-      }
+        "text": "Von zwei bis elf Tagen, mit Unterkunft und Vollpension. Der Norden lässt sich nicht an einem Tag erkunden: die Vanilleplantagen der SAVA, die Bucht von Diego Suarez, die roten Tsingy und der Archipel brauchen Zeit. Jede Route wird von unserem lokalen Team geführt.",
+        "cta": "Rundreisen ansehen",
+        "features": [
+          "Unterkunft und Vollpension",
+          "2 bis 11 Tage",
+          "Geführt von unserem lokalen Team"
+        ]
+      },
+      "priceFrom": "Ab",
+      "perPerson": "/ Pers.",
+      "priceAria": "Ab {price} pro Person"
     },
     "why": {
       "title": "Warum eine Agentur vor Ort wählen",

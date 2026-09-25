@@ -30,13 +30,28 @@
       "excursions": {
         "meta": "Day trips",
         "title": "Our excursions from Nosy Be",
-        "text": "Half-day to full-day trips: islets and sandbanks, the primary forest of Lokobe, the fishing village on Nosy Iranja, snorkelling on the reef. You are back at your hotel the same evening. This is the format that fits if you are already staying in Nosy Be."
+        "text": "Half-day to full-day trips: islets and sandbanks, the primary forest of Lokobe, the fishing village on Nosy Iranja, snorkelling on the reef. You are back at your hotel the same evening. This is the format that fits if you are already staying in Nosy Be.",
+        "cta": "See excursions",
+        "features": [
+          "Hotel pick-up included",
+          "Local guide from the region",
+          "Groups of 2 to 12 people"
+        ]
       },
       "circuits": {
         "meta": "Several days",
         "title": "Our tours in northern Madagascar",
-        "text": "From two to eleven days, with accommodation and full board. The north cannot be seen in a day: the SAVA vanilla plantations, Diego Suarez bay, the red tsingy and the archipelago all take time. Every itinerary is guided by our local team."
-      }
+        "text": "From two to eleven days, with accommodation and full board. The north cannot be seen in a day: the SAVA vanilla plantations, Diego Suarez bay, the red tsingy and the archipelago all take time. Every itinerary is guided by our local team.",
+        "cta": "See tours",
+        "features": [
+          "Accommodation and full board",
+          "From 2 to 11 days",
+          "Guided by our local team"
+        ]
+      },
+      "priceFrom": "From",
+      "perPerson": "/ person",
+      "priceAria": "From {price} per person"
     },
     "why": {
       "title": "Why book with an agency based on the island",
