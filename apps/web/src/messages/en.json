@@ -51,7 +51,10 @@
       },
       "priceFrom": "From",
       "perPerson": "/ person",
-      "priceAria": "From {price} per person"
+      "priceAria": "From {price} per person",
+      "eyebrow": "Our prices",
+      "heading": "Excursion and tour prices in Nosy Be",
+      "intro": "Prices per person, hotel pick-up included. Choose a day trip or a multi-day tour of northern Madagascar."
     },
     "why": {
       "title": "Why book with an agency based on the island",

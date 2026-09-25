@@ -49,6 +49,11 @@ export async function HomeOffers({ locale }: { locale: string }) {
   return (
     <section className="bg-[#FDFAF6] pb-16 pt-14 sm:pb-24">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <header className="mx-auto mb-12 max-w-2xl text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#E76F51]">{t("eyebrow")}</p>
+          <h2 className="mt-2 font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">{t("heading")}</h2>
+          <p className="mt-4 text-base leading-relaxed text-stone-600">{t("intro")}</p>
+        </header>
         <div className="grid gap-8 sm:grid-cols-2">
           {blocs.map((b) => (
             <article
@@ -56,9 +61,9 @@ export async function HomeOffers({ locale }: { locale: string }) {
               className={`group relative flex flex-col rounded-2xl border-2 bg-white p-6 transition-all duration-500 ease-out hover:-translate-x-1 hover:-translate-y-1 sm:p-8 ${b.frame}`}
             >
               <p className={`text-xs font-bold uppercase tracking-[0.18em] ${b.meta}`}>{t(`${b.key}.meta`)}</p>
-              <h2 className="mt-2 font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
+              <h3 className="mt-2 font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
                 {t(`${b.key}.title`)}
-              </h2>
+              </h3>
 
               {b.prix && (
                 <p className="mt-5 flex items-baseline gap-1.5">

@@ -51,7 +51,10 @@
       },
       "priceFrom": "Dès",
       "perPerson": "/ pers.",
-      "priceAria": "À partir de {price} par personne"
+      "priceAria": "À partir de {price} par personne",
+      "eyebrow": "Nos tarifs",
+      "heading": "Tarifs des excursions et circuits à Nosy Be",
+      "intro": "Des prix par personne, transfert depuis votre hôtel compris. Choisissez une sortie à la journée ou un circuit de plusieurs jours dans le nord de Madagascar."
     },
     "why": {
       "title": "Pourquoi passer par une agence installée sur place",

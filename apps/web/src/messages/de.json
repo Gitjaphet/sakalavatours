@@ -51,7 +51,10 @@
       },
       "priceFrom": "Ab",
       "perPerson": "/ Pers.",
-      "priceAria": "Ab {price} pro Person"
+      "priceAria": "Ab {price} pro Person",
+      "eyebrow": "Unsere Preise",
+      "heading": "Preise für Ausflüge und Rundreisen auf Nosy Be",
+      "intro": "Preise pro Person, Hoteltransfer inklusive. Wählen Sie einen Tagesausflug oder eine mehrtägige Rundreise durch den Norden Madagaskars."
     },
     "why": {
       "title": "Warum eine Agentur vor Ort wählen",
