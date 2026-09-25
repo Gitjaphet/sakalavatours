@@ -67,17 +67,17 @@ export async function Footer() {
       />
 
       <div className="relative">
-        <div className="bg-[#E76F51]">
-          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 sm:px-6 sm:py-7 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div className="border-b border-white/10">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 sm:px-6 sm:py-12 lg:flex-row lg:items-center lg:justify-between lg:px-8">
             <div>
-              <p className="font-[family-name:var(--font-courgette)] text-xl text-white sm:text-2xl">
+              <p className="font-[family-name:var(--font-courgette)] text-2xl text-white sm:text-3xl">
                 {t("cta.title")}
               </p>
               <p className="mt-1 text-sm text-white/85">{t("cta.text")}</p>
             </div>
             <Link
               href="/contact"
-              className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#c2451f] transition-transform duration-300 hover:scale-[1.03]"
+              className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-[#E76F51] px-6 py-3 text-sm font-medium text-white shadow-lg shadow-[#E76F51]/30 transition-transform duration-300 hover:scale-[1.03]"
             >
               {t("cta.button")}
               <IconArrowRight size={16} className="shrink-0" />
