@@ -139,6 +139,20 @@
       "priceFrom": "Da",
       "perPerson": "/ pers.",
       "priceAria": "Da {price} a persona"
+    },
+    "reviews": {
+      "eyebrow": "Recensioni",
+      "title": "Cosa raccontano i nostri viaggiatori",
+      "average": "{average}/5 · {count} recensioni",
+      "verified": "Viaggio verificato",
+      "seeAll": "Vedi tutte le recensioni",
+      "ratingAria": "Voto: {rating} su 5",
+      "invite": {
+        "title": "Avete viaggiato con noi?",
+        "text": "Il vostro parere aiuta i futuri viaggiatori a scegliere e noi a migliorare. Ogni recensione viene letta dal nostro team prima della pubblicazione.",
+        "cta": "Lascia una recensione",
+        "read": "Leggi le recensioni"
+      }
     }
   },
   "nav": {

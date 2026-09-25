@@ -13,6 +13,7 @@ import { HomeOffers } from "@/components/home/HomeOffers";
 import { HomeHighlights } from "@/components/home/HomeHighlights";
 import { HomeWhyUs } from "@/components/home/HomeWhyUs";
 import { HomeSeason } from "@/components/home/HomeSeason";
+import { HomeReviews } from "@/components/home/HomeReviews";
 import { HomeFaq, FAQ_KEYS } from "@/components/home/HomeFaq";
 import { buildFaqSchema } from "@/lib/schema/faqPage";
 import Hero from "@/components/home/Hero";
@@ -114,6 +115,7 @@ export default async function HomePage({ params }: Props) {
       <HomeHighlights locale={locale} />
       <HomeWhyUs locale={locale} />
       <HomeSeason locale={locale} />
+      <HomeReviews locale={locale} />
       <HomeFaq locale={locale} />
 
       {/*
