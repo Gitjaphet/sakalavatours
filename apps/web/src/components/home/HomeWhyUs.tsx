@@ -6,6 +6,9 @@
 //
 // ⚠ Chaque argument est un engagement commercial. Ne rien affirmer ici qui ne
 // soit tenu sur le terrain — voir la regle du projet sur les engagements.
+//
+// Effet : quart de cercle dans le coin, qui s'etend a toute la carte au survol
+// (scale CSS + overflow-hidden, aucun JavaScript).
 
 import { getTranslations } from "next-intl/server";
 import {
@@ -22,24 +25,36 @@ export async function HomeWhyUs({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "home.why" });
 
   return (
-    <section className="bg-[#FDFAF6] py-16 sm:py-20">
+    <section className="bg-[#FDFAF6] py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h2 className="max-w-2xl font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
+        <h2 className="mx-auto max-w-2xl text-center font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
           {t("title")}
         </h2>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-7">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {CLES.map((cle, i) => {
             const Icon = ICONES[i];
             return (
-              <div key={cle}>
-                <span className="grid h-11 w-11 place-items-center rounded-full bg-[#1d4e5f]/10 text-[#1d4e5f]">
-                  <Icon size={20} stroke={1.7} />
-                </span>
-                <h3 className="mt-3.5 text-lg font-semibold text-stone-900">
+              <div
+                key={cle}
+                className="group relative overflow-hidden rounded-2xl border border-stone-200 bg-white p-6 pt-24 shadow-sm transition-shadow duration-500 hover:shadow-xl hover:shadow-[#1d4e5f]/20"
+              >
+                {/* Quart de cercle -> remplit la carte au survol */}
+                <span
+                  aria-hidden="true"
+                  className="absolute -left-12 -top-12 h-32 w-32 rounded-full bg-[#1d4e5f] transition-transform duration-700 ease-out group-hover:scale-[7]"
+                />
+                <Icon
+                  size={26}
+                  stroke={1.7}
+                  aria-hidden="true"
+                  className="absolute left-5 top-5 text-white"
+                />
+
+                <h3 className="relative text-lg font-semibold text-[#1d4e5f] transition-colors delay-100 duration-500 group-hover:text-white">
                   {t(`${cle}.title`)}
                 </h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-stone-600">
+                <p className="relative mt-2 text-sm leading-relaxed text-stone-600 transition-colors delay-100 duration-500 group-hover:text-white/85">
                   {t(`${cle}.text`)}
                 </p>
               </div>
