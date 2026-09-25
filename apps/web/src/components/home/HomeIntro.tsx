@@ -9,7 +9,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Squiggle } from "@/components/ui/Doodles";
 
-const SHAPE_COLOR = "#F9D55B";
+const SHAPE_COLOR = "#D5ECE9";
 const IMAGE_URL =
   "https://media.medevstack.com/excursions/2026/08/e198a63e-nosy-iranja.jpg";
 
