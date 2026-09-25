@@ -12,7 +12,7 @@ import { Link } from "@/i18n/navigation";
 import { IconStar, IconStarFilled, IconCircleCheck, IconMessageCircle, IconArrowRight } from "@tabler/icons-react";
 import { getReviews } from "@/lib/api/reviews";
 
-const SEUIL = 3;
+const SEUIL = 1;
 
 function Stars({ rating, size = 16 }: { rating: number; size?: number }) {
   return (
@@ -72,9 +72,9 @@ export async function HomeReviews({ locale }: { locale: string }) {
           )}
         </header>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-12 flex flex-wrap justify-center gap-6">
           {items.map((r) => (
-            <article key={r.id} className="flex flex-col rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+            <article key={r.id} className="flex w-full flex-col rounded-2xl border border-stone-200 bg-white p-6 shadow-sm md:w-[calc((100%-3rem)/3)]">
               <span className="sr-only">{t("ratingAria", { rating: r.rating })}</span>
               <Stars rating={r.rating} />
               {r.title && <h3 className="mt-4 font-semibold text-stone-900">{r.title}</h3>}
