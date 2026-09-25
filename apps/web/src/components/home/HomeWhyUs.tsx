@@ -39,7 +39,7 @@ export async function HomeWhyUs({ locale }: { locale: string }) {
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-b from-[#FDFAF6] via-[#FDFAF6]/70 to-[#FDFAF6]"
+        className="absolute inset-0 bg-gradient-to-b from-[#FDFAF6] via-[#FDFAF6]/85 to-[#FDFAF6]"
       />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 className="mx-auto max-w-2xl text-center font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
