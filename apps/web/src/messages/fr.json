@@ -152,7 +152,9 @@
         "text": "Votre retour aide les futurs voyageurs à choisir et nous aide à progresser. Chaque avis est lu par notre équipe avant publication.",
         "cta": "Laisser un avis",
         "read": "Lire les avis"
-      }
+      },
+      "intro": "Chaque avis publié ici vient d'un voyageur réel et a été lu par notre équipe. Nous publions aussi les critiques : c'est ce qui vous permet de nous faire confiance.",
+      "seeMore": "Voir plus d'avis"
     }
   },
   "nav": {

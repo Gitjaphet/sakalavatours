@@ -152,7 +152,9 @@
         "text": "Your feedback helps future travellers choose and helps us improve. Every review is read by our team before it is published.",
         "cta": "Leave a review",
         "read": "Read the reviews"
-      }
+      },
+      "intro": "Every review published here comes from a real traveller and has been read by our team. We publish criticism too: that is what lets you trust us.",
+      "seeMore": "See more reviews"
     }
   },
   "nav": {

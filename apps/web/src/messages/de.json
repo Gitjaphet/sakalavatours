@@ -152,7 +152,9 @@
         "text": "Ihr Feedback hilft künftigen Reisenden bei der Wahl und uns dabei, besser zu werden. Jede Bewertung wird vor der Veröffentlichung von unserem Team gelesen.",
         "cta": "Bewertung schreiben",
         "read": "Bewertungen lesen"
-      }
+      },
+      "intro": "Jede hier veröffentlichte Bewertung stammt von einem echten Reisenden und wurde von unserem Team gelesen. Wir veröffentlichen auch Kritik: Deshalb können Sie uns vertrauen.",
+      "seeMore": "Mehr Bewertungen"
     }
   },
   "nav": {
