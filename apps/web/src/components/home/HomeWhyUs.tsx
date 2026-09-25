@@ -10,6 +10,7 @@
 // Effet : quart de cercle dans le coin, qui s'etend a toute la carte au survol
 // (scale CSS + overflow-hidden, aucun JavaScript).
 
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import {
   IconMapPin,
@@ -25,8 +26,22 @@ export async function HomeWhyUs({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "home.why" });
 
   return (
-    <section className="bg-[#FDFAF6] py-16 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-[#FDFAF6] py-16 sm:py-24">
+      {/* Photo de fond decorative + voile creme (bords opaques pour fondre avec les sections voisines) */}
+      <Image
+        src="https://media.medevstack.com/divers/2026/09/a5f73d1f-mer-d-emeraude.jpeg"
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="100vw"
+        quality={60}
+        className="object-cover"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-b from-[#FDFAF6] via-[#FDFAF6]/70 to-[#FDFAF6]"
+      />
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 className="mx-auto max-w-2xl text-center font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
           {t("title")}
         </h2>
