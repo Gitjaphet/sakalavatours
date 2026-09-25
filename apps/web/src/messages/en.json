@@ -117,7 +117,10 @@
       "typeExcursion": "Excursion",
       "typeCircuit": "Tour",
       "prev": "Previous destinations",
-      "next": "Next destinations"
+      "next": "Next destinations",
+      "priceFrom": "From",
+      "perPerson": "/ person",
+      "priceAria": "From {price} per person"
     }
   },
   "nav": {

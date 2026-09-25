@@ -16,6 +16,7 @@ import { Link } from "@/i18n/navigation";
 import { getProducts } from "@/lib/api/products";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 import { Sparkle } from "@/components/ui/Doodles";
+import { formatPrice } from "@/lib/format-price";
 
 function productHref(type: string, slug: string): string {
   return `/${type === "circuit" ? "circuits" : "excursions"}/${slug}`;
@@ -31,6 +32,12 @@ export async function HomeGallery({ locale }: { locale: string }) {
 
   // En dessous de 4 visuels, le bandeau ne defile pas et fait pauvre.
   if (avecImage.length < 6) return null;
+
+  // Prix formate une seule fois par carte (null = pas de badge).
+  const cartes = avecImage.map((p) => ({
+    ...p,
+    prix: formatPrice(p.price_from, p.currency, locale),
+  }));
 
   return (
     <section className="relative bg-[#F3E9DD] pb-16 sm:pb-20">
@@ -55,7 +62,7 @@ export async function HomeGallery({ locale }: { locale: string }) {
           du bord gauche de l'ecran, ce qui signale qu'il continue au-dela. */}
       <div className="mx-auto mt-8 max-w-6xl px-4 sm:px-6 lg:px-8">
         <ul className="grid grid-cols-2 gap-2.5 sm:gap-4 lg:grid-cols-3">
-          {avecImage.map((p) => (
+          {cartes.map((p) => (
             <li key={p.id}>
               <Link
                 href={productHref(p.product_type, p.slug)}
@@ -72,6 +79,20 @@ export async function HomeGallery({ locale }: { locale: string }) {
                   aria-hidden="true"
                   className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
                 />
+                {p.prix && (
+                  <span className="absolute right-2.5 top-2.5 flex items-baseline gap-1 rounded-full bg-white/85 px-2.5 py-1 shadow-lg shadow-black/20 backdrop-blur-md sm:right-3 sm:top-3 sm:px-3.5 sm:py-1.5">
+                    <span className="sr-only">{t("priceAria", { price: p.prix })}</span>
+                    <span aria-hidden="true" className="text-[10px] font-medium uppercase tracking-wider text-stone-500 sm:text-[11px]">
+                      {t("priceFrom")}
+                    </span>
+                    <span aria-hidden="true" className="text-sm font-bold text-stone-900 sm:text-base">
+                      {p.prix}
+                    </span>
+                    <span aria-hidden="true" className="hidden text-[11px] text-stone-500 sm:inline">
+                      {t("perPerson")}
+                    </span>
+                  </span>
+                )}
                 <span className="absolute inset-x-0 bottom-0 p-4">
                   <span className="block text-xs font-bold uppercase tracking-[0.18em] text-[#F4A261]">
                     {p.product_type === "circuit"

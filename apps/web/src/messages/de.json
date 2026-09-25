@@ -117,7 +117,10 @@
       "typeExcursion": "Ausflug",
       "typeCircuit": "Tour",
       "prev": "Vorherige Reiseziele",
-      "next": "Nächste Reiseziele"
+      "next": "Nächste Reiseziele",
+      "priceFrom": "Ab",
+      "perPerson": "/ Pers.",
+      "priceAria": "Ab {price} pro Person"
     }
   },
   "nav": {
