@@ -3,7 +3,8 @@
 //
 // Role SEO : c'est le premier bloc de texte reel de la page d'accueil.
 // Composant serveur, aucun JavaScript envoye au navigateur.
-// Fond : forme SVG decorative (aria-hidden), photo en forme de "8" via clipPath.
+// Desktop (lg+) : forme SVG diagonale + courbe, photo a droite.
+// Mobile/tablette : panneau jaune a bas courbe, photo a cheval sur la courbe.
 
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
@@ -19,10 +20,10 @@ export async function HomeIntro({ locale }: { locale: string }) {
 
   return (
     <section className="relative overflow-hidden bg-[#FDFAF6] py-16 sm:py-20 lg:py-28">
-      {/* Forme de fond : diagonale en haut a droite + grande courbe en bas */}
+      {/* Desktop : diagonale en haut a droite + grande courbe en bas */}
       <svg
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full"
+        className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block"
         viewBox="0 0 1440 800"
         preserveAspectRatio="none"
       >
@@ -32,7 +33,15 @@ export async function HomeIntro({ locale }: { locale: string }) {
         />
       </svg>
 
-      {/* Masque "8" : deux ellipses qui se chevauchent (coordonnees relatives) */}
+      {/* Mobile/tablette : panneau plein, bas courbe qui remonte vers la droite.
+          Le bas du panneau s'arrete au milieu de la photo. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 bottom-56 rounded-br-[100%_80px] sm:bottom-[267px] lg:hidden"
+        style={{ backgroundColor: SHAPE_COLOR }}
+      />
+
+      {/* Masque "8" : deux ellipses qui se chevauchent */}
       <svg aria-hidden="true" className="absolute h-0 w-0">
         <defs>
           <clipPath id="intro-blob" clipPathUnits="objectBoundingBox">
@@ -42,47 +51,49 @@ export async function HomeIntro({ locale }: { locale: string }) {
         </defs>
       </svg>
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.3fr_1fr] lg:gap-16 lg:px-8">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
         <div>
-          <h2 className="font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
+          <h2 className="font-[family-name:var(--font-courgette)] text-[1.75rem] leading-snug text-stone-900 sm:text-4xl">
             {t("title")}
           </h2>
           <Squiggle className="mt-2 h-2 w-24 opacity-70" color="#E76F51" />
 
-          <div className="mt-6 space-y-4 text-base leading-relaxed text-stone-800">
+          <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-stone-800 sm:text-base">
             <p>{t("p1")}</p>
             <p>{t("p2")}</p>
             <p>{t("p3")}</p>
           </div>
 
-          <div className="mt-7 flex flex-wrap gap-3">
+          <div className="mt-8 flex gap-3">
             <Link
               href="/excursions"
-              className="rounded-full bg-[#E76F51] px-5 py-2.5 text-sm font-medium text-white transition-transform duration-300 hover:scale-[1.03]"
+              className="flex-1 rounded-full bg-[#E76F51] px-5 py-3 text-center text-sm font-medium text-white shadow-md shadow-[#E76F51]/25 transition-transform duration-300 hover:scale-[1.03] sm:flex-none"
             >
               {t("ctaExcursions")}
             </Link>
             <Link
               href="/circuits"
-              className="rounded-full border border-stone-800/30 bg-white/60 px-5 py-2.5 text-sm font-medium text-stone-800 transition-colors duration-300 hover:border-[#E76F51] hover:text-[#E76F51]"
+              className="flex-1 rounded-full border border-stone-800/25 bg-white/70 px-5 py-3 text-center text-sm font-medium text-stone-800 backdrop-blur-sm transition-colors duration-300 hover:border-[#E76F51] hover:text-[#E76F51] sm:flex-none"
             >
               {t("ctaCircuits")}
             </Link>
           </div>
         </div>
 
-        <div className="mx-auto w-full max-w-[260px] sm:max-w-xs lg:max-w-sm">
-          <div
-            className="relative aspect-[3/4] w-full"
-            style={{ clipPath: "url(#intro-blob)" }}
-          >
-            <Image
-              src={IMAGE_URL}
-              alt={t("imageAlt")}
-              fill
-              sizes="(min-width: 1024px) 384px, (min-width: 640px) 320px, 260px"
-              className="object-cover"
-            />
+        <div className="mx-auto w-[240px] sm:w-[280px] lg:w-full lg:max-w-sm">
+          <div className="[filter:drop-shadow(0_24px_32px_rgba(43,38,32,0.22))]">
+            <div
+              className="relative aspect-[3/4] w-full"
+              style={{ clipPath: "url(#intro-blob)" }}
+            >
+              <Image
+                src={IMAGE_URL}
+                alt={t("imageAlt")}
+                fill
+                sizes="(min-width: 1024px) 384px, (min-width: 640px) 280px, 240px"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>
