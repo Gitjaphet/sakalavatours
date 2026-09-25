@@ -11,7 +11,7 @@ import { Squiggle } from "@/components/ui/Doodles";
 
 const SHAPE_COLOR = "#D5ECE9";
 const IMAGE_URL =
-  "https://media.medevstack.com/excursions/2026/08/e198a63e-nosy-iranja.jpg";
+  "https://media.medevstack.com/divers/2026/09/6e75c36e-sakalavatours-babobab-circuit-madagascar.webp";
 
 export async function HomeIntro({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "home.intro" });
