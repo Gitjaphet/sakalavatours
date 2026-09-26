@@ -1,13 +1,17 @@
 // src/components/home/HomeOffers.tsx
 // Section 2 — cartes de tarification excursions / circuits.
 // Prix "Des" = minimum reel des produits en base (aucun prix invente).
+// Fond : photo allee des baobabs + voile bleu lagon (dense en haut pour le titre, leger en bas).
 // Cadre lumineux (bordure + halo) ; au survol : ombre bas-droite uniquement.
 
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { IconArrowRight, IconCheck } from "@tabler/icons-react";
 import { getProducts } from "@/lib/api/products";
 import { formatPrice } from "@/lib/format-price";
+
+const BG_URL = "/images/hero/baobab_couverture_sakalavatours.jpg";
 
 async function prixMin(locale: string, type: "excursion" | "circuit"): Promise<string | null> {
   try {
@@ -47,18 +51,26 @@ export async function HomeOffers({ locale }: { locale: string }) {
   ] as const;
 
   return (
-    <section className="bg-[#FDFAF6] pb-16 pt-14 sm:pb-24">
+    <section className="relative isolate overflow-hidden pb-20 pt-16 sm:pb-28 sm:pt-20">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <Image src={BG_URL} alt="" fill sizes="100vw" quality={70} className="object-cover object-bottom" />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, rgba(29,78,95,0.92) 0%, rgba(29,78,95,0.78) 35%, rgba(43,38,32,0.45) 100%)" }}
+        />
+      </div>
+
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <header className="mx-auto mb-12 max-w-2xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#E76F51]">{t("eyebrow")}</p>
-          <h2 className="mt-2 font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">{t("heading")}</h2>
-          <p className="mt-4 text-base leading-relaxed text-stone-600">{t("intro")}</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#F4A261]">{t("eyebrow")}</p>
+          <h2 className="mt-2 font-[family-name:var(--font-courgette)] text-3xl text-white sm:text-4xl">{t("heading")}</h2>
+          <p className="mt-4 text-base leading-relaxed text-white/85">{t("intro")}</p>
         </header>
         <div className="grid gap-8 sm:grid-cols-2">
           {blocs.map((b) => (
             <article
               key={b.key}
-              className={`group relative flex flex-col rounded-2xl border-2 bg-white p-6 transition-all duration-500 ease-out hover:-translate-x-1 hover:-translate-y-1 sm:p-8 ${b.frame}`}
+              className={`group relative flex flex-col rounded-2xl border-2 bg-white p-6 shadow-2xl shadow-black/25 transition-all duration-500 ease-out hover:-translate-x-1 hover:-translate-y-1 sm:p-8 ${b.frame}`}
             >
               <p className={`text-xs font-bold uppercase tracking-[0.18em] ${b.meta}`}>{t(`${b.key}.meta`)}</p>
               <h3 className="mt-2 font-[family-name:var(--font-courgette)] text-3xl text-stone-900 sm:text-4xl">
