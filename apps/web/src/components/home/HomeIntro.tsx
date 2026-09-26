@@ -2,8 +2,8 @@
 // Section 1 — presentation de l'agence.
 // Composant serveur, aucun JavaScript envoye au navigateur.
 // Fond : photo plein cadre avec fondu creme.
-//   Desktop (lg+) : creme plein uniquement derriere le texte (a droite), fondu court, photo nette a gauche et au centre.
-//   Mobile/tablette : voile creme uniforme (texte pleine largeur).
+//   Desktop (lg+) : creme plein derriere le texte (a droite), photo nette a gauche + carte de localisation flottante en bas a gauche.
+//   Mobile/tablette : voile creme uniforme, carte sous les boutons.
 
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
@@ -12,6 +12,7 @@ import { Squiggle } from "@/components/ui/Doodles";
 
 const CREAM = "#FDFAF6";
 const BG_URL = "/images/hero/plage-sakalavatours-nosy-iranja.jpg";
+const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=Nosy+Iranja+Madagascar";
 
 export async function HomeIntro({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "home.intro" });
@@ -40,6 +41,27 @@ export async function HomeIntro({ locale }: { locale: string }) {
             <Link href="/excursions" className="flex-1 rounded-full bg-[#E76F51] px-5 py-3 text-center text-sm font-medium text-white shadow-md shadow-[#E76F51]/25 transition-transform duration-300 hover:scale-[1.03] sm:flex-none">{t("ctaExcursions")}</Link>
             <Link href="/circuits" className="flex-1 rounded-full border border-stone-800/25 bg-white/70 px-5 py-3 text-center text-sm font-medium text-stone-800 backdrop-blur-sm transition-colors duration-300 hover:border-[#E76F51] hover:text-[#E76F51] sm:flex-none">{t("ctaCircuits")}</Link>
           </div>
+        </div>
+
+        <div className="mt-10 rounded-3xl bg-white/85 p-5 shadow-xl shadow-stone-900/10 ring-1 ring-white/60 backdrop-blur-md sm:p-6 lg:absolute lg:bottom-0 lg:left-8 lg:mt-0 lg:w-[400px]">
+          <div className="flex items-center gap-4">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-stone-100 text-[#1d4e5f]">
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z" />
+                <circle cx="12" cy="9.5" r="2.5" />
+              </svg>
+            </span>
+            <div>
+              <p className="text-lg font-semibold text-stone-900">{t("mapTitle")}</p>
+              <p className="text-sm text-stone-500">{t("mapSubtitle")}</p>
+            </div>
+          </div>
+          <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="mt-5 flex items-center justify-between rounded-xl bg-[#1d4e5f] px-5 py-3 text-sm font-medium text-white shadow-md shadow-[#1d4e5f]/25 transition-colors duration-300 hover:bg-[#163e4c]">
+            {t("mapCta")}
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>

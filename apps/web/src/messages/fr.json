@@ -23,7 +23,10 @@
       "p3": "Nosy Iranja, Lokobe, Nosy Mitsio, la Mer d'Émeraude : ce sont des lieux que nos guides parcourent toute l'année. Si rien ne correspond exactement à ce que vous cherchez, nous construisons l'itinéraire avec vous.",
       "ctaExcursions": "Voir les excursions",
       "ctaCircuits": "Voir les circuits",
-      "imageAlt": "Baobabs au coucher du soleil, circuit dans le nord de Madagascar"
+      "imageAlt": "Baobabs au coucher du soleil, circuit dans le nord de Madagascar",
+      "mapTitle": "Bivouac Nosy Iranja",
+      "mapSubtitle": "Nosy Be, Madagascar",
+      "mapCta": "Voir sur Google Maps"
     },
     "offers": {
       "seeAll": "Tout voir",
