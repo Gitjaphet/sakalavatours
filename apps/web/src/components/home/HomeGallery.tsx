@@ -18,6 +18,9 @@ import { SectionDivider } from "@/components/ui/SectionDivider";
 import { Sparkle } from "@/components/ui/Doodles";
 import { formatPrice } from "@/lib/format-price";
 
+const BG_COLOR = "#F3E9DD";
+const BG_URL = "/images/hero/sakalava-hero-iranja.jpg";
+
 function productHref(type: string, slug: string): string {
   return `/${type === "circuit" ? "circuits" : "excursions"}/${slug}`;
 }
@@ -40,8 +43,12 @@ export async function HomeGallery({ locale }: { locale: string }) {
   }));
 
   return (
-    <section className="relative bg-[#F3E9DD] pb-16 sm:pb-20">
+    <section className="relative isolate overflow-hidden bg-[#F3E9DD] pb-16 sm:pb-20">
       <SectionDivider forme="diagonal" color="#F3E9DD" className="h-10 sm:h-14" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 top-10 -z-10 sm:top-14">
+        <Image src={BG_URL} alt="" fill sizes="100vw" quality={60} className="object-cover" />
+        <div className="absolute inset-0" style={{ backgroundColor: `${BG_COLOR}D9` }} />
+      </div>
       <Sparkle className="pointer-events-none absolute right-8 top-20 hidden h-8 w-8 opacity-60 lg:block" color="#E76F51" />
       <div className="pt-10 sm:pt-12">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
