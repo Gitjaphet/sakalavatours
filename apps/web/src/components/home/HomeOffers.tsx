@@ -51,7 +51,7 @@ export async function HomeOffers({ locale }: { locale: string }) {
   ] as const;
 
   return (
-    <section className="relative isolate overflow-hidden pb-20 pt-16 sm:pb-28 sm:pt-20">
+    <section className="relative isolate overflow-hidden pb-28 pt-16 sm:pb-36 sm:pt-20 lg:pb-40">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <Image src={BG_URL} alt="" fill sizes="100vw" quality={70} className="object-cover object-bottom" />
         <div
@@ -111,6 +111,9 @@ export async function HomeOffers({ locale }: { locale: string }) {
           ))}
         </div>
       </div>
+      <svg aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 block h-12 w-full sm:h-16 lg:h-20" viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path d="M0 55 C420 5 1000 105 1440 25 V100 H0 Z" fill="#1d4e5f" />
+      </svg>
     </section>
   );
 }

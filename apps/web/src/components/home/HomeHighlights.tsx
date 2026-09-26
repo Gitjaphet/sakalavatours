@@ -14,7 +14,6 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { IconArrowRight } from "@tabler/icons-react";
 import { getProduct } from "@/lib/api/products";
-import { SectionDivider } from "@/components/ui/SectionDivider";
 
 /** Un produit par type d'offre, pour que les deux formules soient montrees. */
 const SLUGS_PHARES = [
@@ -40,7 +39,6 @@ export async function HomeHighlights({ locale }: { locale: string }) {
 
   return (
     <section className="bg-[#1d4e5f]">
-      <SectionDivider forme="wave" color="#FDFAF6" className="h-12 sm:h-16 lg:h-20" />
 
       <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
         <div className="max-w-2xl">
