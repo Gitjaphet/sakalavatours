@@ -23,7 +23,7 @@ export async function HomeIntro({ locale }: { locale: string }) {
         <div className="absolute inset-0 lg:hidden" style={{ backgroundColor: `${CREAM}D9` }} />
         <div
           className="absolute inset-0 hidden lg:block"
-          style={{ background: `linear-gradient(to left, ${CREAM} 0%, ${CREAM} 46%, ${CREAM}CC 53%, ${CREAM}4D 62%, ${CREAM}00 72%)` }}
+          style={{ background: `linear-gradient(to left, ${CREAM}B3 0%, ${CREAM} 16%, ${CREAM} 46%, ${CREAM}CC 53%, ${CREAM}4D 62%, ${CREAM}00 72%)` }}
         />
       </div>
 
