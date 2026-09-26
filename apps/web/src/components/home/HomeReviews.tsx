@@ -6,6 +6,7 @@
 // positif/negatif. La note moyenne n'apparait que si is_schema_eligible.
 // Pas de photo client : initiales dans un rond (on n'invente pas de visage).
 
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { IconStar, IconStarFilled, IconCircleCheck, IconMessageCircle, IconArrowRight, IconQuote } from "@tabler/icons-react";
@@ -13,6 +14,7 @@ import { getReviews } from "@/lib/api/reviews";
 
 const SEUIL = 1;
 const SHAPE_COLOR = "#FBE3D6";
+const BG_URL = "/images/hero/plage-sakalavatours-nosy-iranja.jpg";
 
 function Stars({ rating, size = 16 }: { rating: number; size?: number }) {
   return (
@@ -58,9 +60,17 @@ export async function HomeReviews({ locale }: { locale: string }) {
   return (
     <section className="relative overflow-hidden bg-[#FDFAF6] py-16 sm:py-24">
       {/* Grande courbe de fond : monte du bas-gauche vers le haut-droite */}
-      <svg aria-hidden="true" className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 1440 800" preserveAspectRatio="none">
-        <path d="M0 640 C420 760 900 640 1180 300 C1290 160 1370 60 1440 0 L1440 800 L0 800 Z" fill={SHAPE_COLOR} />
+      <svg aria-hidden="true" className="absolute h-0 w-0">
+        <defs>
+          <clipPath id="reviews-shape" clipPathUnits="objectBoundingBox">
+            <path d="M0 0.8 C0.2917 0.95 0.625 0.8 0.8194 0.375 C0.8958 0.2 0.9514 0.075 1 0 L1 1 L0 1 Z" />
+          </clipPath>
+        </defs>
       </svg>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ clipPath: "url(#reviews-shape)" }}>
+        <Image src={BG_URL} alt="" fill sizes="100vw" quality={60} className="object-cover" />
+        <div className="absolute inset-0" style={{ backgroundColor: `${SHAPE_COLOR}D9` }} />
+      </div>
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:px-8">
         <div>
