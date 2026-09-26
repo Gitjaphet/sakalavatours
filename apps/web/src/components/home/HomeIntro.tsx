@@ -1,32 +1,36 @@
 // src/components/home/HomeIntro.tsx
 // Section 1 — presentation de l'agence.
 // Composant serveur, aucun JavaScript envoye au navigateur.
-// Desktop (lg+) : forme SVG diagonale + courbe, photo a droite.
-// Mobile/tablette : bloc jaune plein puis diagonale (hauteur fixe) qui traverse la photo.
+// Fond : photo plein cadre avec fondu creme.
+//   Desktop (lg+) : photo visible a droite, fondu creme vers la gauche (lisibilite du texte).
+//   Mobile/tablette : fondu creme du haut (texte) vers le bas (photo visible derriere le blob).
 
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Squiggle } from "@/components/ui/Doodles";
 
-const SHAPE_COLOR = "#D5ECE9";
+const CREAM = "#FDFAF6";
 const IMAGE_URL =
   "https://media.medevstack.com/divers/2026/09/6e75c36e-sakalavatours-babobab-circuit-madagascar.webp";
+const BG_URL =
+  "https://media.medevstack.com/excursions/2026/08/e198a63e-nosy-iranja.jpg";
 
 export async function HomeIntro({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "home.intro" });
 
   return (
-    <section className="relative overflow-hidden bg-[#FDFAF6] py-16 sm:py-20 lg:py-28">
-      <svg aria-hidden="true" className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block" viewBox="0 0 1440 800" preserveAspectRatio="none">
-        <path d="M0 0 H1440 C1200 220 1000 420 860 560 C640 740 300 780 0 800 Z" fill={SHAPE_COLOR} />
-      </svg>
-
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 bottom-4 flex flex-col lg:hidden">
-        <div className="flex-1" style={{ backgroundColor: SHAPE_COLOR }} />
-        <svg className="block h-[400px] w-full sm:h-[470px]" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M0 0 H100 C82 28 58 68 28 88 C17 95 8 99 0 100 Z" fill={SHAPE_COLOR} />
-        </svg>
+    <section className="relative isolate overflow-hidden bg-[#FDFAF6] py-16 sm:py-20 lg:py-28">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <Image src={BG_URL} alt="" fill sizes="100vw" quality={70} className="object-cover object-bottom lg:object-right" />
+        <div
+          className="absolute inset-0 lg:hidden"
+          style={{ background: `linear-gradient(to bottom, ${CREAM} 0%, ${CREAM} 45%, ${CREAM}B3 65%, ${CREAM}33 100%)` }}
+        />
+        <div
+          className="absolute inset-0 hidden lg:block"
+          style={{ background: `linear-gradient(to right, ${CREAM} 0%, ${CREAM} 35%, ${CREAM}CC 55%, ${CREAM}40 80%, ${CREAM}1A 100%)` }}
+        />
       </div>
 
       <svg aria-hidden="true" className="absolute h-0 w-0">
